@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<developerConceptualDocument
+  xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <introduction>
+    <para>GreeterBots are one of the most fundamental examples of using the Active Worlds SDK.
+    They demonstrate the usage of attributes, methods, and events.</para>
+  </introduction>
+
+  <section address="Section1">
+    <title>Greeter Bot</title>
+    <content>
+      <para>This greeterbot example is compiled as a console application.
+      It takes input from the user about their citizen number, password, and world.
+      It spawns a greeterbot at the GZ of the specified world and begins greeting users via whispers.
+      This example demonstrates how to use events with the SDK.</para>
+      <codeReference>Examples#Greeter</codeReference>
+    </content>
+  </section>
+</developerConceptualDocument>

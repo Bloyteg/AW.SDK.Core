@@ -1,0 +1,114 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EB5BD7CA-5BCC-4ABF-89C7-8ADC00013C66}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ApplicationIcon />
+    <AssemblyKeyContainerName />
+    <AssemblyName>AW.Core</AssemblyName>
+    <AssemblyOriginatorKeyFile>awnet.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>AW</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject />
+    <SignAssembly>true</SignAssembly>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <DocumentationFile>bin\Debug\AW.Core.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <DocumentationFile>bin\Release\AW.Core.XML</DocumentationFile>
+    <RegisterForComInterop>false</RegisterForComInterop>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AW.Instance.Enumerations.cs" />
+    <Compile Include="AW.Instance.Exception.cs" />
+    <Compile Include="AW.Instance.Functions.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AW.Unmanaged.CallbacksEnum.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AW.Unmanaged.EventsEnum.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AW.Unmanaged.Importer.cs" />
+    <Compile Include="Utilities.HexConverter.cs" />
+    <Compile Include="AW.V4Object.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AW.Instance.Core.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AW.Attributes.cs" />
+    <Compile Include="AW.Color.cs" />
+    <Compile Include="AW.DataStructures.cs" />
+    <Compile Include="AW.Instance.Properties.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AW.Utility.Constants.cs" />
+    <Compile Include="AW.Utility.Initialize.cs" />
+    <Compile Include="AW.Utility.Functions.cs" />
+    <Compile Include="AW.Utility.ReturnCodes.cs" />
+    <Compile Include="AW.V4Object.Camera.cs" />
+    <Compile Include="AW.V4Object.Mover.cs" />
+    <Compile Include="AW.V4Object.Particle.cs" />
+    <Compile Include="AW.V4Object.Zone.cs" />
+    <Compile Include="Utilities.IndexedProperty.cs" />
+    <Compile Include="Utilities.Miscellaneous.cs" />
+    <Compile Include="Utilities.StaticDestructor.cs" />
+    <None Include="awnet.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Code template -->
+    <TemplateXML Include="CodeTemplate.xml" />
+    <CodeTemplate Include="eventsTemplate.txt">
+      <DependentUpon>CodeTemplate.xml</DependentUpon>
+      <OutputFile>AW.Instance.Events.cs</OutputFile>
+    </CodeTemplate>
+    <CodeTemplate Include="callbacksTemplate.txt">
+      <DependentUpon>CodeTemplate.xml</DependentUpon>
+      <OutputFile>AW.Instance.Callbacks.cs</OutputFile>
+    </CodeTemplate>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- Don't use the host compiler, use CSC directly -->
+  <PropertyGroup>
+    <UseHostCompilerIfAvailable>False</UseHostCompilerIfAvailable>
+  </PropertyGroup>
+  <!-- Code Generation -->
+  <UsingTask TaskName="GenerateCode" AssemblyFile="..\CodeGenerator.dll" />
+  <Target Name="GenerateCode" Inputs="@(TemplateXML);@(CodeTemplate)" Outputs="%(CodeTemplate.OutputFile)">
+    <GenerateCode Input="@(TemplateXML)" Template="@(CodeTemplate)" Output="%(CodeTemplate.OutputFile)">
+      <Output TaskParameter="Output" ItemName="Compile" />
+    </GenerateCode>
+  </Target>
+  <Target Name="BeforeBuild" DependsOnTargets="GenerateCode">
+  </Target>
+</Project>
