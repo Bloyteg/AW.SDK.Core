@@ -1,5 +1,4 @@
-﻿
-namespace AW
+﻿namespace AW
 {
     public static partial class Utility
     {

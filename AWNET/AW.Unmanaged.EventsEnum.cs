@@ -1,5 +1,3 @@
-using System;
-
 namespace AW
 {
     internal enum AW_EVENT

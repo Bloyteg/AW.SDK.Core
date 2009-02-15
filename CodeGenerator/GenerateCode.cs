@@ -43,8 +43,6 @@ namespace CodeGenerator
                 //Load the events XML document and parse it via LINQ
                 XDocument inputXML = XDocument.Load(Input);
 
-                int startID = (int?)inputXML.Element("StartId") ?? 1;
-
                 var events = (from evnt in inputXML.Descendants("Event")
                               select new
                               {

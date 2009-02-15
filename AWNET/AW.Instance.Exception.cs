@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -38,9 +35,9 @@ namespace AW
             internal set;
         }
 
-        internal static void Assert(int error)
+        internal static int Assert(int error)
         {
-            if (error != 0)
+            if (error != 0 && !Utility.UseReturnCodes)
             {
                 StackTrace stackTrace = new StackTrace();
                 StackFrame stackFrame;
@@ -59,6 +56,10 @@ namespace AW
                     ErrorCode = error,
                     HResult = error,
                 };
+            }
+            else
+            {
+                return error;
             }
         }
     }

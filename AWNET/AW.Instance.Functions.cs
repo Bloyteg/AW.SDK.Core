@@ -1,623 +1,618 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.InteropServices;
-
 namespace AW
 {
     partial class Instance
     {
         #region Instance manage methods
-        public void Login()
+        public int Login()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_login());
+            return InstanceException.Assert(Importer.aw_login());
         }
 
-        public void Enter(string world)
+        public int Enter(string world)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_enter(world));
+            return InstanceException.Assert(Importer.aw_enter(world));
         }
 
-        public void Exit()
+        public int Exit()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_exit());
+            return InstanceException.Assert(Importer.aw_exit());
         }
 
-        public void StateChange()
+        public int StateChange()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_state_change());
+            return InstanceException.Assert(Importer.aw_state_change());
         }
         #endregion
 
         #region Event manipulation methods
-        public void ObjectClick()
+        public int ObjectClick()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_object_click());
+            return InstanceException.Assert(Importer.aw_object_click());
         }
 
-        public void ObjectSelect()
+        public int ObjectSelect()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_object_select());
+            return InstanceException.Assert(Importer.aw_object_select());
         }
 
-        public void AvatarClick(int session)
+        public int AvatarClick(int session)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_avatar_click(session));
+            return InstanceException.Assert(Importer.aw_avatar_click(session));
         }
 
-        public void UrlSend(int session, string url, string target)
+        public int UrlSend(int session, string url, string target)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_url_send(session, url, target));
+            return InstanceException.Assert(Importer.aw_url_send(session, url, target));
         }
 
-        public void UrlClick(string url)
+        public int UrlClick(string url)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_url_click(url));
+            return InstanceException.Assert(Importer.aw_url_click(url));
         }
 
-        public void Teleport(int session)
+        public int Teleport(int session)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_teleport(session));
+            return InstanceException.Assert(Importer.aw_teleport(session));
         }
 
-        public void AvatarSet(int session)
+        public int AvatarSet(int session)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_avatar_set(session));
+            return InstanceException.Assert(Importer.aw_avatar_set(session));
         }
 
-        public void AvatarReload(int citizen, int session)
+        public int AvatarReload(int citizen, int session)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_avatar_reload(citizen, session));
+            return InstanceException.Assert(Importer.aw_avatar_reload(citizen, session));
         }
 
-        public void ToolbarClick()
+        public int ToolbarClick()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_toolbar_click());
+            return InstanceException.Assert(Importer.aw_toolbar_click());
         }
 
-        public void Noise(int session)
+        public int Noise(int session)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_noise(session));
+            return InstanceException.Assert(Importer.aw_noise(session));
         }
 
-        public void CameraSet(int session)
+        public int CameraSet(int session)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_camera_set(session));
+            return InstanceException.Assert(Importer.aw_camera_set(session));
         }
 
-        public void BotmenuSend()
+        public int BotmenuSend()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_botmenu_send());
+            return InstanceException.Assert(Importer.aw_botmenu_send());
         }
 
-        public void ObjectBump()
+        public int ObjectBump()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_object_bump());
+            return InstanceException.Assert(Importer.aw_object_bump());
         }
         #endregion
 
         #region Information query methods
-        public void WorldList()
+        public int WorldList()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_list());
+            return InstanceException.Assert(Importer.aw_world_list());
         }
 
-        public void Address(int session)
+        public int Address(int session)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_address(session));
+            return InstanceException.Assert(Importer.aw_address(session));
         }
 
-        public void UserList()
+        public int UserList()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_user_list());
+            return InstanceException.Assert(Importer.aw_user_list());
         }
 
-        public void AvatarLocation(int citizen, int sessionId, string name)
+        public int AvatarLocation(int citizen, int sessionId, string name)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_avatar_location(citizen, sessionId, name));
+            return InstanceException.Assert(Importer.aw_avatar_location(citizen, sessionId, name));
         }
         #endregion
 
         #region Communication methods
-        public void Say(string message)
+        public int Say(string message)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_say(message));
+            return InstanceException.Assert(Importer.aw_say(message));
         }
 
-        public void Say(string message, object arg0)
+        public int Say(string message, object arg0)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_say(string.Format(message, arg0)));
+            return InstanceException.Assert(Importer.aw_say(string.Format(message, arg0)));
         }
 
-        public void Say(string message, object arg0, object arg1)
+        public int Say(string message, object arg0, object arg1)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_say(string.Format(message, arg0, arg1)));
+            return InstanceException.Assert(Importer.aw_say(string.Format(message, arg0, arg1)));
         }
 
-        public void Say(string message, object arg0, object arg1, object arg2)
+        public int Say(string message, object arg0, object arg1, object arg2)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_say(string.Format(message, arg0, arg1, arg2)));
+            return InstanceException.Assert(Importer.aw_say(string.Format(message, arg0, arg1, arg2)));
         }
 
-        public void Say(string message, params object[] args)
+        public int Say(string message, params object[] args)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_say(string.Format(message, args)));
+            return InstanceException.Assert(Importer.aw_say(string.Format(message, args)));
         }
 
-        public void Whisper(int session, string message)
+        public int Whisper(int session, string message)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_whisper(session, message));
+            return InstanceException.Assert(Importer.aw_whisper(session, message));
         }
 
-        public void Whisper(int session, string message, object arg0)
+        public int Whisper(int session, string message, object arg0)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_whisper(session, string.Format(message, arg0)));
+            return InstanceException.Assert(Importer.aw_whisper(session, string.Format(message, arg0)));
         }
 
-        public void Whisper(int session, string message, object arg0, object arg1)
+        public int Whisper(int session, string message, object arg0, object arg1)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_whisper(session, string.Format(message, arg0, arg1)));
+            return InstanceException.Assert(Importer.aw_whisper(session, string.Format(message, arg0, arg1)));
         }
 
-        public void Whisper(int session, string message, object arg0, object arg1, object arg2)
+        public int Whisper(int session, string message, object arg0, object arg1, object arg2)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_whisper(session, string.Format(message, arg0, arg1, arg2)));
+            return InstanceException.Assert(Importer.aw_whisper(session, string.Format(message, arg0, arg1, arg2)));
         }
 
-        public void Whisper(int session, string message, params object[] args)
+        public int Whisper(int session, string message, params object[] args)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_whisper(session, string.Format(message, args)));
+            return InstanceException.Assert(Importer.aw_whisper(session, string.Format(message, args)));
         }
 
-        public void ConsoleMessage(int session)
+        public int ConsoleMessage(int session)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_console_message(session));
+            return InstanceException.Assert(Importer.aw_console_message(session));
         }
 
-        public void BotgramSend()
+        public int BotgramSend()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_botgram_send());
+            return InstanceException.Assert(Importer.aw_botgram_send());
         }
         #endregion
 
         #region Property methods
-        public void Query(int xSector, int zSector, int[,] sequence)
+        public int Query(int xSector, int zSector, int[,] sequence)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_query(xSector, zSector, sequence));
+            return InstanceException.Assert(Importer.aw_query(xSector, zSector, sequence));
         }
 
-        public void Query5x5(int xSector, int zSector, int[,] sequence)
+        public int Query5x5(int xSector, int zSector, int[,] sequence)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_query_5x5(xSector, zSector, sequence));
+            return InstanceException.Assert(Importer.aw_query_5x5(xSector, zSector, sequence));
         }
 
-        public void ObjectQuery()
+        public int ObjectQuery()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_object_query());
+            return InstanceException.Assert(Importer.aw_object_query());
         }
 
-        public void CellNext()
+        public int CellNext()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_cell_next());
+            return InstanceException.Assert(Importer.aw_cell_next());
         }
 
-        public void ObjectAdd()
+        public int ObjectAdd()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_object_add());
+            return InstanceException.Assert(Importer.aw_object_add());
         }
 
-        public void ObjectChange()
+        public int ObjectChange()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_object_change());
+            return InstanceException.Assert(Importer.aw_object_change());
         }
 
-        public void ObjectDelete()
+        public int ObjectDelete()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_object_delete());
+            return InstanceException.Assert(Importer.aw_object_delete());
         }
 
-        public void ObjectLoad()
+        public int ObjectLoad()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_object_load());
+            return InstanceException.Assert(Importer.aw_object_load());
         }
 
-        public void DeleteAllObjects()
+        public int DeleteAllObjects()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_delete_all_objects());
+            return InstanceException.Assert(Importer.aw_delete_all_objects());
         }
         #endregion
 
         #region Terrain methods
-        public void TerrainSet(int x, int z, int texture, int[] heights)
+        public int TerrainSet(int x, int z, int texture, int[] heights)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_terrain_set(x, z, heights.Length, texture, heights));
+            return InstanceException.Assert(Importer.aw_terrain_set(x, z, heights.Length, texture, heights));
         }
 
-        public void TerrainQuery(int pageX, int pageZ, ulong sequence)
+        public int TerrainQuery(int pageX, int pageZ, ulong sequence)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_terrain_query(pageX, pageZ, sequence));
+            return InstanceException.Assert(Importer.aw_terrain_query(pageX, pageZ, sequence));
         }
 
-        public void TerrainNext()
+        public int TerrainNext()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_terrain_next());
+            return InstanceException.Assert(Importer.aw_terrain_next());
         }
 
-        public void TerrainDeleteAll()
+        public int TerrainDeleteAll()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_terrain_delete_all());
+            return InstanceException.Assert(Importer.aw_terrain_delete_all());
         }
 
-        public void TerrainLoadNode()
+        public int TerrainLoadNode()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_terrain_load_node());
+            return InstanceException.Assert(Importer.aw_terrain_load_node());
         }
         #endregion
 
         #region Mover methods
-        public void MoverSetState(int id, int state, int modelNum)
+        public int MoverSetState(int id, int state, int modelNum)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_mover_set_state(id, state, modelNum));
+            return InstanceException.Assert(Importer.aw_mover_set_state(id, state, modelNum));
         }
 
-        public void MoverSetPosition(int id, int x, int y, int z, int yaw, int pitch, int roll)
+        public int MoverSetPosition(int id, int x, int y, int z, int yaw, int pitch, int roll)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_mover_set_position(id, x, y, z, yaw, pitch, roll));
+            return InstanceException.Assert(Importer.aw_mover_set_position(id, x, y, z, yaw, pitch, roll));
         }
 
-        public void MoverRiderAdd(int id, int session, int dist, int angle, int yDelta, int yawDelta, int pitchDelta)
+        public int MoverRiderAdd(int id, int session, int dist, int angle, int yDelta, int yawDelta, int pitchDelta)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_mover_rider_add(id, session, dist, angle, yDelta, yawDelta, pitchDelta));
+            return InstanceException.Assert(Importer.aw_mover_rider_add(id, session, dist, angle, yDelta, yawDelta, pitchDelta));
         }
 
-        public void MoverRiderChange(int id, int session, int dist, int angle, int yDelta, int yawDelta, int pitchDelta)
+        public int MoverRiderChange(int id, int session, int dist, int angle, int yDelta, int yawDelta, int pitchDelta)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_mover_rider_change(id, session, dist, angle, yDelta, yawDelta, pitchDelta));
+            return InstanceException.Assert(Importer.aw_mover_rider_change(id, session, dist, angle, yDelta, yawDelta, pitchDelta));
         }
 
-        public void MoverRiderDelete(int id, int session)
+        public int MoverRiderDelete(int id, int session)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_mover_rider_delete(id, session));
+            return InstanceException.Assert(Importer.aw_mover_rider_delete(id, session));
         }
 
-        public void MoverLinks(int id)
+        public int MoverLinks(int id)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_mover_links(id));
+            return InstanceException.Assert(Importer.aw_mover_links(id));
         }
         #endregion
 
         #region HUD methods
-        public void HudCreate()
+        public int HudCreate()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_hud_create());
+            return InstanceException.Assert(Importer.aw_hud_create());
         }
 
-        public void HudClick()
+        public int HudClick()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_hud_click());
+            return InstanceException.Assert(Importer.aw_hud_click());
         }
 
-        public void HudDestroy(int session, int id)
+        public int HudDestroy(int session, int id)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_hud_destroy(session, id));
+            return InstanceException.Assert(Importer.aw_hud_destroy(session, id));
         }
 
-        public void HudClear(int session)
+        public int HudClear(int session)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_hud_clear(session));
+            return InstanceException.Assert(Importer.aw_hud_clear(session));
         }
 
-        public void TrafficCount(out int inTraffic, out int outTraffic)
+        public int TrafficCount(out int inTraffic, out int outTraffic)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_traffic_count(out inTraffic, out outTraffic));
+            return InstanceException.Assert(Importer.aw_traffic_count(out inTraffic, out outTraffic));
         }
         #endregion
 
         #region CAV manipulation methods
-        public void CavRequest(int citizen, int session)
+        public int CavRequest(int citizen, int session)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_cav_request(citizen, session));
+            return InstanceException.Assert(Importer.aw_cav_request(citizen, session));
         }
 
-        public void CavChange()
+        public int CavChange()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_cav_change());
+            return InstanceException.Assert(Importer.aw_cav_change());
         }
 
-        public void CavDelete()
+        public int CavDelete()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_cav_delete());
+            return InstanceException.Assert(Importer.aw_cav_delete());
         }
 
-        public void WorldCavRequest(int citizen, int session)
+        public int WorldCavRequest(int citizen, int session)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_cav_request(citizen, session));
+            return InstanceException.Assert(Importer.aw_world_cav_request(citizen, session));
         }
 
-        public void WorldCavChange()
+        public int WorldCavChange()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_cav_change());
+            return InstanceException.Assert(Importer.aw_world_cav_change());
         }
 
-        public void WorldCavDelete()
+        public int WorldCavDelete()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_cav_delete());
+            return InstanceException.Assert(Importer.aw_world_cav_delete());
         }
         #endregion
 
         #region Universe related methods
         #region Universe management methods
-        public void UniverseAttributesChange()
+        public int UniverseAttributesChange()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_universe_attributes_change());
+            return InstanceException.Assert(Importer.aw_universe_attributes_change());
         }
 
-        public void UniverseEjectionAdd()
+        public int UniverseEjectionAdd()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_universe_ejection_add());
+            return InstanceException.Assert(Importer.aw_universe_ejection_add());
         }
 
-        public void UniverseEjectionDelete(int address)
+        public int UniverseEjectionDelete(int address)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_universe_ejection_delete(address));
+            return InstanceException.Assert(Importer.aw_universe_ejection_delete(address));
         }
 
-        public void UniverseEjectionLookup()
+        public int UniverseEjectionLookup()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_universe_ejection_lookup());
+            return InstanceException.Assert(Importer.aw_universe_ejection_lookup());
         }
 
-        public void UniverseEjectionNext()
+        public int UniverseEjectionNext()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_universe_ejection_next());
+            return InstanceException.Assert(Importer.aw_universe_ejection_next());
         }
 
-        public void UniverseEjectionPrevious()
+        public int UniverseEjectionPrevious()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_universe_ejection_previous());
+            return InstanceException.Assert(Importer.aw_universe_ejection_previous());
         }
         #endregion
 
         #region Citizen methods
-        public void CitizenAttributesByName(string name)
+        public int CitizenAttributesByName(string name)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_citizen_attributes_by_name(name));
+            return InstanceException.Assert(Importer.aw_citizen_attributes_by_name(name));
         }
 
-        public void CitizenAttributesByNumber(int citizen)
+        public int CitizenAttributesByNumber(int citizen)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_citizen_attributes_by_number(citizen));
+            return InstanceException.Assert(Importer.aw_citizen_attributes_by_number(citizen));
         }
 
-        public void CitizenAdd()
+        public int CitizenAdd()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_citizen_add());
+            return InstanceException.Assert(Importer.aw_citizen_add());
         }
 
-        public void CitizenChange()
+        public int CitizenChange()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_citizen_change());
+            return InstanceException.Assert(Importer.aw_citizen_change());
         }
 
-        public void CitizenDelete(int citizen)
+        public int CitizenDelete(int citizen)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_citizen_delete(citizen));
+            return InstanceException.Assert(Importer.aw_citizen_delete(citizen));
         }
 
-        public void CitizenNext()
+        public int CitizenNext()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_citizen_next());
+            return InstanceException.Assert(Importer.aw_citizen_next());
         }
 
-        public void CitizenPrevious()
+        public int CitizenPrevious()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_citizen_previous());
+            return InstanceException.Assert(Importer.aw_citizen_previous());
         }
         #endregion
 
         #region World license methods
-        public void LicenseAdd()
+        public int LicenseAdd()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_license_add());
+            return InstanceException.Assert(Importer.aw_license_add());
         }
 
-        public void LicenseAttributes(string name)
+        public int LicenseAttributes(string name)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_license_attributes(name));
+            return InstanceException.Assert(Importer.aw_license_attributes(name));
         }
 
-        public void LicenseChange()
+        public int LicenseChange()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_license_change());
+            return InstanceException.Assert(Importer.aw_license_change());
         }
 
-        public void LicenseDelete(string name)
+        public int LicenseDelete(string name)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_license_delete(name));
+            return InstanceException.Assert(Importer.aw_license_delete(name));
         }
 
-        public void LicenseNext()
+        public int LicenseNext()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_license_next());
+            return InstanceException.Assert(Importer.aw_license_next());
         }
 
-        public void LicensePrevious()
+        public int LicensePrevious()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_license_previous());
+            return InstanceException.Assert(Importer.aw_license_previous());
         }
         #endregion
         #endregion
 
         #region World related methods
         #region World management methods
-        public void WorldAttributesChange()
+        public int WorldAttributesChange()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_attributes_change());
+            return InstanceException.Assert(Importer.aw_world_attributes_change());
         }
 
-        public void WorldEject()
+        public int WorldEject()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_eject());
+            return InstanceException.Assert(Importer.aw_world_eject());
         }
 
-        public void WorldReloadRegistry()
+        public int WorldReloadRegistry()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_reload_registry());
+            return InstanceException.Assert(Importer.aw_world_reload_registry());
         }
 
-        public void WorldAttributesReset()
+        public int WorldAttributesReset()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_attributes_reset());
+            return InstanceException.Assert(Importer.aw_world_attributes_reset());
         }
 
-        public void WorldInstanceSet(int citizen, int worldInstance)
+        public int WorldInstanceSet(int citizen, int worldInstance)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_instance_set(citizen, worldInstance));
+            return InstanceException.Assert(Importer.aw_world_instance_set(citizen, worldInstance));
         }
 
-        public void WorldInstanceGet(int citizen)
+        public int WorldInstanceGet(int citizen)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_instance_get(citizen));
+            return InstanceException.Assert(Importer.aw_world_instance_get(citizen));
         }
 
-        public void WorldAttributesSend(int session)
+        public int WorldAttributesSend(int session)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_attributes_send(session));
+            return InstanceException.Assert(Importer.aw_world_attributes_send(session));
         }
 
-        public void WorldEjectionAdd()
+        public int WorldEjectionAdd()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_ejection_add());
+            return InstanceException.Assert(Importer.aw_world_ejection_add());
         }
 
-        public void WorldEjectionDelete()
+        public int WorldEjectionDelete()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_ejection_delete());
+            return InstanceException.Assert(Importer.aw_world_ejection_delete());
         }
 
-        public void WorldEjectionLookup()
+        public int WorldEjectionLookup()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_ejection_lookup());
+            return InstanceException.Assert(Importer.aw_world_ejection_lookup());
         }
 
-        public void WorldEjectionNext()
+        public int WorldEjectionNext()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_ejection_next());
+            return InstanceException.Assert(Importer.aw_world_ejection_next());
         }
 
-        public void WorldEjectionPrevious()
+        public int WorldEjectionPrevious()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_ejection_previous());
+            return InstanceException.Assert(Importer.aw_world_ejection_previous());
         }
 
-        public void WorldAttributeSet(int attribute, string value)
+        public int WorldAttributeSet(int attribute, string value)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_world_attribute_set(attribute, value));
+            return InstanceException.Assert(Importer.aw_world_attribute_set(attribute, value));
         }
 
-        public void WorldAttributeGet(int attribute, out bool readOnly, string value)
+        public int WorldAttributeGet(int attribute, out bool readOnly, string value)
         {
             SetInstance();
             int ro;
             int ret = Importer.aw_world_attribute_get(attribute, out ro, value);
             readOnly = ro != 0;
-            InstanceException.Assert(ret);
+            return InstanceException.Assert(ret);
         }
         #endregion
 
@@ -649,64 +644,64 @@ namespace AW
         #endregion
 
         #region World server management methods
-        public void ServerWorldAdd()
+        public int ServerWorldAdd()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_server_world_add());
+            return InstanceException.Assert(Importer.aw_server_world_add());
         }
 
-        public void ServerWorldDelete(int id)
+        public int ServerWorldDelete(int id)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_server_world_delete(id));
+            return InstanceException.Assert(Importer.aw_server_world_delete(id));
         }
 
-        public void ServerWorldChange(int id)
+        public int ServerWorldChange(int id)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_server_world_change(id));
+            return InstanceException.Assert(Importer.aw_server_world_change(id));
         }
 
-        public void ServerWorldList()
+        public int ServerWorldList()
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_server_world_list());
+            return InstanceException.Assert(Importer.aw_server_world_list());
         }
 
-        public void ServerWorldStart(int id)
+        public int ServerWorldStart(int id)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_server_world_start(id));
+            return InstanceException.Assert(Importer.aw_server_world_start(id));
         }
 
-        public void ServerWorldStop(int id)
+        public int ServerWorldStop(int id)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_server_world_stop(id));
+            return InstanceException.Assert(Importer.aw_server_world_stop(id));
         }
 
-        public void ServerWorldSet(int id)
+        public int ServerWorldSet(int id)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_server_world_set(id));
+            return InstanceException.Assert(Importer.aw_server_world_set(id));
         }
 
-        public void ServerWorldInstanceSet(int id)
+        public int ServerWorldInstanceSet(int id)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_server_world_instance_set(id));
+            return InstanceException.Assert(Importer.aw_server_world_instance_set(id));
         }
 
-        public void ServerWorldInstanceAdd(int id, int instanceId)
+        public int ServerWorldInstanceAdd(int id, int instanceId)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_server_world_instance_add(id, instanceId));
+            return InstanceException.Assert(Importer.aw_server_world_instance_add(id, instanceId));
         }
 
-        public void ServerWorldInstanceDelete(int id, int instanceId)
+        public int ServerWorldInstanceDelete(int id, int instanceId)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_server_world_instance_delete(id, instanceId));
+            return InstanceException.Assert(Importer.aw_server_world_instance_delete(id, instanceId));
         }
         #endregion
     }

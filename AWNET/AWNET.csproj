@@ -50,7 +50,6 @@
     <Compile Include="AW.Instance.Enumerations.cs" />
     <Compile Include="AW.Instance.Exception.cs" />
     <Compile Include="AW.Instance.Functions.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="AW.Unmanaged.CallbacksEnum.cs">
       <SubType>Code</SubType>
@@ -61,16 +60,13 @@
     <Compile Include="AW.Unmanaged.Importer.cs" />
     <Compile Include="Utilities.HexConverter.cs" />
     <Compile Include="AW.V4Object.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="AW.Instance.Core.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="AW.Attributes.cs" />
     <Compile Include="AW.Color.cs" />
     <Compile Include="AW.DataStructures.cs" />
     <Compile Include="AW.Instance.Properties.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="AW.Utility.Constants.cs" />
     <Compile Include="AW.Utility.Initialize.cs" />
@@ -103,7 +99,7 @@
     <UseHostCompilerIfAvailable>False</UseHostCompilerIfAvailable>
   </PropertyGroup>
   <!-- Code Generation -->
-  <UsingTask TaskName="GenerateCode" AssemblyFile="..\CodeGenerator.dll" />
+  <UsingTask TaskName="GenerateCode" AssemblyFile="..\CodeGenerator\bin\Release\CodeGenerator.dll" />
   <Target Name="GenerateCode" Inputs="@(TemplateXML);@(CodeTemplate)" Outputs="%(CodeTemplate.OutputFile)">
     <GenerateCode Input="@(TemplateXML)" Template="@(CodeTemplate)" Output="%(CodeTemplate.OutputFile)">
       <Output TaskParameter="Output" ItemName="Compile" />

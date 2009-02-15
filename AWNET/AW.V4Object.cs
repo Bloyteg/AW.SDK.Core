@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.IO;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace AW
@@ -69,10 +65,10 @@ namespace AW
 
     public partial class Instance
     {
-        public void SetV4Object<TV4Object>(TV4Object v4Object) where TV4Object : V4Object
+        public int SetV4Object<TV4Object>(TV4Object v4Object) where TV4Object : V4Object
         {
             SetInstance();
-            SetData(Attributes.ObjectData, v4Object.GetData());
+            return SetData(Attributes.ObjectData, v4Object.GetData());
         }
 
         public void GetV4Object<TV4Object>(out TV4Object v4Object) where TV4Object : V4Object, new()

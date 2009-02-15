@@ -1,6 +1,5 @@
 using System;
 using System.Runtime.InteropServices;
-using System.Collections.Generic;
 
 namespace AW
 {
@@ -32,6 +31,8 @@ namespace AW
         internal static int Initialize()
         {
             Marshal.PrelinkAll(typeof(Importer));
+
+            Utility.UseReturnCodes = false;
 
             int rc;
 

@@ -160,6 +160,12 @@ namespace AW
                 return Importer.aw_tick();
             }
         }
+
+        public static bool UseReturnCodes
+        {
+            get;
+            set;
+        }
         #endregion
     }
 }

@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Runtime.InteropServices;
-using System.ComponentModel;
 
 namespace AW
 {
@@ -16,7 +13,7 @@ namespace AW
     /// This class should not be mistaken as the entire SDK by novice programmers and programmers moving over from Visual Basic 6.
     /// For more information on how multiple instances work, please refer to the "Multiple Instances" topic under the Concepts section.
     /// </remarks>
-    public sealed partial class Instance : Component, IDisposable
+    public sealed partial class Instance : IDisposable
     {
         /**
          * Private stuff not privy to the user.
@@ -153,7 +150,7 @@ namespace AW
         /// </remarks>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public new void Dispose()
+        public void Dispose()
         {
             _disposed = true;
 
@@ -212,10 +209,10 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public void SetString(AW.Attributes attribute, string value)
+        public int SetString(AW.Attributes attribute, string value)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_string_set(attribute, value));
+            return InstanceException.Assert(Importer.aw_string_set(attribute, value));
         }
 
         /// <summary>
@@ -239,10 +236,10 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public void SetInt(AW.Attributes attribute, int value)
+        public int SetInt(AW.Attributes attribute, int value)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_int_set(attribute, value));
+            return InstanceException.Assert(Importer.aw_int_set(attribute, value));
         }
 
         /// <summary>
@@ -266,10 +263,10 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public void SetBool(AW.Attributes attribute, bool value)
+        public int SetBool(AW.Attributes attribute, bool value)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_bool_set(attribute, value));
+            return InstanceException.Assert(Importer.aw_bool_set(attribute, value));
         }
 
         /// <summary>
@@ -293,10 +290,10 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public void SetFloat(AW.Attributes attribute, float value)
+        public int SetFloat(AW.Attributes attribute, float value)
         {
             SetInstance();
-            InstanceException.Assert(Importer.aw_float_set(attribute, value));
+            return InstanceException.Assert(Importer.aw_float_set(attribute, value));
         }
 
         /// <summary>
@@ -320,7 +317,7 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public void SetData(AW.Attributes attribute, byte[] value)
+        public int SetData(AW.Attributes attribute, byte[] value)
         {
             SetInstance();
 
@@ -337,7 +334,7 @@ namespace AW
                 Marshal.FreeHGlobal(dest);
             }
 
-            InstanceException.Assert(errorCode);
+            return InstanceException.Assert(errorCode);
         }
 
         /// <summary>
@@ -367,10 +364,10 @@ namespace AW
         /// <param name="cavContents">String representation of the Custom Avatar definition's XML.</param>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public void SetCAVData(string cavContents)
+        public int SetCAVData(string cavContents)
         {
             SetInstance();
-            SetData(Attributes.CavDefinition, Utility.Zip(System.Text.ASCIIEncoding.UTF8.GetBytes(cavContents)));
+            return SetData(Attributes.CavDefinition, Utility.Zip(System.Text.ASCIIEncoding.UTF8.GetBytes(cavContents)));
         }
 
         /// <summary>
