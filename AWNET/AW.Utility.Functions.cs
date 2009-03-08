@@ -161,10 +161,11 @@ namespace AW
             }
         }
 
+        private static bool _useReturnCodes = false;
         public static bool UseReturnCodes
         {
-            get;
-            set;
+            get { return _useReturnCodes; }
+            set { _useReturnCodes = value; }
         }
         #endregion
     }

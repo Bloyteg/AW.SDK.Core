@@ -32,8 +32,6 @@ namespace AW
         {
             Marshal.PrelinkAll(typeof(Importer));
 
-            Utility.UseReturnCodes = false;
-
             int rc;
 
             if (bindAddress.Equals(string.Empty))

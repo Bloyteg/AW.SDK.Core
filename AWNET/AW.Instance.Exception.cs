@@ -37,30 +37,32 @@ namespace AW
 
         internal static int Assert(int error)
         {
-            if (error != 0 && !Utility.UseReturnCodes)
+            if (Utility.UseReturnCodes == false)
             {
-                StackTrace stackTrace = new StackTrace();
-                StackFrame stackFrame;
-
-                if (stackTrace.FrameCount > 0)
-                    stackFrame = stackTrace.GetFrame(1);
-                else
-                    stackFrame = stackTrace.GetFrame(0);
-
-                MethodBase methodBase = stackFrame.GetMethod();
-
-                string message = string.Format("Instance call to method {0} failed (Reason {1}).", methodBase.Name, error);
-
-                throw new InstanceException(message)
+                if (error != 0)
                 {
-                    ErrorCode = error,
-                    HResult = error,
-                };
+                    StackTrace stackTrace = new StackTrace();
+                    StackFrame stackFrame;
+
+                    if (stackTrace.FrameCount > 0)
+                        stackFrame = stackTrace.GetFrame(1);
+                    else
+                        stackFrame = stackTrace.GetFrame(0);
+
+                    MethodBase methodBase = stackFrame.GetMethod();
+
+                    string message = string.Format("Instance call to method {0} failed (Reason {1}).", methodBase.Name, error);
+
+                    throw new InstanceException(message)
+                    {
+                        ErrorCode = error,
+                        HResult = error,
+                        CallingMethod = methodBase.Name
+                    };
+                }
             }
-            else
-            {
-                return error;
-            }
+
+            return error;
         }
     }
 }

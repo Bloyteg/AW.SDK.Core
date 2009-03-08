@@ -137,9 +137,6 @@
 
   <Callbacks>
     <Callback>
-      <Name>AW_CALLBACK_CREATE</Name>
-    </Callback>
-    <Callback>
       <Name>AW_CALLBACK_LOGIN</Name>
     </Callback>
     <Callback>
