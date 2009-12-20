@@ -257,20 +257,20 @@ namespace AW
 
         protected internal override byte[] GetData()
         {
-            zoneData.footstep_len = (ushort)footstep.Length;
-            zoneData.ambient_len = (ushort)ambient.Length;
-            zoneData.camera_len = (byte)camera.Length;
-            zoneData.target_cur_len = (byte)targetCursor.Length;
-            zoneData.voip_rights_len = (byte)voipRights.Length;
-            zoneData.name_len = (byte)name.Length;
+            zoneData.footstep_len = (ushort)System.Text.UTF8Encoding.UTF8.GetByteCount(footstep);
+            zoneData.ambient_len = (ushort)System.Text.UTF8Encoding.UTF8.GetByteCount(ambient);
+            zoneData.camera_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(camera);
+            zoneData.target_cur_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(targetCursor);
+            zoneData.voip_rights_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(voipRights);
+            zoneData.name_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(name);
 
             return Utilities.Miscellaneous.ConcatArrays(Utilities.Miscellaneous.StructToBytes(zoneData),
-                                             System.Text.UTF8Encoding.ASCII.GetBytes(footstep),
-                                             System.Text.UTF8Encoding.ASCII.GetBytes(ambient),
-                                             System.Text.UTF8Encoding.ASCII.GetBytes(camera),
-                                             System.Text.UTF8Encoding.ASCII.GetBytes(targetCursor),
-                                             System.Text.UTF8Encoding.ASCII.GetBytes(voipRights),
-                                             System.Text.UTF8Encoding.ASCII.GetBytes(name),
+                                             System.Text.UTF8Encoding.UTF8.GetBytes(footstep),
+                                             System.Text.UTF8Encoding.UTF8.GetBytes(ambient),
+                                             System.Text.UTF8Encoding.UTF8.GetBytes(camera),
+                                             System.Text.UTF8Encoding.UTF8.GetBytes(targetCursor),
+                                             System.Text.UTF8Encoding.UTF8.GetBytes(voipRights),
+                                             System.Text.UTF8Encoding.UTF8.GetBytes(name),
                                              new byte[] { 0 }
                                             );
 
@@ -283,12 +283,12 @@ namespace AW
             remainder = new byte[size];
             Array.ConstrainedCopy(data, data.Length - size, remainder, 0, size);
 
-            footstep = System.Text.UTF8Encoding.ASCII.GetString(remainder, 0, zoneData.footstep_len);
-            ambient = System.Text.UTF8Encoding.ASCII.GetString(remainder, zoneData.footstep_len, zoneData.ambient_len);
-            camera = System.Text.UTF8Encoding.ASCII.GetString(remainder, zoneData.footstep_len+zoneData.ambient_len, zoneData.camera_len);
-            targetCursor = System.Text.UTF8Encoding.ASCII.GetString(remainder, zoneData.footstep_len+zoneData.ambient_len+zoneData.camera_len, zoneData.target_cur_len);
-            voipRights = System.Text.UTF8Encoding.ASCII.GetString(remainder, zoneData.voip_rights_len + zoneData.footstep_len + zoneData.ambient_len + zoneData.camera_len, zoneData.voip_rights_len);
-            name = System.Text.UTF8Encoding.ASCII.GetString(remainder, zoneData.voip_rights_len + zoneData.footstep_len + zoneData.ambient_len + zoneData.camera_len + zoneData.voip_rights_len, zoneData.name_len);
+            footstep = System.Text.UTF8Encoding.UTF8.GetString(remainder, 0, zoneData.footstep_len);
+            ambient = System.Text.UTF8Encoding.UTF8.GetString(remainder, zoneData.footstep_len, zoneData.ambient_len);
+            camera = System.Text.UTF8Encoding.UTF8.GetString(remainder, zoneData.footstep_len+zoneData.ambient_len, zoneData.camera_len);
+            targetCursor = System.Text.UTF8Encoding.UTF8.GetString(remainder, zoneData.footstep_len+zoneData.ambient_len+zoneData.camera_len, zoneData.target_cur_len);
+            voipRights = System.Text.UTF8Encoding.UTF8.GetString(remainder, zoneData.voip_rights_len + zoneData.footstep_len + zoneData.ambient_len + zoneData.camera_len, zoneData.voip_rights_len);
+            name = System.Text.UTF8Encoding.UTF8.GetString(remainder, zoneData.voip_rights_len + zoneData.footstep_len + zoneData.ambient_len + zoneData.camera_len + zoneData.voip_rights_len, zoneData.name_len);
         }
     }
 }

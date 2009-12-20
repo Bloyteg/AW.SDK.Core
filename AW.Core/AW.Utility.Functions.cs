@@ -15,7 +15,7 @@ namespace AW
         /// <returns>Returns <c>0</c> if the wait successfully completed.</returns>
         public static int Wait(int duration)
         {
-            return Importer.aw_wait(duration);
+            return InterOp.aw_wait(duration);
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace AW
         /// <returns>The sector number that the <paramref name="cell"/> is located in.</returns>
         public static int SectorFromCell(int cell)
         {
-            return Importer.aw_sector_from_cell(cell);
+            return InterOp.aw_sector_from_cell(cell);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace AW
                 Marshal.Copy(data, 0, dataIn, data.Length);
 
                 uint outLength = bufferSize;
-                int rc = Importer.aw_zip(dataOut, out outLength, dataIn, (uint)data.Length);
+                int rc = InterOp.aw_zip(dataOut, out outLength, dataIn, (uint)data.Length);
 
                 if (rc == 0)
                 {
@@ -94,7 +94,7 @@ namespace AW
                 Marshal.Copy(data, 0, dataIn, data.Length);
 
                 uint outLength = bufferSize;
-                int rc = Importer.aw_unzip(dataOut, out outLength, dataIn, (uint)data.Length);
+                int rc = InterOp.aw_unzip(dataOut, out outLength, dataIn, (uint)data.Length);
 
                 if (rc == 0)
                 {
@@ -124,7 +124,7 @@ namespace AW
         {
             get
             {
-                return Importer.aw_random();
+                return InterOp.aw_random();
             }
         }
 
@@ -157,7 +157,7 @@ namespace AW
         {
             get
             {
-                return Importer.aw_tick();
+                return InterOp.aw_tick();
             }
         }
 

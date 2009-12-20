@@ -75,7 +75,7 @@ namespace AW
         public Instance()
         {
             IntPtr tempInstance;
-            int rc = Importer.aw_create(null, 0, out tempInstance);
+            int rc = InterOp.aw_create(null, 0, out tempInstance);
             InstanceException.Assert(rc);
 
             instance = tempInstance;
@@ -90,7 +90,7 @@ namespace AW
         public Instance(string domain, int port)
         {
             IntPtr tempInstance;
-            int rc = Importer.aw_create(domain, port, out tempInstance);
+            int rc = InterOp.aw_create(domain, port, out tempInstance);
             InstanceException.Assert(rc);
 
             instance = tempInstance;
@@ -105,7 +105,7 @@ namespace AW
         public Instance(uint address, int port)
         {
             IntPtr tempInstance;
-            int rc = Importer.aw_create_resolved(address, port, out tempInstance);
+            int rc = InterOp.aw_create_resolved(address, port, out tempInstance);
             InstanceException.Assert(rc);
 
             instance = tempInstance;
@@ -121,7 +121,7 @@ namespace AW
         public Instance(string domain, int port, string password)
         {
             IntPtr tempInstance;
-            int rc = Importer.aw_server_admin(domain, port, password, out tempInstance);
+            int rc = InterOp.aw_server_admin(domain, port, password, out tempInstance);
             InstanceException.Assert(rc);
 
             instance = tempInstance;
@@ -162,7 +162,7 @@ namespace AW
             if (this.instance != null && Utility.Initialized != false)
             {
                 SetInstance();
-                int rc = Importer.aw_destroy();
+                int rc = InterOp.aw_destroy();
                 InstanceException.Assert(rc);
             }
 
@@ -190,10 +190,10 @@ namespace AW
         /// </summary>
         private void SetInstance()
         {
-            if (Importer.aw_instance() != instance)
+            if (InterOp.aw_instance() != instance)
             {
                 int rc;
-                if ((rc = Importer.aw_instance_set(instance)) > 0) throw new InstanceException("Failed to set instance.")
+                if ((rc = InterOp.aw_instance_set(instance)) > 0) throw new InstanceException("Failed to set instance.")
                 {
                     ErrorCode = rc
                 };
@@ -212,7 +212,7 @@ namespace AW
         public int SetString(AW.Attributes attribute, string value)
         {
             SetInstance();
-            return InstanceException.Assert(Importer.aw_string_set(attribute, value));
+            return InstanceException.Assert(InterOp.aw_string_set(attribute, value));
         }
 
         /// <summary>
@@ -225,7 +225,7 @@ namespace AW
         public string GetString(AW.Attributes attribute)
         {
             SetInstance();
-            return Marshal.PtrToStringAnsi(Importer.aw_string(attribute));
+            return Marshal.PtrToStringAnsi(InterOp.aw_string(attribute));
         }
 
         /// <summary>
@@ -239,7 +239,7 @@ namespace AW
         public int SetInt(AW.Attributes attribute, int value)
         {
             SetInstance();
-            return InstanceException.Assert(Importer.aw_int_set(attribute, value));
+            return InstanceException.Assert(InterOp.aw_int_set(attribute, value));
         }
 
         /// <summary>
@@ -252,7 +252,7 @@ namespace AW
         public int GetInt(AW.Attributes attribute)
         {
             SetInstance();
-            return Importer.aw_int(attribute);
+            return InterOp.aw_int(attribute);
         }
 
         /// <summary>
@@ -266,7 +266,7 @@ namespace AW
         public int SetBool(AW.Attributes attribute, bool value)
         {
             SetInstance();
-            return InstanceException.Assert(Importer.aw_bool_set(attribute, value));
+            return InstanceException.Assert(InterOp.aw_bool_set(attribute, value));
         }
 
         /// <summary>
@@ -279,7 +279,7 @@ namespace AW
         public bool GetBool(AW.Attributes attribute)
         {
             SetInstance();
-            return (Importer.aw_bool(attribute) != 0);
+            return (InterOp.aw_bool(attribute) != 0);
         }
 
         /// <summary>
@@ -293,7 +293,7 @@ namespace AW
         public int SetFloat(AW.Attributes attribute, float value)
         {
             SetInstance();
-            return InstanceException.Assert(Importer.aw_float_set(attribute, value));
+            return InstanceException.Assert(InterOp.aw_float_set(attribute, value));
         }
 
         /// <summary>
@@ -306,7 +306,7 @@ namespace AW
         public float GetFloat(AW.Attributes attribute)
         {
             SetInstance();
-            return Importer.aw_float(attribute);
+            return InterOp.aw_float(attribute);
         }
 
         /// <summary>
@@ -327,7 +327,7 @@ namespace AW
             try
             {
                 Marshal.Copy(value, 0, dest, value.Length);
-                errorCode = Importer.aw_data_set(attribute, dest, (uint)value.Length);
+                errorCode = InterOp.aw_data_set(attribute, dest, (uint)value.Length);
             }
             finally
             {
@@ -348,7 +348,7 @@ namespace AW
         {
             SetInstance();
             uint length;
-            IntPtr temp = Importer.aw_data(attribute, out length);
+            IntPtr temp = InterOp.aw_data(attribute, out length);
 
             if (length == 0)
                 return null;
@@ -367,7 +367,7 @@ namespace AW
         public int SetCAVData(string cavContents)
         {
             SetInstance();
-            return SetData(Attributes.CavDefinition, Utility.Zip(System.Text.ASCIIEncoding.UTF8.GetBytes(cavContents)));
+            return SetData(Attributes.CavDefinition, Utility.Zip(System.Text.UTF8Encoding.UTF8.GetBytes(cavContents)));
         }
 
         /// <summary>
@@ -379,7 +379,7 @@ namespace AW
         public string GetCAVData()
         {
             SetInstance();
-            return System.Text.ASCIIEncoding.UTF8.GetString(Utility.Unzip(GetData(Attributes.CavDefinition)));
+            return System.Text.UTF8Encoding.UTF8.GetString(Utility.Unzip(GetData(Attributes.CavDefinition)));
         }
         #endregion
     }

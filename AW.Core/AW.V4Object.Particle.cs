@@ -290,12 +290,12 @@ namespace AW
 
         protected internal override byte[] GetData()
         {
-            particleData.asset_list_len = (ushort)assetList.Length;
-            particleData.name_len = (byte)name.Length;
+            particleData.asset_list_len = (ushort)System.Text.UTF8Encoding.UTF8.GetByteCount(assetList);
+            particleData.name_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(name);
 
             return Utilities.Miscellaneous.ConcatArrays(Utilities.Miscellaneous.StructToBytes(particleData),
-                                             System.Text.UTF8Encoding.ASCII.GetBytes(assetList),
-                                             System.Text.UTF8Encoding.ASCII.GetBytes(name),
+                                             System.Text.UTF8Encoding.UTF8.GetBytes(assetList),
+                                             System.Text.UTF8Encoding.UTF8.GetBytes(name),
                                              new byte[] { 0 }
                                             );
 
@@ -308,8 +308,8 @@ namespace AW
             remainder = new byte[size];
             Array.ConstrainedCopy(data, data.Length - size, remainder, 0, size);
 
-            assetList = System.Text.UTF8Encoding.ASCII.GetString(remainder, 0, particleData.asset_list_len);
-            name = System.Text.UTF8Encoding.ASCII.GetString(remainder, particleData.asset_list_len, particleData.name_len);
+            assetList = System.Text.UTF8Encoding.UTF8.GetString(remainder, 0, particleData.asset_list_len);
+            name = System.Text.UTF8Encoding.UTF8.GetString(remainder, particleData.asset_list_len, particleData.name_len);
         }
     }
 }

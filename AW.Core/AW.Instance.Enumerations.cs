@@ -189,7 +189,15 @@ namespace AW
         /// <summary>
         /// The camera tracks from ahead.
         /// </summary>
-        TrackAhead
+        TrackAhead,
+
+        TrackSelfFirstPerson,
+
+        TrackSelfLocked,
+
+        TrackSelfChase,
+
+        TrackSelfFront,
     }
 
     /// <summary>
@@ -588,5 +596,35 @@ namespace AW
         /// Tourists can use a world Custom Avatar.
         /// </summary>
         WorldTourist = 0x40
+    }
+
+    enum XferType
+    {
+        File = 0,
+        Image = 1,
+        Document = 2,
+        Media = 3
+    }
+
+    enum LaserBeamSourceType
+    {
+        None = 0,
+        Avatar = 1,
+        Object = 2,
+        Coords = 3
+    }
+
+    enum LaserBeamTargetType
+    {
+        None = 0,
+        Avatar = 1,
+        Object = 2,
+        Coords = 3
+    }
+
+    enum LaserBeamStyle
+    {
+        Line = 0,
+        Particle = 1
     }
 }

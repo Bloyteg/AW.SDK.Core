@@ -19,7 +19,7 @@
             get
             {
                 SetInstance();
-                return Importer.aw_session();
+                return InterOp.aw_session();
             }
         }
     }

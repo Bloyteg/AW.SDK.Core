@@ -11,7 +11,7 @@ namespace AW
 	#region $it.name$
 	//Declare the types to handle both the managed and native events.
 	private Instance.Event managed$it.name$;
-	private Importer.Event native$it.name$;
+	private InterOp.Event native$it.name$;
 
 	//Native event handler.
 	private void On$it.name$()
@@ -33,8 +33,8 @@ namespace AW
 			if (managed$it.name$ == null)
 			{
 				SetInstance();
-				native$it.name$ = new Importer.Event(On$it.name$);
-				Importer.aw_instance_event_set(AW_EVENT.$it.sdkName$, native$it.name$);
+				native$it.name$ = new InterOp.Event(On$it.name$);
+				InterOp.aw_instance_event_set(AW_EVENT.$it.sdkName$, native$it.name$);
 			}
 
 			managed$it.name$ += value;
@@ -50,7 +50,7 @@ namespace AW
 			{
 				SetInstance();
 				native$it.name$ = null;
-				Importer.aw_instance_event_set(AW_EVENT.$it.sdkName$, null);
+				InterOp.aw_instance_event_set(AW_EVENT.$it.sdkName$, null);
 			}
 		}
 	}

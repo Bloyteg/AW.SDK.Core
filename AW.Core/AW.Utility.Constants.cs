@@ -16,7 +16,7 @@
             {
                 get
                 {
-                    return 77;
+                    return 84;
                 }
             }
 
@@ -72,6 +72,62 @@
                 get
                 {
                     return 255;
+                }
+            }
+
+            public static uint MaxUserNameLength
+            {
+                get
+                {
+                    return 20;
+                }
+            }
+
+            public static uint MinUserNameLength
+            {
+                get
+                {
+                    return 2;
+                }
+            }
+
+            public static uint MaxPasswordLength
+            {
+                get
+                {
+                    return 16;
+                }
+            }
+
+            public static uint MinPasswordLength
+            {
+                get
+                {
+                    return 4;
+                }
+            }
+
+            public static uint MaxEmailLength
+            {
+                get
+                {
+                    return 64;
+                }
+            }
+
+            public static uint MaxWorldNameLength
+            {
+                get
+                {
+                    return 16;
+                }
+            }
+
+            public static uint MaxLongData
+            {
+                get
+                {
+                    return 4094;
                 }
             }
 

@@ -57,7 +57,7 @@
     <Compile Include="AW.Unmanaged.EventsEnum.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AW.Unmanaged.Importer.cs" />
+    <Compile Include="AW.Unmanaged.InterOp.cs" />
     <Compile Include="Utilities.HexConverter.cs" />
     <Compile Include="AW.V4Object.cs">
     </Compile>

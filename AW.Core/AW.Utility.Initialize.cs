@@ -30,18 +30,18 @@ namespace AW
 
         internal static int Initialize()
         {
-            Marshal.PrelinkAll(typeof(Importer));
+            Marshal.PrelinkAll(typeof(InterOp));
 
             int rc;
 
             if (bindAddress.Equals(string.Empty))
             {
-                rc = Importer.aw_init(Utility.Constants.CurrentBuild);
+                rc = InterOp.aw_init(Utility.Constants.CurrentBuild);
             }
             //Handles the case where a bind IP address has been set before all other instances were created.
             else
             {
-                rc = Importer.aw_init_bind(Utility.Constants.CurrentBuild, Utilities.Miscellaneous.IPStringToInt(bindAddress));
+                rc = InterOp.aw_init_bind(Utility.Constants.CurrentBuild, Utilities.Miscellaneous.IPStringToInt(bindAddress));
             }
 
             if (rc == 0)
@@ -52,7 +52,7 @@ namespace AW
         internal static void Terminate()
         {
             initialized = false;
-            Importer.aw_term();
+            InterOp.aw_term();
         }
     }
 }

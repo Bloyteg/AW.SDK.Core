@@ -542,18 +542,18 @@ namespace AW
         {
             int waypointSize = Marshal.SizeOf(typeof(Waypoint)) + 1;
 
-            moverData.name_len = (byte)name.Length;
-            moverData.seq_len = (byte)sequence.Length;
-            moverData.script_len = (byte)script.Length;
-            moverData.sound_len = (byte)sound.Length;
+            moverData.name_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(name);
+            moverData.seq_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(sequence);
+            moverData.script_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(script);
+            moverData.sound_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(sound);
             moverData.waypoints_len = (ushort)(waypoints.Count * waypointSize);
-            moverData.bump_name_len = (byte)bumpName.Length;
+            moverData.bump_name_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(bumpName);
 
             byte[] outData = Utilities.Miscellaneous.ConcatArrays(Utilities.Miscellaneous.StructToBytes(moverData),
-                                                       System.Text.UTF8Encoding.ASCII.GetBytes(name),
-                                                       System.Text.UTF8Encoding.ASCII.GetBytes(sequence),
-                                                       System.Text.UTF8Encoding.ASCII.GetBytes(script),
-                                                       System.Text.UTF8Encoding.ASCII.GetBytes(sound)
+                                                       System.Text.UTF8Encoding.UTF8.GetBytes(name),
+                                                       System.Text.UTF8Encoding.UTF8.GetBytes(sequence),
+                                                       System.Text.UTF8Encoding.UTF8.GetBytes(script),
+                                                       System.Text.UTF8Encoding.UTF8.GetBytes(sound)
                                                       );
 
             foreach (Waypoint wp in waypoints)
@@ -565,7 +565,7 @@ namespace AW
             }
 
             return Utilities.Miscellaneous.ConcatArrays(outData,
-                                             System.Text.UTF8Encoding.ASCII.GetBytes(bumpName),
+                                             System.Text.UTF8Encoding.UTF8.GetBytes(bumpName),
                                              new byte[] { 0 }
                                             );
 
@@ -580,12 +580,12 @@ namespace AW
             remainder = new byte[size];
             Array.ConstrainedCopy(data, data.Length - size, remainder, 0, size);
 
-            name = System.Text.UTF8Encoding.ASCII.GetString(remainder, 0, moverData.name_len);
-            sequence = System.Text.UTF8Encoding.ASCII.GetString(remainder, moverData.name_len, moverData.seq_len);
-            script = System.Text.UTF8Encoding.ASCII.GetString(remainder, moverData.name_len + moverData.seq_len, moverData.script_len);
-            sound = System.Text.UTF8Encoding.ASCII.GetString(remainder, moverData.name_len + moverData.seq_len + moverData.script_len, moverData.sound_len);
+            name = System.Text.UTF8Encoding.UTF8.GetString(remainder, 0, moverData.name_len);
+            sequence = System.Text.UTF8Encoding.UTF8.GetString(remainder, moverData.name_len, moverData.seq_len);
+            script = System.Text.UTF8Encoding.UTF8.GetString(remainder, moverData.name_len + moverData.seq_len, moverData.script_len);
+            sound = System.Text.UTF8Encoding.UTF8.GetString(remainder, moverData.name_len + moverData.seq_len + moverData.script_len, moverData.sound_len);
             //waypoints before bumpName.
-            bumpName = System.Text.UTF8Encoding.ASCII.GetString(remainder, moverData.name_len + moverData.seq_len + moverData.script_len + moverData.sound_len + moverData.waypoints_len, moverData.bump_name_len);
+            bumpName = System.Text.UTF8Encoding.UTF8.GetString(remainder, moverData.name_len + moverData.seq_len + moverData.script_len + moverData.sound_len + moverData.waypoints_len, moverData.bump_name_len);
 
             // waypoints
             int waypointPosition = moverData.name_len + moverData.seq_len + moverData.script_len + moverData.sound_len;

@@ -54,9 +54,9 @@ namespace AW
 
         protected internal override byte[] GetData()
         {
-            cameraData.name_len = (byte)name.Length;
+            cameraData.name_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(name);
             return Utilities.Miscellaneous.ConcatArrays(Utilities.Miscellaneous.StructToBytes(cameraData),
-                                             System.Text.UTF8Encoding.ASCII.GetBytes(name),
+                                             System.Text.UTF8Encoding.UTF8.GetBytes(name),
                                              new byte[] { 0 }
                                             );
         }
@@ -68,7 +68,7 @@ namespace AW
             remainder = new byte[size];
 
             Array.ConstrainedCopy(data, data.Length - size, remainder, 0, size);
-            name = System.Text.UTF8Encoding.ASCII.GetString(remainder, 0, cameraData.name_len);
+            name = System.Text.UTF8Encoding.UTF8.GetString(remainder, 0, cameraData.name_len);
         }
     }
 }
