@@ -7,7 +7,7 @@ using System.Resources;
 // associated with an assembly.
 //
 [assembly: AssemblyTitle("AW SDK .NET WRAPPER")]
-[assembly: AssemblyDescription("Active Worlds SDK .NET Wrapper")]
+[assembly: AssemblyDescription("ActiveWorlds SDK .NET Wrapper")]
 
 #if DEBUG
 [assembly: AssemblyConfiguration("Debug - x86 - .NET 2.0")]
@@ -17,7 +17,7 @@ using System.Resources;
 
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("AW.NET")]
-[assembly: AssemblyCopyright("Copyright ©2007 - 2009 Joshua R. Rodgers")]
+[assembly: AssemblyCopyright("Copyright ©2007 - 2010 Joshua R. Rodgers")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 
@@ -32,7 +32,7 @@ using System.Resources;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("0.2.8.84")]
+[assembly: AssemblyVersion("0.2.8.85")]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the 

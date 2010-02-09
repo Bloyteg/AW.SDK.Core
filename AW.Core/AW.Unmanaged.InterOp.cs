@@ -23,7 +23,7 @@ namespace AW
         [DllImport("aw", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern void aw_term();
 
-        [DllImport("aw", CharSet = CharSet.Unicode, ExactSpelling = true)]
+        [DllImport("aw", CharSet = CharSet.Unicode, ExactSpelling = true, EntryPoint="aw_createW")]
         public static extern int aw_create(string domain, int port, out IntPtr instance);
 
         [DllImport("aw", CharSet = CharSet.Unicode, ExactSpelling = true)]

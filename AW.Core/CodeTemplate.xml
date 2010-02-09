@@ -133,24 +133,7 @@
     <Event>
       <Name>AW_EVENT_WORLD_CAV_DEFINITION_CHANGE</Name>
     </Event>
-    <Event>
-      <Name>AW_EVENT_XFER_DISCONNECT</Name>
-    </Event>
-    <Event>
-      <Name>AW_EVENT_XFER_OFFER</Name>
-    </Event>
-    <Event>
-      <Name>AW_EVENT_XFER_REPLY</Name>
-    </Event>
-    <Event>
-      <Name>AW_EVENT_XFER_SEND</Name>
-    </Event>
-    <Event>
-      <Name>AW_EVENT_XFER_REQUEST</Name>
-    </Event>
-    <Event>
-      <Name>AW_EVENT_XFER_CANCEL</Name>
-    </Event>
+
     <Event>
       <Name>AW_EVENT_LASER_BEAM</Name>
     </Event>
@@ -261,12 +244,6 @@
     </Callback>
     <Callback>
       <Name>AW_CALLBACK_WORLD_CAV</Name>
-    </Callback>
-    <Callback>
-      <Name>AW_CALLBACK_XFER_LOGIN</Name>
-    </Callback>
-    <Callback>
-      <Name>AW_CALLBACK_XFER_REQUEST_SHOW_REPLY</Name>
     </Callback>
   </Callbacks>
 </Template>
