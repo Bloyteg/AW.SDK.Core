@@ -225,7 +225,7 @@ namespace AW
         public string GetString(AW.Attributes attribute)
         {
             SetInstance();
-            return Marshal.PtrToStringAnsi(InterOp.aw_string(attribute));
+            return Marshal.PtrToStringUni(InterOp.aw_string(attribute));
         }
 
         /// <summary>
