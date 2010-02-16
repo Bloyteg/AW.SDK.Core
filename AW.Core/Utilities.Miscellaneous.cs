@@ -4,16 +4,32 @@ using System.Runtime.InteropServices;
 
 namespace Utilities
 {
+    /// <summary>
+    /// Miscellaneous methods used internally by the .NET wrapper to perform common and important tasks
+    /// related to the InterOp of the wrapper and the C SDK plus other functionality that has no real
+    /// categorization into individual concrete classes.
+    /// </summary>
     internal static class Miscellaneous
     {
+        /// <summary>
+        /// Converts an IP address represented as a string into a integer representation.
+        /// </summary>
+        /// <param name="ipAddress">The IP address to convert.</param>
+        /// <returns>The integer representation of the IP address.</returns>
         public static uint IPStringToInt(string ipAddress)
         {
             uint r = 0;
-            foreach (string s in ipAddress.Split('.'))
+            string[] ipArr = ipAddress.Split('.');
+            foreach (string s in ipArr)
                 r = (r << 8) ^ (uint)UInt32.Parse(s);
             return r;
         }
 
+        /// <summary>
+        /// Converts a structure into a byte-array.
+        /// </summary>
+        /// <param name="obj">The structure being converted.</param>
+        /// <returns>A byte-array representing the structure being converted.</returns>
         public static byte[] StructToBytes(object obj)
         {
             int length = Marshal.SizeOf(obj.GetType());
@@ -33,6 +49,13 @@ namespace Utilities
             return returnArr;
         }
 
+        /// <summary>
+        /// Converts a byte array into a structure.
+        /// </summary>
+        /// <typeparam name="T">The type of the structure to convert to.</typeparam>
+        /// <param name="data">A byte-array of data being converted to a structure.</param>
+        /// <param name="index">The starting index in the array where the structure is located.</param>
+        /// <returns>A structure representation of the byte-array passed in.</returns>
         public static T BytesToStruct<T>(byte[] data, int index)
         {
             int length = Marshal.SizeOf(typeof(T));
@@ -58,6 +81,12 @@ namespace Utilities
             return outObj;
         }
 
+        /// <summary>
+        /// Concatenates together two or more arrays into one array, in the order that they were passed.
+        /// </summary>
+        /// <typeparam name="T">The type of the arrays being concatenate.</typeparam>
+        /// <param name="arrays">The arrays being concatenated together.</param>
+        /// <returns>All arrays concatenated into one array.</returns>
         public static T[] ConcatArrays<T>(params T[][] arrays)
         {
             List<T> outList = new List<T>();

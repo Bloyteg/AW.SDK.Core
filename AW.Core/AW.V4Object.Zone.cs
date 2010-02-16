@@ -130,7 +130,7 @@ namespace AW
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         private class ZoneData
         {
-            public Vector size;
+            public Vector size = new Vector();
             public byte version = 1;
             public byte shape = 0;
             public byte priority = 0;

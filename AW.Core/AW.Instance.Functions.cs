@@ -3,24 +3,47 @@ namespace AW
     partial class Instance
     {
         #region Instance manage methods
+        /// <summary>
+        /// Logs the instance into the universe using the Attributes.LoginOwner, Attributes.LoginPrivilegePassword, Attributes.LoginName, and Attributes.LoginApplication that were set earlier.
+        /// If CallbackLogin is not set, this is a blocking operation.
+        /// </summary>
+        /// <exception cref="AW.InstanceException">If the method fails an InstanceException is raised.</exception>
+        /// <returns>RC code if Utility.UseReturnCodes is set to true.</returns>
         public int Login()
         {
             SetInstance();
             return InstanceException.Assert(InterOp.aw_login());
         }
 
+        /// <summary>
+        /// Causes the instance to enter the specified world.
+        /// If CallbackEnter is not set, this is a blocking operation.
+        /// </summary>
+        /// <param name="world">The name of the world to enter.</param>
+        /// <exception cref="AW.InstanceException">If the method fails an InstanceException is raised.</exception>
+        /// <returns>RC code if Utility.UseReturnCodes is set to true.</returns>
         public int Enter(string world)
         {
             SetInstance();
             return InstanceException.Assert(InterOp.aw_enter(world));
         }
 
+        ///<summary>
+        /// Causes the instance to leave the current world.
+        /// It is not necessary to call this method when disconnecting or changing worlds.
+        ///</summary>
+        /// <exception cref="AW.InstanceException">If the method fails an InstanceException is raised.</exception>
+        /// <returns>RC code if Utility.UseReturnCodes is set to true.</returns>
         public int Exit()
         {
             SetInstance();
             return InstanceException.Assert(InterOp.aw_exit());
         }
 
+        /// <summary>
+        /// Causes the instance to change state within the world.
+        /// </summary>
+        /// <exception cref="AW.InstanceException">If the method fails an InstanceException is raised.</exception>
         public int StateChange()
         {
             SetInstance();

@@ -89,7 +89,7 @@ namespace AW
         /// </summary>
         /// <param name="color">The color to convert.</param>
         /// <returns>The converted color.</returns>
-        public static explicit operator Color(uint color)
+        public static implicit operator Color(uint color)
         {
             return new Color()
             {
@@ -104,9 +104,34 @@ namespace AW
         /// </summary>
         /// <param name="color">The color to convert.</param>
         /// <returns>The converted color.</returns>
-        public static explicit operator uint(Color color)
+        public static implicit operator uint(Color color)
         {
             return (uint)(color.R | (color.G << 8) | (color.B << 16));
+        }
+
+        /// <summary>
+        /// Converts a <see cref="System.Int32" /> to <see cref="AW.Color" />.
+        /// </summary>
+        /// <param name="color">The color to convert.</param>
+        /// <returns>The converted color.</returns>
+        public static implicit operator Color(int color)
+        {
+            return new Color()
+            {
+                R = (byte)(color & 0x0000FF),
+                G = (byte)((color >> 8) & 0x0000FF),
+                B = (byte)((color >> 16) & 0x0000FF)
+            };
+        }
+
+        /// <summary>
+        /// Converts a <see cref="AW.Color" /> to <see cref="System.Int32" />.
+        /// </summary>
+        /// <param name="color">The color to convert.</param>
+        /// <returns>The converted color.</returns>
+        public static implicit operator int(Color color)
+        {
+            return (int)(color.R | (color.G << 8) | (color.B << 16));
         }
 
         /// <summary>
