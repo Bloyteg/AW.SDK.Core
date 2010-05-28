@@ -1,0 +1,106 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="Code.Generate.TemplateClasses.tt" #>
+<#
+	List<string> callbacks = new List<string>()
+	{
+		"AW_CALLBACK_LOGIN",
+		"AW_CALLBACK_ENTER",
+		"AW_CALLBACK_OBJECT_RESULT",
+		"AW_CALLBACK_LICENSE_ATTRIBUTES",
+		"AW_CALLBACK_LICENSE_RESULT",
+		"AW_CALLBACK_CITIZEN_ATTRIBUTES",
+		"AW_CALLBACK_CITIZEN_RESULT",
+		"AW_CALLBACK_QUERY",
+		"AW_CALLBACK_UNIVERSE_EJECTION",
+		"AW_CALLBACK_UNIVERSE_EJECTION_RESULT",
+		"AW_CALLBACK_ADDRESS",
+		"AW_CALLBACK_WORLD_EJECTION",
+		"AW_CALLBACK_WORLD_EJECTION_RESULT",
+		"AW_CALLBACK_ADMIN_WORLD_LIST",
+		"AW_CALLBACK_ADMIN_WORLD_RESULT",
+		"AW_CALLBACK_DELETE_ALL_OBJECTS_RESULT",
+		"AW_CALLBACK_CELL_RESULT",
+		"AW_CALLBACK_RELOAD_REGISTRY",
+		"AW_CALLBACK_ATTRIBUTES_RESET_RESULT",
+		"AW_CALLBACK_ADMIN",
+		"AW_CALLBACK_TERRAIN_SET_RESULT",
+		"AW_CALLBACK_TERRAIN_NEXT_RESULT",
+		"AW_CALLBACK_TERRAIN_DELETE_ALL_RESULT",
+		"AW_CALLBACK_TERRAIN_LOAD_NODE_RESULT",
+		"AW_CALLBACK_BOTGRAM_RESULT",
+		"AW_CALLBACK_USER_LIST",
+		"AW_CALLBACK_BOTMENU_RESULT",
+		"AW_CALLBACK_CAV",
+		"AW_CALLBACK_CAV_RESULT",
+		"AW_CALLBACK_WORLD_INSTANCE",
+		"AW_CALLBACK_HUD_RESULT",
+		"AW_CALLBACK_AVATAR_LOCATION",
+		"AW_CALLBACK_OBJECT_QUERY",
+		"AW_CALLBACK_WORLD_CAV_RESULT",
+		"AW_CALLBACK_WORLD_CAV"
+	};
+#>	
+//This code was auto-generated.  It is not recommended to modify it.
+//If you wish to change this code, please update the template associated with it.
+using System;
+using System.Runtime.InteropServices;
+
+namespace AW
+{
+	partial class Instance
+	{
+	<# foreach(SdkIdentifier callback in callbacks) { #>
+	#region <#= callback.Name #>
+		//Declare the types to handle both the managed and native callbacks.
+		private Instance.Callback managed<#= callback.Name #>;
+		private InterOp.Callback native<#= callback.Name #>;
+
+		//Native callback handler.
+		private void On<#= callback.Name #>(int error)
+		{
+			//Passes off the callback to the managed callback handler.
+			managed<#= callback.Name #>(this, error);
+		}
+
+		//Managed callback handler.
+		/// <summary>
+		/// Handles <#= callback.SdkName #> from the C SDK.
+		/// </summary>
+		public event Callback <#= callback.Name #>
+		{
+			//Handles hooking a new delegate to the callback.
+			add
+			{
+				//If the callback is null, set the native callback for the instance.
+				if (managed<#= callback.Name #> == null)
+				{
+					SetInstance();
+					native<#= callback.Name #> = new InterOp.Callback(On<#= callback.Name #>);
+					InterOp.aw_instance_callback_set(AW_CALLBACK.<#= callback.SdkName #>, native<#= callback.Name #>);
+				}
+
+				managed<#= callback.Name #> += value;
+			}
+
+			//Handles removing a delegate from the callback.
+			remove
+			{
+				managed<#= callback.Name #> -= value;
+
+				//If the callback is null, remove the native callback for the instance.
+				if (managed<#= callback.Name #> == null)
+				{
+					SetInstance();
+					native<#= callback.Name #> = null;
+					InterOp.aw_instance_callback_set(AW_CALLBACK.<#= callback.SdkName #>, null);
+				}
+			}
+		}
+		#endregion
+		
+	<# } #>
+}
+}

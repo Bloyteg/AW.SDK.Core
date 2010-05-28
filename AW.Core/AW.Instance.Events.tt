@@ -1,0 +1,116 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="Code.Generate.TemplateClasses.tt" #>
+<#
+	List<string> events = new List<string>()
+	{
+		"AW_EVENT_ADMIN_WORLD_INFO",
+		"AW_EVENT_ADMIN_WORLD_DELETE",
+		"AW_EVENT_AVATAR_ADD",
+		"AW_EVENT_AVATAR_CHANGE",
+		"AW_EVENT_AVATAR_DELETE",
+		"AW_EVENT_AVATAR_CLICK",
+		"AW_EVENT_AVATAR_RELOAD", 
+		"AW_EVENT_BOTGRAM",
+		"AW_EVENT_BOTMENU",
+		"AW_EVENT_CELL_BEGIN",
+		"AW_EVENT_CELL_OBJECT",
+		"AW_EVENT_CELL_END",
+		"AW_EVENT_CHAT",
+		"AW_EVENT_CONSOLE_MESSAGE",
+		"AW_EVENT_ENTITY_ADD",
+		"AW_EVENT_ENTITY_CHANGE",
+		"AW_EVENT_ENTITY_DELETE",
+		"AW_EVENT_ENTITY_RIDER_ADD",
+		"AW_EVENT_ENTITY_RIDER_CHANGE",
+		"AW_EVENT_ENTITY_RIDER_DELETE",
+		"AW_EVENT_ENTITY_LINKS",
+		"AW_EVENT_HUD_CLICK",
+		"AW_EVENT_NOISE",
+		"AW_EVENT_OBJECT_ADD",
+		"AW_EVENT_OBJECT_DELETE",
+		"AW_EVENT_OBJECT_CLICK",
+		"AW_EVENT_OBJECT_BUMP",
+		"AW_EVENT_OBJECT_SELECT", 
+		"AW_EVENT_TELEPORT",
+		"AW_EVENT_TERRAIN_BEGIN",
+		"AW_EVENT_TERRAIN_CHANGED",
+		"AW_EVENT_TERRAIN_DATA", 
+		"AW_EVENT_TERRAIN_END",
+		"AW_EVENT_TOOLBAR_CLICK", 
+		"AW_EVENT_UNIVERSE_ATTRIBUTES",
+		"AW_EVENT_UNIVERSE_DISCONNECT", 
+		"AW_EVENT_URL",
+		"AW_EVENT_URL_CLICK",
+		"AW_EVENT_USER_INFO",
+		"AW_EVENT_WORLD_ATTRIBUTES",
+		"AW_EVENT_WORLD_DISCONNECT",
+		"AW_EVENT_WORLD_INFO",
+		"AW_EVENT_CAV_DEFINITION_CHANGE",
+		"AW_EVENT_WORLD_CAV_DEFINITION_CHANGE",
+		"AW_EVENT_LASER_BEAM"
+	};
+#>	
+//This code was auto-generated.  It is not recommended to modify it.
+//If you wish to change this code, please update the template associated with it.
+using System;
+using System.Runtime.InteropServices;
+
+namespace AW
+{
+	partial class Instance
+	{
+	<# foreach(SdkIdentifier evnt in events) { #>
+	#region <#= evnt.Name #>
+		//Declare the types to handle both the managed and native events.
+		private Instance.Event managed<#= evnt.Name #>;
+		private InterOp.Event native<#= evnt.Name #>;
+
+		//Native event handler.
+		private void On<#= evnt.Name #>()
+		{
+			//Passes off the event to the managed event handler.
+			managed<#= evnt.Name #>(this);
+		}
+
+		//Managed event handler.
+		/// <summary>
+		/// Handles <#= evnt.SdkName #> from the C SDK.
+		/// </summary>
+		public event Event <#= evnt.Name #>
+		{
+			//Handles hooking a new delegate to the event.
+			add
+			{
+				//If the event is null, set the native event for the instance.
+				if (managed<#= evnt.Name #> == null)
+				{
+					SetInstance();
+					native<#= evnt.Name #> = new InterOp.Event(On<#= evnt.Name #>);
+					InterOp.aw_instance_event_set(AW_EVENT.<#= evnt.SdkName #>, native<#= evnt.Name #>);
+				}
+
+				managed<#= evnt.Name #> += value;
+			}
+
+			//Handles removing a delegate from the event.
+			remove
+			{
+				managed<#= evnt.Name #> -= value;
+
+				//If the event is null, remove the native event for the instance.
+				if (managed<#= evnt.Name #> == null)
+				{
+					SetInstance();
+					native<#= evnt.Name #> = null;
+					InterOp.aw_instance_event_set(AW_EVENT.<#= evnt.SdkName #>, null);
+				}
+			}
+		}
+		#endregion
+		
+	<# } #>
+}
+}

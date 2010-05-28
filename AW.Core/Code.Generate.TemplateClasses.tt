@@ -1,0 +1,34 @@
+﻿<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #> 
+
+<#+
+	class SdkIdentifier
+	{
+		private string _sdkName;
+		
+		public string Name
+		{
+			get;
+			private set;
+		}
+		
+		public string SdkName
+		{
+			get
+			{
+				return _sdkName;
+			}
+			
+			set
+			{
+				_sdkName = value;
+				Name = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value.ToLower()).Substring(3).Replace("_", "");
+			}
+		}
+		
+		public static implicit operator SdkIdentifier(string name)
+		{
+			return new SdkIdentifier() { SdkName = name };	
+		}
+	}
+#>

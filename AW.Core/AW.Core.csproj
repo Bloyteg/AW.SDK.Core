@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>9.0.30729</ProductVersion>
@@ -16,7 +17,27 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <StartupObject />
     <SignAssembly>true</SignAssembly>
-    <OldToolsVersion>2.0</OldToolsVersion>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,7 +68,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AW.Instance.Callbacks.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AW.Instance.Callbacks.tt</DependentUpon>
+    </Compile>
     <Compile Include="AW.Instance.Enumerations.cs" />
+    <Compile Include="AW.Instance.Events.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AW.Instance.Events.tt</DependentUpon>
+    </Compile>
     <Compile Include="AW.Instance.Exception.cs" />
     <Compile Include="AW.Instance.Functions.cs">
     </Compile>
@@ -79,32 +110,42 @@
     <Compile Include="Utilities.IndexedProperty.cs" />
     <Compile Include="Utilities.Miscellaneous.cs" />
     <Compile Include="Utilities.StaticDestructor.cs" />
+    <None Include="AW.Instance.Callbacks.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AW.Instance.Callbacks.cs</LastGenOutput>
+    </None>
+    <None Include="AW.Instance.Events.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AW.Instance.Events.cs</LastGenOutput>
+    </None>
     <None Include="awnet.snk" />
+    <None Include="Code.Generate.TemplateClasses.tt">
+      <LastGenOutput>TemplateClasses.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <!-- Code template -->
-    <TemplateXML Include="CodeTemplate.xml" />
-    <CodeTemplate Include="eventsTemplate.txt">
-      <DependentUpon>CodeTemplate.xml</DependentUpon>
-      <OutputFile>AW.Instance.Events.cs</OutputFile>
-    </CodeTemplate>
-    <CodeTemplate Include="callbacksTemplate.txt">
-      <DependentUpon>CodeTemplate.xml</DependentUpon>
-      <OutputFile>AW.Instance.Callbacks.cs</OutputFile>
-    </CodeTemplate>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Don't use the host compiler, use CSC directly -->
   <PropertyGroup>
     <UseHostCompilerIfAvailable>False</UseHostCompilerIfAvailable>
   </PropertyGroup>
-  <!-- Code Generation -->
-  <UsingTask TaskName="GenerateCode" AssemblyFile="..\CodeGenerator\bin\Release\CodeGenerator.dll" />
-  <Target Name="GenerateCode" Inputs="@(TemplateXML);@(CodeTemplate)" Outputs="%(CodeTemplate.OutputFile)">
-    <GenerateCode Input="@(TemplateXML)" Template="@(CodeTemplate)" Output="%(CodeTemplate.OutputFile)">
-      <Output TaskParameter="Output" ItemName="Compile" />
-    </GenerateCode>
-  </Target>
-  <Target Name="BeforeBuild" DependsOnTargets="GenerateCode">
-  </Target>
 </Project>
