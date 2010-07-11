@@ -5,7 +5,7 @@ namespace AW
 {
     public static partial class Utility
     {
-        internal class RCTable : Utilities.IIndexedPropery<int, string>
+        internal class RCTable : Utilities.IIndexedProperty<int, string>
         {
             private readonly Dictionary<int, string> rcDictionary = new Dictionary<int, string>
             {
@@ -109,9 +109,9 @@ namespace AW
                 { 4997, "RC_Z_DATA_ERROR" }
             };
 
-            #region Util.IIndexedPropery<int,string> Members
+            #region Util.IIndexedProperty<int,string> Members
 
-            string Utilities.IIndexedPropery<int, string>.this[int key]
+            string Utilities.IIndexedProperty<int, string>.this[int key]
             {
                 get
                 {
@@ -131,9 +131,9 @@ namespace AW
             #endregion
         }
 
-        private static Utilities.IIndexedPropery<int, string> rcTable = new RCTable();
+        private static Utilities.IIndexedProperty<int, string> rcTable = new RCTable();
 
-        public static Utilities.IIndexedPropery<int, string> ReturnCodes
+        public static Utilities.IIndexedProperty<int, string> ReturnCodes
         {
             get { return rcTable; }
         }

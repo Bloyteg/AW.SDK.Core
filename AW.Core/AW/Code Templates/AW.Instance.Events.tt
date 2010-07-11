@@ -65,7 +65,7 @@ namespace AW
 	<# foreach(SdkIdentifier evnt in events) { #>
 	#region <#= evnt.Name #>
 		//Declare the types to handle both the managed and native events.
-		private Instance.Event managed<#= evnt.Name #>;
+		private InstanceEventDelegate managed<#= evnt.Name #>;
 		private InterOp.Event native<#= evnt.Name #>;
 
 		//Native event handler.
@@ -79,7 +79,7 @@ namespace AW
 		/// <summary>
 		/// Handles <#= evnt.SdkName #> from the C SDK.
 		/// </summary>
-		public event Event <#= evnt.Name #>
+		public event InstanceEventDelegate <#= evnt.Name #>
 		{
 			//Handles hooking a new delegate to the event.
 			add

@@ -13,7 +13,7 @@ namespace AW
     /// This class should not be mistaken as the entire SDK by novice programmers and programmers moving over from Visual Basic 6.
     /// For more information on how multiple instances work, please refer to the "Multiple Instances" topic under the Concepts section.
     /// </remarks>
-    public sealed partial class Instance : IDisposable
+    public sealed partial class Instance : IInstance
     {
         /**
          * Private stuff not privy to the user.
@@ -22,23 +22,11 @@ namespace AW
         private bool _disposed = false;
 
         #region public members
-        /// <summary>
-        /// Used to handle events sent to the <see cref="AW.Instance" />.
-        /// </summary>
-        /// <param name="sender">The instance that the event is associated with.</param>
-        public delegate void Event(Instance sender);
-
-        /// <summary>
-        /// Used to handle callbacks sent to the <see cref="AW.Instance" />.
-        /// </summary>
-        /// <param name="sender">The instance that the event is associated with.</param>
-        /// <param name="error">The error code associated with the callback.  Check this to ensure the callback was successful.</param>
-        public delegate void Callback(Instance sender, int error);
 
         /// <summary>
         /// Indicates that the instance is in the process of being disposed.
         /// </summary>
-        public event Event Disposing;
+        public event InstanceEventDelegate Disposing;
 
         #endregion
 
@@ -48,7 +36,7 @@ namespace AW
         /// </summary>
         private static readonly Utilities.StaticDestructor destructor = new Utilities.StaticDestructor
         (
-            delegate()
+            () =>
             {
                 Utility.Terminate();
             }
@@ -192,8 +180,9 @@ namespace AW
         {
             if (InterOp.aw_instance() != instance)
             {
-                int rc;
-                if ((rc = InterOp.aw_instance_set(instance)) > 0) throw new InstanceException("Failed to set instance.")
+                int rc = InterOp.aw_instance_set(instance);
+
+                if (rc > 0) throw new InstanceException("Failed to set instance.")
                 {
                     ErrorCode = rc
                 };

@@ -16,7 +16,7 @@ using System.Resources;
 [assembly: AssemblyCopyright("Copyright ©2007 - 2010 Joshua R. Rodgers")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("0.2.10.85")]
+[assembly: AssemblyVersion("0.3.10.85")]
 
 //CLS compliance
 [assembly: System.CLSCompliant(true)]

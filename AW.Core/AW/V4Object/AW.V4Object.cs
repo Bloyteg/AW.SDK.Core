@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Xml.Serialization;
+using System.ComponentModel;
 
 namespace AW
 {
@@ -8,11 +9,14 @@ namespace AW
     /// Abstract class containing base members for V4 objects in the wrapper.  This class cannot be constructed directly.  Use one of the derivatives.
     /// </summary>
     [Serializable]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class V4Object
     {
-        abstract protected internal void SetData(byte[] data);
-        abstract protected internal byte[] GetData();
+        internal V4Object() { }
+        abstract internal void SetData(byte[] data);
+        abstract internal byte[] GetData();
 
+        #region Hex serialization
         /// <summary>
         /// Sets the parameters of the V4 object to those parameters represented by the hex-encoded string.
         /// </summary>
@@ -30,7 +34,9 @@ namespace AW
         {
             return new Utilities.HexConverter(GetData());
         }
+        #endregion
 
+        #region XML serialization
         /// <summary>
         /// Sets the parameters of the V4 objects to those parameters represented by the XML file.
         /// </summary>
@@ -88,6 +94,30 @@ namespace AW
             XmlSerializer xs = new XmlSerializer(this.GetType());
             xs.Serialize(xmlStream, this);
         }
+        #endregion
+
+/*      #region Preset serialization
+        public void UnserializeFromPreset(string presetFile)
+        {
+
+        }
+
+        public void UnserializeFromPreset(Stream presetStream)
+        {
+
+        }
+
+        public void SerializeToPreset(string presetFile)
+        {
+
+        }
+
+        public void SerializeToPreset(Stream presetStream)
+        {
+
+        }
+        #endregion
+ */
     }
 
     //Portions of the Instance class related to handling V4 objects.

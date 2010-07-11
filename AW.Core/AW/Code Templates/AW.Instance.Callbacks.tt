@@ -55,7 +55,7 @@ namespace AW
 	<# foreach(SdkIdentifier callback in callbacks) { #>
 	#region <#= callback.Name #>
 		//Declare the types to handle both the managed and native callbacks.
-		private Instance.Callback managed<#= callback.Name #>;
+		private InstanceCallbackDelegate managed<#= callback.Name #>;
 		private InterOp.Callback native<#= callback.Name #>;
 
 		//Native callback handler.
@@ -69,7 +69,7 @@ namespace AW
 		/// <summary>
 		/// Handles <#= callback.SdkName #> from the C SDK.
 		/// </summary>
-		public event Callback <#= callback.Name #>
+		public event InstanceCallbackDelegate <#= callback.Name #>
 		{
 			//Handles hooking a new delegate to the callback.
 			add

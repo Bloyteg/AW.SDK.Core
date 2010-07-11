@@ -7,7 +7,7 @@ namespace Utilities
     /// </summary>
     /// <typeparam name="TKey">The type of the key.</typeparam>
     /// <typeparam name="TReturn">The type of the return.</typeparam>
-    public interface IIndexedPropery<TKey, TReturn>
+    public interface IIndexedProperty<TKey, TReturn>
     {
         /// <summary>
         /// Indexed property.
@@ -26,7 +26,7 @@ namespace Utilities
     /// </summary>
     /// <typeparam name="TKey">The type of the key being used to locate items.</typeparam>
     /// <typeparam name="TReturn">The return type of the getter method.</typeparam>
-    internal class IndexedProperty<TKey, TReturn> : IIndexedPropery<TKey, TReturn>
+    internal class IndexedProperty<TKey, TReturn> : IIndexedProperty<TKey, TReturn>
     {
         public delegate void Setter(TKey key, TReturn value);
         public delegate TReturn Getter(TKey key);

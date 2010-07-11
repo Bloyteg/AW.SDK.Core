@@ -5,7 +5,7 @@ namespace AW
 {
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     [Serializable]
-    public class CameraFlags
+    public sealed class CameraFlags
     {
         private ushort flags;// = 0;
         private static readonly byte[] flagValues = { 0x01 };
@@ -52,7 +52,7 @@ namespace AW
             set { cameraData.zoom = value; }
         }
 
-        protected internal override byte[] GetData()
+        internal override byte[] GetData()
         {
             cameraData.name_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(name);
             return Utilities.Miscellaneous.ConcatArrays(Utilities.Miscellaneous.StructToBytes(cameraData),
@@ -61,7 +61,7 @@ namespace AW
                                             );
         }
 
-        protected internal override void SetData(byte[] data)
+        internal override void SetData(byte[] data)
         {
             cameraData = Utilities.Miscellaneous.BytesToStruct<CameraData>(data, 0);
             int size = data.Length - Marshal.SizeOf(typeof(CameraData));

@@ -288,7 +288,7 @@ namespace AW
             set { name = value; }
         }
 
-        protected internal override byte[] GetData()
+        internal override byte[] GetData()
         {
             particleData.asset_list_len = (ushort)System.Text.UTF8Encoding.UTF8.GetByteCount(assetList);
             particleData.name_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(name);
@@ -301,7 +301,7 @@ namespace AW
 
         }
 
-        protected internal override void SetData(byte[] data)
+        internal override void SetData(byte[] data)
         {
             particleData = Utilities.Miscellaneous.BytesToStruct<ParticleData>(data, 0);
             int size = data.Length - Marshal.SizeOf(typeof(ParticleData));

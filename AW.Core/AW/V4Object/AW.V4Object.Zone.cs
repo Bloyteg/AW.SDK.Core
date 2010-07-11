@@ -255,7 +255,7 @@ namespace AW
             set { name = value; }
         }
 
-        protected internal override byte[] GetData()
+        internal override byte[] GetData()
         {
             zoneData.footstep_len = (ushort)System.Text.UTF8Encoding.UTF8.GetByteCount(footstep);
             zoneData.ambient_len = (ushort)System.Text.UTF8Encoding.UTF8.GetByteCount(ambient);
@@ -276,7 +276,7 @@ namespace AW
 
         }
 
-        protected internal override void SetData(byte[] data)
+        internal override void SetData(byte[] data)
         {
             zoneData = Utilities.Miscellaneous.BytesToStruct<ZoneData>(data, 0);
             int size = data.Length - Marshal.SizeOf(typeof(ZoneData));

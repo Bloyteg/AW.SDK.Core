@@ -538,7 +538,7 @@ namespace AW
             set { bumpName = value; }
         }
 
-        protected internal override byte[] GetData()
+        internal override byte[] GetData()
         {
             int waypointSize = Marshal.SizeOf(typeof(Waypoint)) + 1;
 
@@ -571,7 +571,7 @@ namespace AW
 
         }
 
-        protected internal override void SetData(byte[] data)
+        internal override void SetData(byte[] data)
         {
             int waypointSize = Marshal.SizeOf(typeof(Waypoint)) + 1;
 
