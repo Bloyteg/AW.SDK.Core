@@ -12,7 +12,7 @@ namespace AW
         internal InstanceException(string message)
             : base(message)
         {
-            this.HelpLink = "http://docs.theenginerd.com/awnet/";
+            HelpLink = "http://docs.theenginerd.com/awnet/";
         }
 
         /// <summary>

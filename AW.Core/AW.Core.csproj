@@ -56,7 +56,8 @@
     <Optimize>true</Optimize>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <DocumentationFile>bin\Release\AW.Core.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <ItemGroup>
@@ -68,21 +69,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AW\AW.Result.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AW.Result.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AW\Exceptions\AW.InitializationFailedException.cs" />
+    <Compile Include="AW\Exceptions\AW.BindAddressException.cs" />
     <Compile Include="AW\Instance\AW.IInstance.cs" />
-    <Compile Include="AW\Code Templates\AW.Instance.Callbacks.cs">
+    <Compile Include="AW\Instance\AW.Instance.Callbacks.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AW.Instance.Callbacks.tt</DependentUpon>
     </Compile>
     <Compile Include="AW\Instance\AW.Instance.Enumerations.cs" />
-    <Compile Include="AW\Code Templates\AW.Instance.Events.cs">
+    <Compile Include="AW\Instance\AW.Instance.Events.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AW.Instance.Events.tt</DependentUpon>
     </Compile>
-    <Compile Include="AW\Instance\AW.Instance.Exception.cs" />
+    <Compile Include="AW\Exceptions\AW.InstanceException.cs" />
     <Compile Include="AW\Instance\AW.Instance.Functions.cs">
     </Compile>
+    <Compile Include="AW\Exceptions\AW.NotHexStringException.cs" />
     <Compile Include="AW\Unmanaged\AW.Unmanaged.CallbacksEnum.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -111,11 +120,16 @@
     <Compile Include="Utilities\Utilities.IndexedProperty.cs" />
     <Compile Include="Utilities\Utilities.Miscellaneous.cs" />
     <Compile Include="Utilities\Utilities.StaticDestructor.cs" />
-    <None Include="AW\Code Templates\AW.Instance.Callbacks.tt">
+    <None Include="AW\AW.Result.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AW.Result.cs</LastGenOutput>
+    </None>
+    <Compile Include="AW\Exceptions\AW.InternalZlibException.cs" />
+    <None Include="AW\Instance\AW.Instance.Callbacks.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AW.Instance.Callbacks.cs</LastGenOutput>
     </None>
-    <None Include="AW\Code Templates\AW.Instance.Events.tt">
+    <None Include="AW\Instance\AW.Instance.Events.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AW.Instance.Events.cs</LastGenOutput>
     </None>

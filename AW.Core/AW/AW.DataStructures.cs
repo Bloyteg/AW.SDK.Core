@@ -17,7 +17,7 @@ namespace AW
         private short yaw;
         private short pitch;
         private short roll;
-        private ushort speed;
+        private short speed;
         private byte pause;
         private byte flag;
 
@@ -75,10 +75,10 @@ namespace AW
             set { roll = value; }
         }
 
-        public ushort Speed
+        public short Speed
         {
-            get { return speed; }
-            set { speed = value; }
+            get { return (short)speed; }
+            set { speed = (short)value; }
         }
 
         public byte Pause

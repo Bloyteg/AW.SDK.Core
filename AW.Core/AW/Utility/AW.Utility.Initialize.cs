@@ -16,10 +16,10 @@ namespace AW
             get { return bindAddress; }
             set
             {
-                if (initialized == true)
-                    throw new Exception("Can not set the bind IP address after an instance has been created.");
-                else
-                    bindAddress = value;
+                if (initialized)
+                    throw new BindAddressException("Can not set the bind IP address after an instance has been created.");
+
+                bindAddress = value;
             }
         }
 
@@ -32,17 +32,7 @@ namespace AW
         {
             Marshal.PrelinkAll(typeof(InterOp));
 
-            int rc;
-
-            if (bindAddress.Equals(string.Empty))
-            {
-                rc = InterOp.aw_init(Utility.Constants.CurrentBuild);
-            }
-            //Handles the case where a bind IP address has been set before all other instances were created.
-            else
-            {
-                rc = InterOp.aw_init_bind(Utility.Constants.CurrentBuild, Utilities.Miscellaneous.IPStringToInt(bindAddress));
-            }
+            int rc = bindAddress.Equals(string.Empty) ? InterOp.aw_init(Constants.CurrentBuild) : InterOp.aw_init_bind(Constants.CurrentBuild, Utilities.Miscellaneous.IPStringToInt(bindAddress));
 
             if (rc == 0)
                 initialized = true;

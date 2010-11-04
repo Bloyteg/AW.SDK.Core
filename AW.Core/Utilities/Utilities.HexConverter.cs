@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using AW;
 
 namespace Utilities
 {
@@ -37,7 +38,10 @@ namespace Utilities
             if (stringData != null)
             {
                 if (stringData.Length % 2 != 0)
-                    throw new Exception("This is not a proper hex encoded string.");
+                    throw new NotHexStringException
+                              {
+                                  Value = stringData
+                              };
 
                 int size = stringData.Length / 2;
                 byteData = new byte[size];

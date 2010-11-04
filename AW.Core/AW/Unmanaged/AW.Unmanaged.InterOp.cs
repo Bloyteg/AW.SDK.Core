@@ -18,7 +18,7 @@ namespace AW
         public static extern int aw_init(int build);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_init_bind(int build, uint addr);
+        public static extern int aw_init_bind(int build, int addr);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern void aw_term();
@@ -27,7 +27,7 @@ namespace AW
         public static extern int aw_create(string domain, int port, out IntPtr instance);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_create_resolved(uint address, int port, out IntPtr instance);
+        public static extern int aw_create_resolved(int address, int port, out IntPtr instance);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern int aw_destroy();
@@ -69,10 +69,10 @@ namespace AW
         public static extern int aw_float_set(Attributes a, float value);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern IntPtr aw_data(Attributes a, out uint length);
+        public static extern IntPtr aw_data(Attributes a, out int length);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_data_set(Attributes a, IntPtr value, uint length);
+        public static extern int aw_data_set(Attributes a, IntPtr value, int length);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern Callback aw_callback(AW_CALLBACK c);
@@ -258,7 +258,7 @@ namespace AW
         public static extern int aw_terrain_set(int x, int z, int count, int texture, int[] heights);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_terrain_query(int page_x, int page_z, ulong sequence);
+        public static extern int aw_terrain_query(int page_x, int page_z, long sequence);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern int aw_terrain_next();
@@ -312,7 +312,7 @@ namespace AW
         public static extern int aw_traffic_count(out int traffic_in, out int traffic_out);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern uint aw_tick();
+        public static extern int aw_tick();
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true, EntryPoint="aw_check_rightW")]
         public static extern bool aw_check_right(int citizen, string str);
@@ -417,10 +417,10 @@ namespace AW
         public static extern int aw_object_query();
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_zip(IntPtr data_out, out uint len_out, IntPtr data_in, uint len_in);
+        public static extern int aw_zip(IntPtr data_out, out int len_out, IntPtr data_in, int len_in);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_unzip(IntPtr data_out, out uint len_out, IntPtr data_in, uint len_in);
+        public static extern int aw_unzip(IntPtr data_out, out int len_out, IntPtr data_in, int len_in);
 
         #endregion
 

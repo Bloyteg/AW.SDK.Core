@@ -7,13 +7,13 @@ namespace AW
     [Serializable]
     public sealed class CameraFlags
     {
-        private ushort flags;// = 0;
+        private short flags;// = 0;
         private static readonly byte[] flagValues = { 0x01 };
 
         public bool TrackUser
         {
             get { return (flags & flagValues[0]) == flagValues[0]; }
-            set { flags = (value == true ? (ushort)(flags | flagValues[0]) : (ushort)(flags & ~flagValues[0])); }
+            set { flags = (value == true ? (short)(flags | flagValues[0]) : (short)(flags & ~flagValues[0])); }
         }
     }
 

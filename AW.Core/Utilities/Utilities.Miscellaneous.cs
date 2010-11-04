@@ -16,12 +16,12 @@ namespace Utilities
         /// </summary>
         /// <param name="ipAddress">The IP address to convert.</param>
         /// <returns>The integer representation of the IP address.</returns>
-        public static uint IPStringToInt(string ipAddress)
+        public static int IPStringToInt(string ipAddress)
         {
-            uint r = 0;
+            int r = 0;
             string[] ipArr = ipAddress.Split('.');
             foreach (string s in ipArr)
-                r = (r << 8) ^ (uint)UInt32.Parse(s);
+                r = (r << 8) ^ (int)UInt32.Parse(s);
             return r;
         }
 

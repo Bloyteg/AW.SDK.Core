@@ -7,7 +7,7 @@ namespace AW
     [Serializable]
     public sealed class ZoneFlags
     {
-        private ushort flags;
+        private short flags;
         static readonly byte[] flagValues = { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 };
         /**
          *  AW_ZONE_FLAG_WATER              = 0x01,
@@ -29,7 +29,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[0]) : (ushort)(flags & ~flagValues[0]));
+                flags = (value == true ? (short)(flags | flagValues[0]) : (short)(flags & ~flagValues[0]));
             }
         }
 
@@ -42,7 +42,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[1]) : (ushort)(flags & ~flagValues[1]));
+                flags = (value == true ? (short)(flags | flagValues[1]) : (short)(flags & ~flagValues[1]));
             }
         }
 
@@ -55,7 +55,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[2]) : (ushort)(flags & ~flagValues[2]));
+                flags = (value == true ? (short)(flags | flagValues[2]) : (short)(flags & ~flagValues[2]));
             }
         }
 
@@ -68,7 +68,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[3]) : (ushort)(flags & ~flagValues[3]));
+                flags = (value == true ? (short)(flags | flagValues[3]) : (short)(flags & ~flagValues[3]));
             }
         }
 
@@ -81,7 +81,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[4]) : (ushort)(flags & ~flagValues[4]));
+                flags = (value == true ? (short)(flags | flagValues[4]) : (short)(flags & ~flagValues[4]));
             }
         }
 
@@ -94,7 +94,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[5]) : (ushort)(flags & ~flagValues[5]));
+                flags = (value == true ? (short)(flags | flagValues[5]) : (short)(flags & ~flagValues[5]));
             }
         }
 
@@ -107,7 +107,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[6]) : (ushort)(flags & ~flagValues[6]));
+                flags = (value == true ? (short)(flags | flagValues[6]) : (short)(flags & ~flagValues[6]));
             }
         }
 
@@ -120,7 +120,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[7]) : (ushort)(flags & ~flagValues[7]));
+                flags = (value == true ? (short)(flags | flagValues[7]) : (short)(flags & ~flagValues[7]));
             }
         }
     }
@@ -138,10 +138,10 @@ namespace AW
             public float friction = 1.0f;
             public ZoneFlags flags = new ZoneFlags();
             public uint color = 0xFFFFFFFF;
-            public ushort fog_min = 0;
-            public ushort fog_max = 100;
-            public ushort footstep_len = 0;
-            public ushort ambient_len = 0;
+            public short fog_min = 0;
+            public short fog_max = 100;
+            public short footstep_len = 0;
+            public short ambient_len = 0;
             public byte camera_len = 0;
             public byte target_cur_len = 0;
             public byte voip_rights_len = 0;
@@ -199,21 +199,21 @@ namespace AW
         {
             get
             {
-                return (Color)zoneData.color;
+                return (int)zoneData.color;
             }
 
             set
             {
-                zoneData.color = (uint)value;
+                zoneData.color = (uint)(int)value;
             }
         }
 
-        public ushort FogMinimum
+        public short FogMinimum
         {
             get { return zoneData.fog_min; }
             set { zoneData.fog_min = value; }
         }
-        public ushort FogMaximum
+        public short FogMaximum
         {
             get { return zoneData.fog_max; }
             set { zoneData.fog_max = value; }
@@ -257,8 +257,8 @@ namespace AW
 
         internal override byte[] GetData()
         {
-            zoneData.footstep_len = (ushort)System.Text.UTF8Encoding.UTF8.GetByteCount(footstep);
-            zoneData.ambient_len = (ushort)System.Text.UTF8Encoding.UTF8.GetByteCount(ambient);
+            zoneData.footstep_len = (short)System.Text.UTF8Encoding.UTF8.GetByteCount(footstep);
+            zoneData.ambient_len = (short)System.Text.UTF8Encoding.UTF8.GetByteCount(ambient);
             zoneData.camera_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(camera);
             zoneData.target_cur_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(targetCursor);
             zoneData.voip_rights_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(voipRights);

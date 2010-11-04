@@ -49,8 +49,8 @@ namespace AW
             {
                 Marshal.Copy(data, 0, dataIn, data.Length);
 
-                uint outLength = bufferSize;
-                int rc = InterOp.aw_zip(dataOut, out outLength, dataIn, (uint)data.Length);
+                int outLength = bufferSize;
+                int rc = InterOp.aw_zip(dataOut, out outLength, dataIn, (int)data.Length);
 
                 if (rc == 0)
                 {
@@ -59,7 +59,7 @@ namespace AW
                 }
                 else
                 {
-                    throw new Exception(string.Format("Internal zlib failure (Reason {0}).", rc));
+                    throw new InternalZlibException(string.Format("Internal zlib failure (Reason {0}).", rc));
                 }
             }
             finally
@@ -93,8 +93,8 @@ namespace AW
             {
                 Marshal.Copy(data, 0, dataIn, data.Length);
 
-                uint outLength = bufferSize;
-                int rc = InterOp.aw_unzip(dataOut, out outLength, dataIn, (uint)data.Length);
+                int outLength = bufferSize;
+                int rc = InterOp.aw_unzip(dataOut, out outLength, dataIn, (int)data.Length);
 
                 if (rc == 0)
                 {
@@ -103,7 +103,7 @@ namespace AW
                 }
                 else
                 {
-                    throw new Exception(string.Format("Internal zlib failure (Reason {0}).", rc));
+                    throw new InternalZlibException(string.Format("Internal zlib failure (Reason {0}).", rc));
                 }
             }
             finally
@@ -153,7 +153,7 @@ namespace AW
         /// </list>
         /// The return value is always equal to or larger than one from a previous call, with one exception. As it is only a 32-bit number it will wrap around to zero after 49.7 days. This has the potential to cause problems in bots that run for extended periods. 
         /// </remarks>
-        public static uint Tick
+        public static int Tick
         {
             get
             {

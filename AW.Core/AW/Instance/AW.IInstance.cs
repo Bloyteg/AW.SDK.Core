@@ -189,7 +189,7 @@ namespace AW
         int TerrainDeleteAll();
         int TerrainLoadNode();
         int TerrainNext();
-        int TerrainQuery(int pageX, int pageZ, ulong sequence);
+        int TerrainQuery(int pageX, int pageZ, long sequence);
         int TerrainSet(int x, int z, int texture, int[] heights);
         int ToolbarClick();
         int TrafficCount(out int inTraffic, out int outTraffic);

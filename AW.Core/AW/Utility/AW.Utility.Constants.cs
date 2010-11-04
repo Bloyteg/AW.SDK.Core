@@ -2,7 +2,7 @@
 {
     public static partial class Utility
     {
-        private static readonly uint bufferSize = 4096;
+        private static readonly int bufferSize = 4096;
 
         /// <summary>
         /// A static container containing several constants representing different aspects of the SDK.
@@ -23,7 +23,7 @@
             /// <summary>
             /// Maximum number of <see cref="AW.Instance.StateChange" /> calls allowed by the world server.
             /// </summary>
-            public static uint MaxAvchangePerSecond
+            public static int MaxAvchangePerSecond
             {
                 get
                 {
@@ -34,7 +34,7 @@
             /// <summary>
             /// The maximum number of <see cref="AW.Instance.Say(string)" />  calls allowed by the world server.
             /// </summary>
-            public static uint MaxMessagesPerSecond
+            public static int MaxMessagesPerSecond
             {
                 get
                 {
@@ -45,7 +45,7 @@
             /// <summary>
             /// The maximum number of <see cref="AW.Instance.Whisper(int, string)" />  calls allowed by the world server.
             /// </summary>
-            public static uint MaxWhispersPerSecond
+            public static int MaxWhispersPerSecond
             {
                 get
                 {
@@ -56,7 +56,7 @@
             /// <summary>
             /// The maximum number of <see cref="AW.Instance.BotgramSend" />  calls allowed by the universe server.
             /// </summary>
-            public static uint MaxBotgramsPerSecond
+            public static int MaxBotgramsPerSecond
             {
                 get
                 {
@@ -67,7 +67,7 @@
             /// <summary>
             /// The maximum length of strings being set by <see cref="AW.Instance.SetString" /> or retrieved by <see cref="AW.Instance.GetString" />
             /// </summary>
-            public static uint MaxAttributeLength
+            public static int MaxAttributeLength
             {
                 get
                 {
@@ -75,7 +75,11 @@
                 }
             }
 
-            public static uint MaxUserNameLength
+            /// <summary>
+            /// Gets the length of the max user name.
+            /// </summary>
+            /// <value>The length of the max user name.</value>
+            public static int MaxUserNameLength
             {
                 get
                 {
@@ -83,7 +87,11 @@
                 }
             }
 
-            public static uint MinUserNameLength
+            /// <summary>
+            /// Gets the length of the min user name.
+            /// </summary>
+            /// <value>The length of the min user name.</value>
+            public static int MinUserNameLength
             {
                 get
                 {
@@ -91,7 +99,11 @@
                 }
             }
 
-            public static uint MaxPasswordLength
+            /// <summary>
+            /// Gets the length of the max password.
+            /// </summary>
+            /// <value>The length of the max password.</value>
+            public static int MaxPasswordLength
             {
                 get
                 {
@@ -99,7 +111,11 @@
                 }
             }
 
-            public static uint MinPasswordLength
+            /// <summary>
+            /// Gets the length of the min password.
+            /// </summary>
+            /// <value>The length of the min password.</value>
+            public static int MinPasswordLength
             {
                 get
                 {
@@ -107,7 +123,11 @@
                 }
             }
 
-            public static uint MaxEmailLength
+            /// <summary>
+            /// Gets the length of the max email.
+            /// </summary>
+            /// <value>The length of the max email.</value>
+            public static int MaxEmailLength
             {
                 get
                 {
@@ -115,7 +135,11 @@
                 }
             }
 
-            public static uint MaxWorldNameLength
+            /// <summary>
+            /// Gets the length of the max world name.
+            /// </summary>
+            /// <value>The length of the max world name.</value>
+            public static int MaxWorldNameLength
             {
                 get
                 {
@@ -123,7 +147,11 @@
                 }
             }
 
-            public static uint MaxLongData
+            /// <summary>
+            /// Gets the max long data.
+            /// </summary>
+            /// <value>The max long data.</value>
+            public static int MaxLongData
             {
                 get
                 {
@@ -131,7 +159,11 @@
                 }
             }
 
-            public static uint PersonalAvatar 
+            /// <summary>
+            /// Gets the personal avatar.
+            /// </summary>
+            /// <value>The personal avatar.</value>
+            public static int PersonalAvatar 
             {
                 get
                 {
@@ -139,7 +171,11 @@
                 }
             }
 
-            public static uint CustomAvatar
+            /// <summary>
+            /// Gets the custom avatar.
+            /// </summary>
+            /// <value>The custom avatar.</value>
+            public static int CustomAvatar
             {
                 get
                 {
@@ -147,7 +183,11 @@
                 }
             }
 
-            public static uint CustomWorldAvatar
+            /// <summary>
+            /// Gets the custom world avatar.
+            /// </summary>
+            /// <value>The custom world avatar.</value>
+            public static int CustomWorldAvatar
             {
                 get
                 {

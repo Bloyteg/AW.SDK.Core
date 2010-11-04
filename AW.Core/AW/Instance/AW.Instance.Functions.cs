@@ -294,10 +294,10 @@ namespace AW
             return InstanceException.Assert(InterOp.aw_terrain_set(x, z, heights.Length, texture, heights));
         }
 
-        public int TerrainQuery(int pageX, int pageZ, ulong sequence)
+        public int TerrainQuery(int pageX, int pageZ, long sequence)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_terrain_query(pageX, pageZ, sequence));
+            return InstanceException.Assert(InterOp.aw_terrain_query(pageX, pageZ, (long)sequence));
         }
 
         public int TerrainNext()

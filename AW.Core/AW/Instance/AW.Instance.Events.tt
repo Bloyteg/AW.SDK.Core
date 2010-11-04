@@ -2,7 +2,7 @@
 <#@ output extension=".cs" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ include file="Code.Generate.TemplateClasses.tt" #>
+<#@ include file="..\Code Templates\Code.Generate.TemplateClasses.tt" #>
 <#
 	List<string> events = new List<string>()
 	{

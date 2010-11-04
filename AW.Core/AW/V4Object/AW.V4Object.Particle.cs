@@ -7,8 +7,8 @@ namespace AW
     [Serializable]
     public sealed class ParticleFlags
     {
-        private ushort flags;
-        private static readonly ushort[] flagValues = { 0x0001, 0x0002, 0x0004, 0x0008, 0x0010, 0x0020, 0x0040 };
+        private short flags;
+        private static readonly short[] flagValues = { 0x0001, 0x0002, 0x0004, 0x0008, 0x0010, 0x0020, 0x0040 };
         /**
          *  AW_PARTICLE_FLAG_INTERPOLATE    = 0x01, 0
          *  AW_PARTICLE_FLAG_GRAVITY        = 0x02, 1
@@ -28,7 +28,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[0]) : (ushort)(flags & ~flagValues[0]));
+                flags = (value == true ? (short)(flags | flagValues[0]) : (short)(flags & ~flagValues[0]));
             }
         }
 
@@ -41,7 +41,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[1]) : (ushort)(flags & ~flagValues[1]));
+                flags = (value == true ? (short)(flags | flagValues[1]) : (short)(flags & ~flagValues[1]));
             }
         }
 
@@ -54,7 +54,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[2]) : (ushort)(flags & ~flagValues[2]));
+                flags = (value == true ? (short)(flags | flagValues[2]) : (short)(flags & ~flagValues[2]));
             }
         }
 
@@ -67,7 +67,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[3]) : (ushort)(flags & ~flagValues[3]));
+                flags = (value == true ? (short)(flags | flagValues[3]) : (short)(flags & ~flagValues[3]));
             }
         }
 
@@ -80,7 +80,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[4]) : (ushort)(flags & ~flagValues[4]));
+                flags = (value == true ? (short)(flags | flagValues[4]) : (short)(flags & ~flagValues[4]));
             }
         }
 
@@ -93,7 +93,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[5]) : (ushort)(flags & ~flagValues[5]));
+                flags = (value == true ? (short)(flags | flagValues[5]) : (short)(flags & ~flagValues[5]));
             }
         }
 
@@ -106,7 +106,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[6]) : (ushort)(flags & ~flagValues[6]));
+                flags = (value == true ? (short)(flags | flagValues[6]) : (short)(flags & ~flagValues[6]));
             }
         }
     }
@@ -123,20 +123,20 @@ namespace AW
             public VectorRange angle = new VectorRange();
             public VectorRange spin = new VectorRange();
             public VectorRange size = new VectorRange();
-            public uint release_min = 0;
-            public uint release_max = 0;
-            public ushort release_size = 0;
-            public uint lifespan = 0;
-            public uint emitter_lifespan = 0;
-            public uint fade_in = 0;
-            public uint fade_out = 0;
+            public int release_min = 0;
+            public int release_max = 0;
+            public short release_size = 0;
+            public int lifespan = 0;
+            public int emitter_lifespan = 0;
+            public int fade_in = 0;
+            public int fade_out = 0;
             public uint color_start = 0xFFFFFFFF;
             public uint color_end = 0xFFFFFFFF;
             public float opacity = 1.0f;
             public byte render_style = 0;
             public ParticleFlags flags = new ParticleFlags();
             public byte style = 0;
-            public ushort asset_list_len = 0;
+            public short asset_list_len = 0;
             public byte name_len = 0;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)]
             public byte[] reserved;
@@ -190,43 +190,43 @@ namespace AW
             set { particleData.size = value; }
         }
 
-        public uint ReleaseMinimum
+        public int ReleaseMinimum
         {
             get { return particleData.release_min; }
             set { particleData.release_min = value; }
         }
 
-        public uint ReleaseMaximum
+        public int ReleaseMaximum
         {
             get { return particleData.release_max; }
             set { particleData.release_max = value; }
         }
 
-        public ushort ReleaseSize
+        public short ReleaseSize
         {
             get { return particleData.release_size; }
             set { particleData.release_size = value; }
         }
 
-        public uint Lifespan
+        public int Lifespan
         {
             get { return particleData.lifespan; }
             set { particleData.lifespan = value; }
         }
 
-        public uint EmitterLifespan
+        public int EmitterLifespan
         {
             get { return particleData.emitter_lifespan; }
             set { particleData.emitter_lifespan = value; }
         }
 
-        public uint FadeIn
+        public int FadeIn
         {
             get { return particleData.fade_in; }
             set { particleData.fade_in = value; }
         }
 
-        public uint FadeOut
+        public int FadeOut
         {
             get { return particleData.fade_out; }
             set { particleData.fade_out = value; }
@@ -236,12 +236,12 @@ namespace AW
         {
             get
             {
-                return (Color)particleData.color_start;
+                return (int)particleData.color_start;
             }
 
             set
             {
-                particleData.color_start = (uint)value;
+                particleData.color_start = (uint)(int)value;
             }
         }
 
@@ -249,12 +249,12 @@ namespace AW
         {
             get
             {
-                return (Color)particleData.color_end;
+                return (int)particleData.color_end;
             }
 
             set
             {
-                particleData.color_end = (uint)value;
+                particleData.color_end = (uint)(int)value;
             }
         }
 
@@ -290,7 +290,7 @@ namespace AW
 
         internal override byte[] GetData()
         {
-            particleData.asset_list_len = (ushort)System.Text.UTF8Encoding.UTF8.GetByteCount(assetList);
+            particleData.asset_list_len = (short)System.Text.UTF8Encoding.UTF8.GetByteCount(assetList);
             particleData.name_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(name);
 
             return Utilities.Miscellaneous.ConcatArrays(Utilities.Miscellaneous.StructToBytes(particleData),

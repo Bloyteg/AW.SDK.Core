@@ -34,13 +34,7 @@ namespace AW
         /// <summary>
         /// Static destructor for handling when the final instance of the class is garbage collected.
         /// </summary>
-        private static readonly Utilities.StaticDestructor destructor = new Utilities.StaticDestructor
-        (
-            () =>
-            {
-                Utility.Terminate();
-            }
-        );
+        private static readonly Utilities.StaticDestructor destructor = new Utilities.StaticDestructor(Utility.Terminate);
 
         /// <summary>
         /// Static constructor.  This initializes the SDK the first time an instance is created.
@@ -49,7 +43,7 @@ namespace AW
         {
             int rc = Utility.Initialize();
             if (rc != 0)
-                throw new Exception(string.Format("Failed to initialize the SDK (Reason {0}).", rc));
+                throw new InitializationFailedException(string.Format("Failed to initialize the SDK (Reason {0}).", rc));
         }
 
         #endregion
@@ -90,10 +84,10 @@ namespace AW
         /// <param name="address">IP address of the universe server represented as a 32-bit unsigned integer.  The IP address is stored according to Network Byte Order.</param>
         /// <param name="port">Port number of the universe server.</param>
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to be created.</exception>
-        public Instance(uint address, int port)
+        public Instance(int address, int port)
         {
             IntPtr tempInstance;
-            int rc = InterOp.aw_create_resolved(address, port, out tempInstance);
+            int rc = InterOp.aw_create_resolved((int)address, port, out tempInstance);
             InstanceException.Assert(rc);
 
             instance = tempInstance;
@@ -316,7 +310,7 @@ namespace AW
             try
             {
                 Marshal.Copy(value, 0, dest, value.Length);
-                errorCode = InterOp.aw_data_set(attribute, dest, (uint)value.Length);
+                errorCode = InterOp.aw_data_set(attribute, dest, (int)value.Length);
             }
             finally
             {
@@ -336,7 +330,7 @@ namespace AW
         public byte[] GetData(AW.Attributes attribute)
         {
             SetInstance();
-            uint length;
+            int length;
             IntPtr temp = InterOp.aw_data(attribute, out length);
 
             if (length == 0)
