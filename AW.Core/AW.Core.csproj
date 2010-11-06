@@ -69,72 +69,73 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="AW\AW.Result.cs">
+    <Compile Include="AW.AttributeProvider.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AW.Result.tt</DependentUpon>
+      <DependentUpon>AW.AttributeProvider.tt</DependentUpon>
     </Compile>
-    <Compile Include="AW\Exceptions\AW.InitializationFailedException.cs" />
-    <Compile Include="AW\Exceptions\AW.BindAddressException.cs" />
-    <Compile Include="AW\Instance\AW.IInstance.cs" />
-    <Compile Include="AW\Instance\AW.Instance.Callbacks.cs">
+    <Compile Include="AW.InitializationFailedException.cs" />
+    <Compile Include="AW.BindAddressException.cs" />
+    <Compile Include="IAttributeProvider.cs" />
+    <Compile Include="AW.IInstance.cs" />
+    <Compile Include="AW.Instance.Callbacks.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AW.Instance.Callbacks.tt</DependentUpon>
     </Compile>
-    <Compile Include="AW\Instance\AW.Instance.Enumerations.cs" />
-    <Compile Include="AW\Instance\AW.Instance.Events.cs">
+    <Compile Include="AW.Instance.Enumerations.cs" />
+    <Compile Include="AW.Instance.Events.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AW.Instance.Events.tt</DependentUpon>
     </Compile>
-    <Compile Include="AW\Exceptions\AW.InstanceException.cs" />
-    <Compile Include="AW\Instance\AW.Instance.Functions.cs">
+    <Compile Include="AW.InstanceException.cs" />
+    <Compile Include="AW.Instance.Functions.cs">
     </Compile>
-    <Compile Include="AW\Exceptions\AW.NotHexStringException.cs" />
-    <Compile Include="AW\Unmanaged\AW.Unmanaged.CallbacksEnum.cs">
+    <Compile Include="AW.NotHexStringException.cs" />
+    <Compile Include="AW.Unmanaged.CallbacksEnum.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AW\Unmanaged\AW.Unmanaged.EventsEnum.cs">
+    <Compile Include="AW.Unmanaged.EventsEnum.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AW\Unmanaged\AW.Unmanaged.InterOp.cs" />
+    <Compile Include="AW.Unmanaged.InterOp.cs" />
     <Compile Include="Utilities\Utilities.HexConverter.cs" />
-    <Compile Include="AW\V4Object\AW.V4Object.cs">
+    <Compile Include="AW.V4Object.cs">
     </Compile>
-    <Compile Include="AW\Instance\AW.Instance.Core.cs">
+    <Compile Include="AW.Instance.Core.cs">
     </Compile>
-    <Compile Include="AW\AW.Attributes.cs" />
-    <Compile Include="AW\AW.Color.cs" />
-    <Compile Include="AW\AW.DataStructures.cs" />
-    <Compile Include="AW\Instance\AW.Instance.Properties.cs">
+    <Compile Include="AW.Attributes.cs" />
+    <Compile Include="AW.Color.cs" />
+    <Compile Include="AW.DataStructures.cs" />
+    <Compile Include="AW.Instance.Properties.cs">
     </Compile>
-    <Compile Include="AW\Utility\AW.Utility.Constants.cs" />
-    <Compile Include="AW\Utility\AW.Utility.Initialize.cs" />
-    <Compile Include="AW\Utility\AW.Utility.Functions.cs" />
-    <Compile Include="AW\Utility\AW.Utility.ReturnCodes.cs" />
-    <Compile Include="AW\V4Object\AW.V4Object.Camera.cs" />
-    <Compile Include="AW\V4Object\AW.V4Object.Mover.cs" />
-    <Compile Include="AW\V4Object\AW.V4Object.Particle.cs" />
-    <Compile Include="AW\V4Object\AW.V4Object.Zone.cs" />
+    <Compile Include="AW.Utility.Constants.cs" />
+    <Compile Include="AW.Utility.Initialize.cs" />
+    <Compile Include="AW.Utility.Functions.cs" />
+    <Compile Include="AW.Utility.ReturnCodes.cs" />
+    <Compile Include="AW.V4Object.Camera.cs" />
+    <Compile Include="AW.V4Object.Mover.cs" />
+    <Compile Include="AW.V4Object.Particle.cs" />
+    <Compile Include="AW.V4Object.Zone.cs" />
     <Compile Include="Utilities\Utilities.IndexedProperty.cs" />
     <Compile Include="Utilities\Utilities.Miscellaneous.cs" />
     <Compile Include="Utilities\Utilities.StaticDestructor.cs" />
-    <None Include="AW\AW.Result.tt">
+    <None Include="AW.AttributeProvider.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AW.Result.cs</LastGenOutput>
+      <LastGenOutput>AW.AttributeProvider.cs</LastGenOutput>
     </None>
-    <Compile Include="AW\Exceptions\AW.InternalZlibException.cs" />
-    <None Include="AW\Instance\AW.Instance.Callbacks.tt">
+    <Compile Include="AW.InternalZlibException.cs" />
+    <None Include="AW.Instance.Callbacks.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AW.Instance.Callbacks.cs</LastGenOutput>
     </None>
-    <None Include="AW\Instance\AW.Instance.Events.tt">
+    <None Include="AW.Instance.Events.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AW.Instance.Events.cs</LastGenOutput>
     </None>
     <None Include="awnet.snk" />
-    <None Include="AW\Code Templates\Code.Generate.TemplateClasses.tt">
+    <None Include="Code.Generate.TemplateClasses.tt">
       <LastGenOutput>TemplateClasses.cs</LastGenOutput>
     </None>
   </ItemGroup>
@@ -158,6 +159,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Don't use the host compiler, use CSC directly -->
   <PropertyGroup>

@@ -18,8 +18,8 @@ namespace AW
         /**
          * Private stuff not privy to the user.
          */
-        private IntPtr instance;
-        private bool _disposed = false;
+        private readonly IntPtr _instance;
+        private bool _disposed;
 
         #region public members
 
@@ -60,7 +60,8 @@ namespace AW
             int rc = InterOp.aw_create(null, 0, out tempInstance);
             InstanceException.Assert(rc);
 
-            instance = tempInstance;
+            _instance = tempInstance;
+            Attributes = new AttributeProvider(this);
         }
 
         /// <summary>
@@ -75,7 +76,8 @@ namespace AW
             int rc = InterOp.aw_create(domain, port, out tempInstance);
             InstanceException.Assert(rc);
 
-            instance = tempInstance;
+            _instance = tempInstance;
+            Attributes = new AttributeProvider(this);
         }
 
         /// <summary>
@@ -87,10 +89,11 @@ namespace AW
         public Instance(int address, int port)
         {
             IntPtr tempInstance;
-            int rc = InterOp.aw_create_resolved((int)address, port, out tempInstance);
+            int rc = InterOp.aw_create_resolved(address, port, out tempInstance);
             InstanceException.Assert(rc);
 
-            instance = tempInstance;
+            _instance = tempInstance;
+            Attributes = new AttributeProvider(this);
         }
 
         /// <summary>
@@ -106,7 +109,7 @@ namespace AW
             int rc = InterOp.aw_server_admin(domain, port, password, out tempInstance);
             InstanceException.Assert(rc);
 
-            instance = tempInstance;
+            _instance = tempInstance;
         }
 
         #endregion
@@ -136,12 +139,12 @@ namespace AW
         {
             _disposed = true;
 
-            if (this.Disposing != null)
+            if (Disposing != null)
             {
-                this.Disposing(this);
+                Disposing(this);
             }
 
-            if (this.instance != null && Utility.Initialized != false)
+            if (Utility.Initialized)
             {
                 SetInstance();
                 int rc = InterOp.aw_destroy();
@@ -172,9 +175,9 @@ namespace AW
         /// </summary>
         private void SetInstance()
         {
-            if (InterOp.aw_instance() != instance)
+            if (InterOp.aw_instance() != _instance)
             {
-                int rc = InterOp.aw_instance_set(instance);
+                int rc = InterOp.aw_instance_set(_instance);
 
                 if (rc > 0) throw new InstanceException("Failed to set instance.")
                 {
@@ -184,6 +187,9 @@ namespace AW
         }
 
         #region Data setters/getters
+
+        public IAttributeProvider Attributes { get; internal set; }
+
         /// <summary>
         /// Sets a string attribute for the current instance.
         /// </summary>
@@ -192,7 +198,7 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public int SetString(AW.Attributes attribute, string value)
+        public int SetString(Attributes attribute, string value)
         {
             SetInstance();
             return InstanceException.Assert(InterOp.aw_string_set(attribute, value));
@@ -205,7 +211,7 @@ namespace AW
         /// <returns>The value of the attribute being accessed.</returns>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public string GetString(AW.Attributes attribute)
+        public string GetString(Attributes attribute)
         {
             SetInstance();
             return Marshal.PtrToStringUni(InterOp.aw_string(attribute));
@@ -219,7 +225,7 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public int SetInt(AW.Attributes attribute, int value)
+        public int SetInt(Attributes attribute, int value)
         {
             SetInstance();
             return InstanceException.Assert(InterOp.aw_int_set(attribute, value));
@@ -232,7 +238,7 @@ namespace AW
         /// <returns>The value of the attribute being accessed.</returns>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public int GetInt(AW.Attributes attribute)
+        public int GetInt(Attributes attribute)
         {
             SetInstance();
             return InterOp.aw_int(attribute);
@@ -246,7 +252,7 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public int SetBool(AW.Attributes attribute, bool value)
+        public int SetBool(Attributes attribute, bool value)
         {
             SetInstance();
             return InstanceException.Assert(InterOp.aw_bool_set(attribute, value));
@@ -259,7 +265,7 @@ namespace AW
         /// <returns>The value of the attribute being accessed.</returns>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public bool GetBool(AW.Attributes attribute)
+        public bool GetBool(Attributes attribute)
         {
             SetInstance();
             return (InterOp.aw_bool(attribute) != 0);
@@ -273,7 +279,7 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public int SetFloat(AW.Attributes attribute, float value)
+        public int SetFloat(Attributes attribute, float value)
         {
             SetInstance();
             return InstanceException.Assert(InterOp.aw_float_set(attribute, value));
@@ -286,7 +292,7 @@ namespace AW
         /// <returns>The value of the attribute being accessed.</returns>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public float GetFloat(AW.Attributes attribute)
+        public float GetFloat(Attributes attribute)
         {
             SetInstance();
             return InterOp.aw_float(attribute);
@@ -300,17 +306,17 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public int SetData(AW.Attributes attribute, byte[] value)
+        public int SetData(Attributes attribute, byte[] value)
         {
             SetInstance();
 
             IntPtr dest = Marshal.AllocHGlobal(value.Length);
-            int errorCode = 0;
+            int errorCode;
 
             try
             {
                 Marshal.Copy(value, 0, dest, value.Length);
-                errorCode = InterOp.aw_data_set(attribute, dest, (int)value.Length);
+                errorCode = InterOp.aw_data_set(attribute, dest, value.Length);
             }
             finally
             {
@@ -327,7 +333,7 @@ namespace AW
         /// <returns>The value of the attribute being accessed.</returns>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public byte[] GetData(AW.Attributes attribute)
+        public byte[] GetData(Attributes attribute)
         {
             SetInstance();
             int length;
@@ -337,7 +343,7 @@ namespace AW
                 return null;
 
             byte[] ret = new byte[length];
-            Marshal.Copy(temp, ret, 0, (int)length);
+            Marshal.Copy(temp, ret, 0, length);
             return ret;
         }
 
@@ -350,7 +356,7 @@ namespace AW
         public int SetCAVData(string cavContents)
         {
             SetInstance();
-            return SetData(Attributes.CavDefinition, Utility.Zip(System.Text.UTF8Encoding.UTF8.GetBytes(cavContents)));
+            return SetData(AW.Attributes.CavDefinition, Utility.Zip(System.Text.Encoding.UTF8.GetBytes(cavContents)));
         }
 
         /// <summary>
@@ -362,7 +368,7 @@ namespace AW
         public string GetCAVData()
         {
             SetInstance();
-            return System.Text.UTF8Encoding.UTF8.GetString(Utility.Unzip(GetData(Attributes.CavDefinition)));
+            return System.Text.Encoding.UTF8.GetString(Utility.Unzip(GetData(AW.Attributes.CavDefinition)));
         }
         #endregion
     }

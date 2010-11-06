@@ -132,7 +132,7 @@ namespace AW
         public int SetV4Object<TV4Object>(TV4Object v4Object) where TV4Object : V4Object
         {
             SetInstance();
-            return SetData(Attributes.ObjectData, v4Object.GetData());
+            return SetData(AW.Attributes.ObjectData, v4Object.GetData());
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace AW
         {
             SetInstance();
             v4Object = new TV4Object();
-            v4Object.SetData(this.GetData(Attributes.ObjectData));
+            v4Object.SetData(GetData(AW.Attributes.ObjectData));
         }
     }
 }

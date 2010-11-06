@@ -16,6 +16,8 @@ namespace AW
 
     public interface IInstance : IDisposable
     {
+        IAttributeProvider Attributes { get; }
+
         int Address(int session);
         int AvatarClick(int session);
         int AvatarLocation(int citizen, int sessionId, string name);

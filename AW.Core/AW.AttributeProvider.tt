@@ -11,10 +11,45 @@
 
 namespace AW
 {
-	public enum Result
+	internal class AttributeProvider : IAttributeProvider
 	{
-		<#	
+		private readonly IInstance _instance;
 		
-		#>
+		public AttributeProvider(IInstance instance)
+		{
+			_instance = instance;
+		}
+<#
+
+#>	
 	}
 }
+
+<#+
+enum AttributeType
+{
+	String,
+	Int,
+	Float,
+	Bool,
+	Data
+}
+
+class AttributeInfo
+{
+	string Name
+	{
+		get; set;
+	}
+	
+	bool ReadOnly
+	{
+		get; set;
+	}
+	
+	AttributeType AttributeType
+	{
+		get; set;
+	}
+}
+#>

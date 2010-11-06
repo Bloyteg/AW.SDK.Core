@@ -7,13 +7,27 @@ namespace AW
     [Serializable]
     public sealed class CameraFlags
     {
-        private short flags;// = 0;
+        private ushort flags;// = 0;
         private static readonly byte[] flagValues = { 0x01 };
 
         public bool TrackUser
         {
-            get { return (flags & flagValues[0]) == flagValues[0]; }
-            set { flags = (value == true ? (short)(flags | flagValues[0]) : (short)(flags & ~flagValues[0])); }
+            get
+            {
+                return (flags & flagValues[0]) == flagValues[0];
+            }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= flagValues[0];
+                }
+                else
+                {
+                    flags &= (ushort) ~flagValues[0];
+                }
+            }
         }
     }
 
@@ -54,9 +68,9 @@ namespace AW
 
         internal override byte[] GetData()
         {
-            cameraData.name_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(name);
+            cameraData.name_len = (byte)System.Text.Encoding.UTF8.GetByteCount(name);
             return Utilities.Miscellaneous.ConcatArrays(Utilities.Miscellaneous.StructToBytes(cameraData),
-                                             System.Text.UTF8Encoding.UTF8.GetBytes(name),
+                                             System.Text.Encoding.UTF8.GetBytes(name),
                                              new byte[] { 0 }
                                             );
         }
@@ -68,7 +82,7 @@ namespace AW
             remainder = new byte[size];
 
             Array.ConstrainedCopy(data, data.Length - size, remainder, 0, size);
-            name = System.Text.UTF8Encoding.UTF8.GetString(remainder, 0, cameraData.name_len);
+            name = System.Text.Encoding.UTF8.GetString(remainder, 0, cameraData.name_len);
         }
     }
 }
