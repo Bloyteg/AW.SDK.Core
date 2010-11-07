@@ -1,6 +1,6 @@
 ﻿namespace AW
 {
-    partial class Instance
+    partial class Instance : IInstance
     {
         /// <summary>
         /// Stores data set by the user, associated with the instance.

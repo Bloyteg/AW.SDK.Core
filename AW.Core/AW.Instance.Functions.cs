@@ -7,12 +7,10 @@ namespace AW
         /// Logs the instance into the universe using the Attributes.LoginOwner, Attributes.LoginPrivilegePassword, Attributes.LoginName, and Attributes.LoginApplication that were set earlier.
         /// If CallbackLogin is not set, this is a blocking operation.
         /// </summary>
-        /// <exception cref="AW.InstanceException">If the method fails an InstanceException is raised.</exception>
-        /// <returns>RC code if Utility.UseReturnCodes is set to true.</returns>
-        public int Login()
+        public Result Login()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_login());
+            return (Result)InterOp.aw_login();
         }
 
         /// <summary>
@@ -20,622 +18,617 @@ namespace AW
         /// If CallbackEnter is not set, this is a blocking operation.
         /// </summary>
         /// <param name="world">The name of the world to enter.</param>
-        /// <exception cref="AW.InstanceException">If the method fails an InstanceException is raised.</exception>
-        /// <returns>RC code if Utility.UseReturnCodes is set to true.</returns>
-        public int Enter(string world)
+        public Result Enter(string world)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_enter(world));
+            return (Result)InterOp.aw_enter(world);
         }
 
         ///<summary>
         /// Causes the instance to leave the current world.
         /// It is not necessary to call this method when disconnecting or changing worlds.
         ///</summary>
-        /// <exception cref="AW.InstanceException">If the method fails an InstanceException is raised.</exception>
-        /// <returns>RC code if Utility.UseReturnCodes is set to true.</returns>
-        public int Exit()
+        public Result Exit()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_exit());
+            return (Result)InterOp.aw_exit();
         }
 
         /// <summary>
         /// Causes the instance to change state within the world.
-        /// </summary>
-        /// <exception cref="AW.InstanceException">If the method fails an InstanceException is raised.</exception>
-        public int StateChange()
+        /// </summary>     
+        public Result StateChange()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_state_change());
+            return (Result)InterOp.aw_state_change();
         }
         #endregion
 
         #region Event manipulation methods
-        public int ObjectClick()
+        public Result ObjectClick()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_object_click());
+            return (Result)InterOp.aw_object_click();
         }
 
-        public int ObjectSelect()
+        public Result ObjectSelect()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_object_select());
+            return (Result)InterOp.aw_object_select();
         }
 
-        public int AvatarClick(int session)
+        public Result AvatarClick(int session)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_avatar_click(session));
+            return (Result)InterOp.aw_avatar_click(session);
         }
 
-        public int UrlSend(int session, string url, string target)
+        public Result UrlSend(int session, string url, string target)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_url_send(session, url, target));
+            return (Result)InterOp.aw_url_send(session, url, target);
         }
 
-        public int UrlClick(string url)
+        public Result UrlClick(string url)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_url_click(url));
+            return (Result)InterOp.aw_url_click(url);
         }
 
-        public int Teleport(int session)
+        public Result Teleport(int session)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_teleport(session));
+            return (Result)InterOp.aw_teleport(session);
         }
 
-        public int AvatarSet(int session)
+        public Result AvatarSet(int session)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_avatar_set(session));
+            return (Result)InterOp.aw_avatar_set(session);
         }
 
-        public int AvatarReload(int citizen, int session)
+        public Result AvatarReload(int citizen, int session)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_avatar_reload(citizen, session));
+            return (Result)InterOp.aw_avatar_reload(citizen, session);
         }
 
-        public int ToolbarClick()
+        public Result ToolbarClick()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_toolbar_click());
+            return (Result)InterOp.aw_toolbar_click();
         }
 
-        public int Noise(int session)
+        public Result Noise(int session)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_noise(session));
+            return (Result)InterOp.aw_noise(session);
         }
 
-        public int CameraSet(int session)
+        public Result CameraSet(int session)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_camera_set(session));
+            return (Result)InterOp.aw_camera_set(session);
         }
 
-        public int BotmenuSend()
+        public Result BotmenuSend()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_botmenu_send());
+            return (Result)InterOp.aw_botmenu_send();
         }
 
-        public int ObjectBump()
+        public Result ObjectBump()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_object_bump());
+            return (Result)InterOp.aw_object_bump();
         }
         #endregion
 
         #region Information query methods
-        public int WorldList()
+        public Result WorldList()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_list());
+            return (Result)InterOp.aw_world_list();
         }
 
-        public int Address(int session)
+        public Result Address(int session)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_address(session));
+            return (Result)InterOp.aw_address(session);
         }
 
-        public int UserList()
+        public Result UserList()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_user_list());
+            return (Result)InterOp.aw_user_list();
         }
 
-        public int AvatarLocation(int citizen, int sessionId, string name)
+        public Result AvatarLocation(int citizen, int sessionId, string name)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_avatar_location(citizen, sessionId, name));
+            return (Result)InterOp.aw_avatar_location(citizen, sessionId, name);
         }
         #endregion
 
         #region Communication methods
-        public int Say(string message)
+        public Result Say(string message)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_say(message));
+            return (Result)InterOp.aw_say(message);
         }
 
-        public int Say(string message, object arg0)
+        public Result Say(string message, object arg0)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_say(string.Format(message, arg0)));
+            return (Result)InterOp.aw_say(string.Format(message, arg0));
         }
 
-        public int Say(string message, object arg0, object arg1)
+        public Result Say(string message, object arg0, object arg1)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_say(string.Format(message, arg0, arg1)));
+            return (Result)InterOp.aw_say(string.Format(message, arg0, arg1));
         }
 
-        public int Say(string message, object arg0, object arg1, object arg2)
+        public Result Say(string message, object arg0, object arg1, object arg2)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_say(string.Format(message, arg0, arg1, arg2)));
+            return (Result)InterOp.aw_say(string.Format(message, arg0, arg1, arg2));
         }
 
-        public int Say(string message, params object[] args)
+        public Result Say(string message, params object[] args)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_say(string.Format(message, args)));
+            return (Result)InterOp.aw_say(string.Format(message, args));
         }
 
-        public int Whisper(int session, string message)
+        public Result Whisper(int session, string message)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_whisper(session, message));
+            return (Result)InterOp.aw_whisper(session, message);
         }
 
-        public int Whisper(int session, string message, object arg0)
+        public Result Whisper(int session, string message, object arg0)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_whisper(session, string.Format(message, arg0)));
+            return (Result)InterOp.aw_whisper(session, string.Format(message, arg0));
         }
 
-        public int Whisper(int session, string message, object arg0, object arg1)
+        public Result Whisper(int session, string message, object arg0, object arg1)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_whisper(session, string.Format(message, arg0, arg1)));
+            return (Result)InterOp.aw_whisper(session, string.Format(message, arg0, arg1));
         }
 
-        public int Whisper(int session, string message, object arg0, object arg1, object arg2)
+        public Result Whisper(int session, string message, object arg0, object arg1, object arg2)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_whisper(session, string.Format(message, arg0, arg1, arg2)));
+            return (Result)InterOp.aw_whisper(session, string.Format(message, arg0, arg1, arg2));
         }
 
-        public int Whisper(int session, string message, params object[] args)
+        public Result Whisper(int session, string message, params object[] args)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_whisper(session, string.Format(message, args)));
+            return (Result)InterOp.aw_whisper(session, string.Format(message, args));
         }
 
-        public int ConsoleMessage(int session)
+        public Result ConsoleMessage(int session)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_console_message(session));
+            return (Result)InterOp.aw_console_message(session);
         }
 
-        public int BotgramSend()
+        public Result BotgramSend()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_botgram_send());
+            return (Result)InterOp.aw_botgram_send();
         }
         #endregion
 
         #region Property methods
-        public int Query(int xSector, int zSector, int[,] sequence)
+        public Result Query(int xSector, int zSector, int[,] sequence)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_query(xSector, zSector, sequence));
+            return (Result)InterOp.aw_query(xSector, zSector, sequence);
         }
 
-        public int Query5x5(int xSector, int zSector, int[,] sequence)
+        public Result Query5x5(int xSector, int zSector, int[,] sequence)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_query_5x5(xSector, zSector, sequence));
+            return (Result)InterOp.aw_query_5x5(xSector, zSector, sequence);
         }
 
-        public int ObjectQuery()
+        public Result ObjectQuery()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_object_query());
+            return (Result)InterOp.aw_object_query();
         }
 
-        public int CellNext()
+        public Result CellNext()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_cell_next());
+            return (Result)InterOp.aw_cell_next();
         }
 
-        public int ObjectAdd()
+        public Result ObjectAdd()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_object_add());
+            return (Result)InterOp.aw_object_add();
         }
 
-        public int ObjectChange()
+        public Result ObjectChange()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_object_change());
+            return (Result)InterOp.aw_object_change();
         }
 
-        public int ObjectDelete()
+        public Result ObjectDelete()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_object_delete());
+            return (Result)InterOp.aw_object_delete();
         }
 
-        public int ObjectLoad()
+        public Result ObjectLoad()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_object_load());
+            return (Result)InterOp.aw_object_load();
         }
 
-        public int DeleteAllObjects()
+        public Result DeleteAllObjects()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_delete_all_objects());
+            return (Result)InterOp.aw_delete_all_objects();
         }
         #endregion
 
         #region Terrain methods
-        public int TerrainSet(int x, int z, int texture, int[] heights)
+        public Result TerrainSet(int x, int z, int texture, int[] heights)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_terrain_set(x, z, heights.Length, texture, heights));
+            return (Result)InterOp.aw_terrain_set(x, z, heights.Length, texture, heights);
         }
 
-        public int TerrainQuery(int pageX, int pageZ, long sequence)
+        public Result TerrainQuery(int pageX, int pageZ, long sequence)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_terrain_query(pageX, pageZ, (long)sequence));
+            return (Result)InterOp.aw_terrain_query(pageX, pageZ, sequence);
         }
 
-        public int TerrainNext()
+        public Result TerrainNext()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_terrain_next());
+            return (Result)InterOp.aw_terrain_next();
         }
 
-        public int TerrainDeleteAll()
+        public Result TerrainDeleteAll()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_terrain_delete_all());
+            return (Result)InterOp.aw_terrain_delete_all();
         }
 
-        public int TerrainLoadNode()
+        public Result TerrainLoadNode()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_terrain_load_node());
+            return (Result)InterOp.aw_terrain_load_node();
         }
         #endregion
 
         #region Mover methods
-        public int MoverSetState(int id, int state, int modelNum)
+        public Result MoverSetState(int id, int state, int modelNum)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_mover_set_state(id, state, modelNum));
+            return (Result)InterOp.aw_mover_set_state(id, state, modelNum);
         }
 
-        public int MoverSetPosition(int id, int x, int y, int z, int yaw, int pitch, int roll)
+        public Result MoverSetPosition(int id, int x, int y, int z, int yaw, int pitch, int roll)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_mover_set_position(id, x, y, z, yaw, pitch, roll));
+            return (Result)InterOp.aw_mover_set_position(id, x, y, z, yaw, pitch, roll);
         }
 
-        public int MoverRiderAdd(int id, int session, int dist, int angle, int yDelta, int yawDelta, int pitchDelta)
+        public Result MoverRiderAdd(int id, int session, int dist, int angle, int yDelta, int yawDelta, int pitchDelta)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_mover_rider_add(id, session, dist, angle, yDelta, yawDelta, pitchDelta));
+            return (Result)InterOp.aw_mover_rider_add(id, session, dist, angle, yDelta, yawDelta, pitchDelta);
         }
 
-        public int MoverRiderChange(int id, int session, int dist, int angle, int yDelta, int yawDelta, int pitchDelta)
+        public Result MoverRiderChange(int id, int session, int dist, int angle, int yDelta, int yawDelta, int pitchDelta)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_mover_rider_change(id, session, dist, angle, yDelta, yawDelta, pitchDelta));
+            return (Result)InterOp.aw_mover_rider_change(id, session, dist, angle, yDelta, yawDelta, pitchDelta);
         }
 
-        public int MoverRiderDelete(int id, int session)
+        public Result MoverRiderDelete(int id, int session)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_mover_rider_delete(id, session));
+            return (Result)InterOp.aw_mover_rider_delete(id, session);
         }
 
-        public int MoverLinks(int id)
+        public Result MoverLinks(int id)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_mover_links(id));
+            return (Result)InterOp.aw_mover_links(id);
         }
         #endregion
 
         #region HUD methods
-        public int HudCreate()
+        public Result HudCreate()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_hud_create());
+            return (Result)InterOp.aw_hud_create();
         }
 
-        public int HudClick()
+        public Result HudClick()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_hud_click());
+            return (Result)InterOp.aw_hud_click();
         }
 
-        public int HudDestroy(int session, int id)
+        public Result HudDestroy(int session, int id)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_hud_destroy(session, id));
+            return (Result)InterOp.aw_hud_destroy(session, id);
         }
 
-        public int HudClear(int session)
+        public Result HudClear(int session)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_hud_clear(session));
+            return (Result)InterOp.aw_hud_clear(session);
         }
 
-        public int TrafficCount(out int inTraffic, out int outTraffic)
+        public Result TrafficCount(out int inTraffic, out int outTraffic)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_traffic_count(out inTraffic, out outTraffic));
+            return (Result)InterOp.aw_traffic_count(out inTraffic, out outTraffic);
         }
         #endregion
 
         #region CAV manipulation methods
-        public int CavRequest(int citizen, int session)
+        public Result CavRequest(int citizen, int session)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_cav_request(citizen, session));
+            return (Result)InterOp.aw_cav_request(citizen, session);
         }
 
-        public int CavChange()
+        public Result CavChange()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_cav_change());
+            return (Result)InterOp.aw_cav_change();
         }
 
-        public int CavDelete()
+        public Result CavDelete()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_cav_delete());
+            return (Result)InterOp.aw_cav_delete();
         }
 
-        public int WorldCavRequest(int citizen, int session)
+        public Result WorldCavRequest(int citizen, int session)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_cav_request(citizen, session));
+            return (Result)InterOp.aw_world_cav_request(citizen, session);
         }
 
-        public int WorldCavChange()
+        public Result WorldCavChange()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_cav_change());
+            return (Result)InterOp.aw_world_cav_change();
         }
 
-        public int WorldCavDelete()
+        public Result WorldCavDelete()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_cav_delete());
+            return (Result)InterOp.aw_world_cav_delete();
         }
         #endregion
 
         #region Universe related methods
         #region Universe management methods
-        public int UniverseAttributesChange()
+        public Result UniverseAttributesChange()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_universe_attributes_change());
+            return (Result)InterOp.aw_universe_attributes_change();
         }
 
-        public int UniverseEjectionAdd()
+        public Result UniverseEjectionAdd()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_universe_ejection_add());
+            return (Result)InterOp.aw_universe_ejection_add();
         }
 
-        public int UniverseEjectionDelete(int address)
+        public Result UniverseEjectionDelete(int address)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_universe_ejection_delete(address));
+            return (Result)InterOp.aw_universe_ejection_delete(address);
         }
 
-        public int UniverseEjectionLookup()
+        public Result UniverseEjectionLookup()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_universe_ejection_lookup());
+            return (Result)InterOp.aw_universe_ejection_lookup();
         }
 
-        public int UniverseEjectionNext()
+        public Result UniverseEjectionNext()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_universe_ejection_next());
+            return (Result)InterOp.aw_universe_ejection_next();
         }
 
-        public int UniverseEjectionPrevious()
+        public Result UniverseEjectionPrevious()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_universe_ejection_previous());
+            return (Result)InterOp.aw_universe_ejection_previous();
         }
         #endregion
 
         #region Citizen methods
-        public int CitizenAttributesByName(string name)
+        public Result CitizenAttributesByName(string name)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_citizen_attributes_by_name(name));
+            return (Result)InterOp.aw_citizen_attributes_by_name(name);
         }
 
-        public int CitizenAttributesByNumber(int citizen)
+        public Result CitizenAttributesByNumber(int citizen)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_citizen_attributes_by_number(citizen));
+            return (Result)InterOp.aw_citizen_attributes_by_number(citizen);
         }
 
-        public int CitizenAdd()
+        public Result CitizenAdd()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_citizen_add());
+            return (Result)InterOp.aw_citizen_add();
         }
 
-        public int CitizenChange()
+        public Result CitizenChange()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_citizen_change());
+            return (Result)InterOp.aw_citizen_change();
         }
 
-        public int CitizenDelete(int citizen)
+        public Result CitizenDelete(int citizen)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_citizen_delete(citizen));
+            return (Result)InterOp.aw_citizen_delete(citizen);
         }
 
-        public int CitizenNext()
+        public Result CitizenNext()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_citizen_next());
+            return (Result)InterOp.aw_citizen_next();
         }
 
-        public int CitizenPrevious()
+        public Result CitizenPrevious()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_citizen_previous());
+            return (Result)InterOp.aw_citizen_previous();
         }
         #endregion
 
         #region World license methods
-        public int LicenseAdd()
+        public Result LicenseAdd()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_license_add());
+            return (Result)InterOp.aw_license_add();
         }
 
-        public int LicenseAttributes(string name)
+        public Result LicenseAttributes(string name)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_license_attributes(name));
+            return (Result)InterOp.aw_license_attributes(name);
         }
 
-        public int LicenseChange()
+        public Result LicenseChange()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_license_change());
+            return (Result)InterOp.aw_license_change();
         }
 
-        public int LicenseDelete(string name)
+        public Result LicenseDelete(string name)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_license_delete(name));
+            return (Result)InterOp.aw_license_delete(name);
         }
 
-        public int LicenseNext()
+        public Result LicenseNext()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_license_next());
+            return (Result)InterOp.aw_license_next();
         }
 
-        public int LicensePrevious()
+        public Result LicensePrevious()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_license_previous());
+            return (Result)InterOp.aw_license_previous();
         }
         #endregion
         #endregion
 
         #region World related methods
         #region World management methods
-        public int WorldAttributesChange()
+        public Result WorldAttributesChange()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_attributes_change());
+            return (Result)InterOp.aw_world_attributes_change();
         }
 
-        public int WorldEject()
+        public Result WorldEject()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_eject());
+            return (Result)InterOp.aw_world_eject();
         }
 
-        public int WorldReloadRegistry()
+        public Result WorldReloadRegistry()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_reload_registry());
+            return (Result)InterOp.aw_world_reload_registry();
         }
 
-        public int WorldAttributesReset()
+        public Result WorldAttributesReset()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_attributes_reset());
+            return (Result)InterOp.aw_world_attributes_reset();
         }
 
-        public int WorldInstanceSet(int citizen, int worldInstance)
+        public Result WorldInstanceSet(int citizen, int worldInstance)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_instance_set(citizen, worldInstance));
+            return (Result)InterOp.aw_world_instance_set(citizen, worldInstance);
         }
 
-        public int WorldInstanceGet(int citizen)
+        public Result WorldInstanceGet(int citizen)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_instance_get(citizen));
+            return (Result)InterOp.aw_world_instance_get(citizen);
         }
 
-        public int WorldAttributesSend(int session)
+        public Result WorldAttributesSend(int session)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_attributes_send(session));
+            return (Result)InterOp.aw_world_attributes_send(session);
         }
 
-        public int WorldEjectionAdd()
+        public Result WorldEjectionAdd()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_ejection_add());
+            return (Result)InterOp.aw_world_ejection_add();
         }
 
-        public int WorldEjectionDelete()
+        public Result WorldEjectionDelete()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_ejection_delete());
+            return (Result)InterOp.aw_world_ejection_delete();
         }
 
-        public int WorldEjectionLookup()
+        public Result WorldEjectionLookup()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_ejection_lookup());
+            return (Result)InterOp.aw_world_ejection_lookup();
         }
 
-        public int WorldEjectionNext()
+        public Result WorldEjectionNext()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_ejection_next());
+            return (Result)InterOp.aw_world_ejection_next();
         }
 
-        public int WorldEjectionPrevious()
+        public Result WorldEjectionPrevious()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_ejection_previous());
+            return (Result)InterOp.aw_world_ejection_previous();
         }
 
-        public int WorldAttributeSet(int attribute, string value)
+        public Result WorldAttributeSet(int attribute, string value)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_world_attribute_set(attribute, value));
+            return (Result)InterOp.aw_world_attribute_set(attribute, value);
         }
 
-        public int WorldAttributeGet(int attribute, out bool readOnly, string value)
+        public Result WorldAttributeGet(int attribute, out bool readOnly, string value)
         {
             SetInstance();
             int ro;
             int ret = InterOp.aw_world_attribute_get(attribute, out ro, value);
             readOnly = ro != 0;
-            return InstanceException.Assert(ret);
+            return (Result)ret;
         }
         #endregion
 
@@ -667,73 +660,73 @@ namespace AW
         #endregion
 
         #region World server management methods
-        public int ServerWorldAdd()
+        public Result ServerWorldAdd()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_server_world_add());
+            return (Result)InterOp.aw_server_world_add();
         }
 
-        public int ServerWorldDelete(int id)
+        public Result ServerWorldDelete(int id)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_server_world_delete(id));
+            return (Result)InterOp.aw_server_world_delete(id);
         }
 
-        public int ServerWorldChange(int id)
+        public Result ServerWorldChange(int id)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_server_world_change(id));
+            return (Result)InterOp.aw_server_world_change(id);
         }
 
-        public int ServerWorldList()
+        public Result ServerWorldList()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_server_world_list());
+            return (Result)InterOp.aw_server_world_list();
         }
 
-        public int ServerWorldStart(int id)
+        public Result ServerWorldStart(int id)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_server_world_start(id));
+            return (Result)InterOp.aw_server_world_start(id);
         }
 
-        public int ServerWorldStop(int id)
+        public Result ServerWorldStop(int id)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_server_world_stop(id));
+            return (Result)InterOp.aw_server_world_stop(id);
         }
 
-        public int ServerWorldSet(int id)
+        public Result ServerWorldSet(int id)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_server_world_set(id));
+            return (Result)InterOp.aw_server_world_set(id);
         }
 
-        public int ServerWorldInstanceSet(int id)
+        public Result ServerWorldInstanceSet(int id)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_server_world_instance_set(id));
+            return (Result)InterOp.aw_server_world_instance_set(id);
         }
 
-        public int ServerWorldInstanceAdd(int id, int instanceId)
+        public Result ServerWorldInstanceAdd(int id, int instanceId)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_server_world_instance_add(id, instanceId));
+            return (Result)InterOp.aw_server_world_instance_add(id, instanceId);
         }
 
-        public int ServerWorldInstanceDelete(int id, int instanceId)
+        public Result ServerWorldInstanceDelete(int id, int instanceId)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_server_world_instance_delete(id, instanceId));
+            return (Result)InterOp.aw_server_world_instance_delete(id, instanceId);
         }
         #endregion
 
         #region Laser Beam methods
 
-        public int LaserBeam()
+        public Result LaserBeam()
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_laser_beam());
+            return (Result)InterOp.aw_laser_beam();
         }
 
         #endregion

@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 
 namespace AW
 {
-	partial class Instance
+	partial class Instance : IInstance
 	{
 		#region EventAdminWorldInfo
 		//Declare the types to handle both the managed and native events.

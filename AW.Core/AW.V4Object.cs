@@ -95,29 +95,6 @@ namespace AW
             xs.Serialize(xmlStream, this);
         }
         #endregion
-
-/*      #region Preset serialization
-        public void UnserializeFromPreset(string presetFile)
-        {
-
-        }
-
-        public void UnserializeFromPreset(Stream presetStream)
-        {
-
-        }
-
-        public void SerializeToPreset(string presetFile)
-        {
-
-        }
-
-        public void SerializeToPreset(Stream presetStream)
-        {
-
-        }
-        #endregion
- */
     }
 
     //Portions of the Instance class related to handling V4 objects.
@@ -128,11 +105,10 @@ namespace AW
         /// </summary>
         /// <typeparam name="TV4Object">The type of the V4 object being used.</typeparam>
         /// <param name="v4Object">The V4 object representing the data to be set.</param>
-        /// <returns>RC code if Utility.UseReturnCodes is set to true.</returns>
-        public int SetV4Object<TV4Object>(TV4Object v4Object) where TV4Object : V4Object
+        public void SetV4Object<TV4Object>(TV4Object v4Object) where TV4Object : V4Object
         {
             SetInstance();
-            return SetData(AW.Attributes.ObjectData, v4Object.GetData());
+            SetData(AW.Attributes.ObjectData, v4Object.GetData());
         }
 
         /// <summary>

@@ -62,7 +62,7 @@ namespace AW
 		private void On<#= callback.Name #>(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managed<#= callback.Name #>(this, error);
+			managed<#= callback.Name #>(this, (Result)error);
 		}
 
 		//Managed callback handler.

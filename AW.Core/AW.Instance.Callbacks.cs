@@ -20,7 +20,7 @@ namespace AW
 		private void OnCallbackLogin(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackLogin(this, error);
+			managedCallbackLogin(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -68,7 +68,7 @@ namespace AW
 		private void OnCallbackEnter(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackEnter(this, error);
+			managedCallbackEnter(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -116,7 +116,7 @@ namespace AW
 		private void OnCallbackObjectResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackObjectResult(this, error);
+			managedCallbackObjectResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -164,7 +164,7 @@ namespace AW
 		private void OnCallbackLicenseAttributes(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackLicenseAttributes(this, error);
+			managedCallbackLicenseAttributes(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -212,7 +212,7 @@ namespace AW
 		private void OnCallbackLicenseResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackLicenseResult(this, error);
+			managedCallbackLicenseResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -260,7 +260,7 @@ namespace AW
 		private void OnCallbackCitizenAttributes(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackCitizenAttributes(this, error);
+			managedCallbackCitizenAttributes(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -308,7 +308,7 @@ namespace AW
 		private void OnCallbackCitizenResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackCitizenResult(this, error);
+			managedCallbackCitizenResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -356,7 +356,7 @@ namespace AW
 		private void OnCallbackQuery(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackQuery(this, error);
+			managedCallbackQuery(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -404,7 +404,7 @@ namespace AW
 		private void OnCallbackUniverseEjection(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackUniverseEjection(this, error);
+			managedCallbackUniverseEjection(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -452,7 +452,7 @@ namespace AW
 		private void OnCallbackUniverseEjectionResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackUniverseEjectionResult(this, error);
+			managedCallbackUniverseEjectionResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -500,7 +500,7 @@ namespace AW
 		private void OnCallbackAddress(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackAddress(this, error);
+			managedCallbackAddress(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -548,7 +548,7 @@ namespace AW
 		private void OnCallbackWorldEjection(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackWorldEjection(this, error);
+			managedCallbackWorldEjection(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -596,7 +596,7 @@ namespace AW
 		private void OnCallbackWorldEjectionResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackWorldEjectionResult(this, error);
+			managedCallbackWorldEjectionResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -644,7 +644,7 @@ namespace AW
 		private void OnCallbackAdminWorldList(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackAdminWorldList(this, error);
+			managedCallbackAdminWorldList(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -692,7 +692,7 @@ namespace AW
 		private void OnCallbackAdminWorldResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackAdminWorldResult(this, error);
+			managedCallbackAdminWorldResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -740,7 +740,7 @@ namespace AW
 		private void OnCallbackDeleteAllObjectsResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackDeleteAllObjectsResult(this, error);
+			managedCallbackDeleteAllObjectsResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -788,7 +788,7 @@ namespace AW
 		private void OnCallbackCellResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackCellResult(this, error);
+			managedCallbackCellResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -836,7 +836,7 @@ namespace AW
 		private void OnCallbackReloadRegistry(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackReloadRegistry(this, error);
+			managedCallbackReloadRegistry(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -884,7 +884,7 @@ namespace AW
 		private void OnCallbackAttributesResetResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackAttributesResetResult(this, error);
+			managedCallbackAttributesResetResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -932,7 +932,7 @@ namespace AW
 		private void OnCallbackAdmin(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackAdmin(this, error);
+			managedCallbackAdmin(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -980,7 +980,7 @@ namespace AW
 		private void OnCallbackTerrainSetResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackTerrainSetResult(this, error);
+			managedCallbackTerrainSetResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -1028,7 +1028,7 @@ namespace AW
 		private void OnCallbackTerrainNextResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackTerrainNextResult(this, error);
+			managedCallbackTerrainNextResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -1076,7 +1076,7 @@ namespace AW
 		private void OnCallbackTerrainDeleteAllResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackTerrainDeleteAllResult(this, error);
+			managedCallbackTerrainDeleteAllResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -1124,7 +1124,7 @@ namespace AW
 		private void OnCallbackTerrainLoadNodeResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackTerrainLoadNodeResult(this, error);
+			managedCallbackTerrainLoadNodeResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -1172,7 +1172,7 @@ namespace AW
 		private void OnCallbackBotgramResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackBotgramResult(this, error);
+			managedCallbackBotgramResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -1220,7 +1220,7 @@ namespace AW
 		private void OnCallbackUserList(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackUserList(this, error);
+			managedCallbackUserList(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -1268,7 +1268,7 @@ namespace AW
 		private void OnCallbackBotmenuResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackBotmenuResult(this, error);
+			managedCallbackBotmenuResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -1316,7 +1316,7 @@ namespace AW
 		private void OnCallbackCav(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackCav(this, error);
+			managedCallbackCav(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -1364,7 +1364,7 @@ namespace AW
 		private void OnCallbackCavResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackCavResult(this, error);
+			managedCallbackCavResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -1412,7 +1412,7 @@ namespace AW
 		private void OnCallbackWorldInstance(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackWorldInstance(this, error);
+			managedCallbackWorldInstance(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -1460,7 +1460,7 @@ namespace AW
 		private void OnCallbackHudResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackHudResult(this, error);
+			managedCallbackHudResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -1508,7 +1508,7 @@ namespace AW
 		private void OnCallbackAvatarLocation(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackAvatarLocation(this, error);
+			managedCallbackAvatarLocation(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -1556,7 +1556,7 @@ namespace AW
 		private void OnCallbackObjectQuery(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackObjectQuery(this, error);
+			managedCallbackObjectQuery(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -1604,7 +1604,7 @@ namespace AW
 		private void OnCallbackWorldCavResult(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackWorldCavResult(this, error);
+			managedCallbackWorldCavResult(this, (Result)error);
 		}
 
 		//Managed callback handler.
@@ -1652,7 +1652,7 @@ namespace AW
 		private void OnCallbackWorldCav(int error)
 		{
 			//Passes off the callback to the managed callback handler.
-			managedCallbackWorldCav(this, error);
+			managedCallbackWorldCav(this, (Result)error);
 		}
 
 		//Managed callback handler.

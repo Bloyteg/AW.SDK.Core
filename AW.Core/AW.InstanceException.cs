@@ -17,7 +17,6 @@ namespace AW
 
         /// <summary>
         /// Numeric representation of the Return Code returned by the instance operation.
-        /// <see cref="AW.Utility.ReturnCodes"/> contains string equivalents of all error codes.
         /// </summary>
         /// 
         public int ErrorCode
@@ -35,34 +34,26 @@ namespace AW
             internal set;
         }
 
-        internal static int Assert(int error)
+        internal static void Assert(int error)
         {
-            if (Utility.UseReturnCodes == false)
+            if (error == 0)
             {
-                if (error != 0)
-                {
-                    StackTrace stackTrace = new StackTrace();
-                    StackFrame stackFrame;
-
-                    if (stackTrace.FrameCount > 0)
-                        stackFrame = stackTrace.GetFrame(1);
-                    else
-                        stackFrame = stackTrace.GetFrame(0);
-
-                    MethodBase methodBase = stackFrame.GetMethod();
-
-                    string message = string.Format("Instance call to method {0} failed (Reason {1}).", methodBase.Name, error);
-
-                    throw new InstanceException(message)
-                    {
-                        ErrorCode = error,
-                        HResult = error,
-                        CallingMethod = methodBase.Name
-                    };
-                }
+                return;
             }
 
-            return error;
+            var stackTrace = new StackTrace();
+            StackFrame stackFrame = stackTrace.GetFrame(stackTrace.FrameCount > 0 ? 1 : 0);
+            MethodBase methodBase = stackFrame.GetMethod();
+
+            string message = string.Format("Instance call to method {0} failed (Reason {1}).", methodBase.Name,
+                                           error);
+
+            throw new InstanceException(message)
+                      {
+                          ErrorCode = error,
+                          HResult = error,
+                          CallingMethod = methodBase.Name
+                      };
         }
     }
 }

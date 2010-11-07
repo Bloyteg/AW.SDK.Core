@@ -198,10 +198,10 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public int SetString(Attributes attribute, string value)
+        public void SetString(Attributes attribute, string value)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_string_set(attribute, value));
+            InstanceException.Assert(InterOp.aw_string_set(attribute, value));
         }
 
         /// <summary>
@@ -225,10 +225,10 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public int SetInt(Attributes attribute, int value)
+        public void SetInt(Attributes attribute, int value)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_int_set(attribute, value));
+            InstanceException.Assert(InterOp.aw_int_set(attribute, value));
         }
 
         /// <summary>
@@ -252,10 +252,10 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public int SetBool(Attributes attribute, bool value)
+        public void SetBool(Attributes attribute, bool value)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_bool_set(attribute, value));
+            InstanceException.Assert(InterOp.aw_bool_set(attribute, value));
         }
 
         /// <summary>
@@ -279,10 +279,10 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public int SetFloat(Attributes attribute, float value)
+        public void SetFloat(Attributes attribute, float value)
         {
             SetInstance();
-            return InstanceException.Assert(InterOp.aw_float_set(attribute, value));
+            InstanceException.Assert(InterOp.aw_float_set(attribute, value));
         }
 
         /// <summary>
@@ -306,7 +306,7 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public int SetData(Attributes attribute, byte[] value)
+        public void SetData(Attributes attribute, byte[] value)
         {
             SetInstance();
 
@@ -323,7 +323,7 @@ namespace AW
                 Marshal.FreeHGlobal(dest);
             }
 
-            return InstanceException.Assert(errorCode);
+            InstanceException.Assert(errorCode);
         }
 
         /// <summary>
@@ -342,7 +342,7 @@ namespace AW
             if (length == 0)
                 return null;
 
-            byte[] ret = new byte[length];
+            var ret = new byte[length];
             Marshal.Copy(temp, ret, 0, length);
             return ret;
         }
@@ -353,10 +353,10 @@ namespace AW
         /// <param name="cavContents">String representation of the Custom Avatar definition's XML.</param>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public int SetCAVData(string cavContents)
+        public void SetCAVData(string cavContents)
         {
             SetInstance();
-            return SetData(AW.Attributes.CavDefinition, Utility.Zip(System.Text.Encoding.UTF8.GetBytes(cavContents)));
+            SetData(AW.Attributes.CavDefinition, Utility.Zip(System.Text.Encoding.UTF8.GetBytes(cavContents)));
         }
 
         /// <summary>

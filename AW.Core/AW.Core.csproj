@@ -74,10 +74,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AW.AttributeProvider.tt</DependentUpon>
     </Compile>
+    <Compile Include="AW.IInstance.cs" />
     <Compile Include="AW.InitializationFailedException.cs" />
     <Compile Include="AW.BindAddressException.cs" />
-    <Compile Include="IAttributeProvider.cs" />
-    <Compile Include="AW.IInstance.cs" />
+    <Compile Include="AW.IAttributeProvider.cs" />
     <Compile Include="AW.Instance.Callbacks.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -113,12 +113,10 @@
     <Compile Include="AW.Utility.Constants.cs" />
     <Compile Include="AW.Utility.Initialize.cs" />
     <Compile Include="AW.Utility.Functions.cs" />
-    <Compile Include="AW.Utility.ReturnCodes.cs" />
     <Compile Include="AW.V4Object.Camera.cs" />
     <Compile Include="AW.V4Object.Mover.cs" />
     <Compile Include="AW.V4Object.Particle.cs" />
     <Compile Include="AW.V4Object.Zone.cs" />
-    <Compile Include="Utilities\Utilities.IndexedProperty.cs" />
     <Compile Include="Utilities\Utilities.Miscellaneous.cs" />
     <Compile Include="Utilities\Utilities.StaticDestructor.cs" />
     <None Include="AW.AttributeProvider.tt">
@@ -134,6 +132,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AW.Instance.Events.cs</LastGenOutput>
     </None>
+    <Compile Include="AW.Result.cs" />
     <None Include="awnet.snk" />
     <None Include="Code.Generate.TemplateClasses.tt">
       <LastGenOutput>TemplateClasses.cs</LastGenOutput>

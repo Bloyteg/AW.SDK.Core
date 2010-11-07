@@ -160,13 +160,6 @@ namespace AW
                 return InterOp.aw_tick();
             }
         }
-
-        private static bool _useReturnCodes = false;
-        public static bool UseReturnCodes
-        {
-            get { return _useReturnCodes; }
-            set { _useReturnCodes = value; }
-        }
         #endregion
     }
 }
