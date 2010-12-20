@@ -1,7 +1,13 @@
 ﻿namespace AW
 {
-    partial class Instance : IInstance
+    partial class Instance
     {
+        public IAttributeProvider Attributes
+        {
+            get; 
+            internal set;
+        }
+
         /// <summary>
         /// Stores data set by the user, associated with the instance.
         /// </summary>

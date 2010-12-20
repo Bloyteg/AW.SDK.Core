@@ -187,9 +187,6 @@ namespace AW
         }
 
         #region Data setters/getters
-
-        public IAttributeProvider Attributes { get; internal set; }
-
         /// <summary>
         /// Sets a string attribute for the current instance.
         /// </summary>

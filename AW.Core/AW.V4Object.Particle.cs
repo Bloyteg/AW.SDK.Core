@@ -7,8 +7,8 @@ namespace AW
     [Serializable]
     public sealed class ParticleFlags
     {
-        private short flags;
-        private static readonly short[] flagValues = { 0x0001, 0x0002, 0x0004, 0x0008, 0x0010, 0x0020, 0x0040 };
+        private ushort flags;
+        private static readonly ushort[] flagValues = { 0x0001, 0x0002, 0x0004, 0x0008, 0x0010, 0x0020, 0x0040 };
         /**
          *  AW_PARTICLE_FLAG_INTERPOLATE    = 0x01, 0
          *  AW_PARTICLE_FLAG_GRAVITY        = 0x02, 1
@@ -28,7 +28,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (short)(flags | flagValues[0]) : (short)(flags & ~flagValues[0]));
+                flags = (value == true ? (ushort)(flags | flagValues[0]) : (ushort)(flags & ~flagValues[0]));
             }
         }
 
@@ -41,7 +41,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (short)(flags | flagValues[1]) : (short)(flags & ~flagValues[1]));
+                flags = (value == true ? (ushort)(flags | flagValues[1]) : (ushort)(flags & ~flagValues[1]));
             }
         }
 
@@ -54,7 +54,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (short)(flags | flagValues[2]) : (short)(flags & ~flagValues[2]));
+                flags = (value == true ? (ushort)(flags | flagValues[2]) : (ushort)(flags & ~flagValues[2]));
             }
         }
 
@@ -67,7 +67,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (short)(flags | flagValues[3]) : (short)(flags & ~flagValues[3]));
+                flags = (value == true ? (ushort)(flags | flagValues[3]) : (ushort)(flags & ~flagValues[3]));
             }
         }
 
@@ -80,7 +80,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (short)(flags | flagValues[4]) : (short)(flags & ~flagValues[4]));
+                flags = (value == true ? (ushort)(flags | flagValues[4]) : (ushort)(flags & ~flagValues[4]));
             }
         }
 
@@ -93,7 +93,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (short)(flags | flagValues[5]) : (short)(flags & ~flagValues[5]));
+                flags = (value == true ? (ushort)(flags | flagValues[5]) : (ushort)(flags & ~flagValues[5]));
             }
         }
 
@@ -106,7 +106,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (short)(flags | flagValues[6]) : (short)(flags & ~flagValues[6]));
+                flags = (value == true ? (ushort)(flags | flagValues[6]) : (ushort)(flags & ~flagValues[6]));
             }
         }
     }

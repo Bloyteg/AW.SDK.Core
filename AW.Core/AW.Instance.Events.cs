@@ -9,7 +9,56 @@ using System.Runtime.InteropServices;
 
 namespace AW
 {
-	partial class Instance : IInstance
+	partial interface IInstance
+	{
+			event InstanceEventDelegate EventAdminWorldInfo;
+			event InstanceEventDelegate EventAdminWorldDelete;
+			event InstanceEventDelegate EventAvatarAdd;
+			event InstanceEventDelegate EventAvatarChange;
+			event InstanceEventDelegate EventAvatarDelete;
+			event InstanceEventDelegate EventAvatarClick;
+			event InstanceEventDelegate EventAvatarReload;
+			event InstanceEventDelegate EventBotgram;
+			event InstanceEventDelegate EventBotmenu;
+			event InstanceEventDelegate EventCellBegin;
+			event InstanceEventDelegate EventCellObject;
+			event InstanceEventDelegate EventCellEnd;
+			event InstanceEventDelegate EventChat;
+			event InstanceEventDelegate EventConsoleMessage;
+			event InstanceEventDelegate EventEntityAdd;
+			event InstanceEventDelegate EventEntityChange;
+			event InstanceEventDelegate EventEntityDelete;
+			event InstanceEventDelegate EventEntityRiderAdd;
+			event InstanceEventDelegate EventEntityRiderChange;
+			event InstanceEventDelegate EventEntityRiderDelete;
+			event InstanceEventDelegate EventEntityLinks;
+			event InstanceEventDelegate EventHudClick;
+			event InstanceEventDelegate EventNoise;
+			event InstanceEventDelegate EventObjectAdd;
+			event InstanceEventDelegate EventObjectDelete;
+			event InstanceEventDelegate EventObjectClick;
+			event InstanceEventDelegate EventObjectBump;
+			event InstanceEventDelegate EventObjectSelect;
+			event InstanceEventDelegate EventTeleport;
+			event InstanceEventDelegate EventTerrainBegin;
+			event InstanceEventDelegate EventTerrainChanged;
+			event InstanceEventDelegate EventTerrainData;
+			event InstanceEventDelegate EventTerrainEnd;
+			event InstanceEventDelegate EventToolbarClick;
+			event InstanceEventDelegate EventUniverseAttributes;
+			event InstanceEventDelegate EventUniverseDisconnect;
+			event InstanceEventDelegate EventUrl;
+			event InstanceEventDelegate EventUrlClick;
+			event InstanceEventDelegate EventUserInfo;
+			event InstanceEventDelegate EventWorldAttributes;
+			event InstanceEventDelegate EventWorldDisconnect;
+			event InstanceEventDelegate EventWorldInfo;
+			event InstanceEventDelegate EventCavDefinitionChange;
+			event InstanceEventDelegate EventWorldCavDefinitionChange;
+			event InstanceEventDelegate EventLaserBeam;
+		}
+	
+	partial class Instance
 	{
 		#region EventAdminWorldInfo
 		//Declare the types to handle both the managed and native events.

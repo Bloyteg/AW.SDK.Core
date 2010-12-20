@@ -9,6 +9,45 @@ using System.Runtime.InteropServices;
 
 namespace AW
 {
+	partial interface IInstance
+	{
+			event InstanceCallbackDelegate CallbackLogin;
+			event InstanceCallbackDelegate CallbackEnter;
+			event InstanceCallbackDelegate CallbackObjectResult;
+			event InstanceCallbackDelegate CallbackLicenseAttributes;
+			event InstanceCallbackDelegate CallbackLicenseResult;
+			event InstanceCallbackDelegate CallbackCitizenAttributes;
+			event InstanceCallbackDelegate CallbackCitizenResult;
+			event InstanceCallbackDelegate CallbackQuery;
+			event InstanceCallbackDelegate CallbackUniverseEjection;
+			event InstanceCallbackDelegate CallbackUniverseEjectionResult;
+			event InstanceCallbackDelegate CallbackAddress;
+			event InstanceCallbackDelegate CallbackWorldEjection;
+			event InstanceCallbackDelegate CallbackWorldEjectionResult;
+			event InstanceCallbackDelegate CallbackAdminWorldList;
+			event InstanceCallbackDelegate CallbackAdminWorldResult;
+			event InstanceCallbackDelegate CallbackDeleteAllObjectsResult;
+			event InstanceCallbackDelegate CallbackCellResult;
+			event InstanceCallbackDelegate CallbackReloadRegistry;
+			event InstanceCallbackDelegate CallbackAttributesResetResult;
+			event InstanceCallbackDelegate CallbackAdmin;
+			event InstanceCallbackDelegate CallbackTerrainSetResult;
+			event InstanceCallbackDelegate CallbackTerrainNextResult;
+			event InstanceCallbackDelegate CallbackTerrainDeleteAllResult;
+			event InstanceCallbackDelegate CallbackTerrainLoadNodeResult;
+			event InstanceCallbackDelegate CallbackBotgramResult;
+			event InstanceCallbackDelegate CallbackUserList;
+			event InstanceCallbackDelegate CallbackBotmenuResult;
+			event InstanceCallbackDelegate CallbackCav;
+			event InstanceCallbackDelegate CallbackCavResult;
+			event InstanceCallbackDelegate CallbackWorldInstance;
+			event InstanceCallbackDelegate CallbackHudResult;
+			event InstanceCallbackDelegate CallbackAvatarLocation;
+			event InstanceCallbackDelegate CallbackObjectQuery;
+			event InstanceCallbackDelegate CallbackWorldCavResult;
+			event InstanceCallbackDelegate CallbackWorldCav;
+		}
+	
 	partial class Instance
 	{
 		#region CallbackLogin

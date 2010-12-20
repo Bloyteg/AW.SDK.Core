@@ -60,6 +60,13 @@ using System.Runtime.InteropServices;
 
 namespace AW
 {
+	partial interface IInstance
+	{
+	<# foreach(SdkIdentifier @event in events) { #>
+		event InstanceEventDelegate <#= @event.Name #>;
+	<# } #>
+	}
+	
 	partial class Instance
 	{
 	<# foreach(SdkIdentifier evnt in events) { #>

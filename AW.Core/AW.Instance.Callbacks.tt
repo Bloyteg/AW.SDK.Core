@@ -50,6 +50,13 @@ using System.Runtime.InteropServices;
 
 namespace AW
 {
+	partial interface IInstance
+	{
+	<# foreach(SdkIdentifier callback in callbacks) { #>
+		event InstanceCallbackDelegate <#= callback.Name #>;
+	<# } #>
+	}
+	
 	partial class Instance
 	{
 	<# foreach(SdkIdentifier callback in callbacks) { #>

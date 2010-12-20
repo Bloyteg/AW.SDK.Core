@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AW
 {
-    public class IAttributeProvider
+    public partial interface IAttributeProvider
     {
     }
 }
