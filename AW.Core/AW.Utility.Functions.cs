@@ -42,7 +42,7 @@ namespace AW
             //Declare buffers
             IntPtr dataIn = Marshal.AllocHGlobal(data.Length);
             IntPtr dataOut = Marshal.AllocHGlobal((int)bufferSize);
-            byte[] retArr;
+            byte[] retArr = null;
 
             //Attempt to compress the data
             try
@@ -59,7 +59,7 @@ namespace AW
                 }
                 else
                 {
-                    throw new InternalZlibException(string.Format("Internal zlib failure (Reason {0}).", rc));
+                    InternalZlibException.Assert(rc);
                 }
             }
             finally
@@ -86,7 +86,7 @@ namespace AW
             //Declare buffers
             IntPtr dataIn = Marshal.AllocHGlobal(data.Length);
             IntPtr dataOut = Marshal.AllocHGlobal((int)bufferSize);
-            byte[] retArr;
+            byte[] retArr = null;
 
             //Attempt to compress the data
             try
@@ -103,7 +103,7 @@ namespace AW
                 }
                 else
                 {
-                    throw new InternalZlibException(string.Format("Internal zlib failure (Reason {0}).", rc));
+                    InternalZlibException.Assert(rc);
                 }
             }
             finally

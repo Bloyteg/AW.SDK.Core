@@ -17,7 +17,7 @@ namespace AW
             set
             {
                 if (initialized)
-                    throw new BindAddressException("Can not set the bind IP address after an instance has been created.");
+                    throw new BindAddressException();
 
                 bindAddress = value;
             }

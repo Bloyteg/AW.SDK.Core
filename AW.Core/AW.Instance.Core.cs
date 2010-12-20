@@ -42,8 +42,7 @@ namespace AW
         static Instance()
         {
             int rc = Utility.Initialize();
-            if (rc != 0)
-                throw new InitializationFailedException(string.Format("Failed to initialize the SDK (Reason {0}).", rc));
+            
         }
 
         #endregion
@@ -53,12 +52,12 @@ namespace AW
         /// <summary>
         /// Default instance constructor.  The instance will be created for the default Active Worlds universe.
         /// </summary>
-        /// <exception cref="AW.InstanceException">Thrown when the instance failed to be created.</exception>
+        /// <exception cref="InstanceCreationFailedException">Thrown when the instance failed to be created.</exception>
         public Instance()
         {
             IntPtr tempInstance;
             int rc = InterOp.aw_create(null, 0, out tempInstance);
-            InstanceException.Assert(rc);
+            SDKWrapperException<InstanceCreationFailedException>.Assert(rc);
 
             _instance = tempInstance;
             Attributes = new AttributeProvider(this);
@@ -69,12 +68,12 @@ namespace AW
         /// </summary>
         /// <param name="domain">Unresolved domain name (i.e. auth.activeworlds.com).</param>
         /// <param name="port">Port number of the universe server.</param>
-        /// <exception cref="AW.InstanceException">Thrown when the instance failed to be created.</exception>
+        /// <exception cref="InstanceCreationFailedException">Thrown when the instance failed to be created.</exception>
         public Instance(string domain, int port)
         {
             IntPtr tempInstance;
             int rc = InterOp.aw_create(domain, port, out tempInstance);
-            InstanceException.Assert(rc);
+            SDKWrapperException<InstanceCreationFailedException>.Assert(rc);
 
             _instance = tempInstance;
             Attributes = new AttributeProvider(this);
@@ -85,12 +84,12 @@ namespace AW
         /// </summary>
         /// <param name="address">IP address of the universe server represented as a 32-bit unsigned integer.  The IP address is stored according to Network Byte Order.</param>
         /// <param name="port">Port number of the universe server.</param>
-        /// <exception cref="AW.InstanceException">Thrown when the instance failed to be created.</exception>
+        /// <exception cref="InstanceCreationFailedException">Thrown when the instance failed to be created.</exception>
         public Instance(int address, int port)
         {
             IntPtr tempInstance;
             int rc = InterOp.aw_create_resolved(address, port, out tempInstance);
-            InstanceException.Assert(rc);
+            SDKWrapperException<InstanceCreationFailedException>.Assert(rc);
 
             _instance = tempInstance;
             Attributes = new AttributeProvider(this);
@@ -102,12 +101,12 @@ namespace AW
         /// <param name="domain">The address of the world server (domain or IP address).</param>
         /// <param name="port">The port of the world server.</param>
         /// <param name="password">The password required to login to the world server.</param>
-        /// <exception cref="AW.InstanceException">Thrown when the instance failed to be created.</exception>
+        /// <exception cref="InstanceCreationFailedException">Thrown when the instance failed to be created.</exception>
         public Instance(string domain, int port, string password)
         {
             IntPtr tempInstance;
             int rc = InterOp.aw_server_admin(domain, port, password, out tempInstance);
-            InstanceException.Assert(rc);
+            SDKWrapperException<InstanceCreationFailedException>.Assert(rc);
 
             _instance = tempInstance;
         }
@@ -133,8 +132,6 @@ namespace AW
         /// This will destroy the instance.  All references to the instance should be broken after calling this method.
         /// Any attempts to operate on an instance after it has been disposed will result in an exception being thrown.
         /// </remarks>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
-        /// (i.e. the instance has been destroyed or is not valid).</exception>
         public void Dispose()
         {
             _disposed = true;
@@ -148,7 +145,7 @@ namespace AW
             {
                 SetInstance();
                 int rc = InterOp.aw_destroy();
-                InstanceException.Assert(rc);
+                SDKWrapperException<InstanceDisposeFailedException>.Assert(rc);
             }
 
             GC.Collect();
@@ -178,11 +175,7 @@ namespace AW
             if (InterOp.aw_instance() != _instance)
             {
                 int rc = InterOp.aw_instance_set(_instance);
-
-                if (rc > 0) throw new InstanceException("Failed to set instance.")
-                {
-                    ErrorCode = rc
-                };
+                SDKWrapperException<InstanceSetFailedException>.Assert(rc);
             }
         }
 
@@ -192,13 +185,10 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be set.</param>
         /// <param name="value">The value of the attribute being set.</param>
-        /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
-        /// (i.e. the instance has been destroyed or is not valid).</exception>
         public void SetString(Attributes attribute, string value)
         {
             SetInstance();
-            InstanceException.Assert(InterOp.aw_string_set(attribute, value));
+            SDKWrapperException<InstanceAttributeException>.Assert(InterOp.aw_string_set(attribute, value));
         }
 
         /// <summary>
@@ -206,8 +196,6 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be accessed.</param>
         /// <returns>The value of the attribute being accessed.</returns>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
-        /// (i.e. the instance has been destroyed or is not valid).</exception>
         public string GetString(Attributes attribute)
         {
             SetInstance();
@@ -225,7 +213,7 @@ namespace AW
         public void SetInt(Attributes attribute, int value)
         {
             SetInstance();
-            InstanceException.Assert(InterOp.aw_int_set(attribute, value));
+            SDKWrapperException<InstanceAttributeException>.Assert(InterOp.aw_int_set(attribute, value));
         }
 
         /// <summary>
@@ -252,7 +240,7 @@ namespace AW
         public void SetBool(Attributes attribute, bool value)
         {
             SetInstance();
-            InstanceException.Assert(InterOp.aw_bool_set(attribute, value));
+            SDKWrapperException<InstanceAttributeException>.Assert(InterOp.aw_bool_set(attribute, value));
         }
 
         /// <summary>
@@ -279,7 +267,7 @@ namespace AW
         public void SetFloat(Attributes attribute, float value)
         {
             SetInstance();
-            InstanceException.Assert(InterOp.aw_float_set(attribute, value));
+            SDKWrapperException<InstanceAttributeException>.Assert(InterOp.aw_float_set(attribute, value));
         }
 
         /// <summary>
@@ -300,9 +288,6 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be set.</param>
         /// <param name="value">The value of the attribute being set.</param>
-        /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
-        /// (i.e. the instance has been destroyed or is not valid).</exception>
         public void SetData(Attributes attribute, byte[] value)
         {
             SetInstance();
@@ -320,7 +305,7 @@ namespace AW
                 Marshal.FreeHGlobal(dest);
             }
 
-            InstanceException.Assert(errorCode);
+            SDKWrapperException<InstanceAttributeException>.Assert(errorCode);
         }
 
         /// <summary>

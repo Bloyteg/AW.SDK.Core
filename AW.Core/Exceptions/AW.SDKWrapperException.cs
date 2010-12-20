@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -6,13 +7,12 @@ namespace AW
     /// <summary>
     /// Exception thrown when an instance based operation fails.
     /// </summary>
-    public sealed class InstanceException : System.Exception
+    public abstract class SDKWrapperException<T> : System.Exception
+        where T : SDKWrapperException<T>, new()
     {
-
-        internal InstanceException(string message)
-            : base(message)
+        protected SDKWrapperException()
         {
-            HelpLink = "http://docs.theenginerd.com/awnet/";
+
         }
 
         /// <summary>
@@ -34,6 +34,14 @@ namespace AW
             internal set;
         }
 
+        public override string Message
+        {
+            get
+            {
+                return string.Format("SDK call to {0} failed (Reason {1}).", CallingMethod, ErrorCode);
+            }
+        }
+
         internal static void Assert(int error)
         {
             if (error == 0)
@@ -45,11 +53,9 @@ namespace AW
             StackFrame stackFrame = stackTrace.GetFrame(stackTrace.FrameCount > 0 ? 1 : 0);
             MethodBase methodBase = stackFrame.GetMethod();
 
-            string message = string.Format("Instance call to method {0} failed (Reason {1}).", methodBase.Name,
-                                           error);
-
-            throw new InstanceException(message)
+            throw new T
                       {
+                          HelpLink = "http://docs.theenginerd.com/awnet/",
                           ErrorCode = error,
                           HResult = error,
                           CallingMethod = methodBase.Name

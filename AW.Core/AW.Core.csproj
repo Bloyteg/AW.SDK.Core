@@ -77,8 +77,8 @@
       <DependentUpon>AW.AttributeProvider.tt</DependentUpon>
     </Compile>
     <Compile Include="AW.IInstance.cs" />
-    <Compile Include="AW.InitializationFailedException.cs" />
-    <Compile Include="AW.BindAddressException.cs" />
+    <Compile Include="Exceptions\AW.SDKWrapperInitializationFailedException.cs" />
+    <Compile Include="Exceptions\AW.BindAddressException.cs" />
     <Compile Include="AW.IAttributeProvider.cs" />
     <Compile Include="AW.Instance.Callbacks.cs">
       <AutoGen>True</AutoGen>
@@ -91,7 +91,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AW.Instance.Events.tt</DependentUpon>
     </Compile>
-    <Compile Include="AW.InstanceException.cs" />
+    <Compile Include="Exceptions\AW.InstanceCreationFailedException.cs" />
+    <Compile Include="Exceptions\AW.SDKWrapperException.cs" />
     <Compile Include="AW.Instance.Functions.cs">
     </Compile>
     <Compile Include="AW.NotHexStringException.cs" />
@@ -102,6 +103,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AW.Unmanaged.InterOp.cs" />
+    <Compile Include="Exceptions\AW.InstanceAttributeException.cs" />
+    <Compile Include="Exceptions\AW.InstanceDisposeFailedException.cs" />
+    <Compile Include="Exceptions\AW.InstanceSetFailedException.cs" />
     <Compile Include="Utilities\Utilities.HexConverter.cs" />
     <Compile Include="AW.V4Object.cs">
     </Compile>
@@ -125,7 +129,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AW.AttributeProvider.cs</LastGenOutput>
     </None>
-    <Compile Include="AW.InternalZlibException.cs" />
+    <Compile Include="Exceptions\AW.InternalZlibException.cs" />
     <None Include="AW.Instance.Callbacks.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AW.Instance.Callbacks.cs</LastGenOutput>
