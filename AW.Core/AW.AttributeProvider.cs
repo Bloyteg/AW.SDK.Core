@@ -3,6 +3,2470 @@
 
 namespace AW
 {
+	public partial interface IAttributeProvider
+	{
+		
+		int AttribSenderSession
+		{
+			get;
+		}
+		
+		int AvatarAddress
+		{
+			get;
+		}
+		
+		int AvatarAngle
+		{
+			get;
+			set;
+		}
+		
+		int AvatarCitizen
+		{
+			get;
+		}
+		
+		int AvatarDistance
+		{
+			get;
+			set;
+		}
+		
+		int AvatarFlags
+		{
+			get;
+			set;
+		}
+		
+		int AvatarGesture
+		{
+			get;
+			set;
+		}
+		
+		bool AvatarLock
+		{
+			get;
+			set;
+		}
+		
+		string AvatarName
+		{
+			get;
+		}
+		
+		int AvatarPitch
+		{
+			get;
+			set;
+		}
+		
+		int AvatarPitchDelta
+		{
+			get;
+			set;
+		}
+		
+		int AvatarPrivilege
+		{
+			get;
+		}
+		
+		int AvatarSession
+		{
+			get;
+		}
+		
+		int AvatarState
+		{
+			get;
+			set;
+		}
+		
+		int AvatarType
+		{
+			get;
+			set;
+		}
+		
+		int AvatarVersion
+		{
+			get;
+		}
+		
+		int AvatarWorldInstance
+		{
+			get;
+			set;
+		}
+		
+		int AvatarX
+		{
+			get;
+			set;
+		}
+		
+		int AvatarY
+		{
+			get;
+			set;
+		}
+		
+		int AvatarYaw
+		{
+			get;
+			set;
+		}
+		
+		int AvatarYawDelta
+		{
+			get;
+			set;
+		}
+		
+		int AvatarYDelta
+		{
+			get;
+			set;
+		}
+		
+		int AvatarZ
+		{
+			get;
+			set;
+		}
+		
+		int BotgramFrom
+		{
+			get;
+		}
+		
+		string BotgramFromName
+		{
+			get;
+		}
+		
+		string BotgramText
+		{
+			get;
+			set;
+		}
+		
+		int BotgramTo
+		{
+			get;
+			set;
+		}
+		
+		int BotgramType
+		{
+			get;
+			set;
+		}
+		
+		string BotmenuAnswer
+		{
+			get;
+			set;
+		}
+		
+		string BotmenuFromName
+		{
+			get;
+			set;
+		}
+		
+		int BotmenuFromSession
+		{
+			get;
+			set;
+		}
+		
+		string BotmenuQuestion
+		{
+			get;
+			set;
+		}
+		
+		int BotmenuToSession
+		{
+			get;
+			set;
+		}
+		
+		string CameraLocationObject
+		{
+			get;
+			set;
+		}
+		
+		int CameraLocationSession
+		{
+			get;
+			set;
+		}
+		
+		int CameraLocationType
+		{
+			get;
+			set;
+		}
+		
+		string CameraTargetObject
+		{
+			get;
+			set;
+		}
+		
+		int CameraTargetSession
+		{
+			get;
+			set;
+		}
+		
+		int CameraTargetType
+		{
+			get;
+			set;
+		}
+		
+		int CavCitizen
+		{
+			get;
+			set;
+		}
+		
+		byte[] CavDefinition
+		{
+			get;
+			set;
+		}
+		
+		int CavSession
+		{
+			get;
+			set;
+		}
+		
+		bool CellCombine
+		{
+			get;
+			set;
+		}
+		
+		int CellIterator
+		{
+			get;
+			set;
+		}
+		
+		int CellSequence
+		{
+			get;
+		}
+		
+		int CellSize
+		{
+			get;
+		}
+		
+		int CellX
+		{
+			get;
+		}
+		
+		int CellZ
+		{
+			get;
+		}
+		
+		string ChatMessage
+		{
+			get;
+		}
+		
+		int ChatSession
+		{
+			get;
+		}
+		
+		int ChatType
+		{
+			get;
+		}
+		
+		bool CitizenBeta
+		{
+			get;
+			set;
+		}
+		
+		int CitizenBotLimit
+		{
+			get;
+			set;
+		}
+		
+		bool CitizenCavEnabled
+		{
+			get;
+			set;
+		}
+		
+		string CitizenComment
+		{
+			get;
+			set;
+		}
+		
+		string CitizenEmail
+		{
+			get;
+			set;
+		}
+		
+		bool CitizenEnabled
+		{
+			get;
+			set;
+		}
+		
+		int CitizenExpirationTime
+		{
+			get;
+			set;
+		}
+		
+		int CitizenImmigrationTime
+		{
+			get;
+		}
+		
+		int CitizenLastAddress
+		{
+			get;
+			set;
+		}
+		
+		int CitizenLastLogin
+		{
+			get;
+			set;
+		}
+		
+		string CitizenName
+		{
+			get;
+			set;
+		}
+		
+		int CitizenNumber
+		{
+			get;
+			set;
+		}
+		
+		string CitizenPassword
+		{
+			get;
+			set;
+		}
+		
+		bool CitizenPavEnabled
+		{
+			get;
+			set;
+		}
+		
+		int CitizenPrivacy
+		{
+			get;
+			set;
+		}
+		
+		string CitizenPrivilegePassword
+		{
+			get;
+			set;
+		}
+		
+		int CitizenTimeLeft
+		{
+			get;
+			set;
+		}
+		
+		int CitizenTotalTime
+		{
+			get;
+			set;
+		}
+		
+		bool CitizenTrial
+		{
+			get;
+			set;
+		}
+		
+		string CitizenUrl
+		{
+			get;
+			set;
+		}
+		
+		string ClickedName
+		{
+			get;
+		}
+		
+		int ClickedSession
+		{
+			get;
+		}
+		
+		int ConsoleBlue
+		{
+			get;
+			set;
+		}
+		
+		bool ConsoleBold
+		{
+			get;
+			set;
+		}
+		
+		int ConsoleGreen
+		{
+			get;
+			set;
+		}
+		
+		bool ConsoleItalics
+		{
+			get;
+			set;
+		}
+		
+		string ConsoleMessage
+		{
+			get;
+			set;
+		}
+		
+		int ConsoleRed
+		{
+			get;
+			set;
+		}
+		
+		int DisconnectReason
+		{
+			get;
+		}
+		
+		int EjectDuration
+		{
+			get;
+			set;
+		}
+		
+		int EjectSession
+		{
+			get;
+			set;
+		}
+		
+		int EjectionAddress
+		{
+			get;
+			set;
+		}
+		
+		string EjectionComment
+		{
+			get;
+			set;
+		}
+		
+		int EjectionCreationTime
+		{
+			get;
+		}
+		
+		int EjectionExpirationTime
+		{
+			get;
+			set;
+		}
+		
+		int EjectionType
+		{
+			get;
+			set;
+		}
+		
+		bool EnterGlobal
+		{
+			get;
+			set;
+		}
+		
+		int EntityFlags
+		{
+			get;
+			set;
+		}
+		
+		int EntityId
+		{
+			get;
+			set;
+		}
+		
+		int EntityModelNum
+		{
+			get;
+			set;
+		}
+		
+		int EntityOwnerCitizen
+		{
+			get;
+			set;
+		}
+		
+		int EntityOwnerSession
+		{
+			get;
+			set;
+		}
+		
+		int EntityPitch
+		{
+			get;
+			set;
+		}
+		
+		int EntityRoll
+		{
+			get;
+			set;
+		}
+		
+		int EntityState
+		{
+			get;
+			set;
+		}
+		
+		int EntityType
+		{
+			get;
+			set;
+		}
+		
+		int EntityX
+		{
+			get;
+			set;
+		}
+		
+		int EntityY
+		{
+			get;
+			set;
+		}
+		
+		int EntityYaw
+		{
+			get;
+			set;
+		}
+		
+		int EntityZ
+		{
+			get;
+			set;
+		}
+		
+		int HudElementClickX
+		{
+			get;
+			set;
+		}
+		
+		int HudElementClickY
+		{
+			get;
+			set;
+		}
+		
+		int HudElementClickZ
+		{
+			get;
+			set;
+		}
+		
+		int HudElementColor
+		{
+			get;
+			set;
+		}
+		
+		int HudElementFlags
+		{
+			get;
+			set;
+		}
+		
+		int HudElementId
+		{
+			get;
+			set;
+		}
+		
+		float HudElementOpacity
+		{
+			get;
+			set;
+		}
+		
+		int HudElementOrigin
+		{
+			get;
+			set;
+		}
+		
+		int HudElementSession
+		{
+			get;
+			set;
+		}
+		
+		int HudElementSizeX
+		{
+			get;
+			set;
+		}
+		
+		int HudElementSizeY
+		{
+			get;
+			set;
+		}
+		
+		int HudElementSizeZ
+		{
+			get;
+			set;
+		}
+		
+		string HudElementText
+		{
+			get;
+			set;
+		}
+		
+		int HudElementTextureOffsetX
+		{
+			get;
+			set;
+		}
+		
+		int HudElementTextureOffsetY
+		{
+			get;
+			set;
+		}
+		
+		int HudElementType
+		{
+			get;
+			set;
+		}
+		
+		int HudElementX
+		{
+			get;
+			set;
+		}
+		
+		int HudElementY
+		{
+			get;
+			set;
+		}
+		
+		int HudElementZ
+		{
+			get;
+			set;
+		}
+		
+		bool LicenseAllowTourists
+		{
+			get;
+			set;
+		}
+		
+		string LicenseComment
+		{
+			get;
+			set;
+		}
+		
+		int LicenseCreationTime
+		{
+			get;
+		}
+		
+		string LicenseEmail
+		{
+			get;
+			set;
+		}
+		
+		int LicenseExpirationTime
+		{
+			get;
+			set;
+		}
+		
+		bool LicenseHidden
+		{
+			get;
+			set;
+		}
+		
+		int LicenseLastAddress
+		{
+			get;
+		}
+		
+		int LicenseLastStart
+		{
+			get;
+		}
+		
+		string LicenseName
+		{
+			get;
+			set;
+		}
+		
+		string LicensePassword
+		{
+			get;
+			set;
+		}
+		
+		bool LicensePlugins
+		{
+			get;
+			set;
+		}
+		
+		int LicenseRange
+		{
+			get;
+			set;
+		}
+		
+		int LicenseUsers
+		{
+			get;
+			set;
+		}
+		
+		bool LicenseVoip
+		{
+			get;
+			set;
+		}
+		
+		string LoginApplication
+		{
+			get;
+			set;
+		}
+		
+		string LoginName
+		{
+			get;
+			set;
+		}
+		
+		int LoginOwner
+		{
+			get;
+			set;
+		}
+		
+		string LoginPassword
+		{
+			get;
+			set;
+		}
+		
+		string LoginPrivilegeName
+		{
+			get;
+		}
+		
+		string LoginPrivilegePassword
+		{
+			get;
+			set;
+		}
+		
+		int MyGesture
+		{
+			get;
+			set;
+		}
+		
+		int MyPitch
+		{
+			get;
+			set;
+		}
+		
+		int MyState
+		{
+			get;
+			set;
+		}
+		
+		int MyType
+		{
+			get;
+			set;
+		}
+		
+		int MyX
+		{
+			get;
+			set;
+		}
+		
+		int MyY
+		{
+			get;
+			set;
+		}
+		
+		int MyYaw
+		{
+			get;
+			set;
+		}
+		
+		int MyZ
+		{
+			get;
+			set;
+		}
+		
+		string ObjectAction
+		{
+			get;
+			set;
+		}
+		
+		int ObjectBuildTimestamp
+		{
+			get;
+			set;
+		}
+		
+		int ObjectCallbackReference
+		{
+			get;
+			set;
+		}
+		
+		byte[] ObjectData
+		{
+			get;
+			set;
+		}
+		
+		string ObjectDescription
+		{
+			get;
+			set;
+		}
+		
+		int ObjectId
+		{
+			get;
+			set;
+		}
+		
+		string ObjectModel
+		{
+			get;
+			set;
+		}
+		
+		int ObjectNumber
+		{
+			get;
+			set;
+		}
+		
+		int ObjectOldNumber
+		{
+			get;
+			set;
+		}
+		
+		int ObjectOldX
+		{
+			get;
+			set;
+		}
+		
+		int ObjectOldZ
+		{
+			get;
+			set;
+		}
+		
+		int ObjectOwner
+		{
+			get;
+			set;
+		}
+		
+		int ObjectRoll
+		{
+			get;
+			set;
+		}
+		
+		int ObjectSession
+		{
+			get;
+		}
+		
+		int ObjectSessionTo
+		{
+			get;
+			set;
+		}
+		
+		int ObjectSync
+		{
+			get;
+			set;
+		}
+		
+		int ObjectTilt
+		{
+			get;
+			set;
+		}
+		
+		int ObjectType
+		{
+			get;
+			set;
+		}
+		
+		int ObjectX
+		{
+			get;
+			set;
+		}
+		
+		int ObjectY
+		{
+			get;
+			set;
+		}
+		
+		int ObjectYaw
+		{
+			get;
+			set;
+		}
+		
+		int ObjectZ
+		{
+			get;
+			set;
+		}
+		
+		string PluginString
+		{
+			get;
+			set;
+		}
+		
+		bool QueryComplete
+		{
+			get;
+		}
+		
+		int ServerBuild
+		{
+			get;
+		}
+		
+		string ServerCaretakers
+		{
+			get;
+			set;
+		}
+		
+		bool ServerEnabled
+		{
+			get;
+			set;
+		}
+		
+		int ServerExpiration
+		{
+			get;
+		}
+		
+		int ServerId
+		{
+			get;
+			set;
+		}
+		
+		int ServerInstance
+		{
+			get;
+			set;
+		}
+		
+		int ServerMaxUsers
+		{
+			get;
+		}
+		
+		bool ServerMore
+		{
+			get;
+		}
+		
+		string ServerName
+		{
+			get;
+			set;
+		}
+		
+		int ServerObjects
+		{
+			get;
+		}
+		
+		string ServerPassword
+		{
+			get;
+			set;
+		}
+		
+		string ServerRegistry
+		{
+			get;
+			set;
+		}
+		
+		int ServerSize
+		{
+			get;
+		}
+		
+		int ServerStartRc
+		{
+			get;
+		}
+		
+		int ServerState
+		{
+			get;
+		}
+		
+		int ServerTerrainNodes
+		{
+			get;
+		}
+		
+		int ServerUsers
+		{
+			get;
+		}
+		
+		string SoundName
+		{
+			get;
+			set;
+		}
+		
+		bool TeleportWarp
+		{
+			get;
+			set;
+		}
+		
+		string TeleportWorld
+		{
+			get;
+			set;
+		}
+		
+		int TeleportX
+		{
+			get;
+			set;
+		}
+		
+		int TeleportY
+		{
+			get;
+			set;
+		}
+		
+		int TeleportYaw
+		{
+			get;
+			set;
+		}
+		
+		int TeleportZ
+		{
+			get;
+			set;
+		}
+		
+		bool TerrainComplete
+		{
+			get;
+		}
+		
+		int TerrainNodeHeightCount
+		{
+			get;
+			set;
+		}
+		
+		byte[] TerrainNodeHeights
+		{
+			get;
+			set;
+		}
+		
+		int TerrainNodeSize
+		{
+			get;
+			set;
+		}
+		
+		int TerrainNodeTextureCount
+		{
+			get;
+			set;
+		}
+		
+		byte[] TerrainNodeTextures
+		{
+			get;
+			set;
+		}
+		
+		int TerrainNodeX
+		{
+			get;
+			set;
+		}
+		
+		int TerrainNodeZ
+		{
+			get;
+			set;
+		}
+		
+		int TerrainPageX
+		{
+			get;
+			set;
+		}
+		
+		int TerrainPageZ
+		{
+			get;
+			set;
+		}
+		
+		int TerrainSequence
+		{
+			get;
+		}
+		
+		int TerrainVersionNeeded
+		{
+			get;
+			set;
+		}
+		
+		int TerrainX
+		{
+			get;
+		}
+		
+		int TerrainZ
+		{
+			get;
+		}
+		
+		int ToolbarId
+		{
+			get;
+			set;
+		}
+		
+		int ToolbarSession
+		{
+			get;
+		}
+		
+		string UrlName
+		{
+			get;
+		}
+		
+		string UrlPost
+		{
+			get;
+			set;
+		}
+		
+		string UrlTarget
+		{
+			get;
+		}
+		
+		bool UrlTarget3D
+		{
+			get;
+			set;
+		}
+		
+		int UserlistAddress
+		{
+			get;
+		}
+		
+		int UserlistCitizen
+		{
+			get;
+		}
+		
+		string UserlistEmail
+		{
+			get;
+		}
+		
+		int UserlistId
+		{
+			get;
+		}
+		
+		bool UserlistMore
+		{
+			get;
+		}
+		
+		string UserlistName
+		{
+			get;
+		}
+		
+		int UserlistPrivilege
+		{
+			get;
+		}
+		
+		int UserlistState
+		{
+			get;
+		}
+		
+		string UserlistWorld
+		{
+			get;
+		}
+		
+		bool WorldlistMore
+		{
+			get;
+		}
+		
+		string WorldlistName
+		{
+			get;
+		}
+		
+		int WorldlistRating
+		{
+			get;
+		}
+		
+		int WorldlistStatus
+		{
+			get;
+		}
+		
+		int WorldlistUsers
+		{
+			get;
+		}
+		
+		bool UniverseAllowBotsCav
+		{
+			get;
+			set;
+		}
+		
+		bool UniverseAllowTourists
+		{
+			get;
+			set;
+		}
+		
+		bool UniverseAllowTouristsCav
+		{
+			get;
+			set;
+		}
+		
+		string UniverseAnnualCharge
+		{
+			get;
+		}
+		
+		int UniverseBrowserBeta
+		{
+			get;
+			set;
+		}
+		
+		int UniverseBrowserMinimum
+		{
+			get;
+			set;
+		}
+		
+		int UniverseBrowserRelease
+		{
+			get;
+			set;
+		}
+		
+		int UniverseBrowserRelease22
+		{
+			get;
+			set;
+		}
+		
+		int UniverseBuildNumber
+		{
+			get;
+		}
+		
+		string UniverseCavPath
+		{
+			get;
+			set;
+		}
+		
+		string UniverseCavPath2
+		{
+			get;
+			set;
+		}
+		
+		bool UniverseCitizenChangesAllowed
+		{
+			get;
+		}
+		
+		string UniverseMonthlyCharge
+		{
+			get;
+		}
+		
+		string UniverseName
+		{
+			get;
+			set;
+		}
+		
+		string UniverseNotepadUrl
+		{
+			get;
+			set;
+		}
+		
+		int UniverseObjectRefresh
+		{
+			get;
+			set;
+		}
+		
+		byte[] UniverseObjectPassword
+		{
+			get;
+			set;
+		}
+		
+		int UniverseRegisterMethod
+		{
+			get;
+		}
+		
+		bool UniverseRegistrationRequired
+		{
+			get;
+		}
+		
+		string UniverseSearchUrl
+		{
+			get;
+			set;
+		}
+		
+		int UniverseTime
+		{
+			get;
+		}
+		
+		bool UniverseUserListEnabled
+		{
+			get;
+		}
+		
+		string UniverseWelcomeMessage
+		{
+			get;
+			set;
+		}
+		
+		int UniverseWorldBeta
+		{
+			get;
+			set;
+		}
+		
+		int UniverseWorldMinimum
+		{
+			get;
+			set;
+		}
+		
+		int UniverseWorldRelease
+		{
+			get;
+			set;
+		}
+		
+		string UniverseWorldStart
+		{
+			get;
+			set;
+		}
+		
+		bool WorldAllow3AxisRotation
+		{
+			get;
+			set;
+		}
+		
+		bool WorldAllowAvatarCollision
+		{
+			get;
+			set;
+		}
+		
+		bool WorldAllowCitizenWhisper
+		{
+			get;
+			set;
+		}
+		
+		bool WorldAllowFlying
+		{
+			get;
+			set;
+		}
+		
+		bool WorldAllowObjectSelect
+		{
+			get;
+			set;
+		}
+		
+		bool WorldAllowPassthru
+		{
+			get;
+			set;
+		}
+		
+		bool WorldAllowTeleport
+		{
+			get;
+			set;
+		}
+		
+		bool WorldAllowTouristBuild
+		{
+			get;
+			set;
+		}
+		
+		bool WorldAllowTouristWhisper
+		{
+			get;
+			set;
+		}
+		
+		bool WorldAlwaysShowNames
+		{
+			get;
+			set;
+		}
+		
+		int WorldAmbientLightBlue
+		{
+			get;
+			set;
+		}
+		
+		int WorldAmbientLightGreen
+		{
+			get;
+			set;
+		}
+		
+		int WorldAmbientLightRed
+		{
+			get;
+			set;
+		}
+		
+		int WorldAvatarRefreshRate
+		{
+			get;
+			set;
+		}
+		
+		string WorldBackdrop
+		{
+			get;
+			set;
+		}
+		
+		string WorldBotmenuUrl
+		{
+			get;
+			set;
+		}
+		
+		string WorldBotsRight
+		{
+			get;
+			set;
+		}
+		
+		bool WorldBuildCapability
+		{
+			get;
+		}
+		
+		int WorldBuildNumber
+		{
+			get;
+		}
+		
+		string WorldBuildRight
+		{
+			get;
+			set;
+		}
+		
+		float WorldBuoyancy
+		{
+			get;
+			set;
+		}
+		
+		float WorldCameraZoom
+		{
+			get;
+			set;
+		}
+		
+		bool WorldCaretakerCapability
+		{
+			get;
+		}
+		
+		string WorldCavObjectPassword
+		{
+			get;
+			set;
+		}
+		
+		string WorldCavObjectPath
+		{
+			get;
+			set;
+		}
+		
+		int WorldCavObjectRefresh
+		{
+			get;
+			set;
+		}
+		
+		int WorldCellLimit
+		{
+			get;
+			set;
+		}
+		
+		bool WorldChatDisableUrlClicks
+		{
+			get;
+			set;
+		}
+		
+		string WorldCloudsLayer1Mask
+		{
+			get;
+			set;
+		}
+		
+		int WorldCloudsLayer1Opacity
+		{
+			get;
+			set;
+		}
+		
+		float WorldCloudsLayer1SpeedX
+		{
+			get;
+			set;
+		}
+		
+		float WorldCloudsLayer1SpeedZ
+		{
+			get;
+			set;
+		}
+		
+		string WorldCloudsLayer1Texture
+		{
+			get;
+			set;
+		}
+		
+		float WorldCloudsLayer1Tile
+		{
+			get;
+			set;
+		}
+		
+		string WorldCloudsLayer2Mask
+		{
+			get;
+			set;
+		}
+		
+		int WorldCloudsLayer2Opacity
+		{
+			get;
+			set;
+		}
+		
+		float WorldCloudsLayer2SpeedX
+		{
+			get;
+			set;
+		}
+		
+		float WorldCloudsLayer2SpeedZ
+		{
+			get;
+			set;
+		}
+		
+		string WorldCloudsLayer2Texture
+		{
+			get;
+			set;
+		}
+		
+		float WorldCloudsLayer2Tile
+		{
+			get;
+			set;
+		}
+		
+		string WorldCloudsLayer3Mask
+		{
+			get;
+			set;
+		}
+		
+		int WorldCloudsLayer3Opacity
+		{
+			get;
+			set;
+		}
+		
+		float WorldCloudsLayer3SpeedX
+		{
+			get;
+			set;
+		}
+		
+		float WorldCloudsLayer3SpeedZ
+		{
+			get;
+			set;
+		}
+		
+		string WorldCloudsLayer3Texture
+		{
+			get;
+			set;
+		}
+		
+		float WorldCloudsLayer3Tile
+		{
+			get;
+			set;
+		}
+		
+		int WorldCreationTimestamp
+		{
+			get;
+		}
+		
+		bool WorldDisableAvatarList
+		{
+			get;
+			set;
+		}
+		
+		bool WorldDisableChat
+		{
+			get;
+			set;
+		}
+		
+		bool WorldDisableCreateUrl
+		{
+			get;
+			set;
+		}
+		
+		bool WorldDisableMultipleMedia
+		{
+			get;
+			set;
+		}
+		
+		bool WorldDisableShadows
+		{
+			get;
+			set;
+		}
+		
+		bool WorldEjectCapability
+		{
+			get;
+		}
+		
+		string WorldEjectRight
+		{
+			get;
+			set;
+		}
+		
+		bool WorldEminentDomainCapability
+		{
+			get;
+		}
+		
+		string WorldEminentDomainRight
+		{
+			get;
+			set;
+		}
+		
+		bool WorldEnableBumpEvent
+		{
+			get;
+			set;
+		}
+		
+		bool WorldEnableCameraCollision
+		{
+			get;
+			set;
+		}
+		
+		int WorldEnableCav
+		{
+			get;
+			set;
+		}
+		
+		bool WorldEnablePav
+		{
+			get;
+			set;
+		}
+		
+		bool WorldEnableReferer
+		{
+			get;
+			set;
+		}
+		
+		bool WorldEnableSyncEvents
+		{
+			get;
+			set;
+		}
+		
+		bool WorldEnableTerrain
+		{
+			get;
+			set;
+		}
+		
+		string WorldEnterRight
+		{
+			get;
+			set;
+		}
+		
+		string WorldEntryPoint
+		{
+			get;
+			set;
+		}
+		
+		int WorldExpiration
+		{
+			get;
+		}
+		
+		int WorldFogBlue
+		{
+			get;
+			set;
+		}
+		
+		bool WorldFogEnable
+		{
+			get;
+			set;
+		}
+		
+		int WorldFogGreen
+		{
+			get;
+			set;
+		}
+		
+		int WorldFogMaximum
+		{
+			get;
+			set;
+		}
+		
+		int WorldFogMinimum
+		{
+			get;
+			set;
+		}
+		
+		int WorldFogRed
+		{
+			get;
+			set;
+		}
+		
+		bool WorldFogTinted
+		{
+			get;
+			set;
+		}
+		
+		float WorldFriction
+		{
+			get;
+			set;
+		}
+		
+		float WorldGravity
+		{
+			get;
+			set;
+		}
+		
+		string WorldGround
+		{
+			get;
+			set;
+		}
+		
+		string WorldHomePage
+		{
+			get;
+			set;
+		}
+		
+		string WorldKeywords
+		{
+			get;
+			set;
+		}
+		
+		int WorldLightBlue
+		{
+			get;
+			set;
+		}
+		
+		bool WorldLightDrawBright
+		{
+			get;
+			set;
+		}
+		
+		bool WorldLightDrawFront
+		{
+			get;
+			set;
+		}
+		
+		int WorldLightDrawSize
+		{
+			get;
+			set;
+		}
+		
+		int WorldLightGreen
+		{
+			get;
+			set;
+		}
+		
+		string WorldLightMask
+		{
+			get;
+			set;
+		}
+		
+		int WorldLightRed
+		{
+			get;
+			set;
+		}
+		
+		int WorldLightSourceColor
+		{
+			get;
+			set;
+		}
+		
+		bool WorldLightSourceUseColor
+		{
+			get;
+			set;
+		}
+		
+		string WorldLightTexture
+		{
+			get;
+			set;
+		}
+		
+		float WorldLightX
+		{
+			get;
+			set;
+		}
+		
+		float WorldLightY
+		{
+			get;
+			set;
+		}
+		
+		float WorldLightZ
+		{
+			get;
+			set;
+		}
+		
+		int WorldMaxLightRadius
+		{
+			get;
+			set;
+		}
+		
+		int WorldMaxUsers
+		{
+			get;
+		}
+		
+		int WorldMinimumVisibility
+		{
+			get;
+			set;
+		}
+		
+		int WorldMoverEmptyResetTimeout
+		{
+			get;
+			set;
+		}
+		
+		int WorldMoverUsedResetTimeout
+		{
+			get;
+			set;
+		}
+		
+		string WorldName
+		{
+			get;
+			set;
+		}
+		
+		int WorldObjectCount
+		{
+			get;
+		}
+		
+		byte[] WorldObjectPassword
+		{
+			get;
+			set;
+		}
+		
+		string WorldObjectPath
+		{
+			get;
+			set;
+		}
+		
+		int WorldObjectRefresh
+		{
+			get;
+			set;
+		}
+		
+		bool WorldPublicSpeakerCapability
+		{
+			get;
+		}
+		
+		string WorldPublicSpeakerRight
+		{
+			get;
+			set;
+		}
+		
+		int WorldRating
+		{
+			get;
+			set;
+		}
+		
+		bool WorldRepeatingGround
+		{
+			get;
+			set;
+		}
+		
+		int WorldRestrictedRadius
+		{
+			get;
+			set;
+		}
+		
+		int WorldSize
+		{
+			get;
+		}
+		
+		int WorldSkyBottomBlue
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkyBottomGreen
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkyBottomRed
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkyEastBlue
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkyEastGreen
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkyEastRed
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkyNorthBlue
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkyNorthGreen
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkyNorthRed
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkySouthBlue
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkySouthGreen
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkySouthRed
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkyTopBlue
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkyTopGreen
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkyTopRed
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkyWestBlue
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkyWestGreen
+		{
+			get;
+			set;
+		}
+		
+		int WorldSkyWestRed
+		{
+			get;
+			set;
+		}
+		
+		string WorldSkybox
+		{
+			get;
+			set;
+		}
+		
+		bool WorldSlopeslideEnabled
+		{
+			get;
+			set;
+		}
+		
+		float WorldSlopeslideMaxAngle
+		{
+			get;
+			set;
+		}
+		
+		float WorldSlopeslideMinAngle
+		{
+			get;
+			set;
+		}
+		
+		string WorldSoundAmbient
+		{
+			get;
+			set;
+		}
+		
+		string WorldSoundFootstep
+		{
+			get;
+			set;
+		}
+		
+		string WorldSoundWaterEnter
+		{
+			get;
+			set;
+		}
+		
+		string WorldSoundWaterExit
+		{
+			get;
+			set;
+		}
+		
+		bool WorldSpeakCapability
+		{
+			get;
+		}
+		
+		string WorldSpeakRight
+		{
+			get;
+			set;
+		}
+		
+		string WorldSpecialCommands
+		{
+			get;
+			set;
+		}
+		
+		string WorldSpecialCommandsRight
+		{
+			get;
+			set;
+		}
+		
+		string WorldSpecialObjectsRight
+		{
+			get;
+			set;
+		}
+		
+		float WorldTerrainAmbient
+		{
+			get;
+			set;
+		}
+		
+		float WorldTerrainDiffuse
+		{
+			get;
+			set;
+		}
+		
+		float WorldTerrainOffset
+		{
+			get;
+			set;
+		}
+		
+		string WorldTerrainRight
+		{
+			get;
+			set;
+		}
+		
+		int WorldTerrainTimestamp
+		{
+			get;
+		}
+		
+		string WorldTitle
+		{
+			get;
+			set;
+		}
+		
+		string WorldV4ObjectsRight
+		{
+			get;
+			set;
+		}
+		
+		int WorldWaitLimit
+		{
+			get;
+			set;
+		}
+		
+		int WorldWaterBlue
+		{
+			get;
+			set;
+		}
+		
+		string WorldWaterBottomMask
+		{
+			get;
+			set;
+		}
+		
+		string WorldWaterBottomTexture
+		{
+			get;
+			set;
+		}
+		
+		bool WorldWaterEnabled
+		{
+			get;
+			set;
+		}
+		
+		float WorldWaterFriction
+		{
+			get;
+			set;
+		}
+		
+		int WorldWaterGreen
+		{
+			get;
+			set;
+		}
+		
+		float WorldWaterLevel
+		{
+			get;
+			set;
+		}
+		
+		string WorldWaterMask
+		{
+			get;
+			set;
+		}
+		
+		int WorldWaterOpacity
+		{
+			get;
+			set;
+		}
+		
+		int WorldWaterRed
+		{
+			get;
+			set;
+		}
+		
+		float WorldWaterSpeed
+		{
+			get;
+			set;
+		}
+		
+		float WorldWaterSurfaceMove
+		{
+			get;
+			set;
+		}
+		
+		string WorldWaterTexture
+		{
+			get;
+			set;
+		}
+		
+		bool WorldWaterUnderTerrain
+		{
+			get;
+			set;
+		}
+		
+		float WorldWaterWaveMove
+		{
+			get;
+			set;
+		}
+		
+		int WorldWaterVisibility
+		{
+			get;
+			set;
+		}
+		
+		string WorldWelcomeMessage
+		{
+			get;
+			set;
+		}
+		
+		bool WorldVoipConferenceGlobal
+		{
+			get;
+			set;
+		}
+		
+		bool WorldVoipModerateGlobal
+		{
+			get;
+			set;
+		}
+		
+		string WorldVoipRight
+		{
+			get;
+			set;
+		}
+			
+	}
+
 	internal class AttributeProvider : IAttributeProvider
 	{
 		private readonly IInstance _instance;

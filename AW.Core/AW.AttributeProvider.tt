@@ -441,6 +441,24 @@ var attributes = new List<AttributeInfo>
 
 namespace AW
 {
+	public partial interface IAttributeProvider
+	{
+		<#
+			foreach(var attribute in attributes)
+			{
+				var type = attribute.AttributeType.ToString();
+		#>
+
+		<#= ConvertToType(attribute.AttributeType) #> <#= attribute.Name #>
+		{
+			get;
+		<# if(!attribute.ReadOnly) { #>
+	set;
+		<#} #>
+}
+		<# } #>	
+	}
+
 	internal class AttributeProvider : IAttributeProvider
 	{
 		private readonly IInstance _instance;
