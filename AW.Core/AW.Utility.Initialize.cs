@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.InteropServices;
 
 namespace AW
@@ -8,41 +7,41 @@ namespace AW
     /// </summary>
     public static partial class Utility
     {
-        private static bool initialized = false;
-        private static string bindAddress = string.Empty;
+        private static bool _initialized;
+        private static string _bindAddress = string.Empty;
 
         public static string BindAddress
         {
-            get { return bindAddress; }
+            get { return _bindAddress; }
             set
             {
-                if (initialized)
+                if (_initialized)
                     throw new BindAddressException();
 
-                bindAddress = value;
+                _bindAddress = value;
             }
         }
 
         internal static bool Initialized
         {
-            get { return initialized; }
+            get { return _initialized; }
         }
 
         internal static int Initialize()
         {
-            Marshal.PrelinkAll(typeof(InterOp));
+            Marshal.PrelinkAll(typeof(NativeMethods));
 
-            int rc = bindAddress.Equals(string.Empty) ? InterOp.aw_init(Constants.CurrentBuild) : InterOp.aw_init_bind(Constants.CurrentBuild, Utilities.Miscellaneous.IPStringToInt(bindAddress));
+            int rc = _bindAddress.Equals(string.Empty) ? NativeMethods.aw_init(Constants.CurrentBuild) : NativeMethods.aw_init_bind(Constants.CurrentBuild, Utilities.Miscellaneous.IPStringToInt(_bindAddress));
 
             if (rc == 0)
-                initialized = true;
+                _initialized = true;
             return rc;
         }
 
         internal static void Terminate()
         {
-            initialized = false;
-            InterOp.aw_term();
+            _initialized = false;
+            NativeMethods.aw_term();
         }
     }
 }

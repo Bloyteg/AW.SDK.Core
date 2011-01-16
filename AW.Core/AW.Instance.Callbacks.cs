@@ -53,7 +53,7 @@ namespace AW
 		#region CallbackLogin
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackLogin;
-		private InterOp.Callback nativeCallbackLogin;
+		private NativeMethods.Callback nativeCallbackLogin;
 
 		//Native callback handler.
 		private void OnCallbackLogin(int error)
@@ -75,8 +75,8 @@ namespace AW
 				if (managedCallbackLogin == null)
 				{
 					SetInstance();
-					nativeCallbackLogin = new InterOp.Callback(OnCallbackLogin);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_LOGIN, nativeCallbackLogin);
+					nativeCallbackLogin = new NativeMethods.Callback(OnCallbackLogin);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_LOGIN, nativeCallbackLogin);
 				}
 
 				managedCallbackLogin += value;
@@ -92,7 +92,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackLogin = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_LOGIN, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_LOGIN, null);
 				}
 			}
 		}
@@ -101,7 +101,7 @@ namespace AW
 		#region CallbackEnter
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackEnter;
-		private InterOp.Callback nativeCallbackEnter;
+		private NativeMethods.Callback nativeCallbackEnter;
 
 		//Native callback handler.
 		private void OnCallbackEnter(int error)
@@ -123,8 +123,8 @@ namespace AW
 				if (managedCallbackEnter == null)
 				{
 					SetInstance();
-					nativeCallbackEnter = new InterOp.Callback(OnCallbackEnter);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ENTER, nativeCallbackEnter);
+					nativeCallbackEnter = new NativeMethods.Callback(OnCallbackEnter);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ENTER, nativeCallbackEnter);
 				}
 
 				managedCallbackEnter += value;
@@ -140,7 +140,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackEnter = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ENTER, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ENTER, null);
 				}
 			}
 		}
@@ -149,7 +149,7 @@ namespace AW
 		#region CallbackObjectResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackObjectResult;
-		private InterOp.Callback nativeCallbackObjectResult;
+		private NativeMethods.Callback nativeCallbackObjectResult;
 
 		//Native callback handler.
 		private void OnCallbackObjectResult(int error)
@@ -171,8 +171,8 @@ namespace AW
 				if (managedCallbackObjectResult == null)
 				{
 					SetInstance();
-					nativeCallbackObjectResult = new InterOp.Callback(OnCallbackObjectResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_OBJECT_RESULT, nativeCallbackObjectResult);
+					nativeCallbackObjectResult = new NativeMethods.Callback(OnCallbackObjectResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_OBJECT_RESULT, nativeCallbackObjectResult);
 				}
 
 				managedCallbackObjectResult += value;
@@ -188,7 +188,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackObjectResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_OBJECT_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_OBJECT_RESULT, null);
 				}
 			}
 		}
@@ -197,7 +197,7 @@ namespace AW
 		#region CallbackLicenseAttributes
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackLicenseAttributes;
-		private InterOp.Callback nativeCallbackLicenseAttributes;
+		private NativeMethods.Callback nativeCallbackLicenseAttributes;
 
 		//Native callback handler.
 		private void OnCallbackLicenseAttributes(int error)
@@ -219,8 +219,8 @@ namespace AW
 				if (managedCallbackLicenseAttributes == null)
 				{
 					SetInstance();
-					nativeCallbackLicenseAttributes = new InterOp.Callback(OnCallbackLicenseAttributes);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_LICENSE_ATTRIBUTES, nativeCallbackLicenseAttributes);
+					nativeCallbackLicenseAttributes = new NativeMethods.Callback(OnCallbackLicenseAttributes);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_LICENSE_ATTRIBUTES, nativeCallbackLicenseAttributes);
 				}
 
 				managedCallbackLicenseAttributes += value;
@@ -236,7 +236,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackLicenseAttributes = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_LICENSE_ATTRIBUTES, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_LICENSE_ATTRIBUTES, null);
 				}
 			}
 		}
@@ -245,7 +245,7 @@ namespace AW
 		#region CallbackLicenseResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackLicenseResult;
-		private InterOp.Callback nativeCallbackLicenseResult;
+		private NativeMethods.Callback nativeCallbackLicenseResult;
 
 		//Native callback handler.
 		private void OnCallbackLicenseResult(int error)
@@ -267,8 +267,8 @@ namespace AW
 				if (managedCallbackLicenseResult == null)
 				{
 					SetInstance();
-					nativeCallbackLicenseResult = new InterOp.Callback(OnCallbackLicenseResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_LICENSE_RESULT, nativeCallbackLicenseResult);
+					nativeCallbackLicenseResult = new NativeMethods.Callback(OnCallbackLicenseResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_LICENSE_RESULT, nativeCallbackLicenseResult);
 				}
 
 				managedCallbackLicenseResult += value;
@@ -284,7 +284,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackLicenseResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_LICENSE_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_LICENSE_RESULT, null);
 				}
 			}
 		}
@@ -293,7 +293,7 @@ namespace AW
 		#region CallbackCitizenAttributes
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackCitizenAttributes;
-		private InterOp.Callback nativeCallbackCitizenAttributes;
+		private NativeMethods.Callback nativeCallbackCitizenAttributes;
 
 		//Native callback handler.
 		private void OnCallbackCitizenAttributes(int error)
@@ -315,8 +315,8 @@ namespace AW
 				if (managedCallbackCitizenAttributes == null)
 				{
 					SetInstance();
-					nativeCallbackCitizenAttributes = new InterOp.Callback(OnCallbackCitizenAttributes);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CITIZEN_ATTRIBUTES, nativeCallbackCitizenAttributes);
+					nativeCallbackCitizenAttributes = new NativeMethods.Callback(OnCallbackCitizenAttributes);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CITIZEN_ATTRIBUTES, nativeCallbackCitizenAttributes);
 				}
 
 				managedCallbackCitizenAttributes += value;
@@ -332,7 +332,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackCitizenAttributes = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CITIZEN_ATTRIBUTES, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CITIZEN_ATTRIBUTES, null);
 				}
 			}
 		}
@@ -341,7 +341,7 @@ namespace AW
 		#region CallbackCitizenResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackCitizenResult;
-		private InterOp.Callback nativeCallbackCitizenResult;
+		private NativeMethods.Callback nativeCallbackCitizenResult;
 
 		//Native callback handler.
 		private void OnCallbackCitizenResult(int error)
@@ -363,8 +363,8 @@ namespace AW
 				if (managedCallbackCitizenResult == null)
 				{
 					SetInstance();
-					nativeCallbackCitizenResult = new InterOp.Callback(OnCallbackCitizenResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CITIZEN_RESULT, nativeCallbackCitizenResult);
+					nativeCallbackCitizenResult = new NativeMethods.Callback(OnCallbackCitizenResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CITIZEN_RESULT, nativeCallbackCitizenResult);
 				}
 
 				managedCallbackCitizenResult += value;
@@ -380,7 +380,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackCitizenResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CITIZEN_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CITIZEN_RESULT, null);
 				}
 			}
 		}
@@ -389,7 +389,7 @@ namespace AW
 		#region CallbackQuery
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackQuery;
-		private InterOp.Callback nativeCallbackQuery;
+		private NativeMethods.Callback nativeCallbackQuery;
 
 		//Native callback handler.
 		private void OnCallbackQuery(int error)
@@ -411,8 +411,8 @@ namespace AW
 				if (managedCallbackQuery == null)
 				{
 					SetInstance();
-					nativeCallbackQuery = new InterOp.Callback(OnCallbackQuery);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_QUERY, nativeCallbackQuery);
+					nativeCallbackQuery = new NativeMethods.Callback(OnCallbackQuery);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_QUERY, nativeCallbackQuery);
 				}
 
 				managedCallbackQuery += value;
@@ -428,7 +428,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackQuery = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_QUERY, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_QUERY, null);
 				}
 			}
 		}
@@ -437,7 +437,7 @@ namespace AW
 		#region CallbackUniverseEjection
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackUniverseEjection;
-		private InterOp.Callback nativeCallbackUniverseEjection;
+		private NativeMethods.Callback nativeCallbackUniverseEjection;
 
 		//Native callback handler.
 		private void OnCallbackUniverseEjection(int error)
@@ -459,8 +459,8 @@ namespace AW
 				if (managedCallbackUniverseEjection == null)
 				{
 					SetInstance();
-					nativeCallbackUniverseEjection = new InterOp.Callback(OnCallbackUniverseEjection);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_UNIVERSE_EJECTION, nativeCallbackUniverseEjection);
+					nativeCallbackUniverseEjection = new NativeMethods.Callback(OnCallbackUniverseEjection);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_UNIVERSE_EJECTION, nativeCallbackUniverseEjection);
 				}
 
 				managedCallbackUniverseEjection += value;
@@ -476,7 +476,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackUniverseEjection = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_UNIVERSE_EJECTION, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_UNIVERSE_EJECTION, null);
 				}
 			}
 		}
@@ -485,7 +485,7 @@ namespace AW
 		#region CallbackUniverseEjectionResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackUniverseEjectionResult;
-		private InterOp.Callback nativeCallbackUniverseEjectionResult;
+		private NativeMethods.Callback nativeCallbackUniverseEjectionResult;
 
 		//Native callback handler.
 		private void OnCallbackUniverseEjectionResult(int error)
@@ -507,8 +507,8 @@ namespace AW
 				if (managedCallbackUniverseEjectionResult == null)
 				{
 					SetInstance();
-					nativeCallbackUniverseEjectionResult = new InterOp.Callback(OnCallbackUniverseEjectionResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_UNIVERSE_EJECTION_RESULT, nativeCallbackUniverseEjectionResult);
+					nativeCallbackUniverseEjectionResult = new NativeMethods.Callback(OnCallbackUniverseEjectionResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_UNIVERSE_EJECTION_RESULT, nativeCallbackUniverseEjectionResult);
 				}
 
 				managedCallbackUniverseEjectionResult += value;
@@ -524,7 +524,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackUniverseEjectionResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_UNIVERSE_EJECTION_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_UNIVERSE_EJECTION_RESULT, null);
 				}
 			}
 		}
@@ -533,7 +533,7 @@ namespace AW
 		#region CallbackAddress
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackAddress;
-		private InterOp.Callback nativeCallbackAddress;
+		private NativeMethods.Callback nativeCallbackAddress;
 
 		//Native callback handler.
 		private void OnCallbackAddress(int error)
@@ -555,8 +555,8 @@ namespace AW
 				if (managedCallbackAddress == null)
 				{
 					SetInstance();
-					nativeCallbackAddress = new InterOp.Callback(OnCallbackAddress);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADDRESS, nativeCallbackAddress);
+					nativeCallbackAddress = new NativeMethods.Callback(OnCallbackAddress);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADDRESS, nativeCallbackAddress);
 				}
 
 				managedCallbackAddress += value;
@@ -572,7 +572,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackAddress = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADDRESS, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADDRESS, null);
 				}
 			}
 		}
@@ -581,7 +581,7 @@ namespace AW
 		#region CallbackWorldEjection
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackWorldEjection;
-		private InterOp.Callback nativeCallbackWorldEjection;
+		private NativeMethods.Callback nativeCallbackWorldEjection;
 
 		//Native callback handler.
 		private void OnCallbackWorldEjection(int error)
@@ -603,8 +603,8 @@ namespace AW
 				if (managedCallbackWorldEjection == null)
 				{
 					SetInstance();
-					nativeCallbackWorldEjection = new InterOp.Callback(OnCallbackWorldEjection);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_EJECTION, nativeCallbackWorldEjection);
+					nativeCallbackWorldEjection = new NativeMethods.Callback(OnCallbackWorldEjection);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_EJECTION, nativeCallbackWorldEjection);
 				}
 
 				managedCallbackWorldEjection += value;
@@ -620,7 +620,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackWorldEjection = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_EJECTION, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_EJECTION, null);
 				}
 			}
 		}
@@ -629,7 +629,7 @@ namespace AW
 		#region CallbackWorldEjectionResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackWorldEjectionResult;
-		private InterOp.Callback nativeCallbackWorldEjectionResult;
+		private NativeMethods.Callback nativeCallbackWorldEjectionResult;
 
 		//Native callback handler.
 		private void OnCallbackWorldEjectionResult(int error)
@@ -651,8 +651,8 @@ namespace AW
 				if (managedCallbackWorldEjectionResult == null)
 				{
 					SetInstance();
-					nativeCallbackWorldEjectionResult = new InterOp.Callback(OnCallbackWorldEjectionResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_EJECTION_RESULT, nativeCallbackWorldEjectionResult);
+					nativeCallbackWorldEjectionResult = new NativeMethods.Callback(OnCallbackWorldEjectionResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_EJECTION_RESULT, nativeCallbackWorldEjectionResult);
 				}
 
 				managedCallbackWorldEjectionResult += value;
@@ -668,7 +668,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackWorldEjectionResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_EJECTION_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_EJECTION_RESULT, null);
 				}
 			}
 		}
@@ -677,7 +677,7 @@ namespace AW
 		#region CallbackAdminWorldList
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackAdminWorldList;
-		private InterOp.Callback nativeCallbackAdminWorldList;
+		private NativeMethods.Callback nativeCallbackAdminWorldList;
 
 		//Native callback handler.
 		private void OnCallbackAdminWorldList(int error)
@@ -699,8 +699,8 @@ namespace AW
 				if (managedCallbackAdminWorldList == null)
 				{
 					SetInstance();
-					nativeCallbackAdminWorldList = new InterOp.Callback(OnCallbackAdminWorldList);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADMIN_WORLD_LIST, nativeCallbackAdminWorldList);
+					nativeCallbackAdminWorldList = new NativeMethods.Callback(OnCallbackAdminWorldList);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADMIN_WORLD_LIST, nativeCallbackAdminWorldList);
 				}
 
 				managedCallbackAdminWorldList += value;
@@ -716,7 +716,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackAdminWorldList = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADMIN_WORLD_LIST, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADMIN_WORLD_LIST, null);
 				}
 			}
 		}
@@ -725,7 +725,7 @@ namespace AW
 		#region CallbackAdminWorldResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackAdminWorldResult;
-		private InterOp.Callback nativeCallbackAdminWorldResult;
+		private NativeMethods.Callback nativeCallbackAdminWorldResult;
 
 		//Native callback handler.
 		private void OnCallbackAdminWorldResult(int error)
@@ -747,8 +747,8 @@ namespace AW
 				if (managedCallbackAdminWorldResult == null)
 				{
 					SetInstance();
-					nativeCallbackAdminWorldResult = new InterOp.Callback(OnCallbackAdminWorldResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADMIN_WORLD_RESULT, nativeCallbackAdminWorldResult);
+					nativeCallbackAdminWorldResult = new NativeMethods.Callback(OnCallbackAdminWorldResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADMIN_WORLD_RESULT, nativeCallbackAdminWorldResult);
 				}
 
 				managedCallbackAdminWorldResult += value;
@@ -764,7 +764,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackAdminWorldResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADMIN_WORLD_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADMIN_WORLD_RESULT, null);
 				}
 			}
 		}
@@ -773,7 +773,7 @@ namespace AW
 		#region CallbackDeleteAllObjectsResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackDeleteAllObjectsResult;
-		private InterOp.Callback nativeCallbackDeleteAllObjectsResult;
+		private NativeMethods.Callback nativeCallbackDeleteAllObjectsResult;
 
 		//Native callback handler.
 		private void OnCallbackDeleteAllObjectsResult(int error)
@@ -795,8 +795,8 @@ namespace AW
 				if (managedCallbackDeleteAllObjectsResult == null)
 				{
 					SetInstance();
-					nativeCallbackDeleteAllObjectsResult = new InterOp.Callback(OnCallbackDeleteAllObjectsResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_DELETE_ALL_OBJECTS_RESULT, nativeCallbackDeleteAllObjectsResult);
+					nativeCallbackDeleteAllObjectsResult = new NativeMethods.Callback(OnCallbackDeleteAllObjectsResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_DELETE_ALL_OBJECTS_RESULT, nativeCallbackDeleteAllObjectsResult);
 				}
 
 				managedCallbackDeleteAllObjectsResult += value;
@@ -812,7 +812,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackDeleteAllObjectsResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_DELETE_ALL_OBJECTS_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_DELETE_ALL_OBJECTS_RESULT, null);
 				}
 			}
 		}
@@ -821,7 +821,7 @@ namespace AW
 		#region CallbackCellResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackCellResult;
-		private InterOp.Callback nativeCallbackCellResult;
+		private NativeMethods.Callback nativeCallbackCellResult;
 
 		//Native callback handler.
 		private void OnCallbackCellResult(int error)
@@ -843,8 +843,8 @@ namespace AW
 				if (managedCallbackCellResult == null)
 				{
 					SetInstance();
-					nativeCallbackCellResult = new InterOp.Callback(OnCallbackCellResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CELL_RESULT, nativeCallbackCellResult);
+					nativeCallbackCellResult = new NativeMethods.Callback(OnCallbackCellResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CELL_RESULT, nativeCallbackCellResult);
 				}
 
 				managedCallbackCellResult += value;
@@ -860,7 +860,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackCellResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CELL_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CELL_RESULT, null);
 				}
 			}
 		}
@@ -869,7 +869,7 @@ namespace AW
 		#region CallbackReloadRegistry
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackReloadRegistry;
-		private InterOp.Callback nativeCallbackReloadRegistry;
+		private NativeMethods.Callback nativeCallbackReloadRegistry;
 
 		//Native callback handler.
 		private void OnCallbackReloadRegistry(int error)
@@ -891,8 +891,8 @@ namespace AW
 				if (managedCallbackReloadRegistry == null)
 				{
 					SetInstance();
-					nativeCallbackReloadRegistry = new InterOp.Callback(OnCallbackReloadRegistry);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_RELOAD_REGISTRY, nativeCallbackReloadRegistry);
+					nativeCallbackReloadRegistry = new NativeMethods.Callback(OnCallbackReloadRegistry);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_RELOAD_REGISTRY, nativeCallbackReloadRegistry);
 				}
 
 				managedCallbackReloadRegistry += value;
@@ -908,7 +908,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackReloadRegistry = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_RELOAD_REGISTRY, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_RELOAD_REGISTRY, null);
 				}
 			}
 		}
@@ -917,7 +917,7 @@ namespace AW
 		#region CallbackAttributesResetResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackAttributesResetResult;
-		private InterOp.Callback nativeCallbackAttributesResetResult;
+		private NativeMethods.Callback nativeCallbackAttributesResetResult;
 
 		//Native callback handler.
 		private void OnCallbackAttributesResetResult(int error)
@@ -939,8 +939,8 @@ namespace AW
 				if (managedCallbackAttributesResetResult == null)
 				{
 					SetInstance();
-					nativeCallbackAttributesResetResult = new InterOp.Callback(OnCallbackAttributesResetResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ATTRIBUTES_RESET_RESULT, nativeCallbackAttributesResetResult);
+					nativeCallbackAttributesResetResult = new NativeMethods.Callback(OnCallbackAttributesResetResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ATTRIBUTES_RESET_RESULT, nativeCallbackAttributesResetResult);
 				}
 
 				managedCallbackAttributesResetResult += value;
@@ -956,7 +956,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackAttributesResetResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ATTRIBUTES_RESET_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ATTRIBUTES_RESET_RESULT, null);
 				}
 			}
 		}
@@ -965,7 +965,7 @@ namespace AW
 		#region CallbackAdmin
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackAdmin;
-		private InterOp.Callback nativeCallbackAdmin;
+		private NativeMethods.Callback nativeCallbackAdmin;
 
 		//Native callback handler.
 		private void OnCallbackAdmin(int error)
@@ -987,8 +987,8 @@ namespace AW
 				if (managedCallbackAdmin == null)
 				{
 					SetInstance();
-					nativeCallbackAdmin = new InterOp.Callback(OnCallbackAdmin);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADMIN, nativeCallbackAdmin);
+					nativeCallbackAdmin = new NativeMethods.Callback(OnCallbackAdmin);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADMIN, nativeCallbackAdmin);
 				}
 
 				managedCallbackAdmin += value;
@@ -1004,7 +1004,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackAdmin = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADMIN, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADMIN, null);
 				}
 			}
 		}
@@ -1013,7 +1013,7 @@ namespace AW
 		#region CallbackTerrainSetResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackTerrainSetResult;
-		private InterOp.Callback nativeCallbackTerrainSetResult;
+		private NativeMethods.Callback nativeCallbackTerrainSetResult;
 
 		//Native callback handler.
 		private void OnCallbackTerrainSetResult(int error)
@@ -1035,8 +1035,8 @@ namespace AW
 				if (managedCallbackTerrainSetResult == null)
 				{
 					SetInstance();
-					nativeCallbackTerrainSetResult = new InterOp.Callback(OnCallbackTerrainSetResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_SET_RESULT, nativeCallbackTerrainSetResult);
+					nativeCallbackTerrainSetResult = new NativeMethods.Callback(OnCallbackTerrainSetResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_SET_RESULT, nativeCallbackTerrainSetResult);
 				}
 
 				managedCallbackTerrainSetResult += value;
@@ -1052,7 +1052,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackTerrainSetResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_SET_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_SET_RESULT, null);
 				}
 			}
 		}
@@ -1061,7 +1061,7 @@ namespace AW
 		#region CallbackTerrainNextResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackTerrainNextResult;
-		private InterOp.Callback nativeCallbackTerrainNextResult;
+		private NativeMethods.Callback nativeCallbackTerrainNextResult;
 
 		//Native callback handler.
 		private void OnCallbackTerrainNextResult(int error)
@@ -1083,8 +1083,8 @@ namespace AW
 				if (managedCallbackTerrainNextResult == null)
 				{
 					SetInstance();
-					nativeCallbackTerrainNextResult = new InterOp.Callback(OnCallbackTerrainNextResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_NEXT_RESULT, nativeCallbackTerrainNextResult);
+					nativeCallbackTerrainNextResult = new NativeMethods.Callback(OnCallbackTerrainNextResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_NEXT_RESULT, nativeCallbackTerrainNextResult);
 				}
 
 				managedCallbackTerrainNextResult += value;
@@ -1100,7 +1100,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackTerrainNextResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_NEXT_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_NEXT_RESULT, null);
 				}
 			}
 		}
@@ -1109,7 +1109,7 @@ namespace AW
 		#region CallbackTerrainDeleteAllResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackTerrainDeleteAllResult;
-		private InterOp.Callback nativeCallbackTerrainDeleteAllResult;
+		private NativeMethods.Callback nativeCallbackTerrainDeleteAllResult;
 
 		//Native callback handler.
 		private void OnCallbackTerrainDeleteAllResult(int error)
@@ -1131,8 +1131,8 @@ namespace AW
 				if (managedCallbackTerrainDeleteAllResult == null)
 				{
 					SetInstance();
-					nativeCallbackTerrainDeleteAllResult = new InterOp.Callback(OnCallbackTerrainDeleteAllResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_DELETE_ALL_RESULT, nativeCallbackTerrainDeleteAllResult);
+					nativeCallbackTerrainDeleteAllResult = new NativeMethods.Callback(OnCallbackTerrainDeleteAllResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_DELETE_ALL_RESULT, nativeCallbackTerrainDeleteAllResult);
 				}
 
 				managedCallbackTerrainDeleteAllResult += value;
@@ -1148,7 +1148,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackTerrainDeleteAllResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_DELETE_ALL_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_DELETE_ALL_RESULT, null);
 				}
 			}
 		}
@@ -1157,7 +1157,7 @@ namespace AW
 		#region CallbackTerrainLoadNodeResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackTerrainLoadNodeResult;
-		private InterOp.Callback nativeCallbackTerrainLoadNodeResult;
+		private NativeMethods.Callback nativeCallbackTerrainLoadNodeResult;
 
 		//Native callback handler.
 		private void OnCallbackTerrainLoadNodeResult(int error)
@@ -1179,8 +1179,8 @@ namespace AW
 				if (managedCallbackTerrainLoadNodeResult == null)
 				{
 					SetInstance();
-					nativeCallbackTerrainLoadNodeResult = new InterOp.Callback(OnCallbackTerrainLoadNodeResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_LOAD_NODE_RESULT, nativeCallbackTerrainLoadNodeResult);
+					nativeCallbackTerrainLoadNodeResult = new NativeMethods.Callback(OnCallbackTerrainLoadNodeResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_LOAD_NODE_RESULT, nativeCallbackTerrainLoadNodeResult);
 				}
 
 				managedCallbackTerrainLoadNodeResult += value;
@@ -1196,7 +1196,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackTerrainLoadNodeResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_LOAD_NODE_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_LOAD_NODE_RESULT, null);
 				}
 			}
 		}
@@ -1205,7 +1205,7 @@ namespace AW
 		#region CallbackBotgramResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackBotgramResult;
-		private InterOp.Callback nativeCallbackBotgramResult;
+		private NativeMethods.Callback nativeCallbackBotgramResult;
 
 		//Native callback handler.
 		private void OnCallbackBotgramResult(int error)
@@ -1227,8 +1227,8 @@ namespace AW
 				if (managedCallbackBotgramResult == null)
 				{
 					SetInstance();
-					nativeCallbackBotgramResult = new InterOp.Callback(OnCallbackBotgramResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_BOTGRAM_RESULT, nativeCallbackBotgramResult);
+					nativeCallbackBotgramResult = new NativeMethods.Callback(OnCallbackBotgramResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_BOTGRAM_RESULT, nativeCallbackBotgramResult);
 				}
 
 				managedCallbackBotgramResult += value;
@@ -1244,7 +1244,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackBotgramResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_BOTGRAM_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_BOTGRAM_RESULT, null);
 				}
 			}
 		}
@@ -1253,7 +1253,7 @@ namespace AW
 		#region CallbackUserList
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackUserList;
-		private InterOp.Callback nativeCallbackUserList;
+		private NativeMethods.Callback nativeCallbackUserList;
 
 		//Native callback handler.
 		private void OnCallbackUserList(int error)
@@ -1275,8 +1275,8 @@ namespace AW
 				if (managedCallbackUserList == null)
 				{
 					SetInstance();
-					nativeCallbackUserList = new InterOp.Callback(OnCallbackUserList);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_USER_LIST, nativeCallbackUserList);
+					nativeCallbackUserList = new NativeMethods.Callback(OnCallbackUserList);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_USER_LIST, nativeCallbackUserList);
 				}
 
 				managedCallbackUserList += value;
@@ -1292,7 +1292,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackUserList = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_USER_LIST, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_USER_LIST, null);
 				}
 			}
 		}
@@ -1301,7 +1301,7 @@ namespace AW
 		#region CallbackBotmenuResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackBotmenuResult;
-		private InterOp.Callback nativeCallbackBotmenuResult;
+		private NativeMethods.Callback nativeCallbackBotmenuResult;
 
 		//Native callback handler.
 		private void OnCallbackBotmenuResult(int error)
@@ -1323,8 +1323,8 @@ namespace AW
 				if (managedCallbackBotmenuResult == null)
 				{
 					SetInstance();
-					nativeCallbackBotmenuResult = new InterOp.Callback(OnCallbackBotmenuResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_BOTMENU_RESULT, nativeCallbackBotmenuResult);
+					nativeCallbackBotmenuResult = new NativeMethods.Callback(OnCallbackBotmenuResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_BOTMENU_RESULT, nativeCallbackBotmenuResult);
 				}
 
 				managedCallbackBotmenuResult += value;
@@ -1340,7 +1340,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackBotmenuResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_BOTMENU_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_BOTMENU_RESULT, null);
 				}
 			}
 		}
@@ -1349,7 +1349,7 @@ namespace AW
 		#region CallbackCav
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackCav;
-		private InterOp.Callback nativeCallbackCav;
+		private NativeMethods.Callback nativeCallbackCav;
 
 		//Native callback handler.
 		private void OnCallbackCav(int error)
@@ -1371,8 +1371,8 @@ namespace AW
 				if (managedCallbackCav == null)
 				{
 					SetInstance();
-					nativeCallbackCav = new InterOp.Callback(OnCallbackCav);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CAV, nativeCallbackCav);
+					nativeCallbackCav = new NativeMethods.Callback(OnCallbackCav);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CAV, nativeCallbackCav);
 				}
 
 				managedCallbackCav += value;
@@ -1388,7 +1388,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackCav = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CAV, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CAV, null);
 				}
 			}
 		}
@@ -1397,7 +1397,7 @@ namespace AW
 		#region CallbackCavResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackCavResult;
-		private InterOp.Callback nativeCallbackCavResult;
+		private NativeMethods.Callback nativeCallbackCavResult;
 
 		//Native callback handler.
 		private void OnCallbackCavResult(int error)
@@ -1419,8 +1419,8 @@ namespace AW
 				if (managedCallbackCavResult == null)
 				{
 					SetInstance();
-					nativeCallbackCavResult = new InterOp.Callback(OnCallbackCavResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CAV_RESULT, nativeCallbackCavResult);
+					nativeCallbackCavResult = new NativeMethods.Callback(OnCallbackCavResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CAV_RESULT, nativeCallbackCavResult);
 				}
 
 				managedCallbackCavResult += value;
@@ -1436,7 +1436,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackCavResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CAV_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CAV_RESULT, null);
 				}
 			}
 		}
@@ -1445,7 +1445,7 @@ namespace AW
 		#region CallbackWorldInstance
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackWorldInstance;
-		private InterOp.Callback nativeCallbackWorldInstance;
+		private NativeMethods.Callback nativeCallbackWorldInstance;
 
 		//Native callback handler.
 		private void OnCallbackWorldInstance(int error)
@@ -1467,8 +1467,8 @@ namespace AW
 				if (managedCallbackWorldInstance == null)
 				{
 					SetInstance();
-					nativeCallbackWorldInstance = new InterOp.Callback(OnCallbackWorldInstance);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_INSTANCE, nativeCallbackWorldInstance);
+					nativeCallbackWorldInstance = new NativeMethods.Callback(OnCallbackWorldInstance);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_INSTANCE, nativeCallbackWorldInstance);
 				}
 
 				managedCallbackWorldInstance += value;
@@ -1484,7 +1484,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackWorldInstance = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_INSTANCE, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_INSTANCE, null);
 				}
 			}
 		}
@@ -1493,7 +1493,7 @@ namespace AW
 		#region CallbackHudResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackHudResult;
-		private InterOp.Callback nativeCallbackHudResult;
+		private NativeMethods.Callback nativeCallbackHudResult;
 
 		//Native callback handler.
 		private void OnCallbackHudResult(int error)
@@ -1515,8 +1515,8 @@ namespace AW
 				if (managedCallbackHudResult == null)
 				{
 					SetInstance();
-					nativeCallbackHudResult = new InterOp.Callback(OnCallbackHudResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_HUD_RESULT, nativeCallbackHudResult);
+					nativeCallbackHudResult = new NativeMethods.Callback(OnCallbackHudResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_HUD_RESULT, nativeCallbackHudResult);
 				}
 
 				managedCallbackHudResult += value;
@@ -1532,7 +1532,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackHudResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_HUD_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_HUD_RESULT, null);
 				}
 			}
 		}
@@ -1541,7 +1541,7 @@ namespace AW
 		#region CallbackAvatarLocation
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackAvatarLocation;
-		private InterOp.Callback nativeCallbackAvatarLocation;
+		private NativeMethods.Callback nativeCallbackAvatarLocation;
 
 		//Native callback handler.
 		private void OnCallbackAvatarLocation(int error)
@@ -1563,8 +1563,8 @@ namespace AW
 				if (managedCallbackAvatarLocation == null)
 				{
 					SetInstance();
-					nativeCallbackAvatarLocation = new InterOp.Callback(OnCallbackAvatarLocation);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_AVATAR_LOCATION, nativeCallbackAvatarLocation);
+					nativeCallbackAvatarLocation = new NativeMethods.Callback(OnCallbackAvatarLocation);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_AVATAR_LOCATION, nativeCallbackAvatarLocation);
 				}
 
 				managedCallbackAvatarLocation += value;
@@ -1580,7 +1580,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackAvatarLocation = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_AVATAR_LOCATION, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_AVATAR_LOCATION, null);
 				}
 			}
 		}
@@ -1589,7 +1589,7 @@ namespace AW
 		#region CallbackObjectQuery
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackObjectQuery;
-		private InterOp.Callback nativeCallbackObjectQuery;
+		private NativeMethods.Callback nativeCallbackObjectQuery;
 
 		//Native callback handler.
 		private void OnCallbackObjectQuery(int error)
@@ -1611,8 +1611,8 @@ namespace AW
 				if (managedCallbackObjectQuery == null)
 				{
 					SetInstance();
-					nativeCallbackObjectQuery = new InterOp.Callback(OnCallbackObjectQuery);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_OBJECT_QUERY, nativeCallbackObjectQuery);
+					nativeCallbackObjectQuery = new NativeMethods.Callback(OnCallbackObjectQuery);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_OBJECT_QUERY, nativeCallbackObjectQuery);
 				}
 
 				managedCallbackObjectQuery += value;
@@ -1628,7 +1628,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackObjectQuery = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_OBJECT_QUERY, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_OBJECT_QUERY, null);
 				}
 			}
 		}
@@ -1637,7 +1637,7 @@ namespace AW
 		#region CallbackWorldCavResult
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackWorldCavResult;
-		private InterOp.Callback nativeCallbackWorldCavResult;
+		private NativeMethods.Callback nativeCallbackWorldCavResult;
 
 		//Native callback handler.
 		private void OnCallbackWorldCavResult(int error)
@@ -1659,8 +1659,8 @@ namespace AW
 				if (managedCallbackWorldCavResult == null)
 				{
 					SetInstance();
-					nativeCallbackWorldCavResult = new InterOp.Callback(OnCallbackWorldCavResult);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_CAV_RESULT, nativeCallbackWorldCavResult);
+					nativeCallbackWorldCavResult = new NativeMethods.Callback(OnCallbackWorldCavResult);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_CAV_RESULT, nativeCallbackWorldCavResult);
 				}
 
 				managedCallbackWorldCavResult += value;
@@ -1676,7 +1676,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackWorldCavResult = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_CAV_RESULT, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_CAV_RESULT, null);
 				}
 			}
 		}
@@ -1685,7 +1685,7 @@ namespace AW
 		#region CallbackWorldCav
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managedCallbackWorldCav;
-		private InterOp.Callback nativeCallbackWorldCav;
+		private NativeMethods.Callback nativeCallbackWorldCav;
 
 		//Native callback handler.
 		private void OnCallbackWorldCav(int error)
@@ -1707,8 +1707,8 @@ namespace AW
 				if (managedCallbackWorldCav == null)
 				{
 					SetInstance();
-					nativeCallbackWorldCav = new InterOp.Callback(OnCallbackWorldCav);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_CAV, nativeCallbackWorldCav);
+					nativeCallbackWorldCav = new NativeMethods.Callback(OnCallbackWorldCav);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_CAV, nativeCallbackWorldCav);
 				}
 
 				managedCallbackWorldCav += value;
@@ -1724,7 +1724,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeCallbackWorldCav = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_CAV, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_CAV, null);
 				}
 			}
 		}

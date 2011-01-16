@@ -18,7 +18,7 @@ namespace AW
     ///     <item><description><see cref="AW.Instance.GetData">AW.Instance.GetData</see></description></item>
     /// </list>
     /// </remarks>
-    public enum Attributes : int
+    public enum Attributes
     {
         /// <summary>
         /// Specifies the name of the instance before calling <see>AW.Instance.Login</see>. 

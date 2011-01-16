@@ -1,11 +1,24 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace AW
 {
+    public interface IZoneFlags
+    {
+        bool Water { get; set; }
+        bool BlockParticles { get; set; }
+        bool BlockLights { get; set; }
+        bool BlockWorldLight { get; set; }
+        bool BlockChat { get; set; }
+        bool Visible { get; set; }
+        bool BlockJoin { get; set; }
+        bool Voip { get; set; }
+    }
+
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     [Serializable]
-    public sealed class ZoneFlags
+    sealed class ZoneFlags : IZoneFlags
     {
         private ushort flags;
         static readonly byte[] flagValues = { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 };
@@ -29,7 +42,7 @@ namespace AW
 
             set
             {
-                flags = (value ? (ushort)(flags | flagValues[0]) : (ushort)(flags & ~flagValues[0]));
+                flags = (ushort)(value ? (flags | flagValues[0]) : (flags & ~flagValues[0]));
             }
         }
 
@@ -42,7 +55,7 @@ namespace AW
 
             set
             {
-                flags = (value ? (ushort)(flags | flagValues[1]) : (ushort)(flags & ~flagValues[1]));
+                flags = (ushort)(value ? (flags | flagValues[1]) : (flags & ~flagValues[1]));
             }
         }
 
@@ -55,7 +68,7 @@ namespace AW
 
             set
             {
-                flags = (value ? (ushort)(flags | flagValues[2]) : (ushort)(flags & ~flagValues[2]));
+                flags = (ushort)(value ? (flags | flagValues[2]) : (flags & ~flagValues[2]));
             }
         }
 
@@ -68,7 +81,7 @@ namespace AW
 
             set
             {
-                flags = (value ? (ushort)(flags | flagValues[3]) : (ushort)(flags & ~flagValues[3]));
+                flags = (ushort)(value ? (flags | flagValues[3]) : (flags & ~flagValues[3]));
             }
         }
 
@@ -81,7 +94,7 @@ namespace AW
 
             set
             {
-                flags = (value ? (ushort)(flags | flagValues[4]) : (ushort)(flags & ~flagValues[4]));
+                flags = (ushort)(value ? (flags | flagValues[4]) : (flags & ~flagValues[4]));
             }
         }
 
@@ -94,7 +107,7 @@ namespace AW
 
             set
             {
-                flags = (value ? (ushort)(flags | flagValues[5]) : (ushort)(flags & ~flagValues[5]));
+                flags = (ushort)(value ? (flags | flagValues[5]) : (flags & ~flagValues[5]));
             }
         }
 
@@ -107,7 +120,7 @@ namespace AW
 
             set
             {
-                flags = (value ? (ushort)(flags | flagValues[6]) : (ushort)(flags & ~flagValues[6]));
+                flags = (ushort)(value ? (flags | flagValues[6]) : (flags & ~flagValues[6]));
             }
         }
 
@@ -120,7 +133,7 @@ namespace AW
 
             set
             {
-                flags = (value ? (ushort)(flags | flagValues[7]) : (ushort)(flags & ~flagValues[7]));
+                flags = (ushort)(value ? (flags | flagValues[7]) : (flags & ~flagValues[7]));
             }
         }
     }
@@ -132,163 +145,162 @@ namespace AW
         {
             public Vector size = new Vector();
             public byte version = 1;
-            public byte shape = 0;
-            public byte priority = 0;
+            public byte shape;
+            public byte priority;
             public float gravity = 1.0f;
             public float friction = 1.0f;
-            public ZoneFlags flags = new ZoneFlags();
+            public IZoneFlags flags = new ZoneFlags();
             public uint color = 0xFFFFFFFF;
-            public short fog_min = 0;
+            public short fog_min;
             public short fog_max = 100;
-            public short footstep_len = 0;
-            public short ambient_len = 0;
-            public byte camera_len = 0;
-            public byte target_cur_len = 0;
-            public byte voip_rights_len = 0;
-            public byte name_len = 0;
+            public short footstep_len ;
+            public short ambient_len;
+            public byte camera_len;
+            public byte target_cur_len;
+            public byte voip_rights_len;
+            public byte name_len;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
             public byte[] reserved;
         }
 
-        private ZoneData zoneData = new ZoneData();
-        private byte[] remainder;
-        private string footstep = string.Empty;
-        private string ambient = string.Empty;
-        private string camera = string.Empty;
-        private string targetCursor = string.Empty;
-        private string voipRights = string.Empty;
-        private string name = string.Empty;
+        private ZoneData _zoneData = new ZoneData();
+        private byte[] _remainder;
+        private string _footstep = string.Empty;
+        private string _ambient = string.Empty;
+        private string _camera = string.Empty;
+        private string _targetCursor = string.Empty;
+        private string _voipRights = string.Empty;
+        private string _name = string.Empty;
 
-        public ZoneFlags Flags
+        public IZoneFlags Flags
         {
-            get { return zoneData.flags; }
-            set { zoneData.flags = value; }
+            get { return _zoneData.flags; }
+            set { _zoneData.flags = value; }
         }
 
         public Vector Size
         {
-            get { return zoneData.size; }
-            set { zoneData.size = value; }
+            get { return _zoneData.size; }
+            set { _zoneData.size = value; }
         }
 
         public ZoneType Shape
         {
-            get { return (ZoneType)zoneData.shape; }
-            set { zoneData.shape = (byte)value; }
+            get { return (ZoneType)_zoneData.shape; }
+            set { _zoneData.shape = (byte)value; }
         }
 
         public byte Priority
         {
-            get { return zoneData.priority; }
-            set { zoneData.priority = value; }
+            get { return _zoneData.priority; }
+            set { _zoneData.priority = value; }
         }
 
         public float Gravity
         {
-            get { return zoneData.gravity; }
-            set { zoneData.gravity = value; }
+            get { return _zoneData.gravity; }
+            set { _zoneData.gravity = value; }
         }
 
         public float Friction
         {
-            get { return zoneData.friction; }
-            set { zoneData.friction = value; }
+            get { return _zoneData.friction; }
+            set { _zoneData.friction = value; }
         }
 
         public Color Color
         {
             get
             {
-                return (int)zoneData.color;
+                return (int)_zoneData.color;
             }
 
             set
             {
-                zoneData.color = (uint)(int)value;
+                _zoneData.color = (uint)(int)value;
             }
         }
 
         public short FogMinimum
         {
-            get { return zoneData.fog_min; }
-            set { zoneData.fog_min = value; }
+            get { return _zoneData.fog_min; }
+            set { _zoneData.fog_min = value; }
         }
         public short FogMaximum
         {
-            get { return zoneData.fog_max; }
-            set { zoneData.fog_max = value; }
+            get { return _zoneData.fog_max; }
+            set { _zoneData.fog_max = value; }
         }
 
         public string Footstep
         {
-            get { return footstep; }
-            set { footstep = value; }
+            get { return _footstep; }
+            set { _footstep = value; }
         }
 
         public string Ambient
         {
-            get { return ambient; }
-            set { ambient = value; }
+            get { return _ambient; }
+            set { _ambient = value; }
         }
 
         public string Camera
         {
-            get { return camera; }
-            set { camera = value; }
+            get { return _camera; }
+            set { _camera = value; }
         }
 
         public string TargetCursor
         {
-            get { return targetCursor; }
-            set { targetCursor = value; }
+            get { return _targetCursor; }
+            set { _targetCursor = value; }
         }
 
         public string VoipRights
         {
-            get { return voipRights; }
-            set { voipRights = value; }
+            get { return _voipRights; }
+            set { _voipRights = value; }
         }
 
         public string Name
         {
-            get { return name; }
-            set { name = value; }
+            get { return _name; }
+            set { _name = value; }
         }
 
         internal override byte[] GetData()
         {
-            zoneData.footstep_len = (short)System.Text.UTF8Encoding.UTF8.GetByteCount(footstep);
-            zoneData.ambient_len = (short)System.Text.UTF8Encoding.UTF8.GetByteCount(ambient);
-            zoneData.camera_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(camera);
-            zoneData.target_cur_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(targetCursor);
-            zoneData.voip_rights_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(voipRights);
-            zoneData.name_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(name);
+            _zoneData.footstep_len = (short)Encoding.UTF8.GetByteCount(_footstep);
+            _zoneData.ambient_len = (short)Encoding.UTF8.GetByteCount(_ambient);
+            _zoneData.camera_len = (byte)Encoding.UTF8.GetByteCount(_camera);
+            _zoneData.target_cur_len = (byte)Encoding.UTF8.GetByteCount(_targetCursor);
+            _zoneData.voip_rights_len = (byte)Encoding.UTF8.GetByteCount(_voipRights);
+            _zoneData.name_len = (byte)Encoding.UTF8.GetByteCount(_name);
 
-            return Utilities.Miscellaneous.ConcatArrays(Utilities.Miscellaneous.StructToBytes(zoneData),
-                                             System.Text.UTF8Encoding.UTF8.GetBytes(footstep),
-                                             System.Text.UTF8Encoding.UTF8.GetBytes(ambient),
-                                             System.Text.UTF8Encoding.UTF8.GetBytes(camera),
-                                             System.Text.UTF8Encoding.UTF8.GetBytes(targetCursor),
-                                             System.Text.UTF8Encoding.UTF8.GetBytes(voipRights),
-                                             System.Text.UTF8Encoding.UTF8.GetBytes(name),
-                                             new byte[] { 0 }
-                                            );
+            return Utilities.Miscellaneous.ConcatArrays(Utilities.Miscellaneous.StructToBytes(_zoneData),
+                                                        Encoding.UTF8.GetBytes(_footstep),
+                                                        Encoding.UTF8.GetBytes(_ambient),
+                                                        Encoding.UTF8.GetBytes(_camera),
+                                                        Encoding.UTF8.GetBytes(_targetCursor),
+                                                        Encoding.UTF8.GetBytes(_voipRights),
+                                                        Encoding.UTF8.GetBytes(_name),
+                                                        new byte[] {0});
 
         }
 
         internal override void SetData(byte[] data)
         {
-            zoneData = Utilities.Miscellaneous.BytesToStruct<ZoneData>(data, 0);
+            _zoneData = Utilities.Miscellaneous.BytesToStruct<ZoneData>(data, 0);
             int size = data.Length - Marshal.SizeOf(typeof(ZoneData));
-            remainder = new byte[size];
-            Array.ConstrainedCopy(data, data.Length - size, remainder, 0, size);
+            _remainder = new byte[size];
+            Array.ConstrainedCopy(data, data.Length - size, _remainder, 0, size);
 
-            footstep = System.Text.UTF8Encoding.UTF8.GetString(remainder, 0, zoneData.footstep_len);
-            ambient = System.Text.UTF8Encoding.UTF8.GetString(remainder, zoneData.footstep_len, zoneData.ambient_len);
-            camera = System.Text.UTF8Encoding.UTF8.GetString(remainder, zoneData.footstep_len+zoneData.ambient_len, zoneData.camera_len);
-            targetCursor = System.Text.UTF8Encoding.UTF8.GetString(remainder, zoneData.footstep_len+zoneData.ambient_len+zoneData.camera_len, zoneData.target_cur_len);
-            voipRights = System.Text.UTF8Encoding.UTF8.GetString(remainder, zoneData.voip_rights_len + zoneData.footstep_len + zoneData.ambient_len + zoneData.camera_len, zoneData.voip_rights_len);
-            name = System.Text.UTF8Encoding.UTF8.GetString(remainder, zoneData.voip_rights_len + zoneData.footstep_len + zoneData.ambient_len + zoneData.camera_len + zoneData.voip_rights_len, zoneData.name_len);
+            _footstep = Encoding.UTF8.GetString(_remainder, 0, _zoneData.footstep_len);
+            _ambient = Encoding.UTF8.GetString(_remainder, _zoneData.footstep_len, _zoneData.ambient_len);
+            _camera = Encoding.UTF8.GetString(_remainder, _zoneData.footstep_len + _zoneData.ambient_len, _zoneData.camera_len);
+            _targetCursor = Encoding.UTF8.GetString(_remainder, _zoneData.footstep_len + _zoneData.ambient_len + _zoneData.camera_len, _zoneData.target_cur_len);
+            _voipRights = Encoding.UTF8.GetString(_remainder, _zoneData.voip_rights_len + _zoneData.footstep_len + _zoneData.ambient_len + _zoneData.camera_len, _zoneData.voip_rights_len);
+            _name = Encoding.UTF8.GetString(_remainder, _zoneData.voip_rights_len + _zoneData.footstep_len + _zoneData.ambient_len + _zoneData.camera_len + _zoneData.voip_rights_len, _zoneData.name_len);
         }
     }
 }

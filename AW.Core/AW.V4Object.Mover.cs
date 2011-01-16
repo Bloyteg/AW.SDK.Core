@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace AW
 {
@@ -10,33 +11,34 @@ namespace AW
     {
         private int flags;
 
-        private static readonly int[] flagValues = {    0x00000001,    //Loop                      0
-                                                         0x00000002,    //UseObjectTag              1
-                                                         0x00000004,    //BumpAdd                   2
-                                                         0x00000008,    //ClickToStart              3
-                                                         0x00000010,    //ClickToPause              4
-                                                         0x00000020,    //LockPosition              5
-                                                         0x00000040,    //LockYaw                   6
-                                                         0x00000080,    //LockPitch                 7
-                                                         0x00000100,    //SingleRider               8
-                                                         0x00000200,    //NoAutoYaw                 9
-                                                         0x00000400,    //EmptyReset                10
-                                                         0x00000800,    //DisableFlying             11
-                                                         0x00001000,    //KeepOnWater               12
-                                                         0x00002000,    //DisableUpwardMovement     13
-                                                         0x00004000,    //InvisibleAvatar           14
-                                                         0x00008000,    //ExitEjectUpwards          15
-                                                         0x00010000,    //ExitNonSolid              16
-                                                         0x00020000,    //AvatarApplyTiltX          17
-                                                         0x00040000,    //AvatarApplyTiltZ          18
-                                                         0x00080000,    //ObjectLink                19
-                                                         0x00100000,    //DisableMove               20
-                                                         0x00200000,    //TiltByTerrain             21
-                                                         0x00400000,    //DisableExplicitSequences  22
-                                                         0x00800000,    //TurnInPlace               23
-                                                         0x01000000,    //DisableTeleports          24
-                                                         0x02000000     //DetachOnTeleport          25
-                                                    };
+        private static readonly int[] flagValues = {
+                                                       0x00000001, //Loop                      0
+                                                       0x00000002, //UseObjectTag              1
+                                                       0x00000004, //BumpAdd                   2
+                                                       0x00000008, //ClickToStart              3
+                                                       0x00000010, //ClickToPause              4
+                                                       0x00000020, //LockPosition              5
+                                                       0x00000040, //LockYaw                   6
+                                                       0x00000080, //LockPitch                 7
+                                                       0x00000100, //SingleRider               8
+                                                       0x00000200, //NoAutoYaw                 9
+                                                       0x00000400, //EmptyReset                10
+                                                       0x00000800, //DisableFlying             11
+                                                       0x00001000, //KeepOnWater               12
+                                                       0x00002000, //DisableUpwardMovement     13
+                                                       0x00004000, //InvisibleAvatar           14
+                                                       0x00008000, //ExitEjectUpwards          15
+                                                       0x00010000, //ExitNonSolid              16
+                                                       0x00020000, //AvatarApplyTiltX          17
+                                                       0x00040000, //AvatarApplyTiltZ          18
+                                                       0x00080000, //ObjectLink                19
+                                                       0x00100000, //DisableMove               20
+                                                       0x00200000, //TiltByTerrain             21
+                                                       0x00400000, //DisableExplicitSequences  22
+                                                       0x00800000, //TurnInPlace               23
+                                                       0x01000000, //DisableTeleports          24
+                                                       0x02000000 //DetachOnTeleport          25
+                                                   };
 
         public bool Loop
         {
@@ -47,7 +49,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[0]) : (int)(flags & ~flagValues[0]));
+                flags = (value ? (flags | flagValues[0]) : (flags & ~flagValues[0]));
             }
         }
 
@@ -60,7 +62,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[1]) : (int)(flags & ~flagValues[1]));
+                flags = (value ? (flags | flagValues[1]) : (flags & ~flagValues[1]));
             }
         }
 
@@ -73,7 +75,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[2]) : (int)(flags & ~flagValues[2]));
+                flags = (value ? (flags | flagValues[2]) : (flags & ~flagValues[2]));
             }
         }
 
@@ -86,7 +88,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[3]) : (int)(flags & ~flagValues[3]));
+                flags = (value ? (flags | flagValues[3]) : (flags & ~flagValues[3]));
             }
         }
 
@@ -99,7 +101,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[4]) : (int)(flags & ~flagValues[4]));
+                flags = (value ? (flags | flagValues[4]) : (flags & ~flagValues[4]));
             }
         }
 
@@ -112,7 +114,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[5]) : (int)(flags & ~flagValues[5]));
+                flags = (value ? (flags | flagValues[5]) : (flags & ~flagValues[5]));
             }
         }
 
@@ -125,7 +127,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[6]) : (int)(flags & ~flagValues[6]));
+                flags = (value ? (flags | flagValues[6]) : (flags & ~flagValues[6]));
             }
         }
 
@@ -138,7 +140,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[7]) : (int)(flags & ~flagValues[7]));
+                flags = (value ? (flags | flagValues[7]) : (flags & ~flagValues[7]));
             }
         }
 
@@ -151,7 +153,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[8]) : (int)(flags & ~flagValues[8]));
+                flags = (value ? (flags | flagValues[8]) : (flags & ~flagValues[8]));
             }
         }
 
@@ -164,7 +166,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[9]) : (int)(flags & ~flagValues[9]));
+                flags = (value ? (flags | flagValues[9]) : (flags & ~flagValues[9]));
             }
         }
 
@@ -177,7 +179,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[10]) : (int)(flags & ~flagValues[10]));
+                flags = (value ? (flags | flagValues[10]) : (flags & ~flagValues[10]));
             }
         }
 
@@ -190,7 +192,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[11]) : (int)(flags & ~flagValues[11]));
+                flags = (value ? (flags | flagValues[11]) : (flags & ~flagValues[11]));
             }
         }
 
@@ -203,7 +205,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[12]) : (int)(flags & ~flagValues[12]));
+                flags = (value ? (flags | flagValues[12]) : (flags & ~flagValues[12]));
             }
         }
 
@@ -216,7 +218,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[13]) : (int)(flags & ~flagValues[13]));
+                flags = (value ? (flags | flagValues[13]) : (flags & ~flagValues[13]));
             }
         }
 
@@ -229,7 +231,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[14]) : (int)(flags & ~flagValues[14]));
+                flags = (value ? (flags | flagValues[14]) : (flags & ~flagValues[14]));
             }
         }
 
@@ -242,7 +244,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[15]) : (int)(flags & ~flagValues[15]));
+                flags = (value ? (flags | flagValues[15]) : (flags & ~flagValues[15]));
             }
         }
 
@@ -255,7 +257,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[16]) : (int)(flags & ~flagValues[16]));
+                flags = (value ? (flags | flagValues[16]) : (flags & ~flagValues[16]));
             }
         }
 
@@ -268,7 +270,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[17]) : (int)(flags & ~flagValues[17]));
+                flags = (value ? (flags | flagValues[17]) : (flags & ~flagValues[17]));
             }
         }
 
@@ -281,7 +283,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[18]) : (int)(flags & ~flagValues[18]));
+                flags = (value ? (flags | flagValues[18]) : (flags & ~flagValues[18]));
             }
         }
 
@@ -294,7 +296,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[19]) : (int)(flags & ~flagValues[19]));
+                flags = (value ? (flags | flagValues[19]) : (flags & ~flagValues[19]));
             }
         }
 
@@ -307,7 +309,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[20]) : (int)(flags & ~flagValues[20]));
+                flags = (value ? (flags | flagValues[20]) : (flags & ~flagValues[20]));
             }
         }
 
@@ -320,7 +322,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[21]) : (int)(flags & ~flagValues[21]));
+                flags = (value ? (flags | flagValues[21]) : (flags & ~flagValues[21]));
             }
         }
 
@@ -333,7 +335,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[22]) : (int)(flags & ~flagValues[22]));
+                flags = (value ? (flags | flagValues[22]) : (flags & ~flagValues[22]));
             }
         }
 
@@ -346,7 +348,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[23]) : (int)(flags & ~flagValues[23]));
+                flags = (value ? (flags | flagValues[23]) : (flags & ~flagValues[23]));
             }
         }
 
@@ -359,7 +361,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[24]) : (int)(flags & ~flagValues[24]));
+                flags = (value ? (flags | flagValues[24]) : (flags & ~flagValues[24]));
             }
         }
 
@@ -372,7 +374,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (int)(flags | flagValues[25]) : (int)(flags & ~flagValues[25]));
+                flags = (value ? (flags | flagValues[25]) : (flags & ~flagValues[25]));
             }
         }
     }
@@ -383,180 +385,180 @@ namespace AW
         private class MoverData
         {
             public byte version = 1;
-            public byte type = 0;
+            public byte type;
             public MoverFlags flags = new MoverFlags();
-            public short locked_pos_x = 0;
-            public short locked_pos_y = 0;
-            public short locked_pos_z = 0;
-            public short locked_yaw = 0;
-            public short locked_pitch = 0;
-            public byte glide_factor = 0;     // -100 to +100
+            public short locked_pos_x;
+            public short locked_pos_y;
+            public short locked_pos_z;
+            public short locked_yaw;
+            public short locked_pitch;
+            public byte glide_factor;     // -100 to +100
             public byte speed_factor = 1;      // 0.0 to 25.5 max (* 10)
             public byte friction_factor = 1;   // 0.0 to 25.5 max (* 10)
-            public byte accel_tilt_x = 0;     // -127 to +127
-            public byte accel_tilt_z = 0;     // -127 to +127
+            public byte accel_tilt_x;     // -127 to +127
+            public byte accel_tilt_z;     // -127 to +127
             public byte turn_factor = 1;       // 0.0 to 25.5 max (* 10)
-            public byte avatar_tag = 0;        // 0 to 255
+            public byte avatar_tag;        // 0 to 255
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
             public sbyte[] reserved1;      // Bytes reserverd for future use /9 bytes
-            public byte name_len = 0;          // length of 1st string in str_data
-            public byte seq_len = 0;           // length of 2nd string in str_data
-            public byte script_len = 0;        // length of 3rd string in str_data
-            public byte sound_len = 0;         // length of 4rd string in str_data
-            public short waypoints_len = 0;   // length of 5th string in str_data
-            public byte bump_name_len = 0;     // length of 6th string in str_data
+            public byte name_len;          // length of 1st string in str_data
+            public byte seq_len;           // length of 2nd string in str_data
+            public byte script_len;        // length of 3rd string in str_data
+            public byte sound_len;         // length of 4rd string in str_data
+            public short waypoints_len;   // length of 5th string in str_data
+            public byte bump_name_len;     // length of 6th string in str_data
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
             public sbyte[] reserved2;      // Bytes reserverd for future use /2 bytes
         }
 
-        private MoverData moverData = new MoverData();
-        private byte[] remainder;
+        private MoverData _moverData = new MoverData();
+        private byte[] _remainder;
 
-        private readonly List<Waypoint> waypoints = new List<Waypoint>();
-        private string name = string.Empty;
-        private string sequence = string.Empty;
-        private string script = string.Empty;
-        private string sound = string.Empty;
-        private string bumpName = string.Empty;
+        private readonly List<Waypoint> _waypoints = new List<Waypoint>();
+        private string _name = string.Empty;
+        private string _sequence = string.Empty;
+        private string _script = string.Empty;
+        private string _sound = string.Empty;
+        private string _bumpName = string.Empty;
 
         public MoverFlags Flags
         {
-            get { return moverData.flags; }
-            set { moverData.flags = value; }
+            get { return _moverData.flags; }
+            set { _moverData.flags = value; }
         }
 
         public MoverType Type
         {
-            get { return (MoverType)moverData.type; }
-            set { moverData.type = (byte)value; }
+            get { return (MoverType)_moverData.type; }
+            set { _moverData.type = (byte)value; }
         }
 
         public short LockedPositionX
         {
-            get { return moverData.locked_pos_x; }
-            set { moverData.locked_pos_x = value; }
+            get { return _moverData.locked_pos_x; }
+            set { _moverData.locked_pos_x = value; }
         }
 
         public short LockedPositionY
         {
-            get { return moverData.locked_pos_y; }
-            set { moverData.locked_pos_y = value; }
+            get { return _moverData.locked_pos_y; }
+            set { _moverData.locked_pos_y = value; }
         }
 
         public short LockedPositionZ
         {
-            get { return moverData.locked_pos_z; }
-            set { moverData.locked_pos_z = value; }
+            get { return _moverData.locked_pos_z; }
+            set { _moverData.locked_pos_z = value; }
         }
 
         public short LockedYaw
         {
-            get { return moverData.locked_yaw; }
-            set { moverData.locked_yaw = value; }
+            get { return _moverData.locked_yaw; }
+            set { _moverData.locked_yaw = value; }
         }
 
         public short LockedPitch
         {
-            get { return moverData.locked_pitch; }
-            set { moverData.locked_pitch = value; }
+            get { return _moverData.locked_pitch; }
+            set { _moverData.locked_pitch = value; }
         }
 
         public byte GlideFactor
         {
-            get { return moverData.glide_factor; }
-            set { moverData.glide_factor = value; }
+            get { return _moverData.glide_factor; }
+            set { _moverData.glide_factor = value; }
         }
 
         public byte SpeedFactor
         {
-            get { return moverData.speed_factor; }
-            set { moverData.speed_factor = value; }
+            get { return _moverData.speed_factor; }
+            set { _moverData.speed_factor = value; }
         }
 
         public byte FrictionFactor
         {
-            get { return moverData.friction_factor; }
-            set { moverData.friction_factor = value; }
+            get { return _moverData.friction_factor; }
+            set { _moverData.friction_factor = value; }
         }
 
         public byte AccelerationTiltX
         {
-            get { return moverData.accel_tilt_x; }
-            set { moverData.accel_tilt_x = value; }
+            get { return _moverData.accel_tilt_x; }
+            set { _moverData.accel_tilt_x = value; }
         }
 
         public byte AccelerationTiltZ
         {
-            get { return moverData.accel_tilt_z; }
-            set { moverData.accel_tilt_z = value; }
+            get { return _moverData.accel_tilt_z; }
+            set { _moverData.accel_tilt_z = value; }
         }
 
         public byte TurnFactor
         {
-            get { return moverData.turn_factor; }
-            set { moverData.turn_factor = value; }
+            get { return _moverData.turn_factor; }
+            set { _moverData.turn_factor = value; }
         }
 
         public byte AvatarTag
         {
-            get { return moverData.avatar_tag; }
-            set { moverData.avatar_tag = value; }
+            get { return _moverData.avatar_tag; }
+            set { _moverData.avatar_tag = value; }
         }
 
         public string Name
         {
-            get { return name; }
-            set { name = value; }
+            get { return _name; }
+            set { _name = value; }
         }
 
         public string Sequence
         {
-            get { return sequence; }
-            set { sequence = value; }
+            get { return _sequence; }
+            set { _sequence = value; }
         }
 
         public string Script
         {
-            get { return script; }
-            set { script = value; }
+            get { return _script; }
+            set { _script = value; }
         }
 
         public string Sound
         {
-            get { return sound; }
-            set { sound = value; }
+            get { return _sound; }
+            set { _sound = value; }
         }
 
         public List<Waypoint> Waypoints
         {
-            get { return waypoints; }
+            get { return _waypoints; }
         }
 
         public string BumpName
         {
-            get { return bumpName; }
-            set { bumpName = value; }
+            get { return _bumpName; }
+            set { _bumpName = value; }
         }
 
         internal override byte[] GetData()
         {
             int waypointSize = Marshal.SizeOf(typeof(Waypoint)) + 1;
 
-            moverData.name_len = (byte)System.Text.Encoding.UTF8.GetByteCount(name);
-            moverData.seq_len = (byte)System.Text.Encoding.UTF8.GetByteCount(sequence);
-            moverData.script_len = (byte)System.Text.Encoding.UTF8.GetByteCount(script);
-            moverData.sound_len = (byte)System.Text.Encoding.UTF8.GetByteCount(sound);
-            moverData.waypoints_len = (short)(waypoints.Count * waypointSize);
-            moverData.bump_name_len = (byte)System.Text.Encoding.UTF8.GetByteCount(bumpName);
+            _moverData.name_len = (byte)Encoding.UTF8.GetByteCount(_name);
+            _moverData.seq_len = (byte)Encoding.UTF8.GetByteCount(_sequence);
+            _moverData.script_len = (byte)Encoding.UTF8.GetByteCount(_script);
+            _moverData.sound_len = (byte)Encoding.UTF8.GetByteCount(_sound);
+            _moverData.waypoints_len = (short)(_waypoints.Count * waypointSize);
+            _moverData.bump_name_len = (byte)Encoding.UTF8.GetByteCount(_bumpName);
 
-            byte[] outData = Utilities.Miscellaneous.ConcatArrays(Utilities.Miscellaneous.StructToBytes(moverData),
-                                                       System.Text.Encoding.UTF8.GetBytes(name),
-                                                       System.Text.Encoding.UTF8.GetBytes(sequence),
-                                                       System.Text.Encoding.UTF8.GetBytes(script),
-                                                       System.Text.Encoding.UTF8.GetBytes(sound)
+            byte[] outData = Utilities.Miscellaneous.ConcatArrays(Utilities.Miscellaneous.StructToBytes(_moverData),
+                                                       Encoding.UTF8.GetBytes(_name),
+                                                       Encoding.UTF8.GetBytes(_sequence),
+                                                       Encoding.UTF8.GetBytes(_script),
+                                                       Encoding.UTF8.GetBytes(_sound)
                                                       );
 
-            foreach (Waypoint wp in waypoints)
+            foreach (Waypoint wp in _waypoints)
             {
                 outData = Utilities.Miscellaneous.ConcatArrays(outData,
                                                     Utilities.Miscellaneous.StructToBytes(wp),
@@ -565,7 +567,7 @@ namespace AW
             }
 
             return Utilities.Miscellaneous.ConcatArrays(outData,
-                                             System.Text.Encoding.UTF8.GetBytes(bumpName),
+                                             Encoding.UTF8.GetBytes(_bumpName),
                                              new byte[] { 0 }
                                             );
 
@@ -575,25 +577,25 @@ namespace AW
         {
             int waypointSize = Marshal.SizeOf(typeof(Waypoint)) + 1;
 
-            moverData = Utilities.Miscellaneous.BytesToStruct<MoverData>(data, 0);
+            _moverData = Utilities.Miscellaneous.BytesToStruct<MoverData>(data, 0);
             int size = data.Length - Marshal.SizeOf(typeof(MoverData));
-            remainder = new byte[size];
-            Array.ConstrainedCopy(data, data.Length - size, remainder, 0, size);
+            _remainder = new byte[size];
+            Array.ConstrainedCopy(data, data.Length - size, _remainder, 0, size);
 
-            name = System.Text.Encoding.UTF8.GetString(remainder, 0, moverData.name_len);
-            sequence = System.Text.Encoding.UTF8.GetString(remainder, moverData.name_len, moverData.seq_len);
-            script = System.Text.Encoding.UTF8.GetString(remainder, moverData.name_len + moverData.seq_len, moverData.script_len);
-            sound = System.Text.Encoding.UTF8.GetString(remainder, moverData.name_len + moverData.seq_len + moverData.script_len, moverData.sound_len);
+            _name = Encoding.UTF8.GetString(_remainder, 0, _moverData.name_len);
+            _sequence = Encoding.UTF8.GetString(_remainder, _moverData.name_len, _moverData.seq_len);
+            _script = Encoding.UTF8.GetString(_remainder, _moverData.name_len + _moverData.seq_len, _moverData.script_len);
+            _sound = Encoding.UTF8.GetString(_remainder, _moverData.name_len + _moverData.seq_len + _moverData.script_len, _moverData.sound_len);
             //waypoints before bumpName.
-            bumpName = System.Text.Encoding.UTF8.GetString(remainder, moverData.name_len + moverData.seq_len + moverData.script_len + moverData.sound_len + moverData.waypoints_len, moverData.bump_name_len);
+            _bumpName = Encoding.UTF8.GetString(_remainder, _moverData.name_len + _moverData.seq_len + _moverData.script_len + _moverData.sound_len + _moverData.waypoints_len, _moverData.bump_name_len);
 
             // waypoints
-            int waypointPosition = moverData.name_len + moverData.seq_len + moverData.script_len + moverData.sound_len;
-            int totalWaypoints = moverData.waypoints_len / waypointSize;
+            int waypointPosition = _moverData.name_len + _moverData.seq_len + _moverData.script_len + _moverData.sound_len;
+            int totalWaypoints = _moverData.waypoints_len / waypointSize;
 
             for (int i = 0; i < totalWaypoints; ++i)
             {
-                waypoints.Add(Utilities.Miscellaneous.BytesToStruct<Waypoint>(remainder, waypointPosition));
+                _waypoints.Add(Utilities.Miscellaneous.BytesToStruct<Waypoint>(_remainder, waypointPosition));
                 waypointPosition += waypointSize;
             }
         }

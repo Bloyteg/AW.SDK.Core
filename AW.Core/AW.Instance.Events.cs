@@ -63,7 +63,7 @@ namespace AW
 		#region EventAdminWorldInfo
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventAdminWorldInfo;
-		private InterOp.Event nativeEventAdminWorldInfo;
+		private NativeMethods.Event nativeEventAdminWorldInfo;
 
 		//Native event handler.
 		private void OnEventAdminWorldInfo()
@@ -85,8 +85,8 @@ namespace AW
 				if (managedEventAdminWorldInfo == null)
 				{
 					SetInstance();
-					nativeEventAdminWorldInfo = new InterOp.Event(OnEventAdminWorldInfo);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ADMIN_WORLD_INFO, nativeEventAdminWorldInfo);
+					nativeEventAdminWorldInfo = new NativeMethods.Event(OnEventAdminWorldInfo);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ADMIN_WORLD_INFO, nativeEventAdminWorldInfo);
 				}
 
 				managedEventAdminWorldInfo += value;
@@ -102,7 +102,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventAdminWorldInfo = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ADMIN_WORLD_INFO, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ADMIN_WORLD_INFO, null);
 				}
 			}
 		}
@@ -111,7 +111,7 @@ namespace AW
 		#region EventAdminWorldDelete
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventAdminWorldDelete;
-		private InterOp.Event nativeEventAdminWorldDelete;
+		private NativeMethods.Event nativeEventAdminWorldDelete;
 
 		//Native event handler.
 		private void OnEventAdminWorldDelete()
@@ -133,8 +133,8 @@ namespace AW
 				if (managedEventAdminWorldDelete == null)
 				{
 					SetInstance();
-					nativeEventAdminWorldDelete = new InterOp.Event(OnEventAdminWorldDelete);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ADMIN_WORLD_DELETE, nativeEventAdminWorldDelete);
+					nativeEventAdminWorldDelete = new NativeMethods.Event(OnEventAdminWorldDelete);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ADMIN_WORLD_DELETE, nativeEventAdminWorldDelete);
 				}
 
 				managedEventAdminWorldDelete += value;
@@ -150,7 +150,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventAdminWorldDelete = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ADMIN_WORLD_DELETE, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ADMIN_WORLD_DELETE, null);
 				}
 			}
 		}
@@ -159,7 +159,7 @@ namespace AW
 		#region EventAvatarAdd
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventAvatarAdd;
-		private InterOp.Event nativeEventAvatarAdd;
+		private NativeMethods.Event nativeEventAvatarAdd;
 
 		//Native event handler.
 		private void OnEventAvatarAdd()
@@ -181,8 +181,8 @@ namespace AW
 				if (managedEventAvatarAdd == null)
 				{
 					SetInstance();
-					nativeEventAvatarAdd = new InterOp.Event(OnEventAvatarAdd);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_ADD, nativeEventAvatarAdd);
+					nativeEventAvatarAdd = new NativeMethods.Event(OnEventAvatarAdd);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_ADD, nativeEventAvatarAdd);
 				}
 
 				managedEventAvatarAdd += value;
@@ -198,7 +198,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventAvatarAdd = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_ADD, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_ADD, null);
 				}
 			}
 		}
@@ -207,7 +207,7 @@ namespace AW
 		#region EventAvatarChange
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventAvatarChange;
-		private InterOp.Event nativeEventAvatarChange;
+		private NativeMethods.Event nativeEventAvatarChange;
 
 		//Native event handler.
 		private void OnEventAvatarChange()
@@ -229,8 +229,8 @@ namespace AW
 				if (managedEventAvatarChange == null)
 				{
 					SetInstance();
-					nativeEventAvatarChange = new InterOp.Event(OnEventAvatarChange);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_CHANGE, nativeEventAvatarChange);
+					nativeEventAvatarChange = new NativeMethods.Event(OnEventAvatarChange);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_CHANGE, nativeEventAvatarChange);
 				}
 
 				managedEventAvatarChange += value;
@@ -246,7 +246,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventAvatarChange = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_CHANGE, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_CHANGE, null);
 				}
 			}
 		}
@@ -255,7 +255,7 @@ namespace AW
 		#region EventAvatarDelete
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventAvatarDelete;
-		private InterOp.Event nativeEventAvatarDelete;
+		private NativeMethods.Event nativeEventAvatarDelete;
 
 		//Native event handler.
 		private void OnEventAvatarDelete()
@@ -277,8 +277,8 @@ namespace AW
 				if (managedEventAvatarDelete == null)
 				{
 					SetInstance();
-					nativeEventAvatarDelete = new InterOp.Event(OnEventAvatarDelete);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_DELETE, nativeEventAvatarDelete);
+					nativeEventAvatarDelete = new NativeMethods.Event(OnEventAvatarDelete);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_DELETE, nativeEventAvatarDelete);
 				}
 
 				managedEventAvatarDelete += value;
@@ -294,7 +294,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventAvatarDelete = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_DELETE, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_DELETE, null);
 				}
 			}
 		}
@@ -303,7 +303,7 @@ namespace AW
 		#region EventAvatarClick
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventAvatarClick;
-		private InterOp.Event nativeEventAvatarClick;
+		private NativeMethods.Event nativeEventAvatarClick;
 
 		//Native event handler.
 		private void OnEventAvatarClick()
@@ -325,8 +325,8 @@ namespace AW
 				if (managedEventAvatarClick == null)
 				{
 					SetInstance();
-					nativeEventAvatarClick = new InterOp.Event(OnEventAvatarClick);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_CLICK, nativeEventAvatarClick);
+					nativeEventAvatarClick = new NativeMethods.Event(OnEventAvatarClick);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_CLICK, nativeEventAvatarClick);
 				}
 
 				managedEventAvatarClick += value;
@@ -342,7 +342,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventAvatarClick = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_CLICK, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_CLICK, null);
 				}
 			}
 		}
@@ -351,7 +351,7 @@ namespace AW
 		#region EventAvatarReload
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventAvatarReload;
-		private InterOp.Event nativeEventAvatarReload;
+		private NativeMethods.Event nativeEventAvatarReload;
 
 		//Native event handler.
 		private void OnEventAvatarReload()
@@ -373,8 +373,8 @@ namespace AW
 				if (managedEventAvatarReload == null)
 				{
 					SetInstance();
-					nativeEventAvatarReload = new InterOp.Event(OnEventAvatarReload);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_RELOAD, nativeEventAvatarReload);
+					nativeEventAvatarReload = new NativeMethods.Event(OnEventAvatarReload);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_RELOAD, nativeEventAvatarReload);
 				}
 
 				managedEventAvatarReload += value;
@@ -390,7 +390,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventAvatarReload = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_RELOAD, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_AVATAR_RELOAD, null);
 				}
 			}
 		}
@@ -399,7 +399,7 @@ namespace AW
 		#region EventBotgram
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventBotgram;
-		private InterOp.Event nativeEventBotgram;
+		private NativeMethods.Event nativeEventBotgram;
 
 		//Native event handler.
 		private void OnEventBotgram()
@@ -421,8 +421,8 @@ namespace AW
 				if (managedEventBotgram == null)
 				{
 					SetInstance();
-					nativeEventBotgram = new InterOp.Event(OnEventBotgram);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_BOTGRAM, nativeEventBotgram);
+					nativeEventBotgram = new NativeMethods.Event(OnEventBotgram);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_BOTGRAM, nativeEventBotgram);
 				}
 
 				managedEventBotgram += value;
@@ -438,7 +438,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventBotgram = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_BOTGRAM, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_BOTGRAM, null);
 				}
 			}
 		}
@@ -447,7 +447,7 @@ namespace AW
 		#region EventBotmenu
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventBotmenu;
-		private InterOp.Event nativeEventBotmenu;
+		private NativeMethods.Event nativeEventBotmenu;
 
 		//Native event handler.
 		private void OnEventBotmenu()
@@ -469,8 +469,8 @@ namespace AW
 				if (managedEventBotmenu == null)
 				{
 					SetInstance();
-					nativeEventBotmenu = new InterOp.Event(OnEventBotmenu);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_BOTMENU, nativeEventBotmenu);
+					nativeEventBotmenu = new NativeMethods.Event(OnEventBotmenu);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_BOTMENU, nativeEventBotmenu);
 				}
 
 				managedEventBotmenu += value;
@@ -486,7 +486,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventBotmenu = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_BOTMENU, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_BOTMENU, null);
 				}
 			}
 		}
@@ -495,7 +495,7 @@ namespace AW
 		#region EventCellBegin
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventCellBegin;
-		private InterOp.Event nativeEventCellBegin;
+		private NativeMethods.Event nativeEventCellBegin;
 
 		//Native event handler.
 		private void OnEventCellBegin()
@@ -517,8 +517,8 @@ namespace AW
 				if (managedEventCellBegin == null)
 				{
 					SetInstance();
-					nativeEventCellBegin = new InterOp.Event(OnEventCellBegin);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_CELL_BEGIN, nativeEventCellBegin);
+					nativeEventCellBegin = new NativeMethods.Event(OnEventCellBegin);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_CELL_BEGIN, nativeEventCellBegin);
 				}
 
 				managedEventCellBegin += value;
@@ -534,7 +534,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventCellBegin = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_CELL_BEGIN, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_CELL_BEGIN, null);
 				}
 			}
 		}
@@ -543,7 +543,7 @@ namespace AW
 		#region EventCellObject
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventCellObject;
-		private InterOp.Event nativeEventCellObject;
+		private NativeMethods.Event nativeEventCellObject;
 
 		//Native event handler.
 		private void OnEventCellObject()
@@ -565,8 +565,8 @@ namespace AW
 				if (managedEventCellObject == null)
 				{
 					SetInstance();
-					nativeEventCellObject = new InterOp.Event(OnEventCellObject);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_CELL_OBJECT, nativeEventCellObject);
+					nativeEventCellObject = new NativeMethods.Event(OnEventCellObject);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_CELL_OBJECT, nativeEventCellObject);
 				}
 
 				managedEventCellObject += value;
@@ -582,7 +582,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventCellObject = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_CELL_OBJECT, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_CELL_OBJECT, null);
 				}
 			}
 		}
@@ -591,7 +591,7 @@ namespace AW
 		#region EventCellEnd
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventCellEnd;
-		private InterOp.Event nativeEventCellEnd;
+		private NativeMethods.Event nativeEventCellEnd;
 
 		//Native event handler.
 		private void OnEventCellEnd()
@@ -613,8 +613,8 @@ namespace AW
 				if (managedEventCellEnd == null)
 				{
 					SetInstance();
-					nativeEventCellEnd = new InterOp.Event(OnEventCellEnd);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_CELL_END, nativeEventCellEnd);
+					nativeEventCellEnd = new NativeMethods.Event(OnEventCellEnd);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_CELL_END, nativeEventCellEnd);
 				}
 
 				managedEventCellEnd += value;
@@ -630,7 +630,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventCellEnd = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_CELL_END, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_CELL_END, null);
 				}
 			}
 		}
@@ -639,7 +639,7 @@ namespace AW
 		#region EventChat
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventChat;
-		private InterOp.Event nativeEventChat;
+		private NativeMethods.Event nativeEventChat;
 
 		//Native event handler.
 		private void OnEventChat()
@@ -661,8 +661,8 @@ namespace AW
 				if (managedEventChat == null)
 				{
 					SetInstance();
-					nativeEventChat = new InterOp.Event(OnEventChat);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_CHAT, nativeEventChat);
+					nativeEventChat = new NativeMethods.Event(OnEventChat);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_CHAT, nativeEventChat);
 				}
 
 				managedEventChat += value;
@@ -678,7 +678,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventChat = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_CHAT, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_CHAT, null);
 				}
 			}
 		}
@@ -687,7 +687,7 @@ namespace AW
 		#region EventConsoleMessage
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventConsoleMessage;
-		private InterOp.Event nativeEventConsoleMessage;
+		private NativeMethods.Event nativeEventConsoleMessage;
 
 		//Native event handler.
 		private void OnEventConsoleMessage()
@@ -709,8 +709,8 @@ namespace AW
 				if (managedEventConsoleMessage == null)
 				{
 					SetInstance();
-					nativeEventConsoleMessage = new InterOp.Event(OnEventConsoleMessage);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_CONSOLE_MESSAGE, nativeEventConsoleMessage);
+					nativeEventConsoleMessage = new NativeMethods.Event(OnEventConsoleMessage);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_CONSOLE_MESSAGE, nativeEventConsoleMessage);
 				}
 
 				managedEventConsoleMessage += value;
@@ -726,7 +726,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventConsoleMessage = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_CONSOLE_MESSAGE, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_CONSOLE_MESSAGE, null);
 				}
 			}
 		}
@@ -735,7 +735,7 @@ namespace AW
 		#region EventEntityAdd
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventEntityAdd;
-		private InterOp.Event nativeEventEntityAdd;
+		private NativeMethods.Event nativeEventEntityAdd;
 
 		//Native event handler.
 		private void OnEventEntityAdd()
@@ -757,8 +757,8 @@ namespace AW
 				if (managedEventEntityAdd == null)
 				{
 					SetInstance();
-					nativeEventEntityAdd = new InterOp.Event(OnEventEntityAdd);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_ADD, nativeEventEntityAdd);
+					nativeEventEntityAdd = new NativeMethods.Event(OnEventEntityAdd);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_ADD, nativeEventEntityAdd);
 				}
 
 				managedEventEntityAdd += value;
@@ -774,7 +774,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventEntityAdd = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_ADD, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_ADD, null);
 				}
 			}
 		}
@@ -783,7 +783,7 @@ namespace AW
 		#region EventEntityChange
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventEntityChange;
-		private InterOp.Event nativeEventEntityChange;
+		private NativeMethods.Event nativeEventEntityChange;
 
 		//Native event handler.
 		private void OnEventEntityChange()
@@ -805,8 +805,8 @@ namespace AW
 				if (managedEventEntityChange == null)
 				{
 					SetInstance();
-					nativeEventEntityChange = new InterOp.Event(OnEventEntityChange);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_CHANGE, nativeEventEntityChange);
+					nativeEventEntityChange = new NativeMethods.Event(OnEventEntityChange);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_CHANGE, nativeEventEntityChange);
 				}
 
 				managedEventEntityChange += value;
@@ -822,7 +822,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventEntityChange = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_CHANGE, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_CHANGE, null);
 				}
 			}
 		}
@@ -831,7 +831,7 @@ namespace AW
 		#region EventEntityDelete
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventEntityDelete;
-		private InterOp.Event nativeEventEntityDelete;
+		private NativeMethods.Event nativeEventEntityDelete;
 
 		//Native event handler.
 		private void OnEventEntityDelete()
@@ -853,8 +853,8 @@ namespace AW
 				if (managedEventEntityDelete == null)
 				{
 					SetInstance();
-					nativeEventEntityDelete = new InterOp.Event(OnEventEntityDelete);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_DELETE, nativeEventEntityDelete);
+					nativeEventEntityDelete = new NativeMethods.Event(OnEventEntityDelete);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_DELETE, nativeEventEntityDelete);
 				}
 
 				managedEventEntityDelete += value;
@@ -870,7 +870,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventEntityDelete = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_DELETE, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_DELETE, null);
 				}
 			}
 		}
@@ -879,7 +879,7 @@ namespace AW
 		#region EventEntityRiderAdd
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventEntityRiderAdd;
-		private InterOp.Event nativeEventEntityRiderAdd;
+		private NativeMethods.Event nativeEventEntityRiderAdd;
 
 		//Native event handler.
 		private void OnEventEntityRiderAdd()
@@ -901,8 +901,8 @@ namespace AW
 				if (managedEventEntityRiderAdd == null)
 				{
 					SetInstance();
-					nativeEventEntityRiderAdd = new InterOp.Event(OnEventEntityRiderAdd);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_RIDER_ADD, nativeEventEntityRiderAdd);
+					nativeEventEntityRiderAdd = new NativeMethods.Event(OnEventEntityRiderAdd);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_RIDER_ADD, nativeEventEntityRiderAdd);
 				}
 
 				managedEventEntityRiderAdd += value;
@@ -918,7 +918,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventEntityRiderAdd = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_RIDER_ADD, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_RIDER_ADD, null);
 				}
 			}
 		}
@@ -927,7 +927,7 @@ namespace AW
 		#region EventEntityRiderChange
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventEntityRiderChange;
-		private InterOp.Event nativeEventEntityRiderChange;
+		private NativeMethods.Event nativeEventEntityRiderChange;
 
 		//Native event handler.
 		private void OnEventEntityRiderChange()
@@ -949,8 +949,8 @@ namespace AW
 				if (managedEventEntityRiderChange == null)
 				{
 					SetInstance();
-					nativeEventEntityRiderChange = new InterOp.Event(OnEventEntityRiderChange);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_RIDER_CHANGE, nativeEventEntityRiderChange);
+					nativeEventEntityRiderChange = new NativeMethods.Event(OnEventEntityRiderChange);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_RIDER_CHANGE, nativeEventEntityRiderChange);
 				}
 
 				managedEventEntityRiderChange += value;
@@ -966,7 +966,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventEntityRiderChange = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_RIDER_CHANGE, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_RIDER_CHANGE, null);
 				}
 			}
 		}
@@ -975,7 +975,7 @@ namespace AW
 		#region EventEntityRiderDelete
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventEntityRiderDelete;
-		private InterOp.Event nativeEventEntityRiderDelete;
+		private NativeMethods.Event nativeEventEntityRiderDelete;
 
 		//Native event handler.
 		private void OnEventEntityRiderDelete()
@@ -997,8 +997,8 @@ namespace AW
 				if (managedEventEntityRiderDelete == null)
 				{
 					SetInstance();
-					nativeEventEntityRiderDelete = new InterOp.Event(OnEventEntityRiderDelete);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_RIDER_DELETE, nativeEventEntityRiderDelete);
+					nativeEventEntityRiderDelete = new NativeMethods.Event(OnEventEntityRiderDelete);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_RIDER_DELETE, nativeEventEntityRiderDelete);
 				}
 
 				managedEventEntityRiderDelete += value;
@@ -1014,7 +1014,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventEntityRiderDelete = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_RIDER_DELETE, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_RIDER_DELETE, null);
 				}
 			}
 		}
@@ -1023,7 +1023,7 @@ namespace AW
 		#region EventEntityLinks
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventEntityLinks;
-		private InterOp.Event nativeEventEntityLinks;
+		private NativeMethods.Event nativeEventEntityLinks;
 
 		//Native event handler.
 		private void OnEventEntityLinks()
@@ -1045,8 +1045,8 @@ namespace AW
 				if (managedEventEntityLinks == null)
 				{
 					SetInstance();
-					nativeEventEntityLinks = new InterOp.Event(OnEventEntityLinks);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_LINKS, nativeEventEntityLinks);
+					nativeEventEntityLinks = new NativeMethods.Event(OnEventEntityLinks);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_LINKS, nativeEventEntityLinks);
 				}
 
 				managedEventEntityLinks += value;
@@ -1062,7 +1062,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventEntityLinks = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_LINKS, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_ENTITY_LINKS, null);
 				}
 			}
 		}
@@ -1071,7 +1071,7 @@ namespace AW
 		#region EventHudClick
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventHudClick;
-		private InterOp.Event nativeEventHudClick;
+		private NativeMethods.Event nativeEventHudClick;
 
 		//Native event handler.
 		private void OnEventHudClick()
@@ -1093,8 +1093,8 @@ namespace AW
 				if (managedEventHudClick == null)
 				{
 					SetInstance();
-					nativeEventHudClick = new InterOp.Event(OnEventHudClick);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_HUD_CLICK, nativeEventHudClick);
+					nativeEventHudClick = new NativeMethods.Event(OnEventHudClick);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_HUD_CLICK, nativeEventHudClick);
 				}
 
 				managedEventHudClick += value;
@@ -1110,7 +1110,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventHudClick = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_HUD_CLICK, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_HUD_CLICK, null);
 				}
 			}
 		}
@@ -1119,7 +1119,7 @@ namespace AW
 		#region EventNoise
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventNoise;
-		private InterOp.Event nativeEventNoise;
+		private NativeMethods.Event nativeEventNoise;
 
 		//Native event handler.
 		private void OnEventNoise()
@@ -1141,8 +1141,8 @@ namespace AW
 				if (managedEventNoise == null)
 				{
 					SetInstance();
-					nativeEventNoise = new InterOp.Event(OnEventNoise);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_NOISE, nativeEventNoise);
+					nativeEventNoise = new NativeMethods.Event(OnEventNoise);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_NOISE, nativeEventNoise);
 				}
 
 				managedEventNoise += value;
@@ -1158,7 +1158,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventNoise = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_NOISE, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_NOISE, null);
 				}
 			}
 		}
@@ -1167,7 +1167,7 @@ namespace AW
 		#region EventObjectAdd
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventObjectAdd;
-		private InterOp.Event nativeEventObjectAdd;
+		private NativeMethods.Event nativeEventObjectAdd;
 
 		//Native event handler.
 		private void OnEventObjectAdd()
@@ -1189,8 +1189,8 @@ namespace AW
 				if (managedEventObjectAdd == null)
 				{
 					SetInstance();
-					nativeEventObjectAdd = new InterOp.Event(OnEventObjectAdd);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_ADD, nativeEventObjectAdd);
+					nativeEventObjectAdd = new NativeMethods.Event(OnEventObjectAdd);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_ADD, nativeEventObjectAdd);
 				}
 
 				managedEventObjectAdd += value;
@@ -1206,7 +1206,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventObjectAdd = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_ADD, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_ADD, null);
 				}
 			}
 		}
@@ -1215,7 +1215,7 @@ namespace AW
 		#region EventObjectDelete
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventObjectDelete;
-		private InterOp.Event nativeEventObjectDelete;
+		private NativeMethods.Event nativeEventObjectDelete;
 
 		//Native event handler.
 		private void OnEventObjectDelete()
@@ -1237,8 +1237,8 @@ namespace AW
 				if (managedEventObjectDelete == null)
 				{
 					SetInstance();
-					nativeEventObjectDelete = new InterOp.Event(OnEventObjectDelete);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_DELETE, nativeEventObjectDelete);
+					nativeEventObjectDelete = new NativeMethods.Event(OnEventObjectDelete);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_DELETE, nativeEventObjectDelete);
 				}
 
 				managedEventObjectDelete += value;
@@ -1254,7 +1254,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventObjectDelete = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_DELETE, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_DELETE, null);
 				}
 			}
 		}
@@ -1263,7 +1263,7 @@ namespace AW
 		#region EventObjectClick
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventObjectClick;
-		private InterOp.Event nativeEventObjectClick;
+		private NativeMethods.Event nativeEventObjectClick;
 
 		//Native event handler.
 		private void OnEventObjectClick()
@@ -1285,8 +1285,8 @@ namespace AW
 				if (managedEventObjectClick == null)
 				{
 					SetInstance();
-					nativeEventObjectClick = new InterOp.Event(OnEventObjectClick);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_CLICK, nativeEventObjectClick);
+					nativeEventObjectClick = new NativeMethods.Event(OnEventObjectClick);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_CLICK, nativeEventObjectClick);
 				}
 
 				managedEventObjectClick += value;
@@ -1302,7 +1302,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventObjectClick = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_CLICK, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_CLICK, null);
 				}
 			}
 		}
@@ -1311,7 +1311,7 @@ namespace AW
 		#region EventObjectBump
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventObjectBump;
-		private InterOp.Event nativeEventObjectBump;
+		private NativeMethods.Event nativeEventObjectBump;
 
 		//Native event handler.
 		private void OnEventObjectBump()
@@ -1333,8 +1333,8 @@ namespace AW
 				if (managedEventObjectBump == null)
 				{
 					SetInstance();
-					nativeEventObjectBump = new InterOp.Event(OnEventObjectBump);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_BUMP, nativeEventObjectBump);
+					nativeEventObjectBump = new NativeMethods.Event(OnEventObjectBump);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_BUMP, nativeEventObjectBump);
 				}
 
 				managedEventObjectBump += value;
@@ -1350,7 +1350,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventObjectBump = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_BUMP, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_BUMP, null);
 				}
 			}
 		}
@@ -1359,7 +1359,7 @@ namespace AW
 		#region EventObjectSelect
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventObjectSelect;
-		private InterOp.Event nativeEventObjectSelect;
+		private NativeMethods.Event nativeEventObjectSelect;
 
 		//Native event handler.
 		private void OnEventObjectSelect()
@@ -1381,8 +1381,8 @@ namespace AW
 				if (managedEventObjectSelect == null)
 				{
 					SetInstance();
-					nativeEventObjectSelect = new InterOp.Event(OnEventObjectSelect);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_SELECT, nativeEventObjectSelect);
+					nativeEventObjectSelect = new NativeMethods.Event(OnEventObjectSelect);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_SELECT, nativeEventObjectSelect);
 				}
 
 				managedEventObjectSelect += value;
@@ -1398,7 +1398,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventObjectSelect = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_SELECT, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_OBJECT_SELECT, null);
 				}
 			}
 		}
@@ -1407,7 +1407,7 @@ namespace AW
 		#region EventTeleport
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventTeleport;
-		private InterOp.Event nativeEventTeleport;
+		private NativeMethods.Event nativeEventTeleport;
 
 		//Native event handler.
 		private void OnEventTeleport()
@@ -1429,8 +1429,8 @@ namespace AW
 				if (managedEventTeleport == null)
 				{
 					SetInstance();
-					nativeEventTeleport = new InterOp.Event(OnEventTeleport);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_TELEPORT, nativeEventTeleport);
+					nativeEventTeleport = new NativeMethods.Event(OnEventTeleport);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_TELEPORT, nativeEventTeleport);
 				}
 
 				managedEventTeleport += value;
@@ -1446,7 +1446,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventTeleport = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_TELEPORT, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_TELEPORT, null);
 				}
 			}
 		}
@@ -1455,7 +1455,7 @@ namespace AW
 		#region EventTerrainBegin
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventTerrainBegin;
-		private InterOp.Event nativeEventTerrainBegin;
+		private NativeMethods.Event nativeEventTerrainBegin;
 
 		//Native event handler.
 		private void OnEventTerrainBegin()
@@ -1477,8 +1477,8 @@ namespace AW
 				if (managedEventTerrainBegin == null)
 				{
 					SetInstance();
-					nativeEventTerrainBegin = new InterOp.Event(OnEventTerrainBegin);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_TERRAIN_BEGIN, nativeEventTerrainBegin);
+					nativeEventTerrainBegin = new NativeMethods.Event(OnEventTerrainBegin);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_TERRAIN_BEGIN, nativeEventTerrainBegin);
 				}
 
 				managedEventTerrainBegin += value;
@@ -1494,7 +1494,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventTerrainBegin = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_TERRAIN_BEGIN, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_TERRAIN_BEGIN, null);
 				}
 			}
 		}
@@ -1503,7 +1503,7 @@ namespace AW
 		#region EventTerrainChanged
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventTerrainChanged;
-		private InterOp.Event nativeEventTerrainChanged;
+		private NativeMethods.Event nativeEventTerrainChanged;
 
 		//Native event handler.
 		private void OnEventTerrainChanged()
@@ -1525,8 +1525,8 @@ namespace AW
 				if (managedEventTerrainChanged == null)
 				{
 					SetInstance();
-					nativeEventTerrainChanged = new InterOp.Event(OnEventTerrainChanged);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_TERRAIN_CHANGED, nativeEventTerrainChanged);
+					nativeEventTerrainChanged = new NativeMethods.Event(OnEventTerrainChanged);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_TERRAIN_CHANGED, nativeEventTerrainChanged);
 				}
 
 				managedEventTerrainChanged += value;
@@ -1542,7 +1542,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventTerrainChanged = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_TERRAIN_CHANGED, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_TERRAIN_CHANGED, null);
 				}
 			}
 		}
@@ -1551,7 +1551,7 @@ namespace AW
 		#region EventTerrainData
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventTerrainData;
-		private InterOp.Event nativeEventTerrainData;
+		private NativeMethods.Event nativeEventTerrainData;
 
 		//Native event handler.
 		private void OnEventTerrainData()
@@ -1573,8 +1573,8 @@ namespace AW
 				if (managedEventTerrainData == null)
 				{
 					SetInstance();
-					nativeEventTerrainData = new InterOp.Event(OnEventTerrainData);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_TERRAIN_DATA, nativeEventTerrainData);
+					nativeEventTerrainData = new NativeMethods.Event(OnEventTerrainData);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_TERRAIN_DATA, nativeEventTerrainData);
 				}
 
 				managedEventTerrainData += value;
@@ -1590,7 +1590,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventTerrainData = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_TERRAIN_DATA, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_TERRAIN_DATA, null);
 				}
 			}
 		}
@@ -1599,7 +1599,7 @@ namespace AW
 		#region EventTerrainEnd
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventTerrainEnd;
-		private InterOp.Event nativeEventTerrainEnd;
+		private NativeMethods.Event nativeEventTerrainEnd;
 
 		//Native event handler.
 		private void OnEventTerrainEnd()
@@ -1621,8 +1621,8 @@ namespace AW
 				if (managedEventTerrainEnd == null)
 				{
 					SetInstance();
-					nativeEventTerrainEnd = new InterOp.Event(OnEventTerrainEnd);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_TERRAIN_END, nativeEventTerrainEnd);
+					nativeEventTerrainEnd = new NativeMethods.Event(OnEventTerrainEnd);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_TERRAIN_END, nativeEventTerrainEnd);
 				}
 
 				managedEventTerrainEnd += value;
@@ -1638,7 +1638,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventTerrainEnd = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_TERRAIN_END, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_TERRAIN_END, null);
 				}
 			}
 		}
@@ -1647,7 +1647,7 @@ namespace AW
 		#region EventToolbarClick
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventToolbarClick;
-		private InterOp.Event nativeEventToolbarClick;
+		private NativeMethods.Event nativeEventToolbarClick;
 
 		//Native event handler.
 		private void OnEventToolbarClick()
@@ -1669,8 +1669,8 @@ namespace AW
 				if (managedEventToolbarClick == null)
 				{
 					SetInstance();
-					nativeEventToolbarClick = new InterOp.Event(OnEventToolbarClick);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_TOOLBAR_CLICK, nativeEventToolbarClick);
+					nativeEventToolbarClick = new NativeMethods.Event(OnEventToolbarClick);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_TOOLBAR_CLICK, nativeEventToolbarClick);
 				}
 
 				managedEventToolbarClick += value;
@@ -1686,7 +1686,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventToolbarClick = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_TOOLBAR_CLICK, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_TOOLBAR_CLICK, null);
 				}
 			}
 		}
@@ -1695,7 +1695,7 @@ namespace AW
 		#region EventUniverseAttributes
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventUniverseAttributes;
-		private InterOp.Event nativeEventUniverseAttributes;
+		private NativeMethods.Event nativeEventUniverseAttributes;
 
 		//Native event handler.
 		private void OnEventUniverseAttributes()
@@ -1717,8 +1717,8 @@ namespace AW
 				if (managedEventUniverseAttributes == null)
 				{
 					SetInstance();
-					nativeEventUniverseAttributes = new InterOp.Event(OnEventUniverseAttributes);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_UNIVERSE_ATTRIBUTES, nativeEventUniverseAttributes);
+					nativeEventUniverseAttributes = new NativeMethods.Event(OnEventUniverseAttributes);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_UNIVERSE_ATTRIBUTES, nativeEventUniverseAttributes);
 				}
 
 				managedEventUniverseAttributes += value;
@@ -1734,7 +1734,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventUniverseAttributes = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_UNIVERSE_ATTRIBUTES, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_UNIVERSE_ATTRIBUTES, null);
 				}
 			}
 		}
@@ -1743,7 +1743,7 @@ namespace AW
 		#region EventUniverseDisconnect
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventUniverseDisconnect;
-		private InterOp.Event nativeEventUniverseDisconnect;
+		private NativeMethods.Event nativeEventUniverseDisconnect;
 
 		//Native event handler.
 		private void OnEventUniverseDisconnect()
@@ -1765,8 +1765,8 @@ namespace AW
 				if (managedEventUniverseDisconnect == null)
 				{
 					SetInstance();
-					nativeEventUniverseDisconnect = new InterOp.Event(OnEventUniverseDisconnect);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_UNIVERSE_DISCONNECT, nativeEventUniverseDisconnect);
+					nativeEventUniverseDisconnect = new NativeMethods.Event(OnEventUniverseDisconnect);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_UNIVERSE_DISCONNECT, nativeEventUniverseDisconnect);
 				}
 
 				managedEventUniverseDisconnect += value;
@@ -1782,7 +1782,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventUniverseDisconnect = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_UNIVERSE_DISCONNECT, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_UNIVERSE_DISCONNECT, null);
 				}
 			}
 		}
@@ -1791,7 +1791,7 @@ namespace AW
 		#region EventUrl
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventUrl;
-		private InterOp.Event nativeEventUrl;
+		private NativeMethods.Event nativeEventUrl;
 
 		//Native event handler.
 		private void OnEventUrl()
@@ -1813,8 +1813,8 @@ namespace AW
 				if (managedEventUrl == null)
 				{
 					SetInstance();
-					nativeEventUrl = new InterOp.Event(OnEventUrl);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_URL, nativeEventUrl);
+					nativeEventUrl = new NativeMethods.Event(OnEventUrl);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_URL, nativeEventUrl);
 				}
 
 				managedEventUrl += value;
@@ -1830,7 +1830,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventUrl = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_URL, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_URL, null);
 				}
 			}
 		}
@@ -1839,7 +1839,7 @@ namespace AW
 		#region EventUrlClick
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventUrlClick;
-		private InterOp.Event nativeEventUrlClick;
+		private NativeMethods.Event nativeEventUrlClick;
 
 		//Native event handler.
 		private void OnEventUrlClick()
@@ -1861,8 +1861,8 @@ namespace AW
 				if (managedEventUrlClick == null)
 				{
 					SetInstance();
-					nativeEventUrlClick = new InterOp.Event(OnEventUrlClick);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_URL_CLICK, nativeEventUrlClick);
+					nativeEventUrlClick = new NativeMethods.Event(OnEventUrlClick);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_URL_CLICK, nativeEventUrlClick);
 				}
 
 				managedEventUrlClick += value;
@@ -1878,7 +1878,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventUrlClick = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_URL_CLICK, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_URL_CLICK, null);
 				}
 			}
 		}
@@ -1887,7 +1887,7 @@ namespace AW
 		#region EventUserInfo
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventUserInfo;
-		private InterOp.Event nativeEventUserInfo;
+		private NativeMethods.Event nativeEventUserInfo;
 
 		//Native event handler.
 		private void OnEventUserInfo()
@@ -1909,8 +1909,8 @@ namespace AW
 				if (managedEventUserInfo == null)
 				{
 					SetInstance();
-					nativeEventUserInfo = new InterOp.Event(OnEventUserInfo);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_USER_INFO, nativeEventUserInfo);
+					nativeEventUserInfo = new NativeMethods.Event(OnEventUserInfo);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_USER_INFO, nativeEventUserInfo);
 				}
 
 				managedEventUserInfo += value;
@@ -1926,7 +1926,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventUserInfo = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_USER_INFO, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_USER_INFO, null);
 				}
 			}
 		}
@@ -1935,7 +1935,7 @@ namespace AW
 		#region EventWorldAttributes
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventWorldAttributes;
-		private InterOp.Event nativeEventWorldAttributes;
+		private NativeMethods.Event nativeEventWorldAttributes;
 
 		//Native event handler.
 		private void OnEventWorldAttributes()
@@ -1957,8 +1957,8 @@ namespace AW
 				if (managedEventWorldAttributes == null)
 				{
 					SetInstance();
-					nativeEventWorldAttributes = new InterOp.Event(OnEventWorldAttributes);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_WORLD_ATTRIBUTES, nativeEventWorldAttributes);
+					nativeEventWorldAttributes = new NativeMethods.Event(OnEventWorldAttributes);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_WORLD_ATTRIBUTES, nativeEventWorldAttributes);
 				}
 
 				managedEventWorldAttributes += value;
@@ -1974,7 +1974,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventWorldAttributes = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_WORLD_ATTRIBUTES, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_WORLD_ATTRIBUTES, null);
 				}
 			}
 		}
@@ -1983,7 +1983,7 @@ namespace AW
 		#region EventWorldDisconnect
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventWorldDisconnect;
-		private InterOp.Event nativeEventWorldDisconnect;
+		private NativeMethods.Event nativeEventWorldDisconnect;
 
 		//Native event handler.
 		private void OnEventWorldDisconnect()
@@ -2005,8 +2005,8 @@ namespace AW
 				if (managedEventWorldDisconnect == null)
 				{
 					SetInstance();
-					nativeEventWorldDisconnect = new InterOp.Event(OnEventWorldDisconnect);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_WORLD_DISCONNECT, nativeEventWorldDisconnect);
+					nativeEventWorldDisconnect = new NativeMethods.Event(OnEventWorldDisconnect);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_WORLD_DISCONNECT, nativeEventWorldDisconnect);
 				}
 
 				managedEventWorldDisconnect += value;
@@ -2022,7 +2022,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventWorldDisconnect = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_WORLD_DISCONNECT, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_WORLD_DISCONNECT, null);
 				}
 			}
 		}
@@ -2031,7 +2031,7 @@ namespace AW
 		#region EventWorldInfo
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventWorldInfo;
-		private InterOp.Event nativeEventWorldInfo;
+		private NativeMethods.Event nativeEventWorldInfo;
 
 		//Native event handler.
 		private void OnEventWorldInfo()
@@ -2053,8 +2053,8 @@ namespace AW
 				if (managedEventWorldInfo == null)
 				{
 					SetInstance();
-					nativeEventWorldInfo = new InterOp.Event(OnEventWorldInfo);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_WORLD_INFO, nativeEventWorldInfo);
+					nativeEventWorldInfo = new NativeMethods.Event(OnEventWorldInfo);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_WORLD_INFO, nativeEventWorldInfo);
 				}
 
 				managedEventWorldInfo += value;
@@ -2070,7 +2070,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventWorldInfo = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_WORLD_INFO, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_WORLD_INFO, null);
 				}
 			}
 		}
@@ -2079,7 +2079,7 @@ namespace AW
 		#region EventCavDefinitionChange
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventCavDefinitionChange;
-		private InterOp.Event nativeEventCavDefinitionChange;
+		private NativeMethods.Event nativeEventCavDefinitionChange;
 
 		//Native event handler.
 		private void OnEventCavDefinitionChange()
@@ -2101,8 +2101,8 @@ namespace AW
 				if (managedEventCavDefinitionChange == null)
 				{
 					SetInstance();
-					nativeEventCavDefinitionChange = new InterOp.Event(OnEventCavDefinitionChange);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_CAV_DEFINITION_CHANGE, nativeEventCavDefinitionChange);
+					nativeEventCavDefinitionChange = new NativeMethods.Event(OnEventCavDefinitionChange);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_CAV_DEFINITION_CHANGE, nativeEventCavDefinitionChange);
 				}
 
 				managedEventCavDefinitionChange += value;
@@ -2118,7 +2118,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventCavDefinitionChange = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_CAV_DEFINITION_CHANGE, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_CAV_DEFINITION_CHANGE, null);
 				}
 			}
 		}
@@ -2127,7 +2127,7 @@ namespace AW
 		#region EventWorldCavDefinitionChange
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventWorldCavDefinitionChange;
-		private InterOp.Event nativeEventWorldCavDefinitionChange;
+		private NativeMethods.Event nativeEventWorldCavDefinitionChange;
 
 		//Native event handler.
 		private void OnEventWorldCavDefinitionChange()
@@ -2149,8 +2149,8 @@ namespace AW
 				if (managedEventWorldCavDefinitionChange == null)
 				{
 					SetInstance();
-					nativeEventWorldCavDefinitionChange = new InterOp.Event(OnEventWorldCavDefinitionChange);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_WORLD_CAV_DEFINITION_CHANGE, nativeEventWorldCavDefinitionChange);
+					nativeEventWorldCavDefinitionChange = new NativeMethods.Event(OnEventWorldCavDefinitionChange);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_WORLD_CAV_DEFINITION_CHANGE, nativeEventWorldCavDefinitionChange);
 				}
 
 				managedEventWorldCavDefinitionChange += value;
@@ -2166,7 +2166,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventWorldCavDefinitionChange = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_WORLD_CAV_DEFINITION_CHANGE, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_WORLD_CAV_DEFINITION_CHANGE, null);
 				}
 			}
 		}
@@ -2175,7 +2175,7 @@ namespace AW
 		#region EventLaserBeam
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managedEventLaserBeam;
-		private InterOp.Event nativeEventLaserBeam;
+		private NativeMethods.Event nativeEventLaserBeam;
 
 		//Native event handler.
 		private void OnEventLaserBeam()
@@ -2197,8 +2197,8 @@ namespace AW
 				if (managedEventLaserBeam == null)
 				{
 					SetInstance();
-					nativeEventLaserBeam = new InterOp.Event(OnEventLaserBeam);
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_LASER_BEAM, nativeEventLaserBeam);
+					nativeEventLaserBeam = new NativeMethods.Event(OnEventLaserBeam);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_LASER_BEAM, nativeEventLaserBeam);
 				}
 
 				managedEventLaserBeam += value;
@@ -2214,7 +2214,7 @@ namespace AW
 				{
 					SetInstance();
 					nativeEventLaserBeam = null;
-					InterOp.aw_instance_event_set(AW_EVENT.AW_EVENT_LASER_BEAM, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.AW_EVENT_LASER_BEAM, null);
 				}
 			}
 		}

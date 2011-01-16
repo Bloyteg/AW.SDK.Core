@@ -15,7 +15,7 @@ namespace AW
         /// <returns>Returns <c>0</c> if the wait successfully completed.</returns>
         public static int Wait(int duration)
         {
-            return InterOp.aw_wait(duration);
+            return NativeMethods.aw_wait(duration);
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace AW
         /// <returns>The sector number that the <paramref name="cell"/> is located in.</returns>
         public static int SectorFromCell(int cell)
         {
-            return InterOp.aw_sector_from_cell(cell);
+            return NativeMethods.aw_sector_from_cell(cell);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace AW
         {
             //Declare buffers
             IntPtr dataIn = Marshal.AllocHGlobal(data.Length);
-            IntPtr dataOut = Marshal.AllocHGlobal((int)bufferSize);
+            IntPtr dataOut = Marshal.AllocHGlobal(BufferSize);
             byte[] retArr = null;
 
             //Attempt to compress the data
@@ -49,13 +49,15 @@ namespace AW
             {
                 Marshal.Copy(data, 0, dataIn, data.Length);
 
-                int outLength = bufferSize;
-                int rc = InterOp.aw_zip(dataOut, out outLength, dataIn, (int)data.Length);
+// ReSharper disable RedundantAssignment
+                int outLength = BufferSize;
+// ReSharper restore RedundantAssignment
+                int rc = NativeMethods.aw_zip(dataOut, out outLength, dataIn, data.Length);
 
                 if (rc == 0)
                 {
                     retArr = new byte[outLength];
-                    Marshal.Copy(dataOut, retArr, 0, (int)outLength);
+                    Marshal.Copy(dataOut, retArr, 0, outLength);
                 }
                 else
                 {
@@ -85,7 +87,7 @@ namespace AW
         {
             //Declare buffers
             IntPtr dataIn = Marshal.AllocHGlobal(data.Length);
-            IntPtr dataOut = Marshal.AllocHGlobal((int)bufferSize);
+            IntPtr dataOut = Marshal.AllocHGlobal(BufferSize);
             byte[] retArr = null;
 
             //Attempt to compress the data
@@ -93,13 +95,15 @@ namespace AW
             {
                 Marshal.Copy(data, 0, dataIn, data.Length);
 
-                int outLength = bufferSize;
-                int rc = InterOp.aw_unzip(dataOut, out outLength, dataIn, (int)data.Length);
+// ReSharper disable RedundantAssignment
+                int outLength = BufferSize;
+// ReSharper restore RedundantAssignment
+                int rc = NativeMethods.aw_unzip(dataOut, out outLength, dataIn, data.Length);
 
                 if (rc == 0)
                 {
                     retArr = new byte[outLength];
-                    Marshal.Copy(dataOut, retArr, 0, (int)outLength);
+                    Marshal.Copy(dataOut, retArr, 0, outLength);
                 }
                 else
                 {
@@ -124,7 +128,7 @@ namespace AW
         {
             get
             {
-                return InterOp.aw_random();
+                return NativeMethods.aw_random();
             }
         }
 
@@ -157,7 +161,7 @@ namespace AW
         {
             get
             {
-                return InterOp.aw_tick();
+                return NativeMethods.aw_tick();
             }
         }
         #endregion

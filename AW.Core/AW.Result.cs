@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AW
+﻿namespace AW
 {
     public enum Result
     {

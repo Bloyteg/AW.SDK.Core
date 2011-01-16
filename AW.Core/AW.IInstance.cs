@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AW
 {
@@ -284,7 +282,7 @@ namespace AW
         /// <param name="cavContents">String representation of the Custom Avatar definition's XML.</param>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        void SetCAVData(string cavContents);
+        void SetCavData(string cavContents);
 
         /// <summary>
         /// Reads the <see cref="AW.Attributes.CavDefinition" /> attribute and returns the XML contained as a string.
@@ -292,6 +290,6 @@ namespace AW
         /// <returns>String representation of the Custom Avatar definition's XML.</returns>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        string GetCAVData();
+        string GetCavData();
     }
 }

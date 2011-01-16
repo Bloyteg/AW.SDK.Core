@@ -34,15 +34,14 @@ namespace AW
         /// <summary>
         /// Static destructor for handling when the final instance of the class is garbage collected.
         /// </summary>
-        private static readonly Utilities.StaticDestructor destructor = new Utilities.StaticDestructor(Utility.Terminate);
+        private static readonly Utilities.StaticDestructor Destructor = new Utilities.StaticDestructor(Utility.Terminate);
 
         /// <summary>
         /// Static constructor.  This initializes the SDK the first time an instance is created.
         /// </summary>
         static Instance()
         {
-            int rc = Utility.Initialize();
-            
+            SDKWrapperException<SDKWrapperInitializationFailedException>.Assert(Utility.Initialize());
         }
 
         #endregion
@@ -56,7 +55,7 @@ namespace AW
         public Instance()
         {
             IntPtr tempInstance;
-            int rc = InterOp.aw_create(null, 0, out tempInstance);
+            int rc = NativeMethods.aw_create(null, 0, out tempInstance);
             SDKWrapperException<InstanceCreationFailedException>.Assert(rc);
 
             _instance = tempInstance;
@@ -72,7 +71,7 @@ namespace AW
         public Instance(string domain, int port)
         {
             IntPtr tempInstance;
-            int rc = InterOp.aw_create(domain, port, out tempInstance);
+            int rc = NativeMethods.aw_create(domain, port, out tempInstance);
             SDKWrapperException<InstanceCreationFailedException>.Assert(rc);
 
             _instance = tempInstance;
@@ -88,7 +87,7 @@ namespace AW
         public Instance(int address, int port)
         {
             IntPtr tempInstance;
-            int rc = InterOp.aw_create_resolved(address, port, out tempInstance);
+            int rc = NativeMethods.aw_create_resolved(address, port, out tempInstance);
             SDKWrapperException<InstanceCreationFailedException>.Assert(rc);
 
             _instance = tempInstance;
@@ -105,7 +104,7 @@ namespace AW
         public Instance(string domain, int port, string password)
         {
             IntPtr tempInstance;
-            int rc = InterOp.aw_server_admin(domain, port, password, out tempInstance);
+            int rc = NativeMethods.aw_server_admin(domain, port, password, out tempInstance);
             SDKWrapperException<InstanceCreationFailedException>.Assert(rc);
 
             _instance = tempInstance;
@@ -144,7 +143,7 @@ namespace AW
             if (Utility.Initialized)
             {
                 SetInstance();
-                int rc = InterOp.aw_destroy();
+                int rc = NativeMethods.aw_destroy();
                 SDKWrapperException<InstanceDisposeFailedException>.Assert(rc);
             }
 
@@ -172,9 +171,9 @@ namespace AW
         /// </summary>
         private void SetInstance()
         {
-            if (InterOp.aw_instance() != _instance)
+            if (NativeMethods.aw_instance() != _instance)
             {
-                int rc = InterOp.aw_instance_set(_instance);
+                int rc = NativeMethods.aw_instance_set(_instance);
                 SDKWrapperException<InstanceSetFailedException>.Assert(rc);
             }
         }
@@ -188,7 +187,7 @@ namespace AW
         public void SetString(Attributes attribute, string value)
         {
             SetInstance();
-            SDKWrapperException<InstanceAttributeException>.Assert(InterOp.aw_string_set(attribute, value));
+            SDKWrapperException<InstanceAttributeException>.Assert(NativeMethods.aw_string_set(attribute, value));
         }
 
         /// <summary>
@@ -199,7 +198,7 @@ namespace AW
         public string GetString(Attributes attribute)
         {
             SetInstance();
-            return Marshal.PtrToStringUni(InterOp.aw_string(attribute));
+            return Marshal.PtrToStringUni(NativeMethods.aw_string(attribute));
         }
 
         /// <summary>
@@ -207,13 +206,13 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be set.</param>
         /// <param name="value">The value of the attribute being set.</param>
-        /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceAttributeException">Thrown when the instance failed to set the attribute.</exception>
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         public void SetInt(Attributes attribute, int value)
         {
             SetInstance();
-            SDKWrapperException<InstanceAttributeException>.Assert(InterOp.aw_int_set(attribute, value));
+            SDKWrapperException<InstanceAttributeException>.Assert(NativeMethods.aw_int_set(attribute, value));
         }
 
         /// <summary>
@@ -221,12 +220,12 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be accessed.</param>
         /// <returns>The value of the attribute being accessed.</returns>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         public int GetInt(Attributes attribute)
         {
             SetInstance();
-            return InterOp.aw_int(attribute);
+            return NativeMethods.aw_int(attribute);
         }
 
         /// <summary>
@@ -234,13 +233,13 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be set.</param>
         /// <param name="value">The value of the attribute being set.</param>
-        /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceAttributeException">Thrown when the instance failed to set the attribute.</exception>
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         public void SetBool(Attributes attribute, bool value)
         {
             SetInstance();
-            SDKWrapperException<InstanceAttributeException>.Assert(InterOp.aw_bool_set(attribute, value));
+            SDKWrapperException<InstanceAttributeException>.Assert(NativeMethods.aw_bool_set(attribute, value));
         }
 
         /// <summary>
@@ -248,12 +247,12 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be accessed.</param>
         /// <returns>The value of the attribute being accessed.</returns>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         public bool GetBool(Attributes attribute)
         {
             SetInstance();
-            return (InterOp.aw_bool(attribute) != 0);
+            return (NativeMethods.aw_bool(attribute) != 0);
         }
 
         /// <summary>
@@ -261,13 +260,13 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be set.</param>
         /// <param name="value">The value of the attribute being set.</param>
-        /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceAttributeException">Thrown when the instance failed to set the attribute.</exception>
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         public void SetFloat(Attributes attribute, float value)
         {
             SetInstance();
-            SDKWrapperException<InstanceAttributeException>.Assert(InterOp.aw_float_set(attribute, value));
+            SDKWrapperException<InstanceAttributeException>.Assert(NativeMethods.aw_float_set(attribute, value));
         }
 
         /// <summary>
@@ -275,12 +274,12 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be accessed.</param>
         /// <returns>The value of the attribute being accessed.</returns>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         public float GetFloat(Attributes attribute)
         {
             SetInstance();
-            return InterOp.aw_float(attribute);
+            return NativeMethods.aw_float(attribute);
         }
 
         /// <summary>
@@ -298,7 +297,7 @@ namespace AW
             try
             {
                 Marshal.Copy(value, 0, dest, value.Length);
-                errorCode = InterOp.aw_data_set(attribute, dest, value.Length);
+                errorCode = NativeMethods.aw_data_set(attribute, dest, value.Length);
             }
             finally
             {
@@ -313,13 +312,13 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be accessed.</param>
         /// <returns>The value of the attribute being accessed.</returns>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         public byte[] GetData(Attributes attribute)
         {
             SetInstance();
             int length;
-            IntPtr temp = InterOp.aw_data(attribute, out length);
+            IntPtr temp = NativeMethods.aw_data(attribute, out length);
 
             if (length == 0)
                 return null;
@@ -333,9 +332,9 @@ namespace AW
         /// Takes a string value representing an XML Custom Avatar defition and sets the <see cref="AW.Attributes.CavDefinition" /> attribute accordingly.
         /// </summary>
         /// <param name="cavContents">String representation of the Custom Avatar definition's XML.</param>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public void SetCAVData(string cavContents)
+        public void SetCavData(string cavContents)
         {
             SetInstance();
             SetData(AW.Attributes.CavDefinition, Utility.Zip(System.Text.Encoding.UTF8.GetBytes(cavContents)));
@@ -345,9 +344,9 @@ namespace AW
         /// Reads the <see cref="AW.Attributes.CavDefinition" /> attribute and returns the XML contained as a string.
         /// </summary>
         /// <returns>String representation of the Custom Avatar definition's XML.</returns>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
-        public string GetCAVData()
+        public string GetCavData()
         {
             SetInstance();
             return System.Text.Encoding.UTF8.GetString(Utility.Unzip(GetData(AW.Attributes.CavDefinition)));

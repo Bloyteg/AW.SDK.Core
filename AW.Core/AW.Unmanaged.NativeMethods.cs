@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace AW
 {
-    internal class InterOp
+    internal class NativeMethods
     {
         #region Delegates
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -102,7 +102,7 @@ namespace AW
         public static extern int aw_say(string message);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true, EntryPoint="aw_whisperW")]
-        public static extern int aw_whisper(int session_id, string message);
+        public static extern int aw_whisper(int sessionId, string message);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern int aw_state_change();
@@ -162,10 +162,10 @@ namespace AW
         public static extern int aw_object_load();
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_query(int x_sector, int z_sector, int[,] sequence);
+        public static extern int aw_query(int xSector, int zSector, int[,] sequence);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_query_5x5(int x_sector, int z_sector, int[,] sequence);
+        public static extern int aw_query_5x5(int xSector, int zSector, int[,] sequence);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern int aw_random();
@@ -207,19 +207,19 @@ namespace AW
         public static extern int aw_object_select();
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_avatar_click(int session_id);
+        public static extern int aw_avatar_click(int sessionId);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_address(int session_id);
+        public static extern int aw_address(int sessionId);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true, EntryPoint="aw_url_sendW")]
-        public static extern int aw_url_send(int session_id, string url, string target);
+        public static extern int aw_url_send(int sessionId, string url, string target);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true, EntryPoint="aw_url_clickW")]
         public static extern int aw_url_click(string url);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_teleport(int session_id);
+        public static extern int aw_teleport(int sessionId);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern int aw_world_ejection_add();
@@ -240,7 +240,7 @@ namespace AW
         public static extern int aw_world_attribute_set(int attribute, string value);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true, EntryPoint="aw_world_attribute_getW")]
-        public static extern int aw_world_attribute_get(int attribute, out int read_only, string value);
+        public static extern int aw_world_attribute_get(int attribute, out int readOnly, string value);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern int aw_delete_all_objects();
@@ -258,7 +258,7 @@ namespace AW
         public static extern int aw_terrain_set(int x, int z, int count, int texture, int[] heights);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_terrain_query(int page_x, int page_z, long sequence);
+        public static extern int aw_terrain_query(int pageX, int pageZ, long sequence);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern int aw_terrain_next();
@@ -270,16 +270,16 @@ namespace AW
         public static extern int aw_terrain_load_node();
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_console_message(int session_id);
+        public static extern int aw_console_message(int sessionId);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_avatar_set(int session_id);
+        public static extern int aw_avatar_set(int sessionId);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_avatar_reload(int citizen, int session_id);
+        public static extern int aw_avatar_reload(int citizen, int sessionId);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_world_instance_set(int citizen, int world_instance);
+        public static extern int aw_world_instance_set(int citizen, int worldInstance);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern int aw_world_instance_get(int citizen);
@@ -294,13 +294,13 @@ namespace AW
         public static extern int aw_user_list();
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_noise(int session_id);
+        public static extern int aw_noise(int sessionId);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_world_attributes_send(int session_id);
+        public static extern int aw_world_attributes_send(int sessionId);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_camera_set(int session_id);
+        public static extern int aw_camera_set(int sessionId);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern int aw_botmenu_send();
@@ -309,7 +309,7 @@ namespace AW
         public static extern int aw_object_bump();
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_traffic_count(out int traffic_in, out int traffic_out);
+        public static extern int aw_traffic_count(out int trafficIn, out int trafficOut);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern int aw_tick();
@@ -327,16 +327,16 @@ namespace AW
         public static extern bool aw_has_world_right_all(Attributes right);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_mover_set_state(int id, int state, int model_num);
+        public static extern int aw_mover_set_state(int id, int state, int modelNumber);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern int aw_mover_set_position(int id, int x, int y, int z, int yaw, int pitch, int roll);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_mover_rider_add(int id, int session, int dist, int angle, int y_delta, int yaw_delta, int pitch_delta);
+        public static extern int aw_mover_rider_add(int id, int session, int dist, int angle, int yDelta, int yawDelta, int pitchDelta);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_mover_rider_change(int id, int session, int dist, int angle, int y_delta, int yaw_delta, int pitch_delta);
+        public static extern int aw_mover_rider_change(int id, int session, int dist, int angle, int yDelta, int yawDelta, int pitchDelta);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern int aw_mover_rider_delete(int id, int session);
@@ -372,13 +372,13 @@ namespace AW
         public static extern int aw_server_world_instance_set(int id);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_server_world_instance_add(int id, int instance_id);
+        public static extern int aw_server_world_instance_add(int id, int instanceId);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_server_world_instance_delete(int id, int instance_id);
+        public static extern int aw_server_world_instance_delete(int id, int instanceId);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true, EntryPoint="aw_avatar_locationW")]
-        public static extern int aw_avatar_location(int citizen, int session_id, string name);
+        public static extern int aw_avatar_location(int citizen, int sessionId, string name);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern int aw_hud_create();
@@ -417,10 +417,10 @@ namespace AW
         public static extern int aw_object_query();
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_zip(IntPtr data_out, out int len_out, IntPtr data_in, int len_in);
+        public static extern int aw_zip(IntPtr dataOut, out int lengthOut, IntPtr dataIn, int lengthIn);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern int aw_unzip(IntPtr data_out, out int len_out, IntPtr data_in, int len_in);
+        public static extern int aw_unzip(IntPtr dataOut, out int lengthOut, IntPtr dataIn, int lengthIn);
 
         #endregion
 

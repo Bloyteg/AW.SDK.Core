@@ -63,7 +63,7 @@ namespace AW
 	#region <#= callback.Name #>
 		//Declare the types to handle both the managed and native callbacks.
 		private InstanceCallbackDelegate managed<#= callback.Name #>;
-		private InterOp.Callback native<#= callback.Name #>;
+		private NativeMethods.Callback native<#= callback.Name #>;
 
 		//Native callback handler.
 		private void On<#= callback.Name #>(int error)
@@ -85,8 +85,8 @@ namespace AW
 				if (managed<#= callback.Name #> == null)
 				{
 					SetInstance();
-					native<#= callback.Name #> = new InterOp.Callback(On<#= callback.Name #>);
-					InterOp.aw_instance_callback_set(AW_CALLBACK.<#= callback.SdkName #>, native<#= callback.Name #>);
+					native<#= callback.Name #> = new NativeMethods.Callback(On<#= callback.Name #>);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.<#= callback.SdkName #>, native<#= callback.Name #>);
 				}
 
 				managed<#= callback.Name #> += value;
@@ -102,7 +102,7 @@ namespace AW
 				{
 					SetInstance();
 					native<#= callback.Name #> = null;
-					InterOp.aw_instance_callback_set(AW_CALLBACK.<#= callback.SdkName #>, null);
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.<#= callback.SdkName #>, null);
 				}
 			}
 		}

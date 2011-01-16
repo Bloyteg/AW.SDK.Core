@@ -47,7 +47,7 @@ namespace AW
         /// </summary>
         public Color()
         {
-            this.a = 255;
+            a = 255;
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace AW
         /// <param name="b">Blue component.  Value range is 0 to 255.</param>
         public Color(byte r, byte g, byte b)
         {
-            this.a = 255;
+            a = 255;
             this.r = r;
             this.g = g;
             this.b = b;
@@ -71,7 +71,7 @@ namespace AW
         /// <returns>The converted color.</returns>
         public static explicit operator Color(System.Drawing.Color color)
         {
-            return new Color() { R = color.R, G = color.G, B = color.B };
+            return new Color { R = color.R, G = color.G, B = color.B };
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace AW
         /// <returns>The converted color.</returns>
         public static implicit operator Color(int color)
         {
-            return new Color()
+            return new Color
             {
                 R = (byte)(color  & 0x0000FF),
                 G = (byte)((color >> 8) & 0x0000FF),
@@ -106,7 +106,7 @@ namespace AW
         /// <returns>The converted color.</returns>
         public static implicit operator int(Color color)
         {
-            return (int)(color.R | (color.G << 8) | (color.B << 16));
+            return (color.R | (color.G << 8) | (color.B << 16));
         }
 
         /// <summary>
@@ -124,8 +124,8 @@ namespace AW
         /// <param name="color">A hexadecimal string representation of the color.</param>
         public static Color FromString(string color)
         {
-            Utilities.HexConverter hexConvert = new Utilities.HexConverter(color);
-            return new Color( hexConvert.ByteData[0], hexConvert.ByteData[1], hexConvert.ByteData[2]);
+            var hexConvert = new Utilities.HexConverter(color);
+            return new Color(hexConvert.ByteData[0], hexConvert.ByteData[1], hexConvert.ByteData[2]);
         }
     }
 }

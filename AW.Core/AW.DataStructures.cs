@@ -77,8 +77,8 @@ namespace AW
 
         public short Speed
         {
-            get { return (short)speed; }
-            set { speed = (short)value; }
+            get { return speed; }
+            set { speed = value; }
         }
 
         public byte Pause

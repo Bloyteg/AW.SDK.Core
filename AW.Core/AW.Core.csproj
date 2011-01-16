@@ -50,6 +50,7 @@
     <DocumentationFile>
     </DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -61,6 +62,7 @@
     <DocumentationFile>
     </DocumentationFile>
     <RegisterForComInterop>false</RegisterForComInterop>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -95,14 +97,14 @@
     <Compile Include="Exceptions\AW.SDKWrapperException.cs" />
     <Compile Include="AW.Instance.Functions.cs">
     </Compile>
-    <Compile Include="AW.NotHexStringException.cs" />
+    <Compile Include="Exceptions\AW.NotHexStringException.cs" />
     <Compile Include="AW.Unmanaged.CallbacksEnum.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AW.Unmanaged.EventsEnum.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AW.Unmanaged.InterOp.cs" />
+    <Compile Include="AW.Unmanaged.NativeMethods.cs" />
     <Compile Include="Exceptions\AW.InstanceAttributeException.cs" />
     <Compile Include="Exceptions\AW.InstanceDisposeFailedException.cs" />
     <Compile Include="Exceptions\AW.InstanceSetFailedException.cs" />

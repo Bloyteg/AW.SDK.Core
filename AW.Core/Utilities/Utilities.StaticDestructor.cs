@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Utilities
+﻿namespace Utilities
 {
     /// <summary>
     /// Used to add a static destructor to classes, so when the last instance of a class is destroyed
@@ -12,7 +10,7 @@ namespace Utilities
         /// The delegate that is invoked when the destructor is called.
         /// </summary>
         public delegate void Handler();
-        private Handler doDestroy;
+        private readonly Handler _doDestroy;
 
         /// <summary>
         /// Creates a new static destructor with the specified delegate to handle the destruction.
@@ -20,12 +18,12 @@ namespace Utilities
         /// <param name="method">The delegate that will handle destruction.</param>
         public StaticDestructor(Handler method)
         {
-            doDestroy = method;
+            _doDestroy = method;
         }
 
         ~StaticDestructor()
         {
-            doDestroy();
+            _doDestroy();
         }
     }
 }

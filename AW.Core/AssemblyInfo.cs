@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Resources;
+using System.Runtime.InteropServices;
 
 //General information
 [assembly: AssemblyTitle("AW SDK .NET WRAPPER")]
@@ -13,10 +14,10 @@ using System.Resources;
 
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("AW.NET")]
-[assembly: AssemblyCopyright("Copyright ©2007 - 2010 Joshua R. Rodgers")]
+[assembly: AssemblyCopyright("Copyright ©2007 - 2011 Joshua R. Rodgers")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("0.3.10.85")]
+[assembly: AssemblyVersion("0.3.10.93")]
 
 //CLS compliance
 [assembly: System.CLSCompliant(true)]
@@ -24,3 +25,5 @@ using System.Resources;
 //Assembly signing
 [assembly: AssemblyDelaySign(false)]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
+
+[assembly: ComVisible(false)]

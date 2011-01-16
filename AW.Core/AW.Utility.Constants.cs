@@ -2,7 +2,7 @@
 {
     public static partial class Utility
     {
-        private static readonly int bufferSize = 4096;
+        private const int BufferSize = 4096;
 
         /// <summary>
         /// A static container containing several constants representing different aspects of the SDK.
@@ -16,7 +16,7 @@
             {
                 get
                 {
-                    return 85;
+                    return 93;
                 }
             }
 

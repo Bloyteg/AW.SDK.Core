@@ -10,7 +10,7 @@ namespace AW
         public Result Login()
         {
             SetInstance();
-            return (Result)InterOp.aw_login();
+            return (Result)NativeMethods.aw_login();
         }
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace AW
         public Result Enter(string world)
         {
             SetInstance();
-            return (Result)InterOp.aw_enter(world);
+            return (Result)NativeMethods.aw_enter(world);
         }
 
         ///<summary>
@@ -31,7 +31,7 @@ namespace AW
         public Result Exit()
         {
             SetInstance();
-            return (Result)InterOp.aw_exit();
+            return (Result)NativeMethods.aw_exit();
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace AW
         public Result StateChange()
         {
             SetInstance();
-            return (Result)InterOp.aw_state_change();
+            return (Result)NativeMethods.aw_state_change();
         }
         #endregion
 
@@ -48,79 +48,79 @@ namespace AW
         public Result ObjectClick()
         {
             SetInstance();
-            return (Result)InterOp.aw_object_click();
+            return (Result)NativeMethods.aw_object_click();
         }
 
         public Result ObjectSelect()
         {
             SetInstance();
-            return (Result)InterOp.aw_object_select();
+            return (Result)NativeMethods.aw_object_select();
         }
 
         public Result AvatarClick(int session)
         {
             SetInstance();
-            return (Result)InterOp.aw_avatar_click(session);
+            return (Result)NativeMethods.aw_avatar_click(session);
         }
 
         public Result UrlSend(int session, string url, string target)
         {
             SetInstance();
-            return (Result)InterOp.aw_url_send(session, url, target);
+            return (Result)NativeMethods.aw_url_send(session, url, target);
         }
 
         public Result UrlClick(string url)
         {
             SetInstance();
-            return (Result)InterOp.aw_url_click(url);
+            return (Result)NativeMethods.aw_url_click(url);
         }
 
         public Result Teleport(int session)
         {
             SetInstance();
-            return (Result)InterOp.aw_teleport(session);
+            return (Result)NativeMethods.aw_teleport(session);
         }
 
         public Result AvatarSet(int session)
         {
             SetInstance();
-            return (Result)InterOp.aw_avatar_set(session);
+            return (Result)NativeMethods.aw_avatar_set(session);
         }
 
         public Result AvatarReload(int citizen, int session)
         {
             SetInstance();
-            return (Result)InterOp.aw_avatar_reload(citizen, session);
+            return (Result)NativeMethods.aw_avatar_reload(citizen, session);
         }
 
         public Result ToolbarClick()
         {
             SetInstance();
-            return (Result)InterOp.aw_toolbar_click();
+            return (Result)NativeMethods.aw_toolbar_click();
         }
 
         public Result Noise(int session)
         {
             SetInstance();
-            return (Result)InterOp.aw_noise(session);
+            return (Result)NativeMethods.aw_noise(session);
         }
 
         public Result CameraSet(int session)
         {
             SetInstance();
-            return (Result)InterOp.aw_camera_set(session);
+            return (Result)NativeMethods.aw_camera_set(session);
         }
 
         public Result BotmenuSend()
         {
             SetInstance();
-            return (Result)InterOp.aw_botmenu_send();
+            return (Result)NativeMethods.aw_botmenu_send();
         }
 
         public Result ObjectBump()
         {
             SetInstance();
-            return (Result)InterOp.aw_object_bump();
+            return (Result)NativeMethods.aw_object_bump();
         }
         #endregion
 
@@ -128,25 +128,25 @@ namespace AW
         public Result WorldList()
         {
             SetInstance();
-            return (Result)InterOp.aw_world_list();
+            return (Result)NativeMethods.aw_world_list();
         }
 
         public Result Address(int session)
         {
             SetInstance();
-            return (Result)InterOp.aw_address(session);
+            return (Result)NativeMethods.aw_address(session);
         }
 
         public Result UserList()
         {
             SetInstance();
-            return (Result)InterOp.aw_user_list();
+            return (Result)NativeMethods.aw_user_list();
         }
 
         public Result AvatarLocation(int citizen, int sessionId, string name)
         {
             SetInstance();
-            return (Result)InterOp.aw_avatar_location(citizen, sessionId, name);
+            return (Result)NativeMethods.aw_avatar_location(citizen, sessionId, name);
         }
         #endregion
 
@@ -154,73 +154,73 @@ namespace AW
         public Result Say(string message)
         {
             SetInstance();
-            return (Result)InterOp.aw_say(message);
+            return (Result)NativeMethods.aw_say(message);
         }
 
         public Result Say(string message, object arg0)
         {
             SetInstance();
-            return (Result)InterOp.aw_say(string.Format(message, arg0));
+            return (Result)NativeMethods.aw_say(string.Format(message, arg0));
         }
 
         public Result Say(string message, object arg0, object arg1)
         {
             SetInstance();
-            return (Result)InterOp.aw_say(string.Format(message, arg0, arg1));
+            return (Result)NativeMethods.aw_say(string.Format(message, arg0, arg1));
         }
 
         public Result Say(string message, object arg0, object arg1, object arg2)
         {
             SetInstance();
-            return (Result)InterOp.aw_say(string.Format(message, arg0, arg1, arg2));
+            return (Result)NativeMethods.aw_say(string.Format(message, arg0, arg1, arg2));
         }
 
         public Result Say(string message, params object[] args)
         {
             SetInstance();
-            return (Result)InterOp.aw_say(string.Format(message, args));
+            return (Result)NativeMethods.aw_say(string.Format(message, args));
         }
 
         public Result Whisper(int session, string message)
         {
             SetInstance();
-            return (Result)InterOp.aw_whisper(session, message);
+            return (Result)NativeMethods.aw_whisper(session, message);
         }
 
         public Result Whisper(int session, string message, object arg0)
         {
             SetInstance();
-            return (Result)InterOp.aw_whisper(session, string.Format(message, arg0));
+            return (Result)NativeMethods.aw_whisper(session, string.Format(message, arg0));
         }
 
         public Result Whisper(int session, string message, object arg0, object arg1)
         {
             SetInstance();
-            return (Result)InterOp.aw_whisper(session, string.Format(message, arg0, arg1));
+            return (Result)NativeMethods.aw_whisper(session, string.Format(message, arg0, arg1));
         }
 
         public Result Whisper(int session, string message, object arg0, object arg1, object arg2)
         {
             SetInstance();
-            return (Result)InterOp.aw_whisper(session, string.Format(message, arg0, arg1, arg2));
+            return (Result)NativeMethods.aw_whisper(session, string.Format(message, arg0, arg1, arg2));
         }
 
         public Result Whisper(int session, string message, params object[] args)
         {
             SetInstance();
-            return (Result)InterOp.aw_whisper(session, string.Format(message, args));
+            return (Result)NativeMethods.aw_whisper(session, string.Format(message, args));
         }
 
         public Result ConsoleMessage(int session)
         {
             SetInstance();
-            return (Result)InterOp.aw_console_message(session);
+            return (Result)NativeMethods.aw_console_message(session);
         }
 
         public Result BotgramSend()
         {
             SetInstance();
-            return (Result)InterOp.aw_botgram_send();
+            return (Result)NativeMethods.aw_botgram_send();
         }
         #endregion
 
@@ -228,55 +228,55 @@ namespace AW
         public Result Query(int xSector, int zSector, int[,] sequence)
         {
             SetInstance();
-            return (Result)InterOp.aw_query(xSector, zSector, sequence);
+            return (Result)NativeMethods.aw_query(xSector, zSector, sequence);
         }
 
         public Result Query5x5(int xSector, int zSector, int[,] sequence)
         {
             SetInstance();
-            return (Result)InterOp.aw_query_5x5(xSector, zSector, sequence);
+            return (Result)NativeMethods.aw_query_5x5(xSector, zSector, sequence);
         }
 
         public Result ObjectQuery()
         {
             SetInstance();
-            return (Result)InterOp.aw_object_query();
+            return (Result)NativeMethods.aw_object_query();
         }
 
         public Result CellNext()
         {
             SetInstance();
-            return (Result)InterOp.aw_cell_next();
+            return (Result)NativeMethods.aw_cell_next();
         }
 
         public Result ObjectAdd()
         {
             SetInstance();
-            return (Result)InterOp.aw_object_add();
+            return (Result)NativeMethods.aw_object_add();
         }
 
         public Result ObjectChange()
         {
             SetInstance();
-            return (Result)InterOp.aw_object_change();
+            return (Result)NativeMethods.aw_object_change();
         }
 
         public Result ObjectDelete()
         {
             SetInstance();
-            return (Result)InterOp.aw_object_delete();
+            return (Result)NativeMethods.aw_object_delete();
         }
 
         public Result ObjectLoad()
         {
             SetInstance();
-            return (Result)InterOp.aw_object_load();
+            return (Result)NativeMethods.aw_object_load();
         }
 
         public Result DeleteAllObjects()
         {
             SetInstance();
-            return (Result)InterOp.aw_delete_all_objects();
+            return (Result)NativeMethods.aw_delete_all_objects();
         }
         #endregion
 
@@ -284,31 +284,31 @@ namespace AW
         public Result TerrainSet(int x, int z, int texture, int[] heights)
         {
             SetInstance();
-            return (Result)InterOp.aw_terrain_set(x, z, heights.Length, texture, heights);
+            return (Result)NativeMethods.aw_terrain_set(x, z, heights.Length, texture, heights);
         }
 
         public Result TerrainQuery(int pageX, int pageZ, long sequence)
         {
             SetInstance();
-            return (Result)InterOp.aw_terrain_query(pageX, pageZ, sequence);
+            return (Result)NativeMethods.aw_terrain_query(pageX, pageZ, sequence);
         }
 
         public Result TerrainNext()
         {
             SetInstance();
-            return (Result)InterOp.aw_terrain_next();
+            return (Result)NativeMethods.aw_terrain_next();
         }
 
         public Result TerrainDeleteAll()
         {
             SetInstance();
-            return (Result)InterOp.aw_terrain_delete_all();
+            return (Result)NativeMethods.aw_terrain_delete_all();
         }
 
         public Result TerrainLoadNode()
         {
             SetInstance();
-            return (Result)InterOp.aw_terrain_load_node();
+            return (Result)NativeMethods.aw_terrain_load_node();
         }
         #endregion
 
@@ -316,37 +316,37 @@ namespace AW
         public Result MoverSetState(int id, int state, int modelNum)
         {
             SetInstance();
-            return (Result)InterOp.aw_mover_set_state(id, state, modelNum);
+            return (Result)NativeMethods.aw_mover_set_state(id, state, modelNum);
         }
 
         public Result MoverSetPosition(int id, int x, int y, int z, int yaw, int pitch, int roll)
         {
             SetInstance();
-            return (Result)InterOp.aw_mover_set_position(id, x, y, z, yaw, pitch, roll);
+            return (Result)NativeMethods.aw_mover_set_position(id, x, y, z, yaw, pitch, roll);
         }
 
         public Result MoverRiderAdd(int id, int session, int dist, int angle, int yDelta, int yawDelta, int pitchDelta)
         {
             SetInstance();
-            return (Result)InterOp.aw_mover_rider_add(id, session, dist, angle, yDelta, yawDelta, pitchDelta);
+            return (Result)NativeMethods.aw_mover_rider_add(id, session, dist, angle, yDelta, yawDelta, pitchDelta);
         }
 
         public Result MoverRiderChange(int id, int session, int dist, int angle, int yDelta, int yawDelta, int pitchDelta)
         {
             SetInstance();
-            return (Result)InterOp.aw_mover_rider_change(id, session, dist, angle, yDelta, yawDelta, pitchDelta);
+            return (Result)NativeMethods.aw_mover_rider_change(id, session, dist, angle, yDelta, yawDelta, pitchDelta);
         }
 
         public Result MoverRiderDelete(int id, int session)
         {
             SetInstance();
-            return (Result)InterOp.aw_mover_rider_delete(id, session);
+            return (Result)NativeMethods.aw_mover_rider_delete(id, session);
         }
 
         public Result MoverLinks(int id)
         {
             SetInstance();
-            return (Result)InterOp.aw_mover_links(id);
+            return (Result)NativeMethods.aw_mover_links(id);
         }
         #endregion
 
@@ -354,31 +354,31 @@ namespace AW
         public Result HudCreate()
         {
             SetInstance();
-            return (Result)InterOp.aw_hud_create();
+            return (Result)NativeMethods.aw_hud_create();
         }
 
         public Result HudClick()
         {
             SetInstance();
-            return (Result)InterOp.aw_hud_click();
+            return (Result)NativeMethods.aw_hud_click();
         }
 
         public Result HudDestroy(int session, int id)
         {
             SetInstance();
-            return (Result)InterOp.aw_hud_destroy(session, id);
+            return (Result)NativeMethods.aw_hud_destroy(session, id);
         }
 
         public Result HudClear(int session)
         {
             SetInstance();
-            return (Result)InterOp.aw_hud_clear(session);
+            return (Result)NativeMethods.aw_hud_clear(session);
         }
 
         public Result TrafficCount(out int inTraffic, out int outTraffic)
         {
             SetInstance();
-            return (Result)InterOp.aw_traffic_count(out inTraffic, out outTraffic);
+            return (Result)NativeMethods.aw_traffic_count(out inTraffic, out outTraffic);
         }
         #endregion
 
@@ -386,37 +386,37 @@ namespace AW
         public Result CavRequest(int citizen, int session)
         {
             SetInstance();
-            return (Result)InterOp.aw_cav_request(citizen, session);
+            return (Result)NativeMethods.aw_cav_request(citizen, session);
         }
 
         public Result CavChange()
         {
             SetInstance();
-            return (Result)InterOp.aw_cav_change();
+            return (Result)NativeMethods.aw_cav_change();
         }
 
         public Result CavDelete()
         {
             SetInstance();
-            return (Result)InterOp.aw_cav_delete();
+            return (Result)NativeMethods.aw_cav_delete();
         }
 
         public Result WorldCavRequest(int citizen, int session)
         {
             SetInstance();
-            return (Result)InterOp.aw_world_cav_request(citizen, session);
+            return (Result)NativeMethods.aw_world_cav_request(citizen, session);
         }
 
         public Result WorldCavChange()
         {
             SetInstance();
-            return (Result)InterOp.aw_world_cav_change();
+            return (Result)NativeMethods.aw_world_cav_change();
         }
 
         public Result WorldCavDelete()
         {
             SetInstance();
-            return (Result)InterOp.aw_world_cav_delete();
+            return (Result)NativeMethods.aw_world_cav_delete();
         }
         #endregion
 
@@ -425,37 +425,37 @@ namespace AW
         public Result UniverseAttributesChange()
         {
             SetInstance();
-            return (Result)InterOp.aw_universe_attributes_change();
+            return (Result)NativeMethods.aw_universe_attributes_change();
         }
 
         public Result UniverseEjectionAdd()
         {
             SetInstance();
-            return (Result)InterOp.aw_universe_ejection_add();
+            return (Result)NativeMethods.aw_universe_ejection_add();
         }
 
         public Result UniverseEjectionDelete(int address)
         {
             SetInstance();
-            return (Result)InterOp.aw_universe_ejection_delete(address);
+            return (Result)NativeMethods.aw_universe_ejection_delete(address);
         }
 
         public Result UniverseEjectionLookup()
         {
             SetInstance();
-            return (Result)InterOp.aw_universe_ejection_lookup();
+            return (Result)NativeMethods.aw_universe_ejection_lookup();
         }
 
         public Result UniverseEjectionNext()
         {
             SetInstance();
-            return (Result)InterOp.aw_universe_ejection_next();
+            return (Result)NativeMethods.aw_universe_ejection_next();
         }
 
         public Result UniverseEjectionPrevious()
         {
             SetInstance();
-            return (Result)InterOp.aw_universe_ejection_previous();
+            return (Result)NativeMethods.aw_universe_ejection_previous();
         }
         #endregion
 
@@ -463,43 +463,43 @@ namespace AW
         public Result CitizenAttributesByName(string name)
         {
             SetInstance();
-            return (Result)InterOp.aw_citizen_attributes_by_name(name);
+            return (Result)NativeMethods.aw_citizen_attributes_by_name(name);
         }
 
         public Result CitizenAttributesByNumber(int citizen)
         {
             SetInstance();
-            return (Result)InterOp.aw_citizen_attributes_by_number(citizen);
+            return (Result)NativeMethods.aw_citizen_attributes_by_number(citizen);
         }
 
         public Result CitizenAdd()
         {
             SetInstance();
-            return (Result)InterOp.aw_citizen_add();
+            return (Result)NativeMethods.aw_citizen_add();
         }
 
         public Result CitizenChange()
         {
             SetInstance();
-            return (Result)InterOp.aw_citizen_change();
+            return (Result)NativeMethods.aw_citizen_change();
         }
 
         public Result CitizenDelete(int citizen)
         {
             SetInstance();
-            return (Result)InterOp.aw_citizen_delete(citizen);
+            return (Result)NativeMethods.aw_citizen_delete(citizen);
         }
 
         public Result CitizenNext()
         {
             SetInstance();
-            return (Result)InterOp.aw_citizen_next();
+            return (Result)NativeMethods.aw_citizen_next();
         }
 
         public Result CitizenPrevious()
         {
             SetInstance();
-            return (Result)InterOp.aw_citizen_previous();
+            return (Result)NativeMethods.aw_citizen_previous();
         }
         #endregion
 
@@ -507,37 +507,37 @@ namespace AW
         public Result LicenseAdd()
         {
             SetInstance();
-            return (Result)InterOp.aw_license_add();
+            return (Result)NativeMethods.aw_license_add();
         }
 
         public Result LicenseAttributes(string name)
         {
             SetInstance();
-            return (Result)InterOp.aw_license_attributes(name);
+            return (Result)NativeMethods.aw_license_attributes(name);
         }
 
         public Result LicenseChange()
         {
             SetInstance();
-            return (Result)InterOp.aw_license_change();
+            return (Result)NativeMethods.aw_license_change();
         }
 
         public Result LicenseDelete(string name)
         {
             SetInstance();
-            return (Result)InterOp.aw_license_delete(name);
+            return (Result)NativeMethods.aw_license_delete(name);
         }
 
         public Result LicenseNext()
         {
             SetInstance();
-            return (Result)InterOp.aw_license_next();
+            return (Result)NativeMethods.aw_license_next();
         }
 
         public Result LicensePrevious()
         {
             SetInstance();
-            return (Result)InterOp.aw_license_previous();
+            return (Result)NativeMethods.aw_license_previous();
         }
         #endregion
         #endregion
@@ -547,86 +547,86 @@ namespace AW
         public Result WorldAttributesChange()
         {
             SetInstance();
-            return (Result)InterOp.aw_world_attributes_change();
+            return (Result)NativeMethods.aw_world_attributes_change();
         }
 
         public Result WorldEject()
         {
             SetInstance();
-            return (Result)InterOp.aw_world_eject();
+            return (Result)NativeMethods.aw_world_eject();
         }
 
         public Result WorldReloadRegistry()
         {
             SetInstance();
-            return (Result)InterOp.aw_world_reload_registry();
+            return (Result)NativeMethods.aw_world_reload_registry();
         }
 
         public Result WorldAttributesReset()
         {
             SetInstance();
-            return (Result)InterOp.aw_world_attributes_reset();
+            return (Result)NativeMethods.aw_world_attributes_reset();
         }
 
         public Result WorldInstanceSet(int citizen, int worldInstance)
         {
             SetInstance();
-            return (Result)InterOp.aw_world_instance_set(citizen, worldInstance);
+            return (Result)NativeMethods.aw_world_instance_set(citizen, worldInstance);
         }
 
         public Result WorldInstanceGet(int citizen)
         {
             SetInstance();
-            return (Result)InterOp.aw_world_instance_get(citizen);
+            return (Result)NativeMethods.aw_world_instance_get(citizen);
         }
 
         public Result WorldAttributesSend(int session)
         {
             SetInstance();
-            return (Result)InterOp.aw_world_attributes_send(session);
+            return (Result)NativeMethods.aw_world_attributes_send(session);
         }
 
         public Result WorldEjectionAdd()
         {
             SetInstance();
-            return (Result)InterOp.aw_world_ejection_add();
+            return (Result)NativeMethods.aw_world_ejection_add();
         }
 
         public Result WorldEjectionDelete()
         {
             SetInstance();
-            return (Result)InterOp.aw_world_ejection_delete();
+            return (Result)NativeMethods.aw_world_ejection_delete();
         }
 
         public Result WorldEjectionLookup()
         {
             SetInstance();
-            return (Result)InterOp.aw_world_ejection_lookup();
+            return (Result)NativeMethods.aw_world_ejection_lookup();
         }
 
         public Result WorldEjectionNext()
         {
             SetInstance();
-            return (Result)InterOp.aw_world_ejection_next();
+            return (Result)NativeMethods.aw_world_ejection_next();
         }
 
         public Result WorldEjectionPrevious()
         {
             SetInstance();
-            return (Result)InterOp.aw_world_ejection_previous();
+            return (Result)NativeMethods.aw_world_ejection_previous();
         }
 
         public Result WorldAttributeSet(int attribute, string value)
         {
             SetInstance();
-            return (Result)InterOp.aw_world_attribute_set(attribute, value);
+            return (Result)NativeMethods.aw_world_attribute_set(attribute, value);
         }
 
         public Result WorldAttributeGet(int attribute, out bool readOnly, string value)
         {
             SetInstance();
             int ro;
-            int ret = InterOp.aw_world_attribute_get(attribute, out ro, value);
+            int ret = NativeMethods.aw_world_attribute_get(attribute, out ro, value);
             readOnly = ro != 0;
             return (Result)ret;
         }
@@ -636,25 +636,25 @@ namespace AW
         public bool CheckRight(int citizen, string rightString)
         {
             SetInstance();
-            return InterOp.aw_check_right(citizen, rightString);
+            return NativeMethods.aw_check_right(citizen, rightString);
         }
 
         public bool CheckRightAll(string rightString)
         {
             SetInstance();
-            return InterOp.aw_check_right_all(rightString);
+            return NativeMethods.aw_check_right_all(rightString);
         }
 
         public bool HasWorldRight(int citizen, Attributes right)
         {
             SetInstance();
-            return InterOp.aw_has_world_right(citizen, right);
+            return NativeMethods.aw_has_world_right(citizen, right);
         }
 
         public bool HasWorldRightAll(Attributes right)
         {
             SetInstance();
-            return InterOp.aw_has_world_right_all(right);
+            return NativeMethods.aw_has_world_right_all(right);
         }
         #endregion
         #endregion
@@ -663,61 +663,61 @@ namespace AW
         public Result ServerWorldAdd()
         {
             SetInstance();
-            return (Result)InterOp.aw_server_world_add();
+            return (Result)NativeMethods.aw_server_world_add();
         }
 
         public Result ServerWorldDelete(int id)
         {
             SetInstance();
-            return (Result)InterOp.aw_server_world_delete(id);
+            return (Result)NativeMethods.aw_server_world_delete(id);
         }
 
         public Result ServerWorldChange(int id)
         {
             SetInstance();
-            return (Result)InterOp.aw_server_world_change(id);
+            return (Result)NativeMethods.aw_server_world_change(id);
         }
 
         public Result ServerWorldList()
         {
             SetInstance();
-            return (Result)InterOp.aw_server_world_list();
+            return (Result)NativeMethods.aw_server_world_list();
         }
 
         public Result ServerWorldStart(int id)
         {
             SetInstance();
-            return (Result)InterOp.aw_server_world_start(id);
+            return (Result)NativeMethods.aw_server_world_start(id);
         }
 
         public Result ServerWorldStop(int id)
         {
             SetInstance();
-            return (Result)InterOp.aw_server_world_stop(id);
+            return (Result)NativeMethods.aw_server_world_stop(id);
         }
 
         public Result ServerWorldSet(int id)
         {
             SetInstance();
-            return (Result)InterOp.aw_server_world_set(id);
+            return (Result)NativeMethods.aw_server_world_set(id);
         }
 
         public Result ServerWorldInstanceSet(int id)
         {
             SetInstance();
-            return (Result)InterOp.aw_server_world_instance_set(id);
+            return (Result)NativeMethods.aw_server_world_instance_set(id);
         }
 
         public Result ServerWorldInstanceAdd(int id, int instanceId)
         {
             SetInstance();
-            return (Result)InterOp.aw_server_world_instance_add(id, instanceId);
+            return (Result)NativeMethods.aw_server_world_instance_add(id, instanceId);
         }
 
         public Result ServerWorldInstanceDelete(int id, int instanceId)
         {
             SetInstance();
-            return (Result)InterOp.aw_server_world_instance_delete(id, instanceId);
+            return (Result)NativeMethods.aw_server_world_instance_delete(id, instanceId);
         }
         #endregion
 
@@ -726,7 +726,7 @@ namespace AW
         public Result LaserBeam()
         {
             SetInstance();
-            return (Result)InterOp.aw_laser_beam();
+            return (Result)NativeMethods.aw_laser_beam();
         }
 
         #endregion

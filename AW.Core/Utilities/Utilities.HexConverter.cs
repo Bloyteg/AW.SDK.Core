@@ -1,4 +1,3 @@
-using System;
 using System.Text;
 using AW;
 
@@ -9,8 +8,8 @@ namespace Utilities
     /// </summary>
     internal class HexConverter
     {
-        private string stringData;
-        private byte[] byteData;
+        private string _stringData;
+        private byte[] _byteData;
 
         /// <summary>
         /// Constructs a new HexConverter with the specified hex-encoded string.
@@ -18,7 +17,7 @@ namespace Utilities
         /// <param name="hexString">The string to convert.</param>
         public HexConverter(string hexString)
         {
-            stringData = hexString;
+            _stringData = hexString;
         }
 
         /// <summary>
@@ -27,7 +26,7 @@ namespace Utilities
         /// <param name="bytes">The byte array to convert.</param>
         public HexConverter(byte[] bytes)
         {
-            byteData = bytes;
+            _byteData = bytes;
         }
 
         /// <summary>
@@ -35,19 +34,19 @@ namespace Utilities
         /// </summary>
         public void ConvertToBytes()
         {
-            if (stringData != null)
+            if (_stringData != null)
             {
-                if (stringData.Length % 2 != 0)
+                if (_stringData.Length % 2 != 0)
                     throw new NotHexStringException
                               {
-                                  Value = stringData
+                                  Value = _stringData
                               };
 
-                int size = stringData.Length / 2;
-                byteData = new byte[size];
+                int size = _stringData.Length / 2;
+                _byteData = new byte[size];
                 for (int i = 0; i < size; ++i)
                 {
-                    byteData[i] = byte.Parse(stringData.Substring(i << 1, 2), System.Globalization.NumberStyles.HexNumber);
+                    _byteData[i] = byte.Parse(_stringData.Substring(i << 1, 2), System.Globalization.NumberStyles.HexNumber);
                 }
             }
         }
@@ -57,15 +56,15 @@ namespace Utilities
         /// </summary>
         public void ConvertToString()
         {
-            if (byteData != null)
+            if (_byteData != null)
             {
                 StringBuilder outStr = new StringBuilder();
-                foreach (byte curByte in byteData)
+                foreach (byte curByte in _byteData)
                 {
                     outStr.AppendFormat("{0:X2}", curByte);
                 }
 
-                stringData = outStr.ToString();
+                _stringData = outStr.ToString();
             }
         }
 
@@ -77,7 +76,7 @@ namespace Utilities
         public static implicit operator byte[](HexConverter converter)
         {
             converter.ConvertToBytes();
-            return converter.byteData;
+            return converter._byteData;
         }
 
         /// <summary>
@@ -88,7 +87,7 @@ namespace Utilities
         public static implicit operator string(HexConverter converter)
         {
             converter.ConvertToString();
-            return converter.stringData;
+            return converter._stringData;
         }
 
         /// <summary>
@@ -99,7 +98,7 @@ namespace Utilities
             get
             {
                 ConvertToString();
-                return stringData;
+                return _stringData;
             }
         }
 
@@ -111,7 +110,7 @@ namespace Utilities
             get
             {
                 ConvertToBytes();
-                return byteData;
+                return _byteData;
             }
         }
     }

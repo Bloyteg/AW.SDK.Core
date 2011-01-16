@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace AW
 {
@@ -28,7 +29,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[0]) : (ushort)(flags & ~flagValues[0]));
+                flags = (ushort)(value ? (flags | flagValues[0]) : (flags & ~flagValues[0]));
             }
         }
 
@@ -41,7 +42,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[1]) : (ushort)(flags & ~flagValues[1]));
+                flags = (ushort)(value ? (flags | flagValues[1]) : (flags & ~flagValues[1]));
             }
         }
 
@@ -54,7 +55,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[2]) : (ushort)(flags & ~flagValues[2]));
+                flags = (ushort)(value ? (flags | flagValues[2]) : (flags & ~flagValues[2]));
             }
         }
 
@@ -67,7 +68,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[3]) : (ushort)(flags & ~flagValues[3]));
+                flags = (ushort)(value ? (flags | flagValues[3]) : (flags & ~flagValues[3]));
             }
         }
 
@@ -80,7 +81,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[4]) : (ushort)(flags & ~flagValues[4]));
+                flags = (ushort)(value ? (flags | flagValues[4]) : (flags & ~flagValues[4]));
             }
         }
 
@@ -93,7 +94,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[5]) : (ushort)(flags & ~flagValues[5]));
+                flags = (ushort)(value ? (flags | flagValues[5]) : (flags & ~flagValues[5]));
             }
         }
 
@@ -106,7 +107,7 @@ namespace AW
 
             set
             {
-                flags = (value == true ? (ushort)(flags | flagValues[6]) : (ushort)(flags & ~flagValues[6]));
+                flags = (ushort)(value ? (flags | flagValues[6]) : (flags & ~flagValues[6]));
             }
         }
     }
@@ -123,125 +124,125 @@ namespace AW
             public VectorRange angle = new VectorRange();
             public VectorRange spin = new VectorRange();
             public VectorRange size = new VectorRange();
-            public int release_min = 0;
-            public int release_max = 0;
-            public short release_size = 0;
-            public int lifespan = 0;
-            public int emitter_lifespan = 0;
-            public int fade_in = 0;
-            public int fade_out = 0;
+            public int release_min;
+            public int release_max;
+            public short release_size;
+            public int lifespan;
+            public int emitter_lifespan;
+            public int fade_in;
+            public int fade_out;
             public uint color_start = 0xFFFFFFFF;
             public uint color_end = 0xFFFFFFFF;
             public float opacity = 1.0f;
-            public byte render_style = 0;
+            public byte render_style;
             public ParticleFlags flags = new ParticleFlags();
-            public byte style = 0;
-            public short asset_list_len = 0;
-            public byte name_len = 0;
+            public byte style;
+            public short asset_list_len;
+            public byte name_len;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)]
             public byte[] reserved;
         }
 
-        private ParticleData particleData = new ParticleData();
-        private byte[] remainder;
+        private ParticleData _particleData = new ParticleData();
+        private byte[] _remainder;
 
-        private string assetList = string.Empty;
-        private string name = string.Empty;
+        private string _assetList = string.Empty;
+        private string _name = string.Empty;
 
         public ParticleFlags Flags
         {
-            get { return particleData.flags; }
-            set { particleData.flags = value; }
+            get { return _particleData.flags; }
+            set { _particleData.flags = value; }
         }
 
         public VectorRange Volume
         {
-            get { return particleData.volume; }
-            set { particleData.volume = value; }
+            get { return _particleData.volume; }
+            set { _particleData.volume = value; }
         }
 
         public VectorRange Speed
         {
-            get { return particleData.speed; }
-            set { particleData.speed = value; }
+            get { return _particleData.speed; }
+            set { _particleData.speed = value; }
         }
 
         public VectorRange Acceleration
         {
-            get { return particleData.accel; }
-            set { particleData.accel = value; }
+            get { return _particleData.accel; }
+            set { _particleData.accel = value; }
         }
 
         public VectorRange Angle
         {
-            get { return particleData.angle; }
-            set { particleData.angle = value; }
+            get { return _particleData.angle; }
+            set { _particleData.angle = value; }
         }
 
         public VectorRange Spin
         {
-            get { return particleData.spin; }
-            set { particleData.spin = value; }
+            get { return _particleData.spin; }
+            set { _particleData.spin = value; }
         }
 
         public VectorRange Size
         {
-            get { return particleData.size; }
-            set { particleData.size = value; }
+            get { return _particleData.size; }
+            set { _particleData.size = value; }
         }
 
         public int ReleaseMinimum
         {
-            get { return particleData.release_min; }
-            set { particleData.release_min = value; }
+            get { return _particleData.release_min; }
+            set { _particleData.release_min = value; }
         }
 
         public int ReleaseMaximum
         {
-            get { return particleData.release_max; }
-            set { particleData.release_max = value; }
+            get { return _particleData.release_max; }
+            set { _particleData.release_max = value; }
         }
 
         public short ReleaseSize
         {
-            get { return particleData.release_size; }
-            set { particleData.release_size = value; }
+            get { return _particleData.release_size; }
+            set { _particleData.release_size = value; }
         }
 
         public int Lifespan
         {
-            get { return particleData.lifespan; }
-            set { particleData.lifespan = value; }
+            get { return _particleData.lifespan; }
+            set { _particleData.lifespan = value; }
         }
 
         public int EmitterLifespan
         {
-            get { return particleData.emitter_lifespan; }
-            set { particleData.emitter_lifespan = value; }
+            get { return _particleData.emitter_lifespan; }
+            set { _particleData.emitter_lifespan = value; }
         }
 
         public int FadeIn
         {
-            get { return particleData.fade_in; }
-            set { particleData.fade_in = value; }
+            get { return _particleData.fade_in; }
+            set { _particleData.fade_in = value; }
         }
 
         public int FadeOut
         {
-            get { return particleData.fade_out; }
-            set { particleData.fade_out = value; }
+            get { return _particleData.fade_out; }
+            set { _particleData.fade_out = value; }
         }
 
         public Color ColorStart
         {
             get
             {
-                return (int)particleData.color_start;
+                return (int)_particleData.color_start;
             }
 
             set
             {
-                particleData.color_start = (uint)(int)value;
+                _particleData.color_start = (uint)(int)value;
             }
         }
 
@@ -249,53 +250,53 @@ namespace AW
         {
             get
             {
-                return (int)particleData.color_end;
+                return (int)_particleData.color_end;
             }
 
             set
             {
-                particleData.color_end = (uint)(int)value;
+                _particleData.color_end = (uint)(int)value;
             }
         }
 
         public float Opacity
         {
-            get { return particleData.opacity; }
-            set { particleData.opacity = value; }
+            get { return _particleData.opacity; }
+            set { _particleData.opacity = value; }
         }
 
         public ParticleDrawStyle RenderStyle
         {
-            get { return (ParticleDrawStyle)particleData.render_style; }
-            set { particleData.render_style = (byte)value; }
+            get { return (ParticleDrawStyle)_particleData.render_style; }
+            set { _particleData.render_style = (byte)value; }
         }
 
         public ParticleType Style
         {
-            get { return (ParticleType)particleData.style; }
-            set { particleData.style = (byte)value; }
+            get { return (ParticleType)_particleData.style; }
+            set { _particleData.style = (byte)value; }
         }
 
         public string AssetList
         {
-            get { return assetList; }
-            set { assetList = value; }
+            get { return _assetList; }
+            set { _assetList = value; }
         }
 
         public string Name
         {
-            get { return name; }
-            set { name = value; }
+            get { return _name; }
+            set { _name = value; }
         }
 
         internal override byte[] GetData()
         {
-            particleData.asset_list_len = (short)System.Text.UTF8Encoding.UTF8.GetByteCount(assetList);
-            particleData.name_len = (byte)System.Text.UTF8Encoding.UTF8.GetByteCount(name);
+            _particleData.asset_list_len = (short)Encoding.UTF8.GetByteCount(_assetList);
+            _particleData.name_len = (byte)Encoding.UTF8.GetByteCount(_name);
 
-            return Utilities.Miscellaneous.ConcatArrays(Utilities.Miscellaneous.StructToBytes(particleData),
-                                             System.Text.UTF8Encoding.UTF8.GetBytes(assetList),
-                                             System.Text.UTF8Encoding.UTF8.GetBytes(name),
+            return Utilities.Miscellaneous.ConcatArrays(Utilities.Miscellaneous.StructToBytes(_particleData),
+                                             Encoding.UTF8.GetBytes(_assetList),
+                                             Encoding.UTF8.GetBytes(_name),
                                              new byte[] { 0 }
                                             );
 
@@ -303,13 +304,13 @@ namespace AW
 
         internal override void SetData(byte[] data)
         {
-            particleData = Utilities.Miscellaneous.BytesToStruct<ParticleData>(data, 0);
+            _particleData = Utilities.Miscellaneous.BytesToStruct<ParticleData>(data, 0);
             int size = data.Length - Marshal.SizeOf(typeof(ParticleData));
-            remainder = new byte[size];
-            Array.ConstrainedCopy(data, data.Length - size, remainder, 0, size);
+            _remainder = new byte[size];
+            Array.ConstrainedCopy(data, data.Length - size, _remainder, 0, size);
 
-            assetList = System.Text.UTF8Encoding.UTF8.GetString(remainder, 0, particleData.asset_list_len);
-            name = System.Text.UTF8Encoding.UTF8.GetString(remainder, particleData.asset_list_len, particleData.name_len);
+            _assetList = Encoding.UTF8.GetString(_remainder, 0, _particleData.asset_list_len);
+            _name = Encoding.UTF8.GetString(_remainder, _particleData.asset_list_len, _particleData.name_len);
         }
     }
 }

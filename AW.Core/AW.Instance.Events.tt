@@ -73,7 +73,7 @@ namespace AW
 	#region <#= evnt.Name #>
 		//Declare the types to handle both the managed and native events.
 		private InstanceEventDelegate managed<#= evnt.Name #>;
-		private InterOp.Event native<#= evnt.Name #>;
+		private NativeMethods.Event native<#= evnt.Name #>;
 
 		//Native event handler.
 		private void On<#= evnt.Name #>()
@@ -95,8 +95,8 @@ namespace AW
 				if (managed<#= evnt.Name #> == null)
 				{
 					SetInstance();
-					native<#= evnt.Name #> = new InterOp.Event(On<#= evnt.Name #>);
-					InterOp.aw_instance_event_set(AW_EVENT.<#= evnt.SdkName #>, native<#= evnt.Name #>);
+					native<#= evnt.Name #> = new NativeMethods.Event(On<#= evnt.Name #>);
+					NativeMethods.aw_instance_event_set(AW_EVENT.<#= evnt.SdkName #>, native<#= evnt.Name #>);
 				}
 
 				managed<#= evnt.Name #> += value;
@@ -112,7 +112,7 @@ namespace AW
 				{
 					SetInstance();
 					native<#= evnt.Name #> = null;
-					InterOp.aw_instance_event_set(AW_EVENT.<#= evnt.SdkName #>, null);
+					NativeMethods.aw_instance_event_set(AW_EVENT.<#= evnt.SdkName #>, null);
 				}
 			}
 		}

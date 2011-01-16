@@ -25,7 +25,7 @@
             get
             {
                 SetInstance();
-                return InterOp.aw_session();
+                return NativeMethods.aw_session();
             }
         }
     }
