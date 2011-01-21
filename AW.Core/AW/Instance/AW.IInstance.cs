@@ -34,14 +34,16 @@ namespace AW
         /// </summary>
         /// <typeparam name="TV4Object">The type of the V4 object being used.</typeparam>
         /// <param name="v4Object">The V4 object representing the data to be set.</param>
-        void SetV4Object<TV4Object>(TV4Object v4Object) where TV4Object : V4Object;
+        void SetV4Object<TV4Object>(TV4Object v4Object)
+            where TV4Object : V4Object<TV4Object>, new();
 
         /// <summary>
         /// Retrieves a V4 object from the Attributes.ObjectData attribute of the instance.
         /// </summary>
         /// <typeparam name="TV4Object">the type of V4 object to be returned.</typeparam>
-        /// <param name="v4Object">A reference to a V4 object to store the data into (does not have to be constructed).</param>
-        void GetV4Object<TV4Object>(out TV4Object v4Object) where TV4Object : V4Object, new();
+        /// <returns></returns>
+        TV4Object GetV4Object<TV4Object>()
+            where TV4Object : V4Object<TV4Object>, new();
 
         /// <summary>
         /// Logs the instance into the universe using the Attributes.LoginOwner, Attributes.LoginPrivilegePassword, Attributes.LoginName, and Attributes.LoginApplication that were set earlier.

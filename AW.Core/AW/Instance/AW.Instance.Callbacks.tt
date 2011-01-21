@@ -2,7 +2,7 @@
 <#@ output extension=".cs" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ include file="Code.Generate.TemplateClasses.tt" #>
+<#@ include file="..\..\Code.Generate.TemplateClasses.tt" #>
 <#
 	List<string> callbacks = new List<string>()
 	{
