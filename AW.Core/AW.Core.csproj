@@ -74,81 +74,76 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="AW\DataStructures\AW.AttributeProvider.cs">
+    <Compile Include="AW\DataStructures\AttributeProvider.Generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AW.AttributeProvider.tt</DependentUpon>
+      <DependentUpon>AttributeProvider.tt</DependentUpon>
     </Compile>
-    <Compile Include="AW\Exceptions\AW.SDKWrapperInitializationFailedException.cs" />
-    <Compile Include="AW\Exceptions\AW.BindAddressException.cs" />
-    <Compile Include="AW\DataStructures\AW.IAttributeProvider.cs" />
-    <Compile Include="AW\Exceptions\AW.InstanceCreationFailedException.cs" />
-    <Compile Include="AW\Exceptions\AW.SDKWrapperException.cs" />
-    <Compile Include="AW\Exceptions\AW.NotHexStringException.cs" />
-    <Compile Include="AW\Unmanaged\AW.Unmanaged.CallbacksEnum.cs">
+    <Compile Include="AW\Exceptions\SDKWrapperInitializationFailedException.cs" />
+    <Compile Include="AW\Exceptions\BindAddressException.cs" />
+    <Compile Include="AW\DataStructures\IAttributeProvider.cs" />
+    <Compile Include="AW\Exceptions\InstanceCreationFailedException.cs" />
+    <Compile Include="AW\Exceptions\SDKWrapperException.cs" />
+    <Compile Include="AW\Exceptions\NotHexStringException.cs" />
+    <Compile Include="AW\Instance\Instance.Events.Generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Instance.Events.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AW\Unmanaged\Unmanaged.CallbacksEnum.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AW\Unmanaged\AW.Unmanaged.EventsEnum.cs">
+    <Compile Include="AW\Unmanaged\Unmanaged.EventsEnum.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AW\Unmanaged\AW.Unmanaged.NativeMethods.cs" />
-    <Compile Include="AW\Exceptions\AW.InstanceAttributeException.cs" />
-    <Compile Include="AW\Exceptions\AW.InstanceDisposeFailedException.cs" />
-    <Compile Include="AW\Exceptions\AW.InstanceSetFailedException.cs" />
-    <Compile Include="AW\Instance\AW.IInstance.cs" />
-    <Compile Include="AW\Instance\AW.Instance.Callbacks.cs">
-      <DependentUpon>AW.Instance.Callbacks.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
+    <Compile Include="AW\Unmanaged\Unmanaged.NativeMethods.cs" />
+    <Compile Include="AW\Exceptions\InstanceAttributeException.cs" />
+    <Compile Include="AW\Exceptions\InstanceDisposeFailedException.cs" />
+    <Compile Include="AW\Exceptions\InstanceSetFailedException.cs" />
+    <Compile Include="AW\Instance\IInstance.cs" />
+    <Compile Include="AW\Instance\Instance.Core.cs" />
+    <Compile Include="AW\Instance\Instance.Enumerations.cs" />
+    <Compile Include="AW\Instance\Instance.Methods.cs" />
+    <Compile Include="AW\Instance\Instance.Properties.cs" />
+    <Compile Include="AW\DataStructures\Waypoint.cs" />
+    <Compile Include="AW\DataStructures\Vector.cs" />
+    <Compile Include="AW\V4Object\ZoneFlags.cs" />
+    <Compile Include="AW\V4Object\CameraFlags.cs" />
+    <Compile Include="AW\V4Object\MoverFlags.cs" />
+    <Compile Include="AW\V4Object\ParticleFlags.cs" />
+    <Compile Include="AW\Instance\Instance.V4Object.cs" />
+    <Compile Include="Utilities\HexConverter.cs" />
+    <Compile Include="AW\V4Object\V4Object.cs">
     </Compile>
-    <Compile Include="AW\Instance\AW.Instance.Core.cs" />
-    <Compile Include="AW\Instance\AW.Instance.Enumerations.cs" />
-    <Compile Include="AW\Instance\AW.Instance.Events.cs">
-      <DependentUpon>AW.Instance.Events.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="AW\Instance\AW.Instance.Functions.cs" />
-    <Compile Include="AW\Instance\AW.Instance.Properties.cs" />
-    <Compile Include="AW\DataStructures\AW.Waypoint.cs" />
-    <Compile Include="AW\DataStructures\AW.Vector.cs" />
-    <Compile Include="AW\V4Object\AW.V4Object.ZoneFlags.cs" />
-    <Compile Include="AW\V4Object\AW.V4Object.CameraFlags.cs" />
-    <Compile Include="AW\V4Object\AW.V4Object.MoverFlags.cs" />
-    <Compile Include="AW\V4Object\AW.V4Object.ParticleFlags.cs" />
-    <Compile Include="AW\Instance\AW.Instance.V4Object.cs" />
-    <Compile Include="Utilities\Utilities.HexConverter.cs" />
-    <Compile Include="AW\V4Object\AW.V4Object.cs">
-    </Compile>
-    <Compile Include="AW\DataStructures\AW.Attributes.cs" />
-    <Compile Include="AW\DataStructures\AW.Color.cs" />
-    <Compile Include="AW\DataStructures\AW.VectorRange.cs" />
-    <Compile Include="AW\Utility\AW.Utility.Constants.cs" />
-    <Compile Include="AW\Utility\AW.Utility.Initialize.cs" />
-    <Compile Include="AW\Utility\AW.Utility.Functions.cs" />
-    <Compile Include="AW\V4Object\AW.V4Object.Camera.cs" />
-    <Compile Include="AW\V4Object\AW.V4Object.Mover.cs" />
-    <Compile Include="AW\V4Object\AW.V4Object.Particle.cs" />
-    <Compile Include="AW\V4Object\AW.V4Object.Zone.cs" />
-    <Compile Include="Utilities\Utilities.Miscellaneous.cs" />
-    <Compile Include="Utilities\Utilities.StaticDestructor.cs" />
-    <None Include="AW\DataStructures\AW.AttributeProvider.tt">
+    <Compile Include="AW\DataStructures\Attributes.cs" />
+    <Compile Include="AW\DataStructures\Color.cs" />
+    <Compile Include="AW\DataStructures\VectorRange.cs" />
+    <Compile Include="AW\Utility\Utility.Constants.cs" />
+    <Compile Include="AW\Utility\Utility.Initialize.cs" />
+    <Compile Include="AW\Utility\Utility.Functions.cs" />
+    <Compile Include="AW\V4Object\Camera.cs" />
+    <Compile Include="AW\V4Object\Mover.cs" />
+    <Compile Include="AW\V4Object\Particle.cs" />
+    <Compile Include="AW\V4Object\Zone.cs" />
+    <Compile Include="Utilities\Miscellaneous.cs" />
+    <Compile Include="Utilities\StaticDestructor.cs" />
+    <None Include="AW\DataStructures\AttributeProvider.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AW.AttributeProvider.cs</LastGenOutput>
+      <LastGenOutput>AttributeProvider.Generated.cs</LastGenOutput>
     </None>
-    <Compile Include="AW\Exceptions\AW.InternalZlibException.cs" />
-    <Compile Include="AW\DataStructures\AW.Result.cs" />
-    <Compile Include="AW\V4Object\AW.V4Object.Cloth.cs" />
+    <Compile Include="AW\Exceptions\InternalZlibException.cs" />
+    <Compile Include="AW\DataStructures\Result.cs" />
+    <Compile Include="AW\V4Object\Cloth.cs" />
     <None Include="Code.Generate.TemplateClasses.tt">
       <LastGenOutput>TemplateClasses.cs</LastGenOutput>
     </None>
-    <None Include="AW\Instance\AW.Instance.Callbacks.tt">
+    <Compile Include="AW\Instance\Instance.Callbacks.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AW.Instance.Callbacks.cs</LastGenOutput>
-    </None>
-    <None Include="AW\Instance\AW.Instance.Events.tt">
+      <LastGenOutput>Instance.Callbacks.Generated.cs</LastGenOutput>
+    </Compile>
+    <None Include="AW\Instance\Instance.Events.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AW.Instance.Events.cs</LastGenOutput>
+      <LastGenOutput>Instance.Events.Generated.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -171,7 +166,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Utilities\Serialization\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Don't use the host compiler, use CSC directly -->
   <PropertyGroup>
