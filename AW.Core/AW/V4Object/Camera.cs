@@ -1,24 +1,30 @@
 using System;
 using System.Runtime.InteropServices;
+using Utilities.Serialization;
 
 namespace AW
 {
     public sealed class Camera : V4Object<Camera>
     {
+#pragma warning disable 169
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         private class CameraData
         {
             public byte version = 1;
             public CameraFlags flags = new CameraFlags();
             public float zoom = 1.0f;
+            [FieldValueOrdinal(1)]
             public byte name_len;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)]
             public byte[] reserved = new byte[12];
         }
+#pragma warning restore 169
 
+        [FieldValueOrdinal(1)]
         private string _name = String.Empty;
-        private CameraData _cameraData = new CameraData();
-        private byte[] _remainder;
+
+        [FieldSizeProvider]
+        private readonly CameraData _cameraData = new CameraData();
 
         public CameraFlags Flags
         {
@@ -36,25 +42,6 @@ namespace AW
         {
             get { return _cameraData.zoom; }
             set { _cameraData.zoom = value; }
-        }
-
-        internal override byte[] GetData()
-        {
-            _cameraData.name_len = (byte)System.Text.Encoding.UTF8.GetByteCount(_name);
-            return Utilities.Miscellaneous.ConcatArrays(Utilities.Miscellaneous.StructToBytes(_cameraData),
-                                             System.Text.Encoding.UTF8.GetBytes(_name),
-                                             new byte[] { 0 }
-                                            );
-        }
-
-        internal override void SetData(byte[] data)
-        {
-            _cameraData = Utilities.Miscellaneous.BytesToStruct<CameraData>(data, 0);
-            int size = data.Length - Marshal.SizeOf(typeof(CameraData));
-            _remainder = new byte[size];
-
-            Array.ConstrainedCopy(data, data.Length - size, _remainder, 0, size);
-            _name = System.Text.Encoding.UTF8.GetString(_remainder, 0, _cameraData.name_len);
         }
     }
 }

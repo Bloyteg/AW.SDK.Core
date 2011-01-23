@@ -1,11 +1,11 @@
-using System;
 using System.Runtime.InteropServices;
-using System.Text;
+using Utilities.Serialization;
 
 namespace AW
 {
     public sealed class Zone : V4Object<Zone>
     {
+#pragma warning disable 169
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         private class ZoneData
         {
@@ -19,23 +19,37 @@ namespace AW
             public uint color = 0xFFFFFFFF;
             public short fog_min;
             public short fog_max = 100;
-            public short footstep_len ;
+            [FieldSizeOrdinal(1)]
+            public short footstep_len;
+            [FieldSizeOrdinal(2)]
             public short ambient_len;
+            [FieldSizeOrdinal(3)]
             public byte camera_len;
+            [FieldSizeOrdinal(4)]
             public byte target_cur_len;
+            [FieldSizeOrdinal(5)]
             public byte voip_rights_len;
+            [FieldSizeOrdinal(6)]
             public byte name_len;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
             public byte[] reserved;
         }
+#pragma warning restore 169
 
-        private ZoneData _zoneData = new ZoneData();
-        private byte[] _remainder;
+        [FieldSizeProvider]
+        private readonly ZoneData _zoneData = new ZoneData();
+
+        [FieldValueOrdinal(1)]
         private string _footstep = string.Empty;
+        [FieldValueOrdinal(2)]
         private string _ambient = string.Empty;
+        [FieldValueOrdinal(3)]
         private string _camera = string.Empty;
+        [FieldValueOrdinal(4)]
         private string _targetCursor = string.Empty;
+        [FieldValueOrdinal(5)]
         private string _voipRights = string.Empty;
+        [FieldValueOrdinal(6)]
         private string _name = string.Empty;
 
         public ZoneFlags Flags
@@ -132,41 +146,6 @@ namespace AW
         {
             get { return _name; }
             set { _name = value; }
-        }
-
-        internal override byte[] GetData()
-        {
-            _zoneData.footstep_len = (short)Encoding.UTF8.GetByteCount(_footstep);
-            _zoneData.ambient_len = (short)Encoding.UTF8.GetByteCount(_ambient);
-            _zoneData.camera_len = (byte)Encoding.UTF8.GetByteCount(_camera);
-            _zoneData.target_cur_len = (byte)Encoding.UTF8.GetByteCount(_targetCursor);
-            _zoneData.voip_rights_len = (byte)Encoding.UTF8.GetByteCount(_voipRights);
-            _zoneData.name_len = (byte)Encoding.UTF8.GetByteCount(_name);
-
-            return Utilities.Miscellaneous.ConcatArrays(Utilities.Miscellaneous.StructToBytes(_zoneData),
-                                                        Encoding.UTF8.GetBytes(_footstep),
-                                                        Encoding.UTF8.GetBytes(_ambient),
-                                                        Encoding.UTF8.GetBytes(_camera),
-                                                        Encoding.UTF8.GetBytes(_targetCursor),
-                                                        Encoding.UTF8.GetBytes(_voipRights),
-                                                        Encoding.UTF8.GetBytes(_name),
-                                                        new byte[] {0});
-
-        }
-
-        internal override void SetData(byte[] data)
-        {
-            _zoneData = Utilities.Miscellaneous.BytesToStruct<ZoneData>(data, 0);
-            int size = data.Length - Marshal.SizeOf(typeof(ZoneData));
-            _remainder = new byte[size];
-            Array.ConstrainedCopy(data, data.Length - size, _remainder, 0, size);
-
-            _footstep = Encoding.UTF8.GetString(_remainder, 0, _zoneData.footstep_len);
-            _ambient = Encoding.UTF8.GetString(_remainder, _zoneData.footstep_len, _zoneData.ambient_len);
-            _camera = Encoding.UTF8.GetString(_remainder, _zoneData.footstep_len + _zoneData.ambient_len, _zoneData.camera_len);
-            _targetCursor = Encoding.UTF8.GetString(_remainder, _zoneData.footstep_len + _zoneData.ambient_len + _zoneData.camera_len, _zoneData.target_cur_len);
-            _voipRights = Encoding.UTF8.GetString(_remainder, _zoneData.voip_rights_len + _zoneData.footstep_len + _zoneData.ambient_len + _zoneData.camera_len, _zoneData.voip_rights_len);
-            _name = Encoding.UTF8.GetString(_remainder, _zoneData.voip_rights_len + _zoneData.footstep_len + _zoneData.ambient_len + _zoneData.camera_len + _zoneData.voip_rights_len, _zoneData.name_len);
         }
     }
 }

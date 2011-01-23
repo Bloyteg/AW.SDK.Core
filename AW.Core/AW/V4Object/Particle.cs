@@ -1,11 +1,11 @@
-using System;
 using System.Runtime.InteropServices;
-using System.Text;
+using Utilities.Serialization;
 
 namespace AW
 {
     public sealed class Particle : V4Object<Particle>
     {
+#pragma warning disable 169
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         private class ParticleData
         {
@@ -29,16 +29,24 @@ namespace AW
             public byte render_style;
             public ParticleFlags flags = new ParticleFlags();
             public byte style;
+            [FieldSizeOrdinal(1)]
             public short asset_list_len;
+            [FieldSizeOrdinal(2)]
             public byte name_len;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)]
             public byte[] reserved;
         }
+#pragma warning restore 169
 
-        private ParticleData _particleData = new ParticleData();
-        private byte[] _remainder;
+        [FieldSizeProvider]
+        private readonly ParticleData _particleData = new ParticleData();
+        
+        //private byte[] _remainder;
 
+        [FieldValueOrdinal(1)]
         private string _assetList = string.Empty;
+
+        [FieldValueOrdinal(2)]
         private string _name = string.Empty;
 
         public ParticleFlags Flags
@@ -179,30 +187,6 @@ namespace AW
         {
             get { return _name; }
             set { _name = value; }
-        }
-
-        internal override byte[] GetData()
-        {
-            _particleData.asset_list_len = (short)Encoding.UTF8.GetByteCount(_assetList);
-            _particleData.name_len = (byte)Encoding.UTF8.GetByteCount(_name);
-
-            return Utilities.Miscellaneous.ConcatArrays(Utilities.Miscellaneous.StructToBytes(_particleData),
-                                             Encoding.UTF8.GetBytes(_assetList),
-                                             Encoding.UTF8.GetBytes(_name),
-                                             new byte[] { 0 }
-                                            );
-
-        }
-
-        internal override void SetData(byte[] data)
-        {
-            _particleData = Utilities.Miscellaneous.BytesToStruct<ParticleData>(data, 0);
-            int size = data.Length - Marshal.SizeOf(typeof(ParticleData));
-            _remainder = new byte[size];
-            Array.ConstrainedCopy(data, data.Length - size, _remainder, 0, size);
-
-            _assetList = Encoding.UTF8.GetString(_remainder, 0, _particleData.asset_list_len);
-            _name = Encoding.UTF8.GetString(_remainder, _particleData.asset_list_len, _particleData.name_len);
         }
     }
 }

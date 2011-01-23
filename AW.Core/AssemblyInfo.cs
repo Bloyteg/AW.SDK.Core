@@ -1,5 +1,7 @@
+using System;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 //General information
@@ -8,6 +10,7 @@ using System.Runtime.InteropServices;
 
 #if DEBUG
 [assembly: AssemblyConfiguration("Debug - x86 - .NET 2.0")]
+[assembly: InternalsVisibleTo("AW.Core.Tests")]
 #else
 [assembly: AssemblyConfiguration("Release - x86 - .NET 2.0")]
 #endif
@@ -20,7 +23,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("0.3.10.93")]
 
 //CLS compliance
-[assembly: System.CLSCompliant(true)]
+[assembly: CLSCompliant(true)]
 
 //Assembly signing
 [assembly: AssemblyDelaySign(false)]

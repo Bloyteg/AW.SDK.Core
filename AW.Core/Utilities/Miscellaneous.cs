@@ -33,7 +33,7 @@ namespace Utilities
         public static byte[] StructToBytes(object obj)
         {
             int length = Marshal.SizeOf(obj.GetType());
-            byte[] returnArr = new byte[length];
+            var returnArr = new byte[length];
             IntPtr ptr = Marshal.AllocHGlobal(length);
 
             try
@@ -89,10 +89,32 @@ namespace Utilities
         /// <returns>All arrays concatenated into one array.</returns>
         public static T[] ConcatArrays<T>(params T[][] arrays)
         {
-            List<T> outList = new List<T>();
+            var outList = new List<T>();
             foreach (T[] arr in arrays)
             {
                 outList.AddRange(arr);
+            }
+
+            return outList.ToArray();
+        }
+
+        /// <summary>
+        /// Concatenates together two or more arrays into one array, in the order that they were passed.
+        /// This version takes a head and then an enumerable tail.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="header">The header.</param>
+        /// <param name="payload">The payload.</param>
+        /// <returns></returns>
+        public static T[] ConcatArrays<T>(T[] header, IEnumerable<T[]> payload)
+        {
+            var outList = new List<T>();
+
+            outList.AddRange(header);
+
+            foreach(var item in payload)
+            {
+                outList.AddRange(item);
             }
 
             return outList.ToArray();

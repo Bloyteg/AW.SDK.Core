@@ -1,7 +1,13 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
+using System.Text;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using Utilities;
+using Utilities.Serialization;
 
 namespace AW
 {
@@ -13,8 +19,100 @@ namespace AW
     public abstract class V4Object<TObject>
         where TObject : V4Object<TObject>, new()
     {
-        abstract internal void SetData(byte[] data);
-        abstract internal byte[] GetData();
+        private static readonly MemberInfo FieldSizeProvider = SerializationHelper.GetFieldSizeProvider<TObject>();
+        private static readonly IDictionary<int, MemberInfo> FieldSizeOrdinals = SerializationHelper.GetFieldSizeOrdinals(FieldSizeProvider);
+        private static readonly IDictionary<int, MemberInfo> FieldValueOrdinals = SerializationHelper.GetFieldValueOrdinals(typeof(TObject));
+
+        //Force the static fields to be initialized.
+        static V4Object() {}
+
+        internal void SetData(byte[] data)
+        {
+            //int waypointSize = Marshal.SizeOf(typeof(Waypoint)) + 1;
+
+            //_moverData = Utilities.Miscellaneous.BytesToStruct<MoverData>(data, 0);
+            //int size = data.Length - Marshal.SizeOf(typeof(MoverData));
+            //_remainder = new byte[size];
+            //Array.ConstrainedCopy(data, data.Length - size, _remainder, 0, size);
+
+            //_name = Encoding.UTF8.GetString(_remainder, 0, _moverData.name_len);
+            //_sequence = Encoding.UTF8.GetString(_remainder, _moverData.name_len, _moverData.seq_len);
+            //_script = Encoding.UTF8.GetString(_remainder, _moverData.name_len + _moverData.seq_len, _moverData.script_len);
+            //_sound = Encoding.UTF8.GetString(_remainder, _moverData.name_len + _moverData.seq_len + _moverData.script_len, _moverData.sound_len);
+            ////waypoints before bumpName.
+            //_bumpName = Encoding.UTF8.GetString(_remainder, _moverData.name_len + _moverData.seq_len + _moverData.script_len + _moverData.sound_len + _moverData.waypoints_len, _moverData.bump_name_len);
+
+            //// waypoints
+            //int waypointPosition = _moverData.name_len + _moverData.seq_len + _moverData.script_len + _moverData.sound_len;
+            //int totalWaypoints = _moverData.waypoints_len / waypointSize;
+
+            //for (int i = 0; i < totalWaypoints; ++i)
+            //{
+            //    _waypoints.Add(Utilities.Miscellaneous.BytesToStruct<Waypoint>(_remainder, waypointPosition));
+            //    waypointPosition += waypointSize;
+            //}
+        }
+
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns></returns>
+        internal byte[] GetData()
+        {
+            var payload = new List<byte[]>();
+            var fieldSizeProvider = SerializationHelper.GetValue(FieldSizeProvider, this);
+
+            foreach (var valueOrdinal in FieldValueOrdinals)
+            {
+                MemberInfo sizeOrdinal;
+
+                if (!FieldSizeOrdinals.TryGetValue(valueOrdinal.Key, out sizeOrdinal))
+                {
+                    throw new Exception("BORKA BORKA!");
+                }
+
+                var value = SerializationHelper.GetValue(valueOrdinal.Value, this);
+
+                if(value == null)
+                {
+                    throw new Exception("Jerpa jerpa!");
+                }
+
+                byte[] asBytes = null;
+
+                if(value is string)
+                {
+                    asBytes = Encoding.UTF8.GetBytes((string) value);
+                }
+                else if(value is IEnumerable)
+                {
+                    var asEnumerable = (IEnumerable) value;
+                    var byteList = new List<byte>();
+
+                    foreach(var item in asEnumerable)
+                    {
+                        byteList.AddRange(Miscellaneous.StructToBytes(item));
+                    }
+
+                    payload.Add(byteList.ToArray());
+                }
+
+                if(asBytes == null)
+                {
+                    throw new Exception("Gargle gargle!");
+                }
+
+                SerializationHelper.SetValue(sizeOrdinal, fieldSizeProvider, asBytes.Length);
+                payload.Add(asBytes);
+            }
+
+            payload.Add(new byte[] { 0 });
+
+            var header = Miscellaneous.StructToBytes(fieldSizeProvider);
+            var result = Miscellaneous.ConcatArrays(header, payload);
+
+            return result;
+        }
 
         #region Hex serialization
         /// <summary>
@@ -23,7 +121,7 @@ namespace AW
         /// <param name="hexString">The hex-encoded string to decode and convert into a V4 object.</param>
         public void UnserializeFromHex(string hexString)
         {
-            SetData(new Utilities.HexConverter(hexString));
+            SetData(new HexConverter(hexString));
         }
 
         /// <summary>
@@ -32,7 +130,7 @@ namespace AW
         /// <returns>The hex-encoded string representation.</returns>
         public string SerializeToHex()
         {
-            return new Utilities.HexConverter(GetData());
+            return new HexConverter(GetData());
         }
         #endregion
 

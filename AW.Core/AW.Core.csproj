@@ -85,6 +85,11 @@
     <Compile Include="AW\Exceptions\InstanceCreationFailedException.cs" />
     <Compile Include="AW\Exceptions\SDKWrapperException.cs" />
     <Compile Include="AW\Exceptions\NotHexStringException.cs" />
+    <Compile Include="AW\Instance\Instance.Callbacks.Generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Instance.Callbacks.tt</DependentUpon>
+    </Compile>
     <Compile Include="AW\Instance\Instance.Events.Generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -126,6 +131,11 @@
     <Compile Include="AW\V4Object\Particle.cs" />
     <Compile Include="AW\V4Object\Zone.cs" />
     <Compile Include="Utilities\Miscellaneous.cs" />
+    <Compile Include="Utilities\Serialization\FieldSizeOrdinalAttribute.cs" />
+    <Compile Include="Utilities\Serialization\FieldSizeProviderAttribute.cs" />
+    <Compile Include="Utilities\Serialization\FieldValueOrdinalAttribute.cs" />
+    <Compile Include="Utilities\Serialization\OrdinalAttribute.cs" />
+    <Compile Include="Utilities\Serialization\SerializationHelper.cs" />
     <Compile Include="Utilities\StaticDestructor.cs" />
     <None Include="AW\DataStructures\AttributeProvider.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -137,10 +147,10 @@
     <None Include="Code.Generate.TemplateClasses.tt">
       <LastGenOutput>TemplateClasses.cs</LastGenOutput>
     </None>
-    <Compile Include="AW\Instance\Instance.Callbacks.tt">
+    <None Include="AW\Instance\Instance.Callbacks.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Instance.Callbacks.Generated.cs</LastGenOutput>
-    </Compile>
+    </None>
     <None Include="AW\Instance\Instance.Events.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Instance.Events.Generated.cs</LastGenOutput>
@@ -166,9 +176,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utilities\Serialization\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Don't use the host compiler, use CSC directly -->
   <PropertyGroup>
