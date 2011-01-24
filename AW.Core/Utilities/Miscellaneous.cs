@@ -58,9 +58,21 @@ namespace Utilities
         /// <returns>A structure representation of the byte-array passed in.</returns>
         public static T BytesToStruct<T>(byte[] data, int index)
         {
-            int length = Marshal.SizeOf(typeof(T));
+            return (T)BytesToStruct(typeof (T), data, index);
+        }
+
+        /// <summary>
+        /// Byteses to struct.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="data">The data.</param>
+        /// <param name="index">The index.</param>
+        /// <returns></returns>
+        public static object BytesToStruct(Type type, byte[] data, int index)
+        {
+            int length = Marshal.SizeOf(type);
             IntPtr ptr = Marshal.AllocHGlobal(length);
-            T outObj;
+            object outObj;
 
             try
             {
@@ -71,7 +83,7 @@ namespace Utilities
                 }
 
                 Marshal.Copy(data, index, ptr, length);
-                outObj = (T)Marshal.PtrToStructure(ptr, typeof(T));
+                outObj = Marshal.PtrToStructure(ptr, type);
             }
             finally
             {

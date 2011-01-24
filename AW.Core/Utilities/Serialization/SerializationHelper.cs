@@ -103,18 +103,18 @@ namespace Utilities.Serialization
         }
 
         /// <summary>
-        /// Gets the type of the field size provider.
+        /// Gets the type of the field or property.
         /// </summary>
-        /// <param name="fieldSizeProvider">The field size provider.</param>
+        /// <param name="member">The member.</param>
         /// <returns></returns>
-        public static Type GetFieldSizeProviderType(MemberInfo fieldSizeProvider)
+        public static Type GetFieldOrPropertyType(MemberInfo member)
         {
-            switch (fieldSizeProvider.MemberType)
+            switch (member.MemberType)
             {
                 case MemberTypes.Field:
-                    return ((FieldInfo)fieldSizeProvider).FieldType;
+                    return ((FieldInfo)member).FieldType;
                 case MemberTypes.Property:
-                    return ((PropertyInfo)fieldSizeProvider).PropertyType;
+                    return ((PropertyInfo)member).PropertyType;
                 default:
                     return null;
             }    

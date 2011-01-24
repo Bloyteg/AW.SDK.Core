@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Xml.Serialization;
 using System.ComponentModel;
@@ -28,29 +29,70 @@ namespace AW
 
         internal void SetData(byte[] data)
         {
-            //int waypointSize = Marshal.SizeOf(typeof(Waypoint)) + 1;
+            //Get the header and set its data
+            var type = SerializationHelper.GetFieldOrPropertyType(FieldSizeProvider);
+            var header = Miscellaneous.BytesToStruct(type, data, 0);
+            SerializationHelper.SetValue(FieldSizeProvider, this, header);
 
-            //_moverData = Utilities.Miscellaneous.BytesToStruct<MoverData>(data, 0);
-            //int size = data.Length - Marshal.SizeOf(typeof(MoverData));
-            //_remainder = new byte[size];
-            //Array.ConstrainedCopy(data, data.Length - size, _remainder, 0, size);
+            //Get the payload
+            int size = data.Length - Marshal.SizeOf(type);
+            var payload = new byte[size];
+            Array.ConstrainedCopy(data, data.Length - size, payload, 0, size);
 
-            //_name = Encoding.UTF8.GetString(_remainder, 0, _moverData.name_len);
-            //_sequence = Encoding.UTF8.GetString(_remainder, _moverData.name_len, _moverData.seq_len);
-            //_script = Encoding.UTF8.GetString(_remainder, _moverData.name_len + _moverData.seq_len, _moverData.script_len);
-            //_sound = Encoding.UTF8.GetString(_remainder, _moverData.name_len + _moverData.seq_len + _moverData.script_len, _moverData.sound_len);
-            ////waypoints before bumpName.
-            //_bumpName = Encoding.UTF8.GetString(_remainder, _moverData.name_len + _moverData.seq_len + _moverData.script_len + _moverData.sound_len + _moverData.waypoints_len, _moverData.bump_name_len);
+            int offset = 0;
+            foreach (var valueOrdinal in FieldValueOrdinals)
+            {
+                MemberInfo sizeOrdinal;
 
-            //// waypoints
-            //int waypointPosition = _moverData.name_len + _moverData.seq_len + _moverData.script_len + _moverData.sound_len;
-            //int totalWaypoints = _moverData.waypoints_len / waypointSize;
+                if (!FieldSizeOrdinals.TryGetValue(valueOrdinal.Key, out sizeOrdinal))
+                {
+                    throw new Exception("BORKA BORKA!");
+                }
 
-            //for (int i = 0; i < totalWaypoints; ++i)
-            //{
-            //    _waypoints.Add(Utilities.Miscellaneous.BytesToStruct<Waypoint>(_remainder, waypointPosition));
-            //    waypointPosition += waypointSize;
-            //}
+                var length = Convert.ToInt32(SerializationHelper.GetValue(sizeOrdinal, header));
+                var targetType = SerializationHelper.GetFieldOrPropertyType(valueOrdinal.Value);
+
+
+                if(targetType == null)
+                {
+                    throw new Exception("Jerpa jerpa!");    
+                }
+
+                if (targetType == typeof(string))
+                {
+                    var asString = Encoding.UTF8.GetString(payload, offset, length);
+                    SerializationHelper.SetValue(valueOrdinal.Value, this, asString);
+                }
+                else if (targetType.GetInterface("ICollection") != null)
+                {
+                    var genericArguments = targetType.GetGenericArguments();
+                    if(genericArguments.Length != 1)
+                    {
+                        throw new Exception("Belp belp!");
+                    }
+
+                    var structCollection = Activator.CreateInstance(targetType) as IList;
+                    if (structCollection == null)
+                    {
+                        throw new Exception("Jerbl jerbl!");
+                    }
+
+                    var structType = genericArguments[0];
+                    int structSize = Marshal.SizeOf(structType) + 1;
+                    int totalStructs = length/structSize;
+                    int structPosition = offset;
+
+                    for(int i = 0; i < totalStructs; ++i)
+                    {
+                        structCollection.Add(Miscellaneous.BytesToStruct(structType, payload, structPosition));
+                        structPosition += structSize;
+                    }
+
+                    SerializationHelper.SetValue(valueOrdinal.Value, this, structCollection);
+                }
+
+                offset += length;
+            }
         }
 
         /// <summary>
@@ -91,10 +133,10 @@ namespace AW
 
                     foreach(var item in asEnumerable)
                     {
-                        byteList.AddRange(Miscellaneous.StructToBytes(item));
+                        byteList.AddRange(Miscellaneous.ConcatArrays(Miscellaneous.StructToBytes(item), new byte[] { 0x0 }));
                     }
 
-                    payload.Add(byteList.ToArray());
+                    asBytes = byteList.ToArray();
                 }
 
                 if(asBytes == null)

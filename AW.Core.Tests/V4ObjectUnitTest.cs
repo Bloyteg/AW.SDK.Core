@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Utilities;
 
 namespace AW.Core.Tests
 {
@@ -58,6 +59,29 @@ namespace AW.Core.Tests
         // public void MyTestCleanup() { }
         //
         #endregion
+
+        [TestMethod]
+        public void Test_Mover_SetData()
+        {
+            var originalMover = new Mover();
+            originalMover.Waypoints.Add(new Waypoint {Pause = 25, X = 1000, Y = 1500, Z = 1200});
+            originalMover.Waypoints.Add(new Waypoint { Pause = 26, X = 1200, Y = 1300, Z = 1400 });
+            var asBytes = originalMover.GetData();
+
+            var newMover = new Mover();
+            newMover.SetData(asBytes);
+        }
+
+        [TestMethod]
+        public void Test_Particle_SetData()
+        {
+            byte[] asBytes =
+                new HexConverter("00000000000000000000000000000000000000000000000000000000c00000803f000000c0000040c000000040000040c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000803f0000803f0000803f0000204100002041000020410a000000640000000200a86100000000000000000000b45f0000353535001a1a1a0085eb513f00410000240000000000000000000000000000636c725f77686974653a68617a6530366d2c20636c725f77686974653a68617a6530376d00");
+            var particle = new Particle();
+
+            particle.SetData(asBytes);
+
+        }
 
         [TestMethod]
         public void Test_Particle_GetData()
