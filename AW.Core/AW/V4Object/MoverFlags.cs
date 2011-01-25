@@ -7,372 +7,481 @@ namespace AW
     [Serializable]
     public sealed class MoverFlags
     {
-        private int flags;
+        [Flags]
+        private enum Flags : uint
+        {
+            Loop = 0x00000001,
+            UseObjectTag = 0x00000002,
+            BumpAdd = 0x00000004,
+            ClickToStart = 0x00000008,
+            ClickToPause = 0x00000010,
+            LockPosition = 0x00000020,
+            LockYaw = 0x00000040,
+            LockPitch = 0x00000080,
+            SingleRider = 0x00000100,
+            NoAutoYaw = 0x00000200,
+            EmptyReset = 0x00000400,
+            DisableFlying = 0x00000800,
+            KeepOnWater = 0x00001000,
+            DisableUpwardMovement = 0x00002000,
+            InvisibleAvatar = 0x00004000,
+            ExitEjectUpwards = 0x00008000,
+            ExitNonSolid = 0x00010000,
+            AvatarApplyTiltX = 0x00020000,
+            AvatarApplyTiltZ = 0x00040000,
+            ObjectLink = 0x00080000,
+            DisableMove = 0x00100000,
+            TiltByTerrain = 0x00200000,
+            DisableExplicitSequences = 0x00400000,
+            TurnInPlace = 0x00800000,
+            DisableTeleports = 0x01000000,
+            DetachOnTeleport = 0x02000000
+        }
 
-        private static readonly int[] flagValues = {
-                                                       0x00000001, //Loop                      0
-                                                       0x00000002, //UseObjectTag              1
-                                                       0x00000004, //BumpAdd                   2
-                                                       0x00000008, //ClickToStart              3
-                                                       0x00000010, //ClickToPause              4
-                                                       0x00000020, //LockPosition              5
-                                                       0x00000040, //LockYaw                   6
-                                                       0x00000080, //LockPitch                 7
-                                                       0x00000100, //SingleRider               8
-                                                       0x00000200, //NoAutoYaw                 9
-                                                       0x00000400, //EmptyReset                10
-                                                       0x00000800, //DisableFlying             11
-                                                       0x00001000, //KeepOnWater               12
-                                                       0x00002000, //DisableUpwardMovement     13
-                                                       0x00004000, //InvisibleAvatar           14
-                                                       0x00008000, //ExitEjectUpwards          15
-                                                       0x00010000, //ExitNonSolid              16
-                                                       0x00020000, //AvatarApplyTiltX          17
-                                                       0x00040000, //AvatarApplyTiltZ          18
-                                                       0x00080000, //ObjectLink                19
-                                                       0x00100000, //DisableMove               20
-                                                       0x00200000, //TiltByTerrain             21
-                                                       0x00400000, //DisableExplicitSequences  22
-                                                       0x00800000, //TurnInPlace               23
-                                                       0x01000000, //DisableTeleports          24
-                                                       0x02000000 //DetachOnTeleport          25
-                                                   };
+        private Flags flags;
 
         public bool Loop
         {
             get
             {
-                return (flags & flagValues[0]) == flagValues[0];
+                return (flags & Flags.Loop) == Flags.Loop;
             }
 
             set
             {
-                flags = (value ? (flags | flagValues[0]) : (flags & ~flagValues[0]));
+                if(value)
+                {
+                    flags |= Flags.Loop;
+                }
+                else
+                {
+                    flags &= ~Flags.Loop;
+                }
             }
         }
 
         public bool UseObjectTag
         {
-            get
-            {
-                return (flags & flagValues[1]) == flagValues[1];
-            }
+            get { return (flags & Flags.UseObjectTag) == Flags.UseObjectTag; }
 
             set
             {
-                flags = (value ? (flags | flagValues[1]) : (flags & ~flagValues[1]));
+                if (value)
+                {
+                    flags |= Flags.UseObjectTag;
+                }
+                else
+                {
+                    flags &= ~Flags.UseObjectTag;
+                }
             }
         }
 
         public bool BumpAdd
         {
-            get
-            {
-                return (flags & flagValues[2]) == flagValues[2];
-            }
+            get { return (flags & Flags.BumpAdd) == Flags.BumpAdd; }
 
             set
             {
-                flags = (value ? (flags | flagValues[2]) : (flags & ~flagValues[2]));
+                if (value)
+                {
+                    flags |= Flags.BumpAdd;
+                }
+                else
+                {
+                    flags &= ~Flags.BumpAdd;
+                }
             }
         }
 
         public bool ClickToStart
         {
-            get
-            {
-                return (flags & flagValues[3]) == flagValues[3];
-            }
+            get { return (flags & Flags.ClickToStart) == Flags.ClickToStart; }
 
             set
             {
-                flags = (value ? (flags | flagValues[3]) : (flags & ~flagValues[3]));
+                if (value)
+                {
+                    flags |= Flags.ClickToStart;
+                }
+                else
+                {
+                    flags &= ~Flags.ClickToStart;
+                }
             }
         }
 
         public bool ClickToPause
         {
-            get
-            {
-                return (flags & flagValues[4]) == flagValues[4];
-            }
+            get { return (flags & Flags.ClickToPause) == Flags.ClickToPause; }
 
             set
             {
-                flags = (value ? (flags | flagValues[4]) : (flags & ~flagValues[4]));
+                if (value)
+                {
+                    flags |= Flags.ClickToPause;
+                }
+                else
+                {
+                    flags &= ~Flags.ClickToPause;
+                }
             }
         }
 
         public bool LockPosition
         {
-            get
-            {
-                return (flags & flagValues[5]) == flagValues[5];
-            }
+            get { return (flags & Flags.LockPosition) == Flags.LockPosition; }
 
             set
             {
-                flags = (value ? (flags | flagValues[5]) : (flags & ~flagValues[5]));
+                if (value)
+                {
+                    flags |= Flags.LockPosition;
+                }
+                else
+                {
+                    flags &= ~Flags.LockPosition;
+                }
             }
         }
 
         public bool LockYaw
         {
-            get
-            {
-                return (flags & flagValues[6]) == flagValues[6];
-            }
+            get { return (flags & Flags.LockYaw) == Flags.LockYaw; }
 
             set
             {
-                flags = (value ? (flags | flagValues[6]) : (flags & ~flagValues[6]));
+                if (value)
+                {
+                    flags |= Flags.LockYaw;
+                }
+                else
+                {
+                    flags &= ~Flags.LockYaw;
+                }
             }
         }
 
         public bool LockPitch
         {
-            get
-            {
-                return (flags & flagValues[7]) == flagValues[7];
-            }
+            get { return (flags & Flags.LockPitch) == Flags.LockPitch; }
 
             set
             {
-                flags = (value ? (flags | flagValues[7]) : (flags & ~flagValues[7]));
+                if (value)
+                {
+                    flags |= Flags.LockPitch;
+                }
+                else
+                {
+                    flags &= ~Flags.LockPitch;
+                }
             }
         }
 
         public bool SingleRider
         {
-            get
-            {
-                return (flags & flagValues[8]) == flagValues[8];
-            }
+            get { return (flags & Flags.SingleRider) == Flags.SingleRider; }
 
             set
             {
-                flags = (value ? (flags | flagValues[8]) : (flags & ~flagValues[8]));
+                if (value)
+                {
+                    flags |= Flags.SingleRider;
+                }
+                else
+                {
+                    flags &= ~Flags.SingleRider;
+                }
             }
         }
 
         public bool NoAutoYaw
         {
-            get
-            {
-                return (flags & flagValues[9]) == flagValues[9];
-            }
+            get { return (flags & Flags.NoAutoYaw) == Flags.NoAutoYaw; }
 
             set
             {
-                flags = (value ? (flags | flagValues[9]) : (flags & ~flagValues[9]));
+                if (value)
+                {
+                    flags |= Flags.NoAutoYaw;
+                }
+                else
+                {
+                    flags &= ~Flags.NoAutoYaw;
+                }
             }
         }
 
         public bool EmptyReset
         {
-            get
-            {
-                return (flags & flagValues[10]) == flagValues[10];
-            }
+            get { return (flags & Flags.EmptyReset) == Flags.EmptyReset; }
 
             set
             {
-                flags = (value ? (flags | flagValues[10]) : (flags & ~flagValues[10]));
+                if (value)
+                {
+                    flags |= Flags.EmptyReset;
+                }
+                else
+                {
+                    flags &= ~Flags.EmptyReset;
+                }
             }
         }
 
         public bool DisableFlying
         {
-            get
-            {
-                return (flags & flagValues[11]) == flagValues[11];
-            }
+            get { return (flags & Flags.DisableFlying) == Flags.DisableFlying; }
 
             set
             {
-                flags = (value ? (flags | flagValues[11]) : (flags & ~flagValues[11]));
+                if (value)
+                {
+                    flags |= Flags.DisableFlying;
+                }
+                else
+                {
+                    flags &= ~Flags.DisableFlying;
+                }
             }
         }
 
         public bool KeepOnWater
         {
-            get
-            {
-                return (flags & flagValues[12]) == flagValues[12];
-            }
+            get { return (flags & Flags.KeepOnWater) == Flags.KeepOnWater; }
 
             set
             {
-                flags = (value ? (flags | flagValues[12]) : (flags & ~flagValues[12]));
+                if (value)
+                {
+                    flags |= Flags.KeepOnWater;
+                }
+                else
+                {
+                    flags &= ~Flags.KeepOnWater;
+                }
             }
         }
 
         public bool DisableUpwardMovement
         {
-            get
-            {
-                return (flags & flagValues[13]) == flagValues[13];
-            }
+            get { return (flags & Flags.DisableUpwardMovement) == Flags.DisableUpwardMovement; }
 
             set
             {
-                flags = (value ? (flags | flagValues[13]) : (flags & ~flagValues[13]));
+                if (value)
+                {
+                    flags |= Flags.DisableUpwardMovement;
+                }
+                else
+                {
+                    flags &= ~Flags.DisableUpwardMovement;
+                }
             }
         }
 
         public bool InvisibleAvatar
         {
-            get
-            {
-                return (flags & flagValues[14]) == flagValues[14];
-            }
+            get { return (flags & Flags.InvisibleAvatar) == Flags.InvisibleAvatar; }
 
             set
             {
-                flags = (value ? (flags | flagValues[14]) : (flags & ~flagValues[14]));
+                if (value)
+                {
+                    flags |= Flags.InvisibleAvatar;
+                }
+                else
+                {
+                    flags &= ~Flags.InvisibleAvatar;
+                }
             }
         }
 
         public bool ExitEjectUpwards
         {
-            get
-            {
-                return (flags & flagValues[15]) == flagValues[15];
-            }
+            get { return (flags & Flags.ExitEjectUpwards) == Flags.ExitEjectUpwards; }
 
             set
             {
-                flags = (value ? (flags | flagValues[15]) : (flags & ~flagValues[15]));
+                if (value)
+                {
+                    flags |= Flags.ExitEjectUpwards;
+                }
+                else
+                {
+                    flags &= ~Flags.ExitEjectUpwards;
+                }
             }
         }
 
         public bool ExitNonSolid
         {
-            get
-            {
-                return (flags & flagValues[16]) == flagValues[16];
-            }
+            get { return (flags & Flags.ExitNonSolid) == Flags.ExitNonSolid; }
 
             set
             {
-                flags = (value ? (flags | flagValues[16]) : (flags & ~flagValues[16]));
+                if (value)
+                {
+                    flags |= Flags.ExitNonSolid;
+                }
+                else
+                {
+                    flags &= ~Flags.ExitNonSolid;
+                }
             }
         }
 
         public bool AvatarApplyTiltX
         {
-            get
-            {
-                return (flags & flagValues[17]) == flagValues[17];
-            }
+            get { return (flags & Flags.AvatarApplyTiltX) == Flags.AvatarApplyTiltX; }
 
             set
             {
-                flags = (value ? (flags | flagValues[17]) : (flags & ~flagValues[17]));
+                if (value)
+                {
+                    flags |= Flags.AvatarApplyTiltX;
+                }
+                else
+                {
+                    flags &= ~Flags.AvatarApplyTiltX;
+                }
             }
         }
 
         public bool AvatarApplyTiltZ
         {
-            get
-            {
-                return (flags & flagValues[18]) == flagValues[18];
-            }
+            get { return (flags & Flags.AvatarApplyTiltZ) == Flags.AvatarApplyTiltZ; }
 
             set
             {
-                flags = (value ? (flags | flagValues[18]) : (flags & ~flagValues[18]));
+                if (value)
+                {
+                    flags |= Flags.AvatarApplyTiltZ;
+                }
+                else
+                {
+                    flags &= ~Flags.AvatarApplyTiltZ;
+                }
             }
         }
 
         public bool ObjectLink
         {
-            get
-            {
-                return (flags & flagValues[19]) == flagValues[19];
-            }
+            get { return (flags & Flags.ObjectLink) == Flags.ObjectLink; }
 
             set
             {
-                flags = (value ? (flags | flagValues[19]) : (flags & ~flagValues[19]));
+                if (value)
+                {
+                    flags |= Flags.ObjectLink;
+                }
+                else
+                {
+                    flags &= ~Flags.ObjectLink;
+                }
             }
         }
 
         public bool DisableMove
         {
-            get
-            {
-                return (flags & flagValues[20]) == flagValues[20];
-            }
+            get { return (flags & Flags.DisableMove) == Flags.DisableMove; }
 
             set
             {
-                flags = (value ? (flags | flagValues[20]) : (flags & ~flagValues[20]));
+                if (value)
+                {
+                    flags |= Flags.DisableMove;
+                }
+                else
+                {
+                    flags &= ~Flags.DisableMove;
+                }
             }
         }
 
         public bool TiltByTerrain
         {
-            get
-            {
-                return (flags & flagValues[21]) == flagValues[21];
-            }
+            get { return (flags & Flags.TiltByTerrain) == Flags.TiltByTerrain; }
 
             set
             {
-                flags = (value ? (flags | flagValues[21]) : (flags & ~flagValues[21]));
+                if (value)
+                {
+                    flags |= Flags.TiltByTerrain;
+                }
+                else
+                {
+                    flags &= ~Flags.TiltByTerrain;
+                }
             }
         }
 
         public bool DisableExplicitSequences
         {
-            get
-            {
-                return (flags & flagValues[22]) == flagValues[22];
-            }
+            get { return (flags & Flags.DisableExplicitSequences) == Flags.DisableExplicitSequences; }
 
             set
             {
-                flags = (value ? (flags | flagValues[22]) : (flags & ~flagValues[22]));
+                if (value)
+                {
+                    flags |= Flags.DisableExplicitSequences;
+                }
+                else
+                {
+                    flags &= ~Flags.DisableExplicitSequences;
+                }
             }
         }
 
         public bool TurnInPlace
         {
-            get
-            {
-                return (flags & flagValues[23]) == flagValues[23];
-            }
+            get { return (flags & Flags.TurnInPlace) == Flags.TurnInPlace; }
 
             set
             {
-                flags = (value ? (flags | flagValues[23]) : (flags & ~flagValues[23]));
+                if (value)
+                {
+                    flags |= Flags.TurnInPlace;
+                }
+                else
+                {
+                    flags &= ~Flags.TurnInPlace;
+                }
             }
         }
 
         public bool DisableTeleports
         {
-            get
-            {
-                return (flags & flagValues[24]) == flagValues[24];
-            }
+            get { return (flags & Flags.DisableTeleports) == Flags.DisableTeleports; }
 
             set
             {
-                flags = (value ? (flags | flagValues[24]) : (flags & ~flagValues[24]));
+                if (value)
+                {
+                    flags |= Flags.DisableTeleports;
+                }
+                else
+                {
+                    flags &= ~Flags.DisableTeleports;
+                }
             }
         }
 
         public bool DetachOnTeleport
         {
-            get
-            {
-                return (flags & flagValues[25]) == flagValues[25];
-            }
+            get { return (flags & Flags.DetachOnTeleport) == Flags.DetachOnTeleport; }
 
             set
             {
-                flags = (value ? (flags | flagValues[25]) : (flags & ~flagValues[25]));
+                if (value)
+                {
+                    flags |= Flags.DetachOnTeleport;
+                }
+                else
+                {
+                    flags &= ~Flags.DetachOnTeleport;
+                }
             }
         }
     }

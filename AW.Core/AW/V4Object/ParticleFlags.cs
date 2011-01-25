@@ -7,106 +7,154 @@ namespace AW
     [Serializable]
     public sealed class ParticleFlags
     {
-        private ushort flags;
-        private static readonly ushort[] flagValues = { 0x0001, 0x0002, 0x0004, 0x0008, 0x0010, 0x0020, 0x0040 };
-        /**
-         *  AW_PARTICLE_FLAG_INTERPOLATE    = 0x01, 0
-         *  AW_PARTICLE_FLAG_GRAVITY        = 0x02, 1
-         *  AW_PARTICLE_FLAG_COLLIDE_ZONES  = 0x04, 2
-         *  AW_PARTICLE_FLAG_ZONE_EXCLUSIVE = 0x08, 3
-         *  AW_PARTICLE_FLAG_CAMERA_EMIT    = 0x10, 4
-         *  AW_PARTICLE_FLAG_MOVER_LINK     = 0x20, 5
-         *  AW_PARTICLE_DRAW_IN_FRONT       = 0x40, 6
-         */
+        [Flags]
+        private enum Flags : ushort
+        {
+            Interpolate =   0x0001,
+            Gravity =       0x0002,
+            ZoneCollision = 0x0004,
+            ZoneExclusive = 0x0008,
+            CameraEmit =    0x0010,
+            LinkToMover =   0x0020,
+            DrawInFront =   0x0040,
+            ApplyRotation = 0x0080
+        }
+
+        private Flags flags;
 
         public bool Interpolate
         {
-            get
-            {
-                return (flags & flagValues[0]) == flagValues[0];
-            }
+            get { return (flags & Flags.Interpolate) == Flags.Interpolate; }
 
             set
             {
-                flags = (ushort)(value ? (flags | flagValues[0]) : (flags & ~flagValues[0]));
+                if (value)
+                {
+                    flags |= Flags.Interpolate;
+                }
+                else
+                {
+                    flags &= ~Flags.Interpolate;
+                }
             }
         }
 
         public bool Gravity
         {
-            get
-            {
-                return (flags & flagValues[1]) == flagValues[1];
-            }
+            get { return (flags & Flags.Gravity) == Flags.Gravity; }
 
             set
             {
-                flags = (ushort)(value ? (flags | flagValues[1]) : (flags & ~flagValues[1]));
+                if (value)
+                {
+                    flags |= Flags.Gravity;
+                }
+                else
+                {
+                    flags &= ~Flags.Gravity;
+                }
             }
         }
 
         public bool ZoneCollision
         {
-            get
-            {
-                return (flags & flagValues[2]) == flagValues[2];
-            }
+            get { return (flags & Flags.ZoneCollision) == Flags.ZoneCollision; }
 
             set
             {
-                flags = (ushort)(value ? (flags | flagValues[2]) : (flags & ~flagValues[2]));
+                if (value)
+                {
+                    flags |= Flags.ZoneCollision;
+                }
+                else
+                {
+                    flags &= ~Flags.ZoneCollision;
+                }
             }
         }
 
         public bool ZoneExclusive
         {
-            get
-            {
-                return (flags & flagValues[3]) == flagValues[3];
-            }
+            get { return (flags & Flags.ZoneExclusive) == Flags.ZoneExclusive; }
 
             set
             {
-                flags = (ushort)(value ? (flags | flagValues[3]) : (flags & ~flagValues[3]));
+                if (value)
+                {
+                    flags |= Flags.ZoneExclusive;
+                }
+                else
+                {
+                    flags &= ~Flags.ZoneExclusive;
+                }
             }
         }
 
         public bool CameraEmit
         {
-            get
-            {
-                return (flags & flagValues[4]) == flagValues[4];
-            }
+            get { return (flags & Flags.CameraEmit) == Flags.CameraEmit; }
 
             set
             {
-                flags = (ushort)(value ? (flags | flagValues[4]) : (flags & ~flagValues[4]));
+                if (value)
+                {
+                    flags |= Flags.CameraEmit;
+                }
+                else
+                {
+                    flags &= ~Flags.CameraEmit;
+                }
             }
         }
 
         public bool LinkToMover
         {
-            get
-            {
-                return (flags & flagValues[5]) == flagValues[5];
-            }
+            get { return (flags & Flags.LinkToMover) == Flags.LinkToMover; }
 
             set
             {
-                flags = (ushort)(value ? (flags | flagValues[5]) : (flags & ~flagValues[5]));
+                if (value)
+                {
+                    flags |= Flags.LinkToMover;
+                }
+                else
+                {
+                    flags &= ~Flags.LinkToMover;
+                }
             }
         }
 
         public bool DrawInFront
         {
-            get
-            {
-                return (flags & flagValues[6]) == flagValues[6];
-            }
+            get { return (flags & Flags.DrawInFront) == Flags.DrawInFront; }
 
             set
             {
-                flags = (ushort)(value ? (flags | flagValues[6]) : (flags & ~flagValues[6]));
+                if (value)
+                {
+                    flags |= Flags.DrawInFront;
+                }
+                else
+                {
+                    flags &= ~Flags.DrawInFront;
+                }
+            }
+        }
+
+        public bool ApplyRotation
+        {
+            get { return (flags & Flags.ApplyRotation) == Flags.ApplyRotation; }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= Flags.ApplyRotation;
+                }
+                else
+                {
+                    flags &= ~Flags.ApplyRotation;
+                }
             }
         }
     }

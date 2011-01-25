@@ -7,120 +7,172 @@ namespace AW
     [Serializable]
     public sealed class ZoneFlags
     {
-        private ushort flags;
-        static readonly byte[] flagValues = { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 };
-        /**
-         *  AW_ZONE_FLAG_WATER              = 0x01,
-         *  AW_ZONE_FLAG_BLOCK_PARTICLES    = 0x02,
-         *  AW_ZONE_FLAG_BLOCK_LIGHTS       = 0x04,
-         *  AW_ZONE_FLAG_BLOCK_WORLD_LIGHT  = 0x08,
-         *  AW_ZONE_FLAG_BLOCK_CHAT         = 0x10,
-         *  AW_ZONE_FLAG_VISIBLE            = 0x20,
-         *  AW_ZONE_FLAG_BLOCK_JOIN         = 0x40,
-         *  AW_ZONE_FLAG_VOIP               = 0x80
-         */
+        [Flags]
+        private enum Flags
+        {
+            Water =             0x001,
+            BlockParticles =    0x002,
+            BlockLights =       0x004,
+            BlockWorldLight =   0x008,
+            BlockChat =         0x010,
+            Visible =           0x020,
+            BlockJoin =         0x040,
+            Voip =              0x080,
+            BlockAudio =        0x100
+        }
+
+        private Flags flags;
 
         public bool Water
         {
-            get
-            {
-                return (flags & flagValues[0]) == flagValues[0];
-            }
+            get { return (flags & Flags.Water) == Flags.Water; }
 
             set
             {
-                flags = (ushort)(value ? (flags | flagValues[0]) : (flags & ~flagValues[0]));
+                if (value)
+                {
+                    flags |= Flags.Water;
+                }
+                else
+                {
+                    flags &= ~Flags.Water;
+                }
             }
         }
 
         public bool BlockParticles
         {
-            get
-            {
-                return (flags & flagValues[1]) == flagValues[1];
-            }
+            get { return (flags & Flags.BlockParticles) == Flags.BlockParticles; }
 
             set
             {
-                flags = (ushort)(value ? (flags | flagValues[1]) : (flags & ~flagValues[1]));
+                if (value)
+                {
+                    flags |= Flags.BlockParticles;
+                }
+                else
+                {
+                    flags &= ~Flags.BlockParticles;
+                }
             }
         }
 
         public bool BlockLights
         {
-            get
-            {
-                return (flags & flagValues[2]) == flagValues[2];
-            }
+            get { return (flags & Flags.BlockLights) == Flags.BlockLights; }
 
             set
             {
-                flags = (ushort)(value ? (flags | flagValues[2]) : (flags & ~flagValues[2]));
+                if (value)
+                {
+                    flags |= Flags.BlockLights;
+                }
+                else
+                {
+                    flags &= ~Flags.BlockLights;
+                }
             }
         }
 
         public bool BlockWorldLight
         {
-            get
-            {
-                return (flags & flagValues[3]) == flagValues[3];
-            }
+            get { return (flags & Flags.BlockWorldLight) == Flags.BlockWorldLight; }
 
             set
             {
-                flags = (ushort)(value ? (flags | flagValues[3]) : (flags & ~flagValues[3]));
+                if (value)
+                {
+                    flags |= Flags.BlockWorldLight;
+                }
+                else
+                {
+                    flags &= ~Flags.BlockWorldLight;
+                }
             }
         }
 
         public bool BlockChat
         {
-            get
-            {
-                return (flags & flagValues[4]) == flagValues[4];
-            }
+            get { return (flags & Flags.BlockChat) == Flags.BlockChat; }
 
             set
             {
-                flags = (ushort)(value ? (flags | flagValues[4]) : (flags & ~flagValues[4]));
+                if (value)
+                {
+                    flags |= Flags.BlockChat;
+                }
+                else
+                {
+                    flags &= ~Flags.BlockChat;
+                }
             }
         }
 
         public bool Visible
         {
-            get
-            {
-                return (flags & flagValues[5]) == flagValues[5];
-            }
+            get { return (flags & Flags.Visible) == Flags.Visible; }
 
             set
             {
-                flags = (ushort)(value ? (flags | flagValues[5]) : (flags & ~flagValues[5]));
+                if (value)
+                {
+                    flags |= Flags.Visible;
+                }
+                else
+                {
+                    flags &= ~Flags.Visible;
+                }
             }
         }
 
         public bool BlockJoin
         {
-            get
-            {
-                return (flags & flagValues[6]) == flagValues[6];
-            }
+            get { return (flags & Flags.BlockJoin) == Flags.BlockJoin; }
 
             set
             {
-                flags = (ushort)(value ? (flags | flagValues[6]) : (flags & ~flagValues[6]));
+                if (value)
+                {
+                    flags |= Flags.BlockJoin;
+                }
+                else
+                {
+                    flags &= ~Flags.BlockJoin;
+                }
             }
         }
 
         public bool Voip
         {
-            get
-            {
-                return (flags & flagValues[7]) == flagValues[7];
-            }
+            get { return (flags & Flags.Voip) == Flags.Voip; }
 
             set
             {
-                flags = (ushort)(value ? (flags | flagValues[7]) : (flags & ~flagValues[7]));
+                if (value)
+                {
+                    flags |= Flags.Voip;
+                }
+                else
+                {
+                    flags &= ~Flags.Voip;
+                }
+            }
+        }
+
+        public bool BlockAudio
+        {
+            get { return (flags & Flags.BlockAudio) == Flags.BlockAudio; }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= Flags.BlockAudio;
+                }
+                else
+                {
+                    flags &= ~Flags.BlockAudio;
+                }
             }
         }
     }

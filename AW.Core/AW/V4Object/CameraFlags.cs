@@ -7,19 +7,31 @@ namespace AW
     [Serializable]
     public sealed class CameraFlags
     {
-        private ushort flags;
-        private static readonly byte[] flagValues = { 0x01 };
+        [Flags]
+        private enum Flags : ushort
+        {
+            TrackUser = 0x01
+        }
+
+        private Flags flags;
 
         public bool TrackUser
         {
             get
             {
-                return (flags & flagValues[0]) == flagValues[0];
+                return (flags & Flags.TrackUser) == Flags.TrackUser;
             }
 
             set
             {
-                flags = (ushort) (value ? (flags | flagValues[0]) : (flags & ~flagValues[0]));
+                if(value)
+                {
+                    flags |= Flags.TrackUser;
+                }
+                else
+                {
+                    flags &= ~Flags.TrackUser;
+                }
             }
         }
     }

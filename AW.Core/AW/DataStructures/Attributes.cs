@@ -537,6 +537,9 @@ namespace AW
         WorldVoipcastHost,
         WorldVoipcastPort,
         MyZone,
-        AvatarZone
+        AvatarZone,
+        UniversePerCitizenCav,
+        XferOwner,
+        WorldEnableWireframe
     }
 }
