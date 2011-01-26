@@ -5,34 +5,75 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Xml.Serialization;
-using System.ComponentModel;
 using Utilities;
 using Utilities.Serialization;
 
 namespace AW
 {
-    /// <summary>
-    /// Abstract class containing base members for V4 objects in the wrapper.  This class cannot be constructed directly.  Use one of the derivatives.
-    /// </summary>
-    [Serializable]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class V4Object<TObject>
-        where TObject : V4Object<TObject>, new()
+
+    public class V4ObjectSerializer<TObject>
+        where TObject : IV4Object, new()
     {
         private static readonly MemberInfo FieldSizeProvider = SerializationHelper.GetFieldSizeProvider<TObject>();
         private static readonly IDictionary<int, MemberInfo> FieldSizeOrdinals = SerializationHelper.GetFieldSizeOrdinals(FieldSizeProvider);
         private static readonly IDictionary<int, MemberInfo> FieldValueOrdinals = SerializationHelper.GetFieldValueOrdinals(typeof(TObject));
 
         //Force the static fields to be initialized.
-        static V4Object() {}
+        static V4ObjectSerializer() { }
 
-        internal void SetData(byte[] data)
+        /// <summary>
+        /// Deserializes the specified text reader.
+        /// </summary>
+        /// <param name="textReader">The text reader.</param>
+        /// <returns></returns>
+        public TObject Deserialize(TextReader textReader)
         {
+            var buffer = textReader.ReadToEnd();
+            return BytesToObject(new HexConverter(buffer));
+        }
+
+        /// <summary>
+        /// Deserializes the specified input stream.
+        /// </summary>
+        /// <param name="inputStream">The input stream.</param>
+        /// <returns></returns>
+        public TObject Deserialize(MemoryStream inputStream)
+        {
+            var buffer = new byte[inputStream.Length];
+            inputStream.Position = 0;
+            inputStream.Read(buffer, 0, buffer.Length);
+            return BytesToObject(inputStream.GetBuffer());
+        }
+
+        /// <summary>
+        /// Serializes the specified text writer.
+        /// </summary>
+        /// <param name="textWriter">The text writer.</param>
+        /// <param name="v4Object">The v4 object.</param>
+        public void Serialize(TextWriter textWriter, TObject v4Object)
+        {
+            textWriter.Write(new HexConverter(ObjectToBytes(v4Object)));
+        }
+
+        /// <summary>
+        /// Serializes the specified output stream.
+        /// </summary>
+        /// <param name="outputStream">The output stream.</param>
+        /// <param name="v4Object">The v4 object.</param>
+        public void Serialize(MemoryStream outputStream, TObject v4Object)
+        {
+            var buffer = ObjectToBytes(v4Object);
+            outputStream.Write(buffer, 0, buffer.Length);
+        }
+
+        private static TObject BytesToObject(byte[] data)
+        {
+            var inObject = new TObject();
+
             //Get the header and set its data
             var type = SerializationHelper.GetFieldOrPropertyType(FieldSizeProvider);
             var header = Miscellaneous.BytesToStruct(type, data, 0);
-            SerializationHelper.SetValue(FieldSizeProvider, this, header);
+            SerializationHelper.SetValue(FieldSizeProvider, inObject, header);
 
             //Get the payload
             int size = data.Length - Marshal.SizeOf(type);
@@ -46,7 +87,7 @@ namespace AW
 
                 if (!FieldSizeOrdinals.TryGetValue(valueOrdinal.Key, out sizeOrdinal))
                 {
-                    throw new Exception("BORKA BORKA!");
+                    throw new V4ObjectSerializationException("Failed to deserialize object.");
                 }
 
                 var length = Convert.ToInt32(SerializationHelper.GetValue(sizeOrdinal, header));
@@ -55,26 +96,26 @@ namespace AW
 
                 if(targetType == null)
                 {
-                    throw new Exception("Jerpa jerpa!");    
+                    throw new V4ObjectSerializationException("Failed to deserialize object.");   
                 }
 
                 if (targetType == typeof(string))
                 {
                     var asString = Encoding.UTF8.GetString(payload, offset, length);
-                    SerializationHelper.SetValue(valueOrdinal.Value, this, asString);
+                    SerializationHelper.SetValue(valueOrdinal.Value, inObject, asString);
                 }
                 else if (targetType.GetInterface("ICollection") != null)
                 {
                     var genericArguments = targetType.GetGenericArguments();
                     if(genericArguments.Length != 1)
                     {
-                        throw new Exception("Belp belp!");
+                        throw new V4ObjectSerializationException("Failed to deserialize object.");
                     }
 
                     var structCollection = Activator.CreateInstance(targetType) as IList;
                     if (structCollection == null)
                     {
-                        throw new Exception("Jerbl jerbl!");
+                        throw new V4ObjectSerializationException("Failed to deserialize object.");
                     }
 
                     var structType = genericArguments[0];
@@ -88,21 +129,23 @@ namespace AW
                         structPosition += structSize;
                     }
 
-                    SerializationHelper.SetValue(valueOrdinal.Value, this, structCollection);
+                    SerializationHelper.SetValue(valueOrdinal.Value, inObject, structCollection);
                 }
 
                 offset += length;
             }
+
+            return inObject;
         }
 
         /// <summary>
         /// Gets the data.
         /// </summary>
         /// <returns></returns>
-        internal byte[] GetData()
+        private static byte[] ObjectToBytes(TObject outObject)
         {
             var payload = new List<byte[]>();
-            var fieldSizeProvider = SerializationHelper.GetValue(FieldSizeProvider, this);
+            var fieldSizeProvider = SerializationHelper.GetValue(FieldSizeProvider, outObject);
 
             foreach (var valueOrdinal in FieldValueOrdinals)
             {
@@ -110,14 +153,14 @@ namespace AW
 
                 if (!FieldSizeOrdinals.TryGetValue(valueOrdinal.Key, out sizeOrdinal))
                 {
-                    throw new Exception("BORKA BORKA!");
+                    throw new V4ObjectSerializationException("Failed to serialize object.");
                 }
 
-                var value = SerializationHelper.GetValue(valueOrdinal.Value, this);
+                var value = SerializationHelper.GetValue(valueOrdinal.Value, outObject);
 
                 if(value == null)
                 {
-                    throw new Exception("Jerpa jerpa!");
+                    throw new V4ObjectSerializationException("Failed to serialize object.");
                 }
 
                 byte[] asBytes = null;
@@ -141,7 +184,7 @@ namespace AW
 
                 if(asBytes == null)
                 {
-                    throw new Exception("Gargle gargle!");
+                    throw new V4ObjectSerializationException("Failed to serialize object.");
                 }
 
                 SerializationHelper.SetValue(sizeOrdinal, fieldSizeProvider, asBytes.Length);
@@ -155,74 +198,5 @@ namespace AW
 
             return result;
         }
-
-        #region Hex serialization
-        /// <summary>
-        /// Sets the parameters of the V4 object to those parameters represented by the hex-encoded string.
-        /// </summary>
-        /// <param name="hexString">The hex-encoded string to decode and convert into a V4 object.</param>
-        public void UnserializeFromHex(string hexString)
-        {
-            SetData(new HexConverter(hexString));
-        }
-
-        /// <summary>
-        /// Serializes the parameters of the V4 object into a hex-encoded string representation.
-        /// </summary>
-        /// <returns>The hex-encoded string representation.</returns>
-        public string SerializeToHex()
-        {
-            return new HexConverter(GetData());
-        }
-        #endregion
-
-        #region XML serialization
-        /// <summary>
-        /// Sets the parameters of the V4 objects to those parameters represented by the XML file.
-        /// </summary>
-        /// <param name="xmlFile">The location of the XML file to load.</param>
-        public void UnserializeFromXml(string xmlFile)
-        {
-            using (FileStream fileStream = File.OpenRead(xmlFile))
-            {
-                var xmlSerializer = new XmlSerializer(GetType());
-                SetData(((V4Object<TObject>) xmlSerializer.Deserialize(fileStream)).GetData());
-            }
-        }
-
-        /// <summary>
-        /// Sets the parameters of the V4 objects to those parameters represented by the XML file.
-        /// </summary>
-        /// <param name="xmlStream">A stream containing an XML file to be loaded.</param>
-        public void UnserializeFromXml(Stream xmlStream)
-        {
-            var xmlSerializer = new XmlSerializer(GetType());
-            SetData(((V4Object<TObject>)xmlSerializer.Deserialize(xmlStream)).GetData());
-        }
-
-        /// <summary>
-        /// Writes the parameters of the V4 object to an XML file on disk.
-        /// </summary>
-        /// <param name="xmlFile">The location of where to save the XML file to.</param>
-        public void SerializeToXml(string xmlFile)
-        {
-            using(FileStream fileStream = File.OpenWrite(xmlFile))
-            {
-                var xmlSerializer = new XmlSerializer(GetType());
-                xmlSerializer.Serialize(fileStream, this);
-            }
-        }
-
-        /// <summary>
-        /// Writes the parameters of the V4 object to an XML file in the specified stream.
-        /// </summary>
-        /// <param name="xmlStream">The stream to write the XML file to.</param>
-        public void SerializeToXml(Stream xmlStream)
-        {
-            var xmlSerializer = new XmlSerializer(GetType());
-            xmlSerializer.Serialize(xmlStream, this);
-        }
-
-        #endregion
     }
 }

@@ -85,6 +85,7 @@
     <Compile Include="AW\Exceptions\InstanceCreationFailedException.cs" />
     <Compile Include="AW\Exceptions\SDKWrapperException.cs" />
     <Compile Include="AW\Exceptions\NotHexStringException.cs" />
+    <Compile Include="AW\Exceptions\V4ObjectSerializationException.cs" />
     <Compile Include="AW\Instance\Instance.Callbacks.Generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -112,13 +113,14 @@
     <Compile Include="AW\Instance\Instance.Properties.cs" />
     <Compile Include="AW\DataStructures\Waypoint.cs" />
     <Compile Include="AW\DataStructures\Vector.cs" />
+    <Compile Include="AW\V4Object\IV4Object.cs" />
     <Compile Include="AW\V4Object\ZoneFlags.cs" />
     <Compile Include="AW\V4Object\CameraFlags.cs" />
     <Compile Include="AW\V4Object\MoverFlags.cs" />
     <Compile Include="AW\V4Object\ParticleFlags.cs" />
     <Compile Include="AW\Instance\Instance.V4Object.cs" />
     <Compile Include="Utilities\HexConverter.cs" />
-    <Compile Include="AW\V4Object\V4Object.cs">
+    <Compile Include="AW\V4Object\V4ObjectSerializer.cs">
     </Compile>
     <Compile Include="AW\DataStructures\Attributes.cs" />
     <Compile Include="AW\DataStructures\Color.cs" />

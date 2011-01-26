@@ -6,7 +6,8 @@ using Utilities.Serialization;
 
 namespace AW
 {
-    public sealed class Mover : V4Object<Mover>
+    [Serializable]
+    public sealed class Mover : IV4Object
     {
         #region data
 #pragma warning disable 169

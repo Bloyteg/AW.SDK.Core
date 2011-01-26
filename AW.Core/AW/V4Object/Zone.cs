@@ -1,9 +1,11 @@
+using System;
 using System.Runtime.InteropServices;
 using Utilities.Serialization;
 
 namespace AW
 {
-    public sealed class Zone : V4Object<Zone>
+    [Serializable]
+    public sealed class Zone : IV4Object
     {
 #pragma warning disable 169
         [StructLayout(LayoutKind.Sequential, Pack = 1)]

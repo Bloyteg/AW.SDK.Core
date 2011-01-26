@@ -4,7 +4,8 @@ using Utilities.Serialization;
 
 namespace AW
 {
-    public sealed class Camera : V4Object<Camera>
+    [Serializable]
+    public sealed class Camera : IV4Object
     {
 #pragma warning disable 169
         [StructLayout(LayoutKind.Sequential, Pack = 1)]

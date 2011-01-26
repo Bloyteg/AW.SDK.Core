@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace AW.Core.Tests
             //
         }
 
-        private TestContext testContextInstance;
+        private TestContext _testContextInstance;
 
         /// <summary>
         ///Gets or sets the test context which provides
@@ -30,11 +31,11 @@ namespace AW.Core.Tests
         {
             get
             {
-                return testContextInstance;
+                return _testContextInstance;
             }
             set
             {
-                testContextInstance = value;
+                _testContextInstance = value;
             }
         }
 
@@ -63,13 +64,19 @@ namespace AW.Core.Tests
         [TestMethod]
         public void Test_Mover_SetData()
         {
-            var originalMover = new Mover();
-            originalMover.Waypoints.Add(new Waypoint {Pause = 25, X = 1000, Y = 1500, Z = 1200});
-            originalMover.Waypoints.Add(new Waypoint { Pause = 26, X = 1200, Y = 1300, Z = 1400 });
-            var asBytes = originalMover.GetData();
+            using (var stream = new MemoryStream())
+            {
+                var originalMover = new Mover();
+                originalMover.Waypoints.Add(new Waypoint {Pause = 25, X = 1000, Y = 1500, Z = 1200});
+                originalMover.Waypoints.Add(new Waypoint {Pause = 26, X = 1200, Y = 1300, Z = 1400});
 
-            var newMover = new Mover();
-            newMover.SetData(asBytes);
+                var serializer = new V4ObjectSerializer<Mover>();
+                serializer.Serialize(stream, originalMover);
+
+                var newMover = serializer.Deserialize(stream);
+
+                Assert.AreEqual(2, newMover.Waypoints.Count);
+            }
         }
 
         [TestMethod]
@@ -78,8 +85,6 @@ namespace AW.Core.Tests
             byte[] asBytes =
                 new HexConverter("00000000000000000000000000000000000000000000000000000000c00000803f000000c0000040c000000040000040c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000803f0000803f0000803f0000204100002041000020410a000000640000000200a86100000000000000000000b45f0000353535001a1a1a0085eb513f00410000240000000000000000000000000000636c725f77686974653a68617a6530366d2c20636c725f77686974653a68617a6530376d00");
             var particle = new Particle();
-
-            particle.SetData(asBytes);
 
         }
 
@@ -91,7 +96,17 @@ namespace AW.Core.Tests
                                    AssetList = "1234567",
                                    Name = "1234567890"
                                };
-            var asData = particle.GetData();
+
+            byte[] asData = null;
+
+            using(var stream = new MemoryStream())
+            {
+                var serializer = new V4ObjectSerializer<Particle>();
+                serializer.Serialize(stream, particle);
+                asData = new byte[stream.Length];
+                stream.Position = 0;
+                stream.Read(asData, 0, asData.Length);
+            }
 
             Assert.AreEqual(220, asData.Length);
             Assert.AreEqual("1234567", Encoding.UTF8.GetString(asData, 202, 7));

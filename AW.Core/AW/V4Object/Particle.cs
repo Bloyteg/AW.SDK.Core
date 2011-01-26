@@ -3,7 +3,7 @@ using Utilities.Serialization;
 
 namespace AW
 {
-    public sealed class Particle : V4Object<Particle>
+    public sealed class Particle : IV4Object
     {
 #pragma warning disable 169
         [StructLayout(LayoutKind.Sequential, Pack = 1)]

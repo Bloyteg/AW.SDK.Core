@@ -4,7 +4,8 @@ using System.Text;
 
 namespace AW
 {
-	public class Cloth : V4Object<Cloth>
+    [Serializable]
+    public class Cloth : IV4Object
 	{
 
     }
