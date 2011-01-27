@@ -37,12 +37,12 @@ namespace AW
         /// </summary>
         /// <param name="inputStream">The input stream.</param>
         /// <returns></returns>
-        public TObject Deserialize(MemoryStream inputStream)
+        public TObject Deserialize(Stream inputStream)
         {
             var buffer = new byte[inputStream.Length];
             inputStream.Position = 0;
             inputStream.Read(buffer, 0, buffer.Length);
-            return BytesToObject(inputStream.GetBuffer());
+            return BytesToObject(buffer);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace AW
         /// </summary>
         /// <param name="outputStream">The output stream.</param>
         /// <param name="v4Object">The v4 object.</param>
-        public void Serialize(MemoryStream outputStream, TObject v4Object)
+        public void Serialize(Stream outputStream, TObject v4Object)
         {
             var buffer = ObjectToBytes(v4Object);
             outputStream.Write(buffer, 0, buffer.Length);
