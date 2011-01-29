@@ -17,7 +17,7 @@ namespace AW
         Object
     }
 
-    internal enum ClothAnchorPosition : byte
+    public enum ClothAnchorPosition : byte
     {
         Center,
         Top,

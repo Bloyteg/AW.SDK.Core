@@ -6,7 +6,7 @@ namespace AW
 {
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     [Serializable]
-    class ClothFlags
+    public sealed class ClothFlags
     {
         [Flags]
         enum Flags : uint
@@ -28,5 +28,243 @@ namespace AW
         }
 
         private Flags flags;
+
+        public bool Gravity
+        {
+            get { return (flags & Flags.Gravity) == Flags.Gravity; }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= Flags.Gravity;
+                }
+                else
+                {
+                    flags &= ~Flags.Gravity;
+                }
+            }
+        }
+
+        public bool Static
+        {
+            get { return (flags & Flags.Static) == Flags.Static; }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= Flags.Static;
+                }
+                else
+                {
+                    flags &= ~Flags.Static;
+                }
+            }
+        }
+
+        public bool Comdamping
+        {
+            get { return (flags & Flags.Comdamping) == Flags.Comdamping; }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= Flags.Comdamping;
+                }
+                else
+                {
+                    flags &= ~Flags.Comdamping;
+                }
+            }
+        }
+
+        public bool BendingOrtho
+        {
+            get { return (flags & Flags.BendingOrtho) == Flags.BendingOrtho; }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= Flags.BendingOrtho;
+                }
+                else
+                {
+                    flags &= ~Flags.BendingOrtho;
+                }
+            }
+        }
+
+        public bool SelfCollision
+        {
+            get { return (flags & Flags.SelfCollision) == Flags.SelfCollision; }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= Flags.SelfCollision;
+                }
+                else
+                {
+                    flags &= ~Flags.SelfCollision;
+                }
+            }
+        }
+
+        public bool CollisionTwoWay
+        {
+            get { return (flags & Flags.CollisionTwoWay) == Flags.CollisionTwoWay; }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= Flags.CollisionTwoWay;
+                }
+                else
+                {
+                    flags &= ~Flags.CollisionTwoWay;
+                }
+            }
+        }
+
+        public bool AttachmentTwoWay
+        {
+            get { return (flags & Flags.AttachmentTwoWay) == Flags.AttachmentTwoWay; }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= Flags.AttachmentTwoWay;
+                }
+                else
+                {
+                    flags &= ~Flags.AttachmentTwoWay;
+                }
+            }
+        }
+
+        public bool AttachmentTearable
+        {
+            get { return (flags & Flags.AttachmentTearable) == Flags.AttachmentTearable; }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= Flags.AttachmentTearable;
+                }
+                else
+                {
+                    flags &= ~Flags.AttachmentTearable;
+                }
+            }
+        }
+
+        public bool Tearable
+        {
+            get { return (flags & Flags.Tearable) == Flags.Tearable; }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= Flags.Tearable;
+                }
+                else
+                {
+                    flags &= ~Flags.Tearable;
+                }
+            }
+        }
+
+        public bool TearableDiagonal
+        {
+            get { return (flags & Flags.TearableDiagonal) == Flags.TearableDiagonal; }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= Flags.TearableDiagonal;
+                }
+                else
+                {
+                    flags &= ~Flags.TearableDiagonal;
+                }
+            }
+        }
+
+        public bool Pressure
+        {
+            get { return (flags & Flags.Pressure) == Flags.Pressure; }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= Flags.Pressure;
+                }
+                else
+                {
+                    flags &= ~Flags.Pressure;
+                }
+            }
+        }
+
+        public bool Adhere
+        {
+            get { return (flags & Flags.Adhere) == Flags.Adhere; }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= Flags.Adhere;
+                }
+                else
+                {
+                    flags &= ~Flags.Adhere;
+                }
+            }
+        }
+
+        public bool Untangling
+        {
+            get { return (flags & Flags.Untangling) == Flags.Untangling; }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= Flags.Untangling;
+                }
+                else
+                {
+                    flags &= ~Flags.Untangling;
+                }
+            }
+        }
+
+        public bool HardStretchLimit
+        {
+            get { return (flags & Flags.HardStretchLimit) == Flags.HardStretchLimit; }
+
+            set
+            {
+                if (value)
+                {
+                    flags |= Flags.HardStretchLimit;
+                }
+                else
+                {
+                    flags &= ~Flags.HardStretchLimit;
+                }
+            }
+        }
     }
 }
