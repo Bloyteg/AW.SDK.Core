@@ -435,7 +435,25 @@ var attributes = new List<AttributeInfo>
 	new AttributeInfo { Name = "WorldWelcomeMessage", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldVoipConferenceGlobal", AttributeType =  AttributeType.Bool, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldVoipModerateGlobal", AttributeType =  AttributeType.Bool, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldVoipRight", AttributeType = AttributeType.String, ReadOnly = false }
+	new AttributeInfo { Name = "WorldVoipRight", AttributeType = AttributeType.String, ReadOnly = false },
+	new AttributeInfo { Name = "LaserBeamSourceType", AttributeType = AttributeType.Int, ReadOnly = false},
+	new AttributeInfo { Name = "LaserBeamSourceId", AttributeType = AttributeType.Int, ReadOnly = false},
+	new AttributeInfo { Name = "LaserBeamSourceX", AttributeType = AttributeType.Int, ReadOnly = false},
+	new AttributeInfo { Name = "LaserBeamSourceY", AttributeType = AttributeType.Int, ReadOnly = false},
+	new AttributeInfo { Name = "LaserBeamSourceZ", AttributeType = AttributeType.Int, ReadOnly = false},
+	new AttributeInfo { Name = "LaserBeamTargetType", AttributeType = AttributeType.Int, ReadOnly = false},
+	new AttributeInfo { Name = "LaserBeamTargetId", AttributeType = AttributeType.Int, ReadOnly = false},
+	new AttributeInfo { Name = "LaserBeamTargetX", AttributeType = AttributeType.Int, ReadOnly = false},
+	new AttributeInfo { Name = "LaserBeamTargetY", AttributeType = AttributeType.Int, ReadOnly = false},
+	new AttributeInfo { Name = "LaserBeamTargetZ", AttributeType = AttributeType.Int, ReadOnly = false},
+	new AttributeInfo { Name = "LaserBeamStyle", AttributeType = AttributeType.Int, ReadOnly = false},
+	new AttributeInfo { Name = "LaserBeamColor", AttributeType = AttributeType.Int, ReadOnly = false},
+	new AttributeInfo { Name = "WorldVoipcastHost", AttributeType = AttributeType.String, ReadOnly = false},
+	new AttributeInfo { Name = "WorldVoipcastPort", AttributeType = AttributeType.Int, ReadOnly = false},
+	new AttributeInfo { Name = "MyZone", AttributeType = AttributeType.Int, ReadOnly = true},
+	new AttributeInfo { Name = "AvatarZone", AttributeType = AttributeType.Int, ReadOnly = true},
+	new AttributeInfo { Name = "UniversePerCitizenCav", AttributeType = AttributeType.Bool, ReadOnly = false},
+	new AttributeInfo { Name = "WorldEnableWireframe", AttributeType = AttributeType.Bool, ReadOnly = false}
 };
 #>
 

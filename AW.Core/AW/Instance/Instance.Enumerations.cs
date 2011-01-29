@@ -431,7 +431,12 @@ namespace AW
         /// <summary>
         /// The object is a camera.
         /// </summary>
-        Camera
+        Camera,
+
+        /// <summary>
+        /// The object is a cloth type.
+        /// </summary>
+        Cloth
     }
 
     /// <summary>
