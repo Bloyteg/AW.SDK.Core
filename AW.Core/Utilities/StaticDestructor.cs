@@ -1,4 +1,5 @@
-﻿namespace Utilities
+﻿// // (c) 2007 - 2011 Joshua R. Rodgers under the terms of the Ms-PL license.
+namespace Utilities
 {
     /// <summary>
     /// Used to add a static destructor to classes, so when the last instance of a class is destroyed

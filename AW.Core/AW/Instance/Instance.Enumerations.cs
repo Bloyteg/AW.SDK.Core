@@ -1,3 +1,4 @@
+// // (c) 2007 - 2011 Joshua R. Rodgers under the terms of the Ms-PL license.
 using System;
 
 namespace AW
@@ -95,110 +96,6 @@ namespace AW
         ByCitizen
     }
 
-    /// <summary>
-    /// The shape of a zone.
-    /// <seealso cref="AW.Zone"/>
-    /// </summary>
-    public enum ZoneType
-    {
-        /// <summary>
-        /// Zone area is represented by a cube or rectangular prism.
-        /// </summary>
-        Cube,
-
-        /// <summary>
-        /// Zone area is represented by a cylinder.
-        /// </summary>
-        Cylinder,
-
-        /// <summary>
-        /// Zone area is represented by a sphere.
-        /// </summary>
-        Sphere
-    }
-
-    /// <summary>
-    /// The type of particle being drawn.
-    /// <seealso cref="AW.Particle"/>
-    /// </summary>
-    public enum ParticleType
-    {
-        /// <summary>
-        /// Particle is a sprite.
-        /// </summary>
-        Sprite,
-
-        /// <summary>
-        /// Particle is a facer.
-        /// </summary>
-        Facer,
-
-        /// <summary>
-        /// Particle is flat.
-        /// </summary>
-        Flat,
-
-        /// <summary>
-        /// Particle is an object model.
-        /// </summary>
-        Object
-    }
-
-    /// <summary>
-    /// Represents the drawing style of a particle.
-    /// <seealso cref="AW.Particle"/>
-    /// </summary>
-    public enum ParticleDrawStyle
-    {
-        /// <summary>
-        /// Particle is drawn normally.
-        /// </summary>
-        Normal,
-
-        /// <summary>
-        /// Particle is drawn with a bright tint.
-        /// </summary>
-        Bright,
-
-        /// <summary>
-        /// Particle is drawn with a glow.
-        /// </summary>
-        Glow
-    }
-
-    /// <summary>
-    /// The target of a camera as specified by the <see cref="AW.Attributes.CameraTargetType" /> attribute.
-    /// </summary>
-    public enum CameraType
-    {
-        /// <summary>
-        /// The default tracking method.
-        /// </summary>
-        TrackDefault,
-
-        /// <summary>
-        /// The camera tracks the avatar.
-        /// </summary>
-        TrackAvatar,
-
-        /// <summary>
-        /// The camera tracks the location of an object.
-        /// </summary>
-        TrackObject,
-
-        /// <summary>
-        /// The camera tracks from ahead.
-        /// </summary>
-        TrackAhead,
-
-        TrackSelfFirstPerson,
-
-        TrackSelfLocked,
-
-        TrackSelfChase,
-
-        TrackSelfFront,
-    }
 
     /// <summary>
     /// The citizen registration method as specified by the <see cref="AW.Attributes.UniverseRegisterMethod" /> attribute.
@@ -334,109 +231,6 @@ namespace AW
         /// Entity is a mover.
         /// </summary>
         Mover
-    }
-
-    /// <summary>
-    /// The state which a mover is in.
-    /// </summary>
-    enum MoverState
-    {
-        /// <summary>
-        /// Never set by the SDK.
-        /// </summary>
-        Idle, 
-
-        /// <summary>
-        /// The mover is in the start state.
-        /// </summary>
-        Start,
-
-        /// <summary>
-        /// Never set by the SDK.
-        /// </summary>
-        Move,
-
-        /// <summary>
-        /// The mover is pasued.
-        /// </summary>
-        Pause,
-
-        /// <summary>
-        /// The mover continues to the next position.
-        /// </summary>
-        Continue,
-
-        /// <summary>
-        /// The mover is stopped.
-        /// </summary>
-        Stop,
-
-        /// <summary>
-        /// The mover is reset to its default location.
-        /// </summary>
-        Reset
-    }
-
-    /// <summary>
-    /// The type of mover.
-    /// </summary>
-    public enum MoverType
-    {
-        /// <summary>
-        /// The mover is passive.  The position is controlled by the user.
-        /// </summary>
-        Passive,
-
-        /// <summary>
-        /// The mover is active.  The position is controlled by the server.
-        /// </summary>
-        Active,
-
-        /// <summary>
-        /// The mover is an item attached to a limb on an avatar.
-        /// </summary>
-        Item
-    }
-
-    /// <summary>
-    /// The type of object represented by the <see cref="AW.Attributes.ObjectType" /> attribute.
-    /// </summary>
-    public enum ObjectType
-    {
-        /// <summary>
-        /// The object is a 3d model.  This is any non-V4 object.
-        /// </summary>
-        V3 = 0,
-
-        /// <summary>
-        /// The object type is unknown.
-        /// </summary>
-        Unknown,
-
-        /// <summary>
-        /// The object is a zone.
-        /// </summary>
-        Zone,
-
-        /// <summary>
-        /// The object is a particle emitter.
-        /// </summary>
-        Particle,
-
-        /// <summary>
-        /// The object is a mover.
-        /// </summary>
-        Mover,
-
-        /// <summary>
-        /// The object is a camera.
-        /// </summary>
-        Camera,
-
-        /// <summary>
-        /// The object is a cloth type.
-        /// </summary>
-        Cloth
     }
 
     /// <summary>
@@ -601,14 +395,6 @@ namespace AW
         /// Tourists can use a world Custom Avatar.
         /// </summary>
         WorldTourist = 0x40
-    }
-
-    enum XferType
-    {
-        File = 0,
-        Image = 1,
-        Document = 2,
-        Media = 3
     }
 
     enum LaserBeamSourceType

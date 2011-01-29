@@ -1,4 +1,5 @@
-﻿using System;
+﻿// // (c) 2007 - 2011 Joshua R. Rodgers under the terms of the Ms-PL license.
+using System;
 using System.Runtime.InteropServices;
 using Utilities.Serialization;
 
@@ -12,11 +13,11 @@ namespace AW
         private class ClothData
         {
             public byte version = 1;          // structure version (set by SDK)
-            public byte type;             // AW_CLOTH_TYPES
-            public byte shape;            // AW_CLOTH_FABRIC_SHAPES + AW_CLOTH_METAL_SHAPES
-            public uint flags;            // AW_CLOTH_FLAGS
-            public byte anchor_type;      // AW_CLOTH_ANCHORS
-            public byte anchor_pos;       // AW_CLOTH_ANCHOR_POS, for fabric
+            public ClothType type;             // AW_CLOTH_TYPES
+            public ClothShape shape;            // AW_CLOTH_FABRIC_SHAPES + AW_CLOTH_METAL_SHAPES
+            public ClothFlags flags;            // AW_CLOTH_FLAGS
+            public ClothAnchor anchor_type;      // AW_CLOTH_ANCHORS
+            public ClothAnchorPosition anchor_pos;       // AW_CLOTH_ANCHOR_POS, for fabric
             public Vector anchor_offset = new Vector();    // offset to anchor, 'local pose'
             public Vector orientation = new Vector();      // normalized rotation angles
             public Vector dimension = new Vector();        // dimension for fabric, scaling for models

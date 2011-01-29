@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿// // (c) 2007 - 2011 Joshua R. Rodgers under the terms of the Ms-PL license.
 namespace AW
 {
     public class InstanceCreationFailedException : SDKWrapperException<InstanceCreationFailedException>

@@ -86,6 +86,12 @@
     <Compile Include="AW\Exceptions\SDKWrapperException.cs" />
     <Compile Include="AW\Exceptions\NotHexStringException.cs" />
     <Compile Include="AW\Exceptions\V4ObjectSerializationException.cs" />
+    <Compile Include="AW\V4Object\Cloth.Enums.cs" />
+    <Compile Include="AW\V4Object\ClothFlags.cs" />
+    <Compile Include="AW\V4Object\Zone.Enums.cs" />
+    <Compile Include="AW\V4Object\V4Object.Enums.cs" />
+    <Compile Include="AW\V4Object\Mover.Enums.cs" />
+    <Compile Include="AW\V4Object\Camera.Enums.cs" />
     <Compile Include="AW\Instance\Instance.Callbacks.Generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -114,6 +120,7 @@
     <Compile Include="AW\DataStructures\Waypoint.cs" />
     <Compile Include="AW\DataStructures\Vector.cs" />
     <Compile Include="AW\V4Object\IV4Object.cs" />
+    <Compile Include="AW\V4Object\Particle.Enums.cs" />
     <Compile Include="AW\V4Object\ZoneFlags.cs" />
     <Compile Include="AW\V4Object\CameraFlags.cs" />
     <Compile Include="AW\V4Object\MoverFlags.cs" />
