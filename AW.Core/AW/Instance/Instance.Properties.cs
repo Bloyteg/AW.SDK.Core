@@ -12,7 +12,7 @@ namespace AW
         /// <summary>
         /// Stores data set by the user, associated with the instance.
         /// </summary>
-        public object UserData
+        public object Tag
         {
             get;
             set;

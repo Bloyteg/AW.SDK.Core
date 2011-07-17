@@ -12,7 +12,7 @@ namespace AW
         /// <summary>
         /// Stores data set by the user, associated with the instance.
         /// </summary>
-        object UserData { get; set; }
+        object Tag { get; set; }
 
         /// <summary>
         /// Returns the session associated with the instance.  This will change if connection is lost to the universe and re-established.
