@@ -47,62 +47,68 @@
 //If you wish to change this code, please update the template associated with it.
 using System;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
+using Utilities;
 
 namespace AW
 {
 	partial interface IInstance
 	{
 	<# foreach(SdkIdentifier callback in callbacks) { #>
-		event InstanceCallbackDelegate <#= callback.Name #>;
+		event InstanceCallbackHandler <#= callback.CallbackName #>;
 	<# } #>
 	}
 	
 	partial class Instance
 	{
+		private readonly Dictionary<string, CallbackDelegates> _callbackHandlers = new Dictionary<string, CallbackDelegates>();
+	
 	<# foreach(SdkIdentifier callback in callbacks) { #>
-	#region <#= callback.Name #>
-		//Declare the types to handle both the managed and native callbacks.
-		private InstanceCallbackDelegate managed<#= callback.Name #>;
-		private NativeMethods.Callback native<#= callback.Name #>;
-
+	#region <#= callback.CallbackName #>
+	
+		const string <#= callback.SdkName #> = "<#= callback.SdkName #>";
+	
 		//Native callback handler.
-		private void On<#= callback.Name #>(int error)
+		private void On<#= callback.CallbackName #>(int error)
 		{
-			//Passes off the callback to the managed callback handler.
-			managed<#= callback.Name #>(this, (Result)error);
+			if(_callbackHandlers.ContainsKey(<#= callback.SdkName #>) && _callbackHandlers[<#= callback.SdkName #>].Managed != null)
+			{
+				_callbackHandlers[<#= callback.SdkName #>].Managed(this, (Result)error);
+			}
 		}
 
 		//Managed callback handler.
 		/// <summary>
 		/// Handles <#= callback.SdkName #> from the C SDK.
 		/// </summary>
-		public event InstanceCallbackDelegate <#= callback.Name #>
+		public event InstanceCallbackHandler <#= callback.CallbackName #>
 		{
 			//Handles hooking a new delegate to the callback.
 			add
 			{
-				//If the callback is null, set the native callback for the instance.
-				if (managed<#= callback.Name #> == null)
+				if(!_callbackHandlers.ContainsKey(<#= callback.SdkName #>))
 				{
 					SetInstance();
-					native<#= callback.Name #> = new NativeMethods.Callback(On<#= callback.Name #>);
-					NativeMethods.aw_instance_callback_set(AW_CALLBACK.<#= callback.SdkName #>, native<#= callback.Name #>);
+					_callbackHandlers.Add(<#= callback.SdkName #>, new CallbackDelegates { Native = On<#= callback.CallbackName #> });
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.<#= callback.SdkName #>, _callbackHandlers[<#= callback.SdkName #>].Native);			
 				}
-
-				managed<#= callback.Name #> += value;
+					
+				_callbackHandlers[<#= callback.SdkName #>].Managed += value;
 			}
 
 			//Handles removing a delegate from the callback.
 			remove
 			{
-				managed<#= callback.Name #> -= value;
-
-				//If the callback is null, remove the native callback for the instance.
-				if (managed<#= callback.Name #> == null)
+				if(_callbackHandlers.ContainsKey(<#= callback.SdkName #>))
 				{
-					SetInstance();
-					native<#= callback.Name #> = null;
-					NativeMethods.aw_instance_callback_set(AW_CALLBACK.<#= callback.SdkName #>, null);
+					_callbackHandlers[<#= callback.SdkName #>].Managed -= value;
+				
+					if(_callbackHandlers[<#= callback.SdkName #>].Managed == null)
+					{
+						SetInstance();
+						NativeMethods.aw_instance_callback_set(AW_CALLBACK.<#= callback.SdkName #>, null);
+						_callbackHandlers.Remove(<#= callback.SdkName #>);
+					}
 				}
 			}
 		}

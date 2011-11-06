@@ -3,9 +3,9 @@ using System;
 
 namespace AW
 {
-    public delegate void InstanceEventDelegate(IInstance sender);
+    public delegate void InstanceEventHandler(IInstance sender);
 
-    public delegate void InstanceCallbackDelegate(IInstance sender, Result error);
+    public delegate void InstanceCallbackHandler(IInstance sender, Result error);
 
     public partial interface IInstance : IDisposable
     {
@@ -182,7 +182,7 @@ namespace AW
         /// <summary>
         /// Indicates that the instance is in the process of being disposed.
         /// </summary>
-        event InstanceEventDelegate Disposing;
+        event InstanceEventHandler Disposing;
 
         /// <summary>
         /// Sets a string attribute for the current instance.

@@ -57,67 +57,71 @@
 //If you wish to change this code, please update the template associated with it.
 using System;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
+using Utilities;
 
 namespace AW
 {
 	partial interface IInstance
 	{
 	<# foreach(SdkIdentifier @event in events) { #>
-		event InstanceEventDelegate <#= @event.Name #>;
+		event InstanceEventHandler <#= @event.EventName #>;
 	<# } #>
 	}
 	
 	partial class Instance
 	{
-	<# foreach(SdkIdentifier evnt in events) { #>
-	#region <#= evnt.Name #>
-		//Declare the types to handle both the managed and native events.
-		private InstanceEventDelegate managed<#= evnt.Name #>;
-		private NativeMethods.Event native<#= evnt.Name #>;
+	private readonly Dictionary<string, EventDelegates> _eventHandlers = new Dictionary<string, EventDelegates>();
+	
+	<# foreach(SdkIdentifier evnt in events) { #>	
+	#region <#= evnt.EventName #>
+		const string <#= evnt.SdkName #> = "<#= evnt.SdkName #>";
 
 		//Native event handler.
-		private void On<#= evnt.Name #>()
-		{
-			//Passes off the event to the managed event handler.
-			managed<#= evnt.Name #>(this);
+		private void On<#= evnt.EventName #>()
+		{						
+			if(_eventHandlers.ContainsKey(<#= evnt.SdkName #>) && _eventHandlers[<#= evnt.SdkName #>].Managed != null)
+			{
+				_eventHandlers[<#= evnt.SdkName #>].Managed(this);
+			}
 		}
 
 		//Managed event handler.
 		/// <summary>
 		/// Handles <#= evnt.SdkName #> from the C SDK.
 		/// </summary>
-		public event InstanceEventDelegate <#= evnt.Name #>
+		public event InstanceEventHandler <#= evnt.EventName #>
 		{
 			//Handles hooking a new delegate to the event.
 			add
 			{
-				//If the event is null, set the native event for the instance.
-				if (managed<#= evnt.Name #> == null)
+				if(!_eventHandlers.ContainsKey(<#= evnt.SdkName #>))
 				{
 					SetInstance();
-					native<#= evnt.Name #> = new NativeMethods.Event(On<#= evnt.Name #>);
-					NativeMethods.aw_instance_event_set(AW_EVENT.<#= evnt.SdkName #>, native<#= evnt.Name #>);
+					_eventHandlers.Add(<#= evnt.SdkName #>, new EventDelegates { Native = On<#= evnt.EventName #> });
+					NativeMethods.aw_instance_event_set(AW_EVENT.<#= evnt.SdkName #>, _eventHandlers[<#= evnt.SdkName #>].Native);			
 				}
-
-				managed<#= evnt.Name #> += value;
+					
+				_eventHandlers[<#= evnt.SdkName #>].Managed += value;
 			}
 
 			//Handles removing a delegate from the event.
 			remove
 			{
-				managed<#= evnt.Name #> -= value;
-
-				//If the event is null, remove the native event for the instance.
-				if (managed<#= evnt.Name #> == null)
+				if(_eventHandlers.ContainsKey(<#= evnt.SdkName #>))
 				{
-					SetInstance();
-					native<#= evnt.Name #> = null;
-					NativeMethods.aw_instance_event_set(AW_EVENT.<#= evnt.SdkName #>, null);
+					_eventHandlers[<#= evnt.SdkName #>].Managed -= value;
+				
+					if(_eventHandlers[<#= evnt.SdkName #>].Managed == null)
+					{
+						SetInstance();
+						NativeMethods.aw_instance_event_set(AW_EVENT.<#= evnt.SdkName #>, null);
+						_eventHandlers.Remove(<#= evnt.SdkName #>);
+					}
 				}
 			}
 		}
-		#endregion
-		
+	#endregion
 	<# } #>
 }
 }

@@ -27,15 +27,17 @@ namespace AW
         /// <summary>
         /// Indicates that the instance is in the process of being disposed.
         /// </summary>
-        public event InstanceEventDelegate Disposing;
+        public event InstanceEventHandler Disposing;
 
         #endregion
 
         #region Static Constructors / Destructors
+#pragma warning disable 169
         /// <summary>
         /// Static destructor for handling when the final instance of the class is garbage collected.
         /// </summary>
         private static readonly Utilities.StaticDestructor Destructor = new Utilities.StaticDestructor(Utility.Terminate);
+#pragma warning restore 169
 
         /// <summary>
         /// Static constructor.  This initializes the SDK the first time an instance is created.
@@ -172,11 +174,13 @@ namespace AW
         /// </summary>
         private void SetInstance()
         {
-            if (NativeMethods.aw_instance() != _instance)
+            if (NativeMethods.aw_instance() == _instance)
             {
-                int rc = NativeMethods.aw_instance_set(_instance);
-                SDKWrapperException<InstanceSetFailedException>.Assert(rc);
+                return;
             }
+
+            int rc = NativeMethods.aw_instance_set(_instance);
+            SDKWrapperException<InstanceSetFailedException>.Assert(rc);
         }
 
         #region Data setters/getters

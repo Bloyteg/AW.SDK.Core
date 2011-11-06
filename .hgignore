@@ -1,3 +1,2 @@
 #Ignore "Generated" files
 syntax: glob
-*.Generated.cs

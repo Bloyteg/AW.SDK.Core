@@ -6,6 +6,22 @@
 	{
 		private string _sdkName;
 		
+		public string EventName
+		{
+			get
+			{
+				return Name + "Received";
+			}
+		}
+		
+		public string CallbackName
+		{
+			get
+			{
+				return Name + "Completed";
+			}
+		}
+		
 		public string Name
 		{
 			get;
@@ -22,7 +38,12 @@
 			set
 			{
 				_sdkName = value;
-				Name = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value.ToLower()).Substring(3).Replace("_", "");
+				Name = System.Globalization.CultureInfo.CurrentCulture.TextInfo
+							.ToTitleCase(value.ToLower())
+							.Substring(3)
+							.Replace("_", "")
+							.Replace("Event", "")
+							.Replace("Callback", "");
 			}
 		}
 		

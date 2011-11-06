@@ -126,6 +126,7 @@
     <Compile Include="AW\V4Object\MoverFlags.cs" />
     <Compile Include="AW\V4Object\ParticleFlags.cs" />
     <Compile Include="AW\Instance\Instance.V4Object.cs" />
+    <Compile Include="Utilities\DelegatePair.cs" />
     <Compile Include="Utilities\HexConverter.cs" />
     <Compile Include="AW\V4Object\V4ObjectSerializer.cs">
     </Compile>
