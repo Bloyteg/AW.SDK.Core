@@ -416,7 +416,7 @@ namespace AW
         WorldTourist = 0x40
     }
 
-    enum LaserBeamSourceType
+    public enum LaserBeamSourceType
     {
         None = 0,
         Avatar = 1,
@@ -424,7 +424,7 @@ namespace AW
         Coords = 3
     }
 
-    enum LaserBeamTargetType
+    public enum LaserBeamTargetType
     {
         None = 0,
         Avatar = 1,
@@ -432,7 +432,7 @@ namespace AW
         Coords = 3
     }
 
-    enum LaserBeamStyle
+    public enum LaserBeamStyle
     {
         Line = 0,
         Particle = 1

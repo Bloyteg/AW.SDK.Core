@@ -17,7 +17,7 @@ namespace AW
             {
                 get
                 {
-                    return 93;
+                    return NativeMethods.aw_sdk_build();
                 }
             }
 
