@@ -1,6 +1,7 @@
 // // (c) 2007 - 2011 Joshua R. Rodgers under the terms of the Ms-PL license.
 using System;
 using System.Runtime.InteropServices;
+using System.Security.Permissions;
 
 namespace AW
 {
@@ -200,6 +201,7 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be accessed.</param>
         /// <returns>The value of the attribute being accessed.</returns>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
         public string GetString(Attributes attribute)
         {
             SetInstance();
@@ -292,6 +294,7 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be set.</param>
         /// <param name="value">The value of the attribute being set.</param>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
         public void SetData(Attributes attribute, byte[] value)
         {
             SetInstance();
@@ -319,6 +322,7 @@ namespace AW
         /// <returns>The value of the attribute being accessed.</returns>
         /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
         public byte[] GetData(Attributes attribute)
         {
             SetInstance();
@@ -339,6 +343,7 @@ namespace AW
         /// <param name="cavContents">String representation of the Custom Avatar definition's XML.</param>
         /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
         public void SetCavData(string cavContents)
         {
             SetInstance();
@@ -351,6 +356,7 @@ namespace AW
         /// <returns>String representation of the Custom Avatar definition's XML.</returns>
         /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
         public string GetCavData()
         {
             SetInstance();

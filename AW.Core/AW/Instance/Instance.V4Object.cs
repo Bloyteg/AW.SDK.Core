@@ -1,5 +1,6 @@
 ﻿// // (c) 2007 - 2011 Joshua R. Rodgers under the terms of the Ms-PL license.
 using System.IO;
+using System.Security.Permissions;
 
 namespace AW
 {
@@ -10,6 +11,7 @@ namespace AW
         /// </summary>
         /// <typeparam name="TV4Object">The type of the V4 object being used.</typeparam>
         /// <param name="v4Object">The V4 object representing the data to be set.</param>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
         public void SetV4Object<TV4Object>(TV4Object v4Object)
             where TV4Object : IV4Object, new()
         {
@@ -31,6 +33,7 @@ namespace AW
         /// </summary>
         /// <typeparam name="TV4Object">the type of V4 object to be returned.</typeparam>
         /// <returns></returns>
+        [EnvironmentPermission(SecurityAction.Demand, Unrestricted = true)]
         public TV4Object GetV4Object<TV4Object>()
             where TV4Object : IV4Object, new()
         {

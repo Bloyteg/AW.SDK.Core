@@ -8,7 +8,7 @@ namespace AW
     /// <summary>
     /// Exception thrown when an instance based operation fails.
     /// </summary>
-    public abstract class SDKWrapperException<T> : System.Exception
+    public abstract class SDKWrapperException<T> : Exception
         where T : SDKWrapperException<T>, new()
     {
         protected SDKWrapperException()

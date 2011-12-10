@@ -55,7 +55,8 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <BaseAddress>285212672</BaseAddress>
     <Optimize>true</Optimize>
     <PlatformTarget>x86</PlatformTarget>
@@ -64,6 +65,7 @@
     </DocumentationFile>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RunCodeAnalysis>false</RunCodeAnalysis>
+    <NoWarn>0618</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -73,7 +75,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AW\DataStructures\AttributeProvider.Generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -86,7 +88,7 @@
     <Compile Include="AW\Exceptions\SDKWrapperException.cs" />
     <Compile Include="AW\Exceptions\NotHexStringException.cs" />
     <Compile Include="AW\Exceptions\V4ObjectSerializationException.cs" />
-    <Compile Include="AW\Internal\ITripleAttribute.cs" />
+    <Compile Include="AW\Instance\Instance.Internal.cs" />
     <Compile Include="AW\V4Object\Cloth.Enums.cs" />
     <Compile Include="AW\V4Object\ClothFlags.cs" />
     <Compile Include="AW\V4Object\Zone.Enums.cs" />

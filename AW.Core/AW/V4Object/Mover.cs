@@ -51,6 +51,7 @@ namespace AW
         #endregion
 
         [FieldSizeProvider]
+        [NonSerialized]
         private readonly MoverData _moverData = new MoverData();
 
         [FieldValueOrdinal(5)]

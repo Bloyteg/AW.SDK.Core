@@ -40,6 +40,7 @@ namespace AW
 #pragma warning restore 169
 
         [FieldSizeProvider]
+        [NonSerialized]
         private readonly ZoneData _zoneData = new ZoneData();
 
         [FieldValueOrdinal(1)]

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Security.Permissions;
 
 namespace Utilities
 {
@@ -31,6 +32,7 @@ namespace Utilities
         /// </summary>
         /// <param name="obj">The structure being converted.</param>
         /// <returns>A byte-array representing the structure being converted.</returns>
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public static byte[] StructToBytes(object obj)
         {
             int length = Marshal.SizeOf(obj.GetType());
@@ -69,6 +71,7 @@ namespace Utilities
         /// <param name="data">The data.</param>
         /// <param name="index">The index.</param>
         /// <returns></returns>
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public static object BytesToStruct(Type type, byte[] data, int index)
         {
             int length = Marshal.SizeOf(type);

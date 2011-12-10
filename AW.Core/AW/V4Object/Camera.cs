@@ -26,6 +26,7 @@ namespace AW
         private string _name = String.Empty;
 
         [FieldSizeProvider]
+        [NonSerialized]
         private readonly CameraData _cameraData = new CameraData();
 
         public CameraFlags Flags

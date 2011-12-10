@@ -9,38 +9,38 @@ namespace AW
     /// </summary>
     [Serializable]
     [StructLayout(LayoutKind.Sequential, Pack=0)]
-    public sealed class Color : ITripleAttribute<Color, int>
+    public sealed class Color
     {
         private byte a;
-        private byte b;
-        private byte g;
-        private byte r;
+        private byte _blue;
+        private byte _green;
+        private byte _red;
 
         /// <summary>
         /// The blue component of the color.  Value range is 0 to 255.
         /// </summary>
-        public byte B
+        public byte Blue
         {
-            get { return b; }
-            set { b = value; }
+            get { return _blue; }
+            set { _blue = value; }
         }
 
         /// <summary>
         /// The green component of the color.  Value range is 0 to 255.
         /// </summary>
-        public byte G
+        public byte Green
         {
-            get { return g; }
-            set { g = value; }
+            get { return _green; }
+            set { _green = value; }
         }
 
         /// <summary>
         /// The red component of the color.  Value range is 0 to 255.
         /// </summary>
-        public byte R
+        public byte Red
         {
-            get { return r; }
-            set { r = value; }
+            get { return _red; }
+            set { _red = value; }
         }
 
         /// <summary>
@@ -54,15 +54,15 @@ namespace AW
         /// <summary>
         /// Constructs a color using the specified values.
         /// </summary>
-        /// <param name="r">Red component.  Value range is 0 to 255.</param>
-        /// <param name="g">Green component.  Value range is 0 to 255.</param>
-        /// <param name="b">Blue component.  Value range is 0 to 255.</param>
-        public Color(byte r, byte g, byte b)
+        /// <param name="red">Red component.  Value range is 0 to 255.</param>
+        /// <param name="green">Green component.  Value range is 0 to 255.</param>
+        /// <param name="blue">Blue component.  Value range is 0 to 255.</param>
+        public Color(byte red, byte green, byte blue)
         {
             a = 255;
-            this.r = r;
-            this.g = g;
-            this.b = b;
+            _red = red;
+            _green = green;
+            _blue = blue;
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace AW
         /// <returns>The converted color.</returns>
         public static explicit operator Color(System.Drawing.Color color)
         {
-            return new Color { R = color.R, G = color.G, B = color.B };
+            return new Color { Red = color.R, Green = color.G, Blue = color.B };
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace AW
         /// <returns>The converted color.</returns>
         public static explicit operator System.Drawing.Color(Color color)
         {
-            return System.Drawing.Color.FromArgb(255, color.R, color.G, color.B);
+            return System.Drawing.Color.FromArgb(255, color.Red, color.Green, color.Blue);
         }
 
         /// <summary>
@@ -94,9 +94,9 @@ namespace AW
         {
             return new Color
             {
-                R = (byte)(color  & 0x0000FF),
-                G = (byte)((color >> 8) & 0x0000FF),
-                B = (byte)((color >> 16) & 0x0000FF)
+                Red = (byte)(color  & 0x0000FF),
+                Green = (byte)((color >> 8) & 0x0000FF),
+                Blue = (byte)((color >> 16) & 0x0000FF)
             };
         }
 
@@ -107,7 +107,7 @@ namespace AW
         /// <returns>The converted color.</returns>
         public static implicit operator int(Color color)
         {
-            return (color.R | (color.G << 8) | (color.B << 16));
+            return (color.Red | (color.Green << 8) | (color.Blue << 16));
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace AW
         /// <returns>The string representation of the color.</returns>
         public override string ToString()
         {
-            return String.Format("{0:X2}{1:X2}{2:X2}", r, g, b);
+            return String.Format("{0:X2}{1:X2}{2:X2}", _red, _green, _blue);
         }
 
         /// <summary>
@@ -127,26 +127,6 @@ namespace AW
         {
             var hexConvert = new Utilities.HexConverter(color);
             return new Color(hexConvert.ByteData[0], hexConvert.ByteData[1], hexConvert.ByteData[2]);
-        }
-
-        int ITripleAttribute<Color, int>.FirstValue
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        int ITripleAttribute<Color, int>.SecondValue
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        int ITripleAttribute<Color, int>.ThirdValue
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        Color ITripleAttribute<Color, int>.FromValues(int first, int second, int third)
-        {
-            throw new NotImplementedException();
         }
     }
 }

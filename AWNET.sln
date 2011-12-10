@@ -2,15 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AW.Core", "AW.Core\AW.Core.csproj", "{EB5BD7CA-5BCC-4ABF-89C7-8ADC00013C66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AW.Core.Tests", "AW.Core.Tests\AW.Core.Tests.csproj", "{F735319F-E7EE-4FBA-BB02-3643405657C9}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9AAB9FD9-4D55-40A4-A177-4D765E8B3DF6}"
-	ProjectSection(SolutionItems) = preProject
-		AWNET.vsmdi = AWNET.vsmdi
-		Local.testsettings = Local.testsettings
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = AWNET.vsmdi
@@ -33,16 +24,6 @@ Global
 		{EB5BD7CA-5BCC-4ABF-89C7-8ADC00013C66}.Release|Mixed Platforms.Build.0 = Release|x86
 		{EB5BD7CA-5BCC-4ABF-89C7-8ADC00013C66}.Release|Win32.ActiveCfg = Release|x86
 		{EB5BD7CA-5BCC-4ABF-89C7-8ADC00013C66}.Release|Win32.Build.0 = Release|x86
-		{F735319F-E7EE-4FBA-BB02-3643405657C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F735319F-E7EE-4FBA-BB02-3643405657C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F735319F-E7EE-4FBA-BB02-3643405657C9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{F735319F-E7EE-4FBA-BB02-3643405657C9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{F735319F-E7EE-4FBA-BB02-3643405657C9}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{F735319F-E7EE-4FBA-BB02-3643405657C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F735319F-E7EE-4FBA-BB02-3643405657C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F735319F-E7EE-4FBA-BB02-3643405657C9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{F735319F-E7EE-4FBA-BB02-3643405657C9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{F735319F-E7EE-4FBA-BB02-3643405657C9}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

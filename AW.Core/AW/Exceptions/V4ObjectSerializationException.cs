@@ -5,6 +5,7 @@ using System.Text;
 
 namespace AW
 {
+    [Serializable]
     public class V4ObjectSerializationException : Exception
     {
         internal V4ObjectSerializationException(string message) : base(message)

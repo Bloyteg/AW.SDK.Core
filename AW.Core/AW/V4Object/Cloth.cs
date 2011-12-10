@@ -64,6 +64,7 @@ namespace AW
 #pragma warning restore 169
 
         [FieldSizeProvider]
+        [NonSerialized]
         private readonly ClothData _clothData = new ClothData();
 
         public Cloth()
