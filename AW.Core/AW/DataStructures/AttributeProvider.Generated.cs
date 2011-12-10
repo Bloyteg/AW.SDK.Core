@@ -33,7 +33,7 @@ namespace AW
 			set;
 		}
 		
-		int AvatarFlags
+		AvatarSetFlag AvatarFlags
 		{
 			get;
 			set;
@@ -78,7 +78,7 @@ namespace AW
 			get;
 		}
 		
-		int AvatarState
+		AvatarStates AvatarState
 		{
 			get;
 			set;
@@ -501,7 +501,7 @@ namespace AW
 			set;
 		}
 		
-		int EjectionType
+		EjectionType EjectionType
 		{
 			get;
 			set;
@@ -561,7 +561,7 @@ namespace AW
 			set;
 		}
 		
-		int EntityType
+		EntityType EntityType
 		{
 			get;
 			set;
@@ -615,7 +615,7 @@ namespace AW
 			set;
 		}
 		
-		int HudElementFlags
+		HudElementFlag HudElementFlags
 		{
 			get;
 			set;
@@ -633,7 +633,7 @@ namespace AW
 			set;
 		}
 		
-		int HudElementOrigin
+		HudOrigin HudElementOrigin
 		{
 			get;
 			set;
@@ -681,7 +681,7 @@ namespace AW
 			set;
 		}
 		
-		int HudElementType
+		HudType HudElementType
 		{
 			get;
 			set;
@@ -1088,7 +1088,7 @@ namespace AW
 			get;
 		}
 		
-		int ServerState
+		ServerStatus ServerState
 		{
 			get;
 		}
@@ -1318,7 +1318,7 @@ namespace AW
 			get;
 		}
 		
-		int WorldListStatus
+		WorldStatus WorldListStatus
 		{
 			get;
 		}
@@ -1426,7 +1426,7 @@ namespace AW
 			set;
 		}
 		
-		int UniverseRegisterMethod
+		RegisterMethod UniverseRegisterMethod
 		{
 			get;
 		}
@@ -1824,7 +1824,7 @@ namespace AW
 			set;
 		}
 		
-		int WorldEnableCav
+		EnableCavFlag WorldEnableCav
 		{
 			get;
 			set;
@@ -2465,7 +2465,7 @@ namespace AW
 			set;
 		}
 		
-		int LaserBeamSourceType
+		LaserBeamSourceType LaserBeamSourceType
 		{
 			get;
 			set;
@@ -2495,7 +2495,7 @@ namespace AW
 			set;
 		}
 		
-		int LaserBeamTargetType
+		LaserBeamTargetType LaserBeamTargetType
 		{
 			get;
 			set;
@@ -2525,7 +2525,7 @@ namespace AW
 			set;
 		}
 		
-		int LaserBeamStyle
+		LaserBeamStyle LaserBeamStyle
 		{
 			get;
 			set;
@@ -2609,10 +2609,10 @@ namespace AW
 			set { _instance.SetInt(Attributes.AvatarDistance,  value); }
 		}
 
-		public int AvatarFlags
+		public AvatarSetFlag AvatarFlags
 		{
-			get { return  _instance.GetInt(Attributes.AvatarFlags); }
-			set { _instance.SetInt(Attributes.AvatarFlags,  value); }
+			get { return (AvatarSetFlag) _instance.GetInt(Attributes.AvatarFlags); }
+			set { _instance.SetInt(Attributes.AvatarFlags,  (int) value); }
 		}
 
 		public int AvatarGesture
@@ -2654,10 +2654,10 @@ namespace AW
 			get { return  _instance.GetInt(Attributes.AvatarSession); }
 		}
 
-		public int AvatarState
+		public AvatarStates AvatarState
 		{
-			get { return  _instance.GetInt(Attributes.AvatarState); }
-			set { _instance.SetInt(Attributes.AvatarState,  value); }
+			get { return (AvatarStates) _instance.GetInt(Attributes.AvatarState); }
+			set { _instance.SetInt(Attributes.AvatarState,  (int) value); }
 		}
 
 		public int AvatarType
@@ -3077,10 +3077,10 @@ namespace AW
 			set { _instance.SetInt(Attributes.EjectionExpirationTime,  value); }
 		}
 
-		public int EjectionType
+		public EjectionType EjectionType
 		{
-			get { return  _instance.GetInt(Attributes.EjectionType); }
-			set { _instance.SetInt(Attributes.EjectionType,  value); }
+			get { return (EjectionType) _instance.GetInt(Attributes.EjectionType); }
+			set { _instance.SetInt(Attributes.EjectionType,  (int) value); }
 		}
 
 		public bool EnterGlobal
@@ -3137,10 +3137,10 @@ namespace AW
 			set { _instance.SetInt(Attributes.EntityState,  value); }
 		}
 
-		public int EntityType
+		public EntityType EntityType
 		{
-			get { return  _instance.GetInt(Attributes.EntityType); }
-			set { _instance.SetInt(Attributes.EntityType,  value); }
+			get { return (EntityType) _instance.GetInt(Attributes.EntityType); }
+			set { _instance.SetInt(Attributes.EntityType,  (int) value); }
 		}
 
 		public int EntityX
@@ -3191,10 +3191,10 @@ namespace AW
 			set { _instance.SetInt(Attributes.HudElementColor,  value); }
 		}
 
-		public int HudElementFlags
+		public HudElementFlag HudElementFlags
 		{
-			get { return  _instance.GetInt(Attributes.HudElementFlags); }
-			set { _instance.SetInt(Attributes.HudElementFlags,  value); }
+			get { return (HudElementFlag) _instance.GetInt(Attributes.HudElementFlags); }
+			set { _instance.SetInt(Attributes.HudElementFlags,  (int) value); }
 		}
 
 		public int HudElementId
@@ -3209,10 +3209,10 @@ namespace AW
 			set { _instance.SetFloat(Attributes.HudElementOpacity,  value); }
 		}
 
-		public int HudElementOrigin
+		public HudOrigin HudElementOrigin
 		{
-			get { return  _instance.GetInt(Attributes.HudElementOrigin); }
-			set { _instance.SetInt(Attributes.HudElementOrigin,  value); }
+			get { return (HudOrigin) _instance.GetInt(Attributes.HudElementOrigin); }
+			set { _instance.SetInt(Attributes.HudElementOrigin,  (int) value); }
 		}
 
 		public int HudElementSession
@@ -3257,10 +3257,10 @@ namespace AW
 			set { _instance.SetInt(Attributes.HudElementTextureOffsetY,  value); }
 		}
 
-		public int HudElementType
+		public HudType HudElementType
 		{
-			get { return  _instance.GetInt(Attributes.HudElementType); }
-			set { _instance.SetInt(Attributes.HudElementType,  value); }
+			get { return (HudType) _instance.GetInt(Attributes.HudElementType); }
+			set { _instance.SetInt(Attributes.HudElementType,  (int) value); }
 		}
 
 		public int HudElementX
@@ -3664,9 +3664,9 @@ namespace AW
 			get { return  _instance.GetInt(Attributes.ServerStartRc); }
 		}
 
-		public int ServerState
+		public ServerStatus ServerState
 		{
-			get { return  _instance.GetInt(Attributes.ServerState); }
+			get { return (ServerStatus) _instance.GetInt(Attributes.ServerState); }
 		}
 
 		public int ServerTerrainNodes
@@ -3894,9 +3894,9 @@ namespace AW
 			get { return  _instance.GetInt(Attributes.WorldListRating); }
 		}
 
-		public int WorldListStatus
+		public WorldStatus WorldListStatus
 		{
-			get { return  _instance.GetInt(Attributes.WorldListStatus); }
+			get { return (WorldStatus) _instance.GetInt(Attributes.WorldListStatus); }
 		}
 
 		public int WorldListUsers
@@ -4002,9 +4002,9 @@ namespace AW
 			set { _instance.SetData(Attributes.UniverseObjectPassword,  value); }
 		}
 
-		public int UniverseRegisterMethod
+		public RegisterMethod UniverseRegisterMethod
 		{
-			get { return  _instance.GetInt(Attributes.UniverseRegisterMethod); }
+			get { return (RegisterMethod) _instance.GetInt(Attributes.UniverseRegisterMethod); }
 		}
 
 		public bool UniverseRegistrationRequired
@@ -4400,10 +4400,10 @@ namespace AW
 			set { _instance.SetBool(Attributes.WorldEnableCameraCollision,  value); }
 		}
 
-		public int WorldEnableCav
+		public EnableCavFlag WorldEnableCav
 		{
-			get { return  _instance.GetInt(Attributes.WorldEnableCav); }
-			set { _instance.SetInt(Attributes.WorldEnableCav,  value); }
+			get { return (EnableCavFlag) _instance.GetInt(Attributes.WorldEnableCav); }
+			set { _instance.SetInt(Attributes.WorldEnableCav,  (int) value); }
 		}
 
 		public bool WorldEnablePav
@@ -5041,10 +5041,10 @@ namespace AW
 			set { _instance.SetString(Attributes.WorldVoipRight,  value); }
 		}
 
-		public int LaserBeamSourceType
+		public LaserBeamSourceType LaserBeamSourceType
 		{
-			get { return  _instance.GetInt(Attributes.LaserBeamSourceType); }
-			set { _instance.SetInt(Attributes.LaserBeamSourceType,  value); }
+			get { return (LaserBeamSourceType) _instance.GetInt(Attributes.LaserBeamSourceType); }
+			set { _instance.SetInt(Attributes.LaserBeamSourceType,  (int) value); }
 		}
 
 		public int LaserBeamSourceId
@@ -5071,10 +5071,10 @@ namespace AW
 			set { _instance.SetInt(Attributes.LaserBeamSourceZ,  value); }
 		}
 
-		public int LaserBeamTargetType
+		public LaserBeamTargetType LaserBeamTargetType
 		{
-			get { return  _instance.GetInt(Attributes.LaserBeamTargetType); }
-			set { _instance.SetInt(Attributes.LaserBeamTargetType,  value); }
+			get { return (LaserBeamTargetType) _instance.GetInt(Attributes.LaserBeamTargetType); }
+			set { _instance.SetInt(Attributes.LaserBeamTargetType,  (int) value); }
 		}
 
 		public int LaserBeamTargetId
@@ -5101,10 +5101,10 @@ namespace AW
 			set { _instance.SetInt(Attributes.LaserBeamTargetZ,  value); }
 		}
 
-		public int LaserBeamStyle
+		public LaserBeamStyle LaserBeamStyle
 		{
-			get { return  _instance.GetInt(Attributes.LaserBeamStyle); }
-			set { _instance.SetInt(Attributes.LaserBeamStyle,  value); }
+			get { return (LaserBeamStyle) _instance.GetInt(Attributes.LaserBeamStyle); }
+			set { _instance.SetInt(Attributes.LaserBeamStyle,  (int) value); }
 		}
 
 		public int LaserBeamColor
