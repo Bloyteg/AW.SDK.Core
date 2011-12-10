@@ -5,7 +5,7 @@ namespace AW
 {
     public delegate void InstanceEventHandler(IInstance sender);
 
-    public delegate void InstanceCallbackHandler(IInstance sender, Result error);
+    public delegate void InstanceCallbackHandler(IInstance sender, Result result);
 
     public partial interface IInstance : IDisposable
     {
@@ -178,6 +178,15 @@ namespace AW
         Result ServerWorldInstanceAdd(int id, int instanceId);
         Result ServerWorldInstanceDelete(int id, int instanceId);
         Result LaserBeam();
+        Result Listen(ChatChannels channels);
+        Result SayChannel(ChatChannels channel, string message);
+        Result SayChannel(ChatChannels channel, string message, object arg0);
+        Result SayChannel(ChatChannels channel, string message, object arg0, object arg1);
+        Result SayChannel(ChatChannels channel, string message, object arg0, object arg1, object arg2);
+        Result SayChannel(ChatChannels channel, string message, params object[] args);
+        Result ObjectAddSession(int session);
+        Result ObjectDeleteSession(int session);
+        Result ServerWorldGet();
 
         /// <summary>
         /// Indicates that the instance is in the process of being disposed.
@@ -192,6 +201,7 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
+        [Obsolete("This method is now obsolete, use the IInstance.Attributes property instead.")]
         void SetString(Attributes attribute, string value);
 
         /// <summary>
@@ -201,6 +211,7 @@ namespace AW
         /// <returns>The value of the attribute being accessed.</returns>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
+        [Obsolete("This method is now obsolete, use the AW.IInstance.Attributes property instead.")]
         string GetString(Attributes attribute);
 
         /// <summary>
@@ -211,6 +222,7 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
+        [Obsolete("This method is now obsolete, use the AW.IInstance.Attributes property instead.")]
         void SetInt(Attributes attribute, int value);
 
         /// <summary>
@@ -220,6 +232,7 @@ namespace AW
         /// <returns>The value of the attribute being accessed.</returns>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
+        [Obsolete("This method is now obsolete, use the AW.IInstance.Attributes property instead.")]
         int GetInt(Attributes attribute);
 
         /// <summary>
@@ -230,6 +243,7 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
+        [Obsolete("This method is now obsolete, use the AW.IInstance.Attributes property instead.")]
         void SetBool(Attributes attribute, bool value);
 
         /// <summary>
@@ -239,6 +253,7 @@ namespace AW
         /// <returns>The value of the attribute being accessed.</returns>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
+        [Obsolete("This method is now obsolete, use the AW.IInstance.Attributes property instead.")]
         bool GetBool(Attributes attribute);
 
         /// <summary>
@@ -249,6 +264,7 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
+        [Obsolete("This method is now obsolete, use the IInstance.Attributes property instead.")]
         void SetFloat(Attributes attribute, float value);
 
         /// <summary>
@@ -258,6 +274,7 @@ namespace AW
         /// <returns>The value of the attribute being accessed.</returns>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
+        [Obsolete("This method is now obsolete, use the IInstance.Attributes property instead.")]
         float GetFloat(Attributes attribute);
 
         /// <summary>
@@ -268,6 +285,7 @@ namespace AW
         /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
+        [Obsolete("This method is now obsolete, use the IInstance.Attributes property instead.")]
         void SetData(Attributes attribute, byte[] value);
 
         /// <summary>
@@ -277,6 +295,7 @@ namespace AW
         /// <returns>The value of the attribute being accessed.</returns>
         /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
+        [Obsolete("This method is now obsolete, use the IInstance.Attributes property instead.")]
         byte[] GetData(Attributes attribute);
 
         /// <summary>

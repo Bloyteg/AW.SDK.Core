@@ -1,4 +1,6 @@
 // // (c) 2007 - 2011 Joshua R. Rodgers under the terms of the Ms-PL license.
+using System;
+
 namespace AW
 {
     /// <summary>
@@ -19,6 +21,7 @@ namespace AW
     ///     <item><description><see cref="AW.Instance.GetData">AW.Instance.GetData</see></description></item>
     /// </list>
     /// </remarks>
+    [Obsolete("This enum is now obsolete, use the AW.IInstance.Attributes property instead.")]
     public enum Attributes
     {
         /// <summary>
@@ -333,11 +336,11 @@ namespace AW
         LicenseAllowTourists,
         LicenseVoip,
         LicensePlugins,
-        WorldlistName,
-        WorldlistStatus,
-        WorldlistUsers,
-        WorldlistRating,
-        WorldlistMore,
+        WorldListName,
+        WorldListStatus,
+        WorldListUsers,
+        WorldListRating,
+        WorldListMore,
         EjectSession,
         EjectDuration,
         EjectionType,

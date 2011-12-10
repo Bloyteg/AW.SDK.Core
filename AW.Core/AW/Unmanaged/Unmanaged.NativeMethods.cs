@@ -431,5 +431,27 @@ namespace AW
         public static extern int aw_laser_beam();
 
         #endregion
+
+        #region Build 100 additions
+
+        [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
+        public static extern int aw_sdk_build();
+
+        [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
+        public static extern int aw_listen(int channels);
+
+        [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true, EntryPoint = "aw_say_channel_W")]
+        public static extern int aw_say_channel(IntPtr message, int channel);
+
+        [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
+        public static extern int aw_object_add_session(int session);
+
+        [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
+        public static extern int aw_object_delete_session(int session);
+
+        [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
+        public static extern int aw_server_world_get();
+
+        #endregion
     }
 }

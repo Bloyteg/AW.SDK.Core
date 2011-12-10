@@ -63,7 +63,7 @@ var attributes = new List<AttributeInfo>
 	new AttributeInfo { Name = "CellZ", AttributeType =  AttributeType.Int, ReadOnly =  true },
 	new AttributeInfo { Name = "ChatMessage", AttributeType =  AttributeType.String, ReadOnly =  true },
 	new AttributeInfo { Name = "ChatSession", AttributeType =  AttributeType.Int, ReadOnly =  true },
-	new AttributeInfo { Name = "ChatType", AttributeType =  AttributeType.Int, ReadOnly =  true },
+	new AttributeInfo { Name = "ChatType", AttributeType = AttributeType.Enum, EnumType = "ChatTypes", ReadOnly =  true },
 	new AttributeInfo { Name = "CitizenBeta", AttributeType =  AttributeType.Bool, ReadOnly =  false },
 	new AttributeInfo { Name = "CitizenBotLimit", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "CitizenCavEnabled", AttributeType =  AttributeType.Bool, ReadOnly =  false },
@@ -238,11 +238,11 @@ var attributes = new List<AttributeInfo>
 	new AttributeInfo { Name = "UserlistPrivilege", AttributeType =  AttributeType.Int, ReadOnly =  true },
 	new AttributeInfo { Name = "UserlistState", AttributeType =  AttributeType.Int, ReadOnly =  true },
 	new AttributeInfo { Name = "UserlistWorld", AttributeType =  AttributeType.String, ReadOnly =  true },
-	new AttributeInfo { Name = "WorldlistMore", AttributeType =  AttributeType.Bool, ReadOnly =  true },
-	new AttributeInfo { Name = "WorldlistName", AttributeType =  AttributeType.String, ReadOnly =  true },
-	new AttributeInfo { Name = "WorldlistRating", AttributeType =  AttributeType.Int, ReadOnly =  true },
-	new AttributeInfo { Name = "WorldlistStatus", AttributeType =  AttributeType.Int, ReadOnly =  true },
-	new AttributeInfo { Name = "WorldlistUsers", AttributeType =  AttributeType.Int, ReadOnly =  true },
+	new AttributeInfo { Name = "WorldListMore", AttributeType =  AttributeType.Bool, ReadOnly =  true },
+	new AttributeInfo { Name = "WorldListName", AttributeType =  AttributeType.String, ReadOnly =  true },
+	new AttributeInfo { Name = "WorldListRating", AttributeType =  AttributeType.Int, ReadOnly =  true },
+	new AttributeInfo { Name = "WorldListStatus", AttributeType =  AttributeType.Int, ReadOnly =  true },
+	new AttributeInfo { Name = "WorldListUsers", AttributeType =  AttributeType.Int, ReadOnly =  true },
 	new AttributeInfo { Name = "UniverseAllowBotsCav", AttributeType =  AttributeType.Bool, ReadOnly =  false },
 	new AttributeInfo { Name = "UniverseAllowTourists", AttributeType =  AttributeType.Bool, ReadOnly =  false },
 	new AttributeInfo { Name = "UniverseAllowTouristsCav", AttributeType =  AttributeType.Bool, ReadOnly =  false },
@@ -467,7 +467,7 @@ namespace AW
 				var type = attribute.AttributeType.ToString();
 		#>
 
-		<#= ConvertToType(attribute.AttributeType) #> <#= attribute.Name #>
+		<#= ConvertToType(attribute) #> <#= attribute.Name #>
 		{
 			get;
 		<# if(!attribute.ReadOnly) { #>
@@ -491,14 +491,14 @@ namespace AW
 		var type = attribute.AttributeType.ToString();
 #>
 
-		public <#= ConvertToType(attribute.AttributeType) #> <#= attribute.Name #>
+		public <#= ConvertToType(attribute) #> <#= attribute.Name #>
 		{
-			get { return _instance.Get<#= type #>(Attributes.<#= attribute.Name #>); }
+			get { return <# if(attribute.AttributeType == AttributeType.Enum) { #>(<#= attribute.EnumType #>)<# } #> _instance.Get<#= attribute.AttributeType == AttributeType.Enum ? "Int" : type #>(Attributes.<#= attribute.Name #>); }
 <#
 		if(!attribute.ReadOnly)
 		{
 #>
-			set { _instance.Set<#= type #>(Attributes.<#= attribute.Name #>, value); }
+			set { _instance.Set<#= attribute.AttributeType == AttributeType.Enum ? "Int" : type #>(Attributes.<#= attribute.Name #>, <# if(attribute.AttributeType == AttributeType.Enum) { #> (int)<# } #> value); }
 <#
 		}
 #>		}
@@ -526,7 +526,8 @@ enum AttributeType
 	Int,
 	Float,
 	Bool,
-	Data
+	Data,
+	Enum
 }
 
 class AttributeInfo
@@ -545,17 +546,25 @@ class AttributeInfo
 	{
 		get; set;
 	}
+	
+	public string EnumType
+	{
+		get; set;	
+	}
 }
 
-static string ConvertToType(AttributeType attrib)
+static string ConvertToType(AttributeInfo attribute)
 {
-	if(attrib == AttributeType.Data)
+	switch(attribute.AttributeType)
 	{
-		return "byte[]";
-	}
-	else
-	{
-		return attrib.ToString().ToLower();
+		case AttributeType.Data:
+			return "byte[]";
+
+		case AttributeType.Enum:
+			return attribute.EnumType;
+			
+		default:
+			return attribute.AttributeType.ToString().ToLower();
 	}
 }
 
@@ -827,11 +836,11 @@ enum Attributes : int
     LicenseAllowTourists,
     LicenseVoip,
     LicensePlugins,
-    WorldlistName,
-    WorldlistStatus,
-    WorldlistUsers,
-    WorldlistRating,
-    WorldlistMore,
+    WorldListName,
+    WorldListStatus,
+    WorldListUsers,
+    WorldListRating,
+    WorldListMore,
     EjectSession,
     EjectDuration,
     EjectionType,

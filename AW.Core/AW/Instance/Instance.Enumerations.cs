@@ -4,7 +4,7 @@ using System;
 namespace AW
 {
     /// <summary>
-    /// The type of chat as specified by the <see cref="AW.Attributes.ChatType" /> attribute.
+    /// The type of chat as specified by the <see cref="Attributes.ChatType" /> attribute.
     /// </summary>
     public enum ChatTypes
     {
@@ -22,10 +22,29 @@ namespace AW
         /// Represents chat that was sent via whispers.
         /// </summary>
         Whisper,
+
+        /// <summary>
+        /// Used to disconnect from all channels.
+        /// </summary>
+        Disconnect = -1
+    }
+
+    [Flags]
+    public enum ChatChannels
+    {
+        None        = 0x0000,
+        Local       = 0x0001,
+        Global      = 0x0002,
+        World1      = 0x0010,
+        World2      = 0x0020,
+        World3      = 0x0040,
+        World4      = 0x0080,
+        World5      = 0x0100,
+        Univerise   = 0x01000000
     }
 
     /// <summary>
-    /// The world status as specified by the <see cref="AW.Attributes.WorldlistStatus" /> attribute.
+    /// The world status as specified by the <see cref="Attributes.WorldlistStatus" /> attribute.
     /// </summary>
     public enum WorldStatus
     {

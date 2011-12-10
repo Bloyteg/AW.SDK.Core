@@ -24,7 +24,8 @@ namespace AW
             Pressure = 0x0400, // closed convex hulls only
             Adhere = 0x0800,
             Untangling = 0x1000,
-            HardStretchLimit = 0x2000
+            HardStretchLimit = 0x2000,
+            NoTextureMirrorring = 0x4000
         }
 
         private Flags flags;
@@ -263,6 +264,23 @@ namespace AW
                 else
                 {
                     flags &= ~Flags.HardStretchLimit;
+                }
+            }
+        }
+
+        public bool NoTextureMirrorring
+        {
+            get { return (flags & Flags.NoTextureMirrorring) == Flags.NoTextureMirrorring; }
+
+            set
+            {
+                if(value)
+                {
+                    flags = Flags.NoTextureMirrorring;
+                }
+                else
+                {
+                    flags &= ~Flags.NoTextureMirrorring;
                 }
             }
         }

@@ -1,4 +1,6 @@
 // // (c) 2007 - 2011 Joshua R. Rodgers under the terms of the Ms-PL license.
+using System;
+
 namespace AW
 {
     partial class Instance
@@ -728,6 +730,51 @@ namespace AW
         {
             SetInstance();
             return (Result)NativeMethods.aw_laser_beam();
+        }
+
+        public Result Listen(ChatChannels channels)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Result SayChannel(ChatChannels channel, string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Result SayChannel(ChatChannels channel, string message, object arg0)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Result SayChannel(ChatChannels channel, string message, object arg0, object arg1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Result SayChannel(ChatChannels channel, string message, object arg0, object arg1, object arg2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Result SayChannel(ChatChannels channel, string message, params object[] args)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Result ObjectAddSession(int session)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Result ObjectDeleteSession(int session)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Result ServerWorldGet()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

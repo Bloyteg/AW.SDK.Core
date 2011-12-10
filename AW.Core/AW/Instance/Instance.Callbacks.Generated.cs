@@ -13,53 +13,53 @@ namespace AW
 {
 	partial interface IInstance
 	{
-			event InstanceCallbackHandler LoginCompleted;
-			event InstanceCallbackHandler EnterCompleted;
-			event InstanceCallbackHandler ObjectResultCompleted;
-			event InstanceCallbackHandler LicenseAttributesCompleted;
-			event InstanceCallbackHandler LicenseResultCompleted;
-			event InstanceCallbackHandler CitizenAttributesCompleted;
-			event InstanceCallbackHandler CitizenResultCompleted;
-			event InstanceCallbackHandler QueryCompleted;
-			event InstanceCallbackHandler UniverseEjectionCompleted;
-			event InstanceCallbackHandler UniverseEjectionResultCompleted;
-			event InstanceCallbackHandler AddressCompleted;
-			event InstanceCallbackHandler WorldEjectionCompleted;
-			event InstanceCallbackHandler WorldEjectionResultCompleted;
-			event InstanceCallbackHandler AdminWorldListCompleted;
-			event InstanceCallbackHandler AdminWorldResultCompleted;
-			event InstanceCallbackHandler DeleteAllObjectsResultCompleted;
-			event InstanceCallbackHandler CellResultCompleted;
-			event InstanceCallbackHandler ReloadRegistryCompleted;
-			event InstanceCallbackHandler AttributesResetResultCompleted;
-			event InstanceCallbackHandler AdminCompleted;
-			event InstanceCallbackHandler TerrainSetResultCompleted;
-			event InstanceCallbackHandler TerrainNextResultCompleted;
-			event InstanceCallbackHandler TerrainDeleteAllResultCompleted;
-			event InstanceCallbackHandler TerrainLoadNodeResultCompleted;
-			event InstanceCallbackHandler BotgramResultCompleted;
-			event InstanceCallbackHandler UserListCompleted;
-			event InstanceCallbackHandler BotmenuResultCompleted;
-			event InstanceCallbackHandler CavCompleted;
-			event InstanceCallbackHandler CavResultCompleted;
-			event InstanceCallbackHandler WorldInstanceCompleted;
-			event InstanceCallbackHandler HudResultCompleted;
-			event InstanceCallbackHandler AvatarLocationCompleted;
-			event InstanceCallbackHandler ObjectQueryCompleted;
-			event InstanceCallbackHandler WorldCavResultCompleted;
-			event InstanceCallbackHandler WorldCavCompleted;
+			event InstanceCallbackHandler CallbackLogin;
+			event InstanceCallbackHandler CallbackEnter;
+			event InstanceCallbackHandler CallbackObjectResult;
+			event InstanceCallbackHandler CallbackLicenseAttributes;
+			event InstanceCallbackHandler CallbackLicenseResult;
+			event InstanceCallbackHandler CallbackCitizenAttributes;
+			event InstanceCallbackHandler CallbackCitizenResult;
+			event InstanceCallbackHandler CallbackQuery;
+			event InstanceCallbackHandler CallbackUniverseEjection;
+			event InstanceCallbackHandler CallbackUniverseEjectionResult;
+			event InstanceCallbackHandler CallbackAddress;
+			event InstanceCallbackHandler CallbackWorldEjection;
+			event InstanceCallbackHandler CallbackWorldEjectionResult;
+			event InstanceCallbackHandler CallbackAdminWorldList;
+			event InstanceCallbackHandler CallbackAdminWorldResult;
+			event InstanceCallbackHandler CallbackDeleteAllObjectsResult;
+			event InstanceCallbackHandler CallbackCellResult;
+			event InstanceCallbackHandler CallbackReloadRegistry;
+			event InstanceCallbackHandler CallbackAttributesResetResult;
+			event InstanceCallbackHandler CallbackAdmin;
+			event InstanceCallbackHandler CallbackTerrainSetResult;
+			event InstanceCallbackHandler CallbackTerrainNextResult;
+			event InstanceCallbackHandler CallbackTerrainDeleteAllResult;
+			event InstanceCallbackHandler CallbackTerrainLoadNodeResult;
+			event InstanceCallbackHandler CallbackBotgramResult;
+			event InstanceCallbackHandler CallbackUserList;
+			event InstanceCallbackHandler CallbackBotmenuResult;
+			event InstanceCallbackHandler CallbackCav;
+			event InstanceCallbackHandler CallbackCavResult;
+			event InstanceCallbackHandler CallbackWorldInstance;
+			event InstanceCallbackHandler CallbackHudResult;
+			event InstanceCallbackHandler CallbackAvatarLocation;
+			event InstanceCallbackHandler CallbackObjectQuery;
+			event InstanceCallbackHandler CallbackWorldCavResult;
+			event InstanceCallbackHandler CallbackWorldCav;
 		}
 	
 	partial class Instance
 	{
 		private readonly Dictionary<string, CallbackDelegates> _callbackHandlers = new Dictionary<string, CallbackDelegates>();
 	
-		#region LoginCompleted
+		#region CallbackLogin
 	
 		const string AW_CALLBACK_LOGIN = "AW_CALLBACK_LOGIN";
 	
 		//Native callback handler.
-		private void OnLoginCompleted(int error)
+		private void OnCallbackLogin(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_LOGIN) && _callbackHandlers[AW_CALLBACK_LOGIN].Managed != null)
 			{
@@ -71,7 +71,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_LOGIN from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler LoginCompleted
+		public event InstanceCallbackHandler CallbackLogin
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -79,7 +79,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_LOGIN))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_LOGIN, new CallbackDelegates { Native = OnLoginCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_LOGIN, new CallbackDelegates { Native = OnCallbackLogin });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_LOGIN, _callbackHandlers[AW_CALLBACK_LOGIN].Native);			
 				}
 					
@@ -104,12 +104,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region EnterCompleted
+		#region CallbackEnter
 	
 		const string AW_CALLBACK_ENTER = "AW_CALLBACK_ENTER";
 	
 		//Native callback handler.
-		private void OnEnterCompleted(int error)
+		private void OnCallbackEnter(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_ENTER) && _callbackHandlers[AW_CALLBACK_ENTER].Managed != null)
 			{
@@ -121,7 +121,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_ENTER from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler EnterCompleted
+		public event InstanceCallbackHandler CallbackEnter
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -129,7 +129,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_ENTER))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_ENTER, new CallbackDelegates { Native = OnEnterCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_ENTER, new CallbackDelegates { Native = OnCallbackEnter });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ENTER, _callbackHandlers[AW_CALLBACK_ENTER].Native);			
 				}
 					
@@ -154,12 +154,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region ObjectResultCompleted
+		#region CallbackObjectResult
 	
 		const string AW_CALLBACK_OBJECT_RESULT = "AW_CALLBACK_OBJECT_RESULT";
 	
 		//Native callback handler.
-		private void OnObjectResultCompleted(int error)
+		private void OnCallbackObjectResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_OBJECT_RESULT) && _callbackHandlers[AW_CALLBACK_OBJECT_RESULT].Managed != null)
 			{
@@ -171,7 +171,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_OBJECT_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler ObjectResultCompleted
+		public event InstanceCallbackHandler CallbackObjectResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -179,7 +179,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_OBJECT_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_OBJECT_RESULT, new CallbackDelegates { Native = OnObjectResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_OBJECT_RESULT, new CallbackDelegates { Native = OnCallbackObjectResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_OBJECT_RESULT, _callbackHandlers[AW_CALLBACK_OBJECT_RESULT].Native);			
 				}
 					
@@ -204,12 +204,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region LicenseAttributesCompleted
+		#region CallbackLicenseAttributes
 	
 		const string AW_CALLBACK_LICENSE_ATTRIBUTES = "AW_CALLBACK_LICENSE_ATTRIBUTES";
 	
 		//Native callback handler.
-		private void OnLicenseAttributesCompleted(int error)
+		private void OnCallbackLicenseAttributes(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_LICENSE_ATTRIBUTES) && _callbackHandlers[AW_CALLBACK_LICENSE_ATTRIBUTES].Managed != null)
 			{
@@ -221,7 +221,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_LICENSE_ATTRIBUTES from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler LicenseAttributesCompleted
+		public event InstanceCallbackHandler CallbackLicenseAttributes
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -229,7 +229,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_LICENSE_ATTRIBUTES))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_LICENSE_ATTRIBUTES, new CallbackDelegates { Native = OnLicenseAttributesCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_LICENSE_ATTRIBUTES, new CallbackDelegates { Native = OnCallbackLicenseAttributes });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_LICENSE_ATTRIBUTES, _callbackHandlers[AW_CALLBACK_LICENSE_ATTRIBUTES].Native);			
 				}
 					
@@ -254,12 +254,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region LicenseResultCompleted
+		#region CallbackLicenseResult
 	
 		const string AW_CALLBACK_LICENSE_RESULT = "AW_CALLBACK_LICENSE_RESULT";
 	
 		//Native callback handler.
-		private void OnLicenseResultCompleted(int error)
+		private void OnCallbackLicenseResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_LICENSE_RESULT) && _callbackHandlers[AW_CALLBACK_LICENSE_RESULT].Managed != null)
 			{
@@ -271,7 +271,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_LICENSE_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler LicenseResultCompleted
+		public event InstanceCallbackHandler CallbackLicenseResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -279,7 +279,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_LICENSE_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_LICENSE_RESULT, new CallbackDelegates { Native = OnLicenseResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_LICENSE_RESULT, new CallbackDelegates { Native = OnCallbackLicenseResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_LICENSE_RESULT, _callbackHandlers[AW_CALLBACK_LICENSE_RESULT].Native);			
 				}
 					
@@ -304,12 +304,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region CitizenAttributesCompleted
+		#region CallbackCitizenAttributes
 	
 		const string AW_CALLBACK_CITIZEN_ATTRIBUTES = "AW_CALLBACK_CITIZEN_ATTRIBUTES";
 	
 		//Native callback handler.
-		private void OnCitizenAttributesCompleted(int error)
+		private void OnCallbackCitizenAttributes(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_CITIZEN_ATTRIBUTES) && _callbackHandlers[AW_CALLBACK_CITIZEN_ATTRIBUTES].Managed != null)
 			{
@@ -321,7 +321,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_CITIZEN_ATTRIBUTES from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler CitizenAttributesCompleted
+		public event InstanceCallbackHandler CallbackCitizenAttributes
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -329,7 +329,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_CITIZEN_ATTRIBUTES))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_CITIZEN_ATTRIBUTES, new CallbackDelegates { Native = OnCitizenAttributesCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_CITIZEN_ATTRIBUTES, new CallbackDelegates { Native = OnCallbackCitizenAttributes });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CITIZEN_ATTRIBUTES, _callbackHandlers[AW_CALLBACK_CITIZEN_ATTRIBUTES].Native);			
 				}
 					
@@ -354,12 +354,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region CitizenResultCompleted
+		#region CallbackCitizenResult
 	
 		const string AW_CALLBACK_CITIZEN_RESULT = "AW_CALLBACK_CITIZEN_RESULT";
 	
 		//Native callback handler.
-		private void OnCitizenResultCompleted(int error)
+		private void OnCallbackCitizenResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_CITIZEN_RESULT) && _callbackHandlers[AW_CALLBACK_CITIZEN_RESULT].Managed != null)
 			{
@@ -371,7 +371,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_CITIZEN_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler CitizenResultCompleted
+		public event InstanceCallbackHandler CallbackCitizenResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -379,7 +379,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_CITIZEN_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_CITIZEN_RESULT, new CallbackDelegates { Native = OnCitizenResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_CITIZEN_RESULT, new CallbackDelegates { Native = OnCallbackCitizenResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CITIZEN_RESULT, _callbackHandlers[AW_CALLBACK_CITIZEN_RESULT].Native);			
 				}
 					
@@ -404,12 +404,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region QueryCompleted
+		#region CallbackQuery
 	
 		const string AW_CALLBACK_QUERY = "AW_CALLBACK_QUERY";
 	
 		//Native callback handler.
-		private void OnQueryCompleted(int error)
+		private void OnCallbackQuery(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_QUERY) && _callbackHandlers[AW_CALLBACK_QUERY].Managed != null)
 			{
@@ -421,7 +421,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_QUERY from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler QueryCompleted
+		public event InstanceCallbackHandler CallbackQuery
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -429,7 +429,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_QUERY))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_QUERY, new CallbackDelegates { Native = OnQueryCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_QUERY, new CallbackDelegates { Native = OnCallbackQuery });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_QUERY, _callbackHandlers[AW_CALLBACK_QUERY].Native);			
 				}
 					
@@ -454,12 +454,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region UniverseEjectionCompleted
+		#region CallbackUniverseEjection
 	
 		const string AW_CALLBACK_UNIVERSE_EJECTION = "AW_CALLBACK_UNIVERSE_EJECTION";
 	
 		//Native callback handler.
-		private void OnUniverseEjectionCompleted(int error)
+		private void OnCallbackUniverseEjection(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_UNIVERSE_EJECTION) && _callbackHandlers[AW_CALLBACK_UNIVERSE_EJECTION].Managed != null)
 			{
@@ -471,7 +471,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_UNIVERSE_EJECTION from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler UniverseEjectionCompleted
+		public event InstanceCallbackHandler CallbackUniverseEjection
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -479,7 +479,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_UNIVERSE_EJECTION))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_UNIVERSE_EJECTION, new CallbackDelegates { Native = OnUniverseEjectionCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_UNIVERSE_EJECTION, new CallbackDelegates { Native = OnCallbackUniverseEjection });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_UNIVERSE_EJECTION, _callbackHandlers[AW_CALLBACK_UNIVERSE_EJECTION].Native);			
 				}
 					
@@ -504,12 +504,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region UniverseEjectionResultCompleted
+		#region CallbackUniverseEjectionResult
 	
 		const string AW_CALLBACK_UNIVERSE_EJECTION_RESULT = "AW_CALLBACK_UNIVERSE_EJECTION_RESULT";
 	
 		//Native callback handler.
-		private void OnUniverseEjectionResultCompleted(int error)
+		private void OnCallbackUniverseEjectionResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_UNIVERSE_EJECTION_RESULT) && _callbackHandlers[AW_CALLBACK_UNIVERSE_EJECTION_RESULT].Managed != null)
 			{
@@ -521,7 +521,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_UNIVERSE_EJECTION_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler UniverseEjectionResultCompleted
+		public event InstanceCallbackHandler CallbackUniverseEjectionResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -529,7 +529,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_UNIVERSE_EJECTION_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_UNIVERSE_EJECTION_RESULT, new CallbackDelegates { Native = OnUniverseEjectionResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_UNIVERSE_EJECTION_RESULT, new CallbackDelegates { Native = OnCallbackUniverseEjectionResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_UNIVERSE_EJECTION_RESULT, _callbackHandlers[AW_CALLBACK_UNIVERSE_EJECTION_RESULT].Native);			
 				}
 					
@@ -554,12 +554,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region AddressCompleted
+		#region CallbackAddress
 	
 		const string AW_CALLBACK_ADDRESS = "AW_CALLBACK_ADDRESS";
 	
 		//Native callback handler.
-		private void OnAddressCompleted(int error)
+		private void OnCallbackAddress(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_ADDRESS) && _callbackHandlers[AW_CALLBACK_ADDRESS].Managed != null)
 			{
@@ -571,7 +571,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_ADDRESS from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler AddressCompleted
+		public event InstanceCallbackHandler CallbackAddress
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -579,7 +579,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_ADDRESS))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_ADDRESS, new CallbackDelegates { Native = OnAddressCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_ADDRESS, new CallbackDelegates { Native = OnCallbackAddress });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADDRESS, _callbackHandlers[AW_CALLBACK_ADDRESS].Native);			
 				}
 					
@@ -604,12 +604,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region WorldEjectionCompleted
+		#region CallbackWorldEjection
 	
 		const string AW_CALLBACK_WORLD_EJECTION = "AW_CALLBACK_WORLD_EJECTION";
 	
 		//Native callback handler.
-		private void OnWorldEjectionCompleted(int error)
+		private void OnCallbackWorldEjection(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_WORLD_EJECTION) && _callbackHandlers[AW_CALLBACK_WORLD_EJECTION].Managed != null)
 			{
@@ -621,7 +621,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_WORLD_EJECTION from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler WorldEjectionCompleted
+		public event InstanceCallbackHandler CallbackWorldEjection
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -629,7 +629,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_WORLD_EJECTION))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_WORLD_EJECTION, new CallbackDelegates { Native = OnWorldEjectionCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_WORLD_EJECTION, new CallbackDelegates { Native = OnCallbackWorldEjection });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_EJECTION, _callbackHandlers[AW_CALLBACK_WORLD_EJECTION].Native);			
 				}
 					
@@ -654,12 +654,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region WorldEjectionResultCompleted
+		#region CallbackWorldEjectionResult
 	
 		const string AW_CALLBACK_WORLD_EJECTION_RESULT = "AW_CALLBACK_WORLD_EJECTION_RESULT";
 	
 		//Native callback handler.
-		private void OnWorldEjectionResultCompleted(int error)
+		private void OnCallbackWorldEjectionResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_WORLD_EJECTION_RESULT) && _callbackHandlers[AW_CALLBACK_WORLD_EJECTION_RESULT].Managed != null)
 			{
@@ -671,7 +671,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_WORLD_EJECTION_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler WorldEjectionResultCompleted
+		public event InstanceCallbackHandler CallbackWorldEjectionResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -679,7 +679,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_WORLD_EJECTION_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_WORLD_EJECTION_RESULT, new CallbackDelegates { Native = OnWorldEjectionResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_WORLD_EJECTION_RESULT, new CallbackDelegates { Native = OnCallbackWorldEjectionResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_EJECTION_RESULT, _callbackHandlers[AW_CALLBACK_WORLD_EJECTION_RESULT].Native);			
 				}
 					
@@ -704,12 +704,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region AdminWorldListCompleted
+		#region CallbackAdminWorldList
 	
 		const string AW_CALLBACK_ADMIN_WORLD_LIST = "AW_CALLBACK_ADMIN_WORLD_LIST";
 	
 		//Native callback handler.
-		private void OnAdminWorldListCompleted(int error)
+		private void OnCallbackAdminWorldList(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_ADMIN_WORLD_LIST) && _callbackHandlers[AW_CALLBACK_ADMIN_WORLD_LIST].Managed != null)
 			{
@@ -721,7 +721,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_ADMIN_WORLD_LIST from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler AdminWorldListCompleted
+		public event InstanceCallbackHandler CallbackAdminWorldList
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -729,7 +729,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_ADMIN_WORLD_LIST))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_ADMIN_WORLD_LIST, new CallbackDelegates { Native = OnAdminWorldListCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_ADMIN_WORLD_LIST, new CallbackDelegates { Native = OnCallbackAdminWorldList });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADMIN_WORLD_LIST, _callbackHandlers[AW_CALLBACK_ADMIN_WORLD_LIST].Native);			
 				}
 					
@@ -754,12 +754,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region AdminWorldResultCompleted
+		#region CallbackAdminWorldResult
 	
 		const string AW_CALLBACK_ADMIN_WORLD_RESULT = "AW_CALLBACK_ADMIN_WORLD_RESULT";
 	
 		//Native callback handler.
-		private void OnAdminWorldResultCompleted(int error)
+		private void OnCallbackAdminWorldResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_ADMIN_WORLD_RESULT) && _callbackHandlers[AW_CALLBACK_ADMIN_WORLD_RESULT].Managed != null)
 			{
@@ -771,7 +771,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_ADMIN_WORLD_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler AdminWorldResultCompleted
+		public event InstanceCallbackHandler CallbackAdminWorldResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -779,7 +779,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_ADMIN_WORLD_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_ADMIN_WORLD_RESULT, new CallbackDelegates { Native = OnAdminWorldResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_ADMIN_WORLD_RESULT, new CallbackDelegates { Native = OnCallbackAdminWorldResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADMIN_WORLD_RESULT, _callbackHandlers[AW_CALLBACK_ADMIN_WORLD_RESULT].Native);			
 				}
 					
@@ -804,12 +804,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region DeleteAllObjectsResultCompleted
+		#region CallbackDeleteAllObjectsResult
 	
 		const string AW_CALLBACK_DELETE_ALL_OBJECTS_RESULT = "AW_CALLBACK_DELETE_ALL_OBJECTS_RESULT";
 	
 		//Native callback handler.
-		private void OnDeleteAllObjectsResultCompleted(int error)
+		private void OnCallbackDeleteAllObjectsResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_DELETE_ALL_OBJECTS_RESULT) && _callbackHandlers[AW_CALLBACK_DELETE_ALL_OBJECTS_RESULT].Managed != null)
 			{
@@ -821,7 +821,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_DELETE_ALL_OBJECTS_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler DeleteAllObjectsResultCompleted
+		public event InstanceCallbackHandler CallbackDeleteAllObjectsResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -829,7 +829,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_DELETE_ALL_OBJECTS_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_DELETE_ALL_OBJECTS_RESULT, new CallbackDelegates { Native = OnDeleteAllObjectsResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_DELETE_ALL_OBJECTS_RESULT, new CallbackDelegates { Native = OnCallbackDeleteAllObjectsResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_DELETE_ALL_OBJECTS_RESULT, _callbackHandlers[AW_CALLBACK_DELETE_ALL_OBJECTS_RESULT].Native);			
 				}
 					
@@ -854,12 +854,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region CellResultCompleted
+		#region CallbackCellResult
 	
 		const string AW_CALLBACK_CELL_RESULT = "AW_CALLBACK_CELL_RESULT";
 	
 		//Native callback handler.
-		private void OnCellResultCompleted(int error)
+		private void OnCallbackCellResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_CELL_RESULT) && _callbackHandlers[AW_CALLBACK_CELL_RESULT].Managed != null)
 			{
@@ -871,7 +871,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_CELL_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler CellResultCompleted
+		public event InstanceCallbackHandler CallbackCellResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -879,7 +879,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_CELL_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_CELL_RESULT, new CallbackDelegates { Native = OnCellResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_CELL_RESULT, new CallbackDelegates { Native = OnCallbackCellResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CELL_RESULT, _callbackHandlers[AW_CALLBACK_CELL_RESULT].Native);			
 				}
 					
@@ -904,12 +904,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region ReloadRegistryCompleted
+		#region CallbackReloadRegistry
 	
 		const string AW_CALLBACK_RELOAD_REGISTRY = "AW_CALLBACK_RELOAD_REGISTRY";
 	
 		//Native callback handler.
-		private void OnReloadRegistryCompleted(int error)
+		private void OnCallbackReloadRegistry(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_RELOAD_REGISTRY) && _callbackHandlers[AW_CALLBACK_RELOAD_REGISTRY].Managed != null)
 			{
@@ -921,7 +921,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_RELOAD_REGISTRY from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler ReloadRegistryCompleted
+		public event InstanceCallbackHandler CallbackReloadRegistry
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -929,7 +929,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_RELOAD_REGISTRY))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_RELOAD_REGISTRY, new CallbackDelegates { Native = OnReloadRegistryCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_RELOAD_REGISTRY, new CallbackDelegates { Native = OnCallbackReloadRegistry });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_RELOAD_REGISTRY, _callbackHandlers[AW_CALLBACK_RELOAD_REGISTRY].Native);			
 				}
 					
@@ -954,12 +954,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region AttributesResetResultCompleted
+		#region CallbackAttributesResetResult
 	
 		const string AW_CALLBACK_ATTRIBUTES_RESET_RESULT = "AW_CALLBACK_ATTRIBUTES_RESET_RESULT";
 	
 		//Native callback handler.
-		private void OnAttributesResetResultCompleted(int error)
+		private void OnCallbackAttributesResetResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_ATTRIBUTES_RESET_RESULT) && _callbackHandlers[AW_CALLBACK_ATTRIBUTES_RESET_RESULT].Managed != null)
 			{
@@ -971,7 +971,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_ATTRIBUTES_RESET_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler AttributesResetResultCompleted
+		public event InstanceCallbackHandler CallbackAttributesResetResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -979,7 +979,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_ATTRIBUTES_RESET_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_ATTRIBUTES_RESET_RESULT, new CallbackDelegates { Native = OnAttributesResetResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_ATTRIBUTES_RESET_RESULT, new CallbackDelegates { Native = OnCallbackAttributesResetResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ATTRIBUTES_RESET_RESULT, _callbackHandlers[AW_CALLBACK_ATTRIBUTES_RESET_RESULT].Native);			
 				}
 					
@@ -1004,12 +1004,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region AdminCompleted
+		#region CallbackAdmin
 	
 		const string AW_CALLBACK_ADMIN = "AW_CALLBACK_ADMIN";
 	
 		//Native callback handler.
-		private void OnAdminCompleted(int error)
+		private void OnCallbackAdmin(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_ADMIN) && _callbackHandlers[AW_CALLBACK_ADMIN].Managed != null)
 			{
@@ -1021,7 +1021,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_ADMIN from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler AdminCompleted
+		public event InstanceCallbackHandler CallbackAdmin
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -1029,7 +1029,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_ADMIN))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_ADMIN, new CallbackDelegates { Native = OnAdminCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_ADMIN, new CallbackDelegates { Native = OnCallbackAdmin });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_ADMIN, _callbackHandlers[AW_CALLBACK_ADMIN].Native);			
 				}
 					
@@ -1054,12 +1054,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region TerrainSetResultCompleted
+		#region CallbackTerrainSetResult
 	
 		const string AW_CALLBACK_TERRAIN_SET_RESULT = "AW_CALLBACK_TERRAIN_SET_RESULT";
 	
 		//Native callback handler.
-		private void OnTerrainSetResultCompleted(int error)
+		private void OnCallbackTerrainSetResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_TERRAIN_SET_RESULT) && _callbackHandlers[AW_CALLBACK_TERRAIN_SET_RESULT].Managed != null)
 			{
@@ -1071,7 +1071,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_TERRAIN_SET_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler TerrainSetResultCompleted
+		public event InstanceCallbackHandler CallbackTerrainSetResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -1079,7 +1079,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_TERRAIN_SET_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_TERRAIN_SET_RESULT, new CallbackDelegates { Native = OnTerrainSetResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_TERRAIN_SET_RESULT, new CallbackDelegates { Native = OnCallbackTerrainSetResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_SET_RESULT, _callbackHandlers[AW_CALLBACK_TERRAIN_SET_RESULT].Native);			
 				}
 					
@@ -1104,12 +1104,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region TerrainNextResultCompleted
+		#region CallbackTerrainNextResult
 	
 		const string AW_CALLBACK_TERRAIN_NEXT_RESULT = "AW_CALLBACK_TERRAIN_NEXT_RESULT";
 	
 		//Native callback handler.
-		private void OnTerrainNextResultCompleted(int error)
+		private void OnCallbackTerrainNextResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_TERRAIN_NEXT_RESULT) && _callbackHandlers[AW_CALLBACK_TERRAIN_NEXT_RESULT].Managed != null)
 			{
@@ -1121,7 +1121,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_TERRAIN_NEXT_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler TerrainNextResultCompleted
+		public event InstanceCallbackHandler CallbackTerrainNextResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -1129,7 +1129,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_TERRAIN_NEXT_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_TERRAIN_NEXT_RESULT, new CallbackDelegates { Native = OnTerrainNextResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_TERRAIN_NEXT_RESULT, new CallbackDelegates { Native = OnCallbackTerrainNextResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_NEXT_RESULT, _callbackHandlers[AW_CALLBACK_TERRAIN_NEXT_RESULT].Native);			
 				}
 					
@@ -1154,12 +1154,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region TerrainDeleteAllResultCompleted
+		#region CallbackTerrainDeleteAllResult
 	
 		const string AW_CALLBACK_TERRAIN_DELETE_ALL_RESULT = "AW_CALLBACK_TERRAIN_DELETE_ALL_RESULT";
 	
 		//Native callback handler.
-		private void OnTerrainDeleteAllResultCompleted(int error)
+		private void OnCallbackTerrainDeleteAllResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_TERRAIN_DELETE_ALL_RESULT) && _callbackHandlers[AW_CALLBACK_TERRAIN_DELETE_ALL_RESULT].Managed != null)
 			{
@@ -1171,7 +1171,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_TERRAIN_DELETE_ALL_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler TerrainDeleteAllResultCompleted
+		public event InstanceCallbackHandler CallbackTerrainDeleteAllResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -1179,7 +1179,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_TERRAIN_DELETE_ALL_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_TERRAIN_DELETE_ALL_RESULT, new CallbackDelegates { Native = OnTerrainDeleteAllResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_TERRAIN_DELETE_ALL_RESULT, new CallbackDelegates { Native = OnCallbackTerrainDeleteAllResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_DELETE_ALL_RESULT, _callbackHandlers[AW_CALLBACK_TERRAIN_DELETE_ALL_RESULT].Native);			
 				}
 					
@@ -1204,12 +1204,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region TerrainLoadNodeResultCompleted
+		#region CallbackTerrainLoadNodeResult
 	
 		const string AW_CALLBACK_TERRAIN_LOAD_NODE_RESULT = "AW_CALLBACK_TERRAIN_LOAD_NODE_RESULT";
 	
 		//Native callback handler.
-		private void OnTerrainLoadNodeResultCompleted(int error)
+		private void OnCallbackTerrainLoadNodeResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_TERRAIN_LOAD_NODE_RESULT) && _callbackHandlers[AW_CALLBACK_TERRAIN_LOAD_NODE_RESULT].Managed != null)
 			{
@@ -1221,7 +1221,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_TERRAIN_LOAD_NODE_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler TerrainLoadNodeResultCompleted
+		public event InstanceCallbackHandler CallbackTerrainLoadNodeResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -1229,7 +1229,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_TERRAIN_LOAD_NODE_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_TERRAIN_LOAD_NODE_RESULT, new CallbackDelegates { Native = OnTerrainLoadNodeResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_TERRAIN_LOAD_NODE_RESULT, new CallbackDelegates { Native = OnCallbackTerrainLoadNodeResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_TERRAIN_LOAD_NODE_RESULT, _callbackHandlers[AW_CALLBACK_TERRAIN_LOAD_NODE_RESULT].Native);			
 				}
 					
@@ -1254,12 +1254,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region BotgramResultCompleted
+		#region CallbackBotgramResult
 	
 		const string AW_CALLBACK_BOTGRAM_RESULT = "AW_CALLBACK_BOTGRAM_RESULT";
 	
 		//Native callback handler.
-		private void OnBotgramResultCompleted(int error)
+		private void OnCallbackBotgramResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_BOTGRAM_RESULT) && _callbackHandlers[AW_CALLBACK_BOTGRAM_RESULT].Managed != null)
 			{
@@ -1271,7 +1271,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_BOTGRAM_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler BotgramResultCompleted
+		public event InstanceCallbackHandler CallbackBotgramResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -1279,7 +1279,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_BOTGRAM_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_BOTGRAM_RESULT, new CallbackDelegates { Native = OnBotgramResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_BOTGRAM_RESULT, new CallbackDelegates { Native = OnCallbackBotgramResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_BOTGRAM_RESULT, _callbackHandlers[AW_CALLBACK_BOTGRAM_RESULT].Native);			
 				}
 					
@@ -1304,12 +1304,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region UserListCompleted
+		#region CallbackUserList
 	
 		const string AW_CALLBACK_USER_LIST = "AW_CALLBACK_USER_LIST";
 	
 		//Native callback handler.
-		private void OnUserListCompleted(int error)
+		private void OnCallbackUserList(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_USER_LIST) && _callbackHandlers[AW_CALLBACK_USER_LIST].Managed != null)
 			{
@@ -1321,7 +1321,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_USER_LIST from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler UserListCompleted
+		public event InstanceCallbackHandler CallbackUserList
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -1329,7 +1329,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_USER_LIST))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_USER_LIST, new CallbackDelegates { Native = OnUserListCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_USER_LIST, new CallbackDelegates { Native = OnCallbackUserList });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_USER_LIST, _callbackHandlers[AW_CALLBACK_USER_LIST].Native);			
 				}
 					
@@ -1354,12 +1354,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region BotmenuResultCompleted
+		#region CallbackBotmenuResult
 	
 		const string AW_CALLBACK_BOTMENU_RESULT = "AW_CALLBACK_BOTMENU_RESULT";
 	
 		//Native callback handler.
-		private void OnBotmenuResultCompleted(int error)
+		private void OnCallbackBotmenuResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_BOTMENU_RESULT) && _callbackHandlers[AW_CALLBACK_BOTMENU_RESULT].Managed != null)
 			{
@@ -1371,7 +1371,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_BOTMENU_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler BotmenuResultCompleted
+		public event InstanceCallbackHandler CallbackBotmenuResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -1379,7 +1379,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_BOTMENU_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_BOTMENU_RESULT, new CallbackDelegates { Native = OnBotmenuResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_BOTMENU_RESULT, new CallbackDelegates { Native = OnCallbackBotmenuResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_BOTMENU_RESULT, _callbackHandlers[AW_CALLBACK_BOTMENU_RESULT].Native);			
 				}
 					
@@ -1404,12 +1404,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region CavCompleted
+		#region CallbackCav
 	
 		const string AW_CALLBACK_CAV = "AW_CALLBACK_CAV";
 	
 		//Native callback handler.
-		private void OnCavCompleted(int error)
+		private void OnCallbackCav(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_CAV) && _callbackHandlers[AW_CALLBACK_CAV].Managed != null)
 			{
@@ -1421,7 +1421,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_CAV from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler CavCompleted
+		public event InstanceCallbackHandler CallbackCav
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -1429,7 +1429,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_CAV))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_CAV, new CallbackDelegates { Native = OnCavCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_CAV, new CallbackDelegates { Native = OnCallbackCav });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CAV, _callbackHandlers[AW_CALLBACK_CAV].Native);			
 				}
 					
@@ -1454,12 +1454,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region CavResultCompleted
+		#region CallbackCavResult
 	
 		const string AW_CALLBACK_CAV_RESULT = "AW_CALLBACK_CAV_RESULT";
 	
 		//Native callback handler.
-		private void OnCavResultCompleted(int error)
+		private void OnCallbackCavResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_CAV_RESULT) && _callbackHandlers[AW_CALLBACK_CAV_RESULT].Managed != null)
 			{
@@ -1471,7 +1471,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_CAV_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler CavResultCompleted
+		public event InstanceCallbackHandler CallbackCavResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -1479,7 +1479,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_CAV_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_CAV_RESULT, new CallbackDelegates { Native = OnCavResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_CAV_RESULT, new CallbackDelegates { Native = OnCallbackCavResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_CAV_RESULT, _callbackHandlers[AW_CALLBACK_CAV_RESULT].Native);			
 				}
 					
@@ -1504,12 +1504,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region WorldInstanceCompleted
+		#region CallbackWorldInstance
 	
 		const string AW_CALLBACK_WORLD_INSTANCE = "AW_CALLBACK_WORLD_INSTANCE";
 	
 		//Native callback handler.
-		private void OnWorldInstanceCompleted(int error)
+		private void OnCallbackWorldInstance(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_WORLD_INSTANCE) && _callbackHandlers[AW_CALLBACK_WORLD_INSTANCE].Managed != null)
 			{
@@ -1521,7 +1521,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_WORLD_INSTANCE from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler WorldInstanceCompleted
+		public event InstanceCallbackHandler CallbackWorldInstance
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -1529,7 +1529,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_WORLD_INSTANCE))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_WORLD_INSTANCE, new CallbackDelegates { Native = OnWorldInstanceCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_WORLD_INSTANCE, new CallbackDelegates { Native = OnCallbackWorldInstance });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_INSTANCE, _callbackHandlers[AW_CALLBACK_WORLD_INSTANCE].Native);			
 				}
 					
@@ -1554,12 +1554,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region HudResultCompleted
+		#region CallbackHudResult
 	
 		const string AW_CALLBACK_HUD_RESULT = "AW_CALLBACK_HUD_RESULT";
 	
 		//Native callback handler.
-		private void OnHudResultCompleted(int error)
+		private void OnCallbackHudResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_HUD_RESULT) && _callbackHandlers[AW_CALLBACK_HUD_RESULT].Managed != null)
 			{
@@ -1571,7 +1571,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_HUD_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler HudResultCompleted
+		public event InstanceCallbackHandler CallbackHudResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -1579,7 +1579,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_HUD_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_HUD_RESULT, new CallbackDelegates { Native = OnHudResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_HUD_RESULT, new CallbackDelegates { Native = OnCallbackHudResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_HUD_RESULT, _callbackHandlers[AW_CALLBACK_HUD_RESULT].Native);			
 				}
 					
@@ -1604,12 +1604,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region AvatarLocationCompleted
+		#region CallbackAvatarLocation
 	
 		const string AW_CALLBACK_AVATAR_LOCATION = "AW_CALLBACK_AVATAR_LOCATION";
 	
 		//Native callback handler.
-		private void OnAvatarLocationCompleted(int error)
+		private void OnCallbackAvatarLocation(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_AVATAR_LOCATION) && _callbackHandlers[AW_CALLBACK_AVATAR_LOCATION].Managed != null)
 			{
@@ -1621,7 +1621,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_AVATAR_LOCATION from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler AvatarLocationCompleted
+		public event InstanceCallbackHandler CallbackAvatarLocation
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -1629,7 +1629,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_AVATAR_LOCATION))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_AVATAR_LOCATION, new CallbackDelegates { Native = OnAvatarLocationCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_AVATAR_LOCATION, new CallbackDelegates { Native = OnCallbackAvatarLocation });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_AVATAR_LOCATION, _callbackHandlers[AW_CALLBACK_AVATAR_LOCATION].Native);			
 				}
 					
@@ -1654,12 +1654,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region ObjectQueryCompleted
+		#region CallbackObjectQuery
 	
 		const string AW_CALLBACK_OBJECT_QUERY = "AW_CALLBACK_OBJECT_QUERY";
 	
 		//Native callback handler.
-		private void OnObjectQueryCompleted(int error)
+		private void OnCallbackObjectQuery(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_OBJECT_QUERY) && _callbackHandlers[AW_CALLBACK_OBJECT_QUERY].Managed != null)
 			{
@@ -1671,7 +1671,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_OBJECT_QUERY from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler ObjectQueryCompleted
+		public event InstanceCallbackHandler CallbackObjectQuery
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -1679,7 +1679,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_OBJECT_QUERY))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_OBJECT_QUERY, new CallbackDelegates { Native = OnObjectQueryCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_OBJECT_QUERY, new CallbackDelegates { Native = OnCallbackObjectQuery });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_OBJECT_QUERY, _callbackHandlers[AW_CALLBACK_OBJECT_QUERY].Native);			
 				}
 					
@@ -1704,12 +1704,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region WorldCavResultCompleted
+		#region CallbackWorldCavResult
 	
 		const string AW_CALLBACK_WORLD_CAV_RESULT = "AW_CALLBACK_WORLD_CAV_RESULT";
 	
 		//Native callback handler.
-		private void OnWorldCavResultCompleted(int error)
+		private void OnCallbackWorldCavResult(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_WORLD_CAV_RESULT) && _callbackHandlers[AW_CALLBACK_WORLD_CAV_RESULT].Managed != null)
 			{
@@ -1721,7 +1721,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_WORLD_CAV_RESULT from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler WorldCavResultCompleted
+		public event InstanceCallbackHandler CallbackWorldCavResult
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -1729,7 +1729,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_WORLD_CAV_RESULT))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_WORLD_CAV_RESULT, new CallbackDelegates { Native = OnWorldCavResultCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_WORLD_CAV_RESULT, new CallbackDelegates { Native = OnCallbackWorldCavResult });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_CAV_RESULT, _callbackHandlers[AW_CALLBACK_WORLD_CAV_RESULT].Native);			
 				}
 					
@@ -1754,12 +1754,12 @@ namespace AW
 		}
 		#endregion
 		
-		#region WorldCavCompleted
+		#region CallbackWorldCav
 	
 		const string AW_CALLBACK_WORLD_CAV = "AW_CALLBACK_WORLD_CAV";
 	
 		//Native callback handler.
-		private void OnWorldCavCompleted(int error)
+		private void OnCallbackWorldCav(int error)
 		{
 			if(_callbackHandlers.ContainsKey(AW_CALLBACK_WORLD_CAV) && _callbackHandlers[AW_CALLBACK_WORLD_CAV].Managed != null)
 			{
@@ -1771,7 +1771,7 @@ namespace AW
 		/// <summary>
 		/// Handles AW_CALLBACK_WORLD_CAV from the C SDK.
 		/// </summary>
-		public event InstanceCallbackHandler WorldCavCompleted
+		public event InstanceCallbackHandler CallbackWorldCav
 		{
 			//Handles hooking a new delegate to the callback.
 			add
@@ -1779,7 +1779,7 @@ namespace AW
 				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_WORLD_CAV))
 				{
 					SetInstance();
-					_callbackHandlers.Add(AW_CALLBACK_WORLD_CAV, new CallbackDelegates { Native = OnWorldCavCompleted });
+					_callbackHandlers.Add(AW_CALLBACK_WORLD_CAV, new CallbackDelegates { Native = OnCallbackWorldCav });
 					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_CAV, _callbackHandlers[AW_CALLBACK_WORLD_CAV].Native);			
 				}
 					
