@@ -9,7 +9,7 @@ namespace AW
     /// </summary>
     [Serializable]
     [StructLayout(LayoutKind.Sequential, Pack=0)]
-    public sealed class Color
+    public sealed class Color : ITripleAttribute<Color, int>
     {
         private byte a;
         private byte b;
@@ -127,6 +127,26 @@ namespace AW
         {
             var hexConvert = new Utilities.HexConverter(color);
             return new Color(hexConvert.ByteData[0], hexConvert.ByteData[1], hexConvert.ByteData[2]);
+        }
+
+        int ITripleAttribute<Color, int>.FirstValue
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        int ITripleAttribute<Color, int>.SecondValue
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        int ITripleAttribute<Color, int>.ThirdValue
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        Color ITripleAttribute<Color, int>.FromValues(int first, int second, int third)
+        {
+            throw new NotImplementedException();
         }
     }
 }

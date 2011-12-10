@@ -86,6 +86,7 @@
     <Compile Include="AW\Exceptions\SDKWrapperException.cs" />
     <Compile Include="AW\Exceptions\NotHexStringException.cs" />
     <Compile Include="AW\Exceptions\V4ObjectSerializationException.cs" />
+    <Compile Include="AW\Internal\ITripleAttribute.cs" />
     <Compile Include="AW\V4Object\Cloth.Enums.cs" />
     <Compile Include="AW\V4Object\ClothFlags.cs" />
     <Compile Include="AW\V4Object\Zone.Enums.cs" />

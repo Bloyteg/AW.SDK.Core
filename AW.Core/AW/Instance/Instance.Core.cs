@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 namespace AW
 {
     /// <summary>
-    /// <see cref="AW.Instance" /> is used to create and manage a SDK instance.
+    /// <see cref="Instance" /> is used to create and manage a SDK instance.
     /// Instances are used to either manage bots or world server administration.
     /// Each instance manages its own events, callbacks, and state.
     /// </summary>

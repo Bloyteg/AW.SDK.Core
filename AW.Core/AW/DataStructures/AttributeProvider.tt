@@ -117,7 +117,7 @@ var attributes = new List<AttributeInfo>
 	new AttributeInfo { Name = "HudElementClickX", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "HudElementClickY", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "HudElementClickZ", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "HudElementColor", AttributeType =  AttributeType.Int, ReadOnly =  false },
+	new AttributeInfo { Name = "HudElementColor", AttributeType =  AttributeType.Enum, EnumType="Color", ReadOnly =  false },
 	new AttributeInfo { Name = "HudElementFlags", AttributeType =  AttributeType.Enum, EnumType="HudElementFlag", ReadOnly =  false },
 	new AttributeInfo { Name = "HudElementId", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "HudElementOpacity", AttributeType =  AttributeType.Float, ReadOnly =  false },
@@ -355,7 +355,7 @@ var attributes = new List<AttributeInfo>
 	new AttributeInfo { Name = "WorldLightGreen", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightMask", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightRed", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldLightSourceColor", AttributeType =  AttributeType.Int, ReadOnly =  false },
+	new AttributeInfo { Name = "WorldLightSourceColor", AttributeType = AttributeType.Enum, EnumType="Color", ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightSourceUseColor", AttributeType =  AttributeType.Bool, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightTexture", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightX", AttributeType =  AttributeType.Float, ReadOnly =  false },
@@ -447,7 +447,7 @@ var attributes = new List<AttributeInfo>
 	new AttributeInfo { Name = "LaserBeamTargetY", AttributeType = AttributeType.Int, ReadOnly = false},
 	new AttributeInfo { Name = "LaserBeamTargetZ", AttributeType = AttributeType.Int, ReadOnly = false},
 	new AttributeInfo { Name = "LaserBeamStyle", AttributeType = AttributeType.Enum, EnumType="LaserBeamStyle", ReadOnly = false},
-	new AttributeInfo { Name = "LaserBeamColor", AttributeType = AttributeType.Int, ReadOnly = false},
+	new AttributeInfo { Name = "LaserBeamColor", AttributeType = AttributeType.Enum, EnumType="Color", ReadOnly = false},
 	new AttributeInfo { Name = "WorldVoipcastHost", AttributeType = AttributeType.String, ReadOnly = false},
 	new AttributeInfo { Name = "WorldVoipcastPort", AttributeType = AttributeType.Int, ReadOnly = false},
 	new AttributeInfo { Name = "MyZone", AttributeType = AttributeType.Int, ReadOnly = true},
@@ -467,13 +467,7 @@ namespace AW
 				var type = attribute.AttributeType.ToString();
 		#>
 
-		<#= ConvertToType(attribute) #> <#= attribute.Name #>
-		{
-			get;
-		<# if(!attribute.ReadOnly) { #>
-	set;
-		<#} #>
-}
+		<#= ConvertToType(attribute) #> <#= attribute.Name #> { get; <# if(!attribute.ReadOnly) { #> set; <#} #> }
 		<# } #>	
 	}
 
@@ -498,7 +492,7 @@ namespace AW
 		if(!attribute.ReadOnly)
 		{
 #>
-			set { _instance.Set<#= attribute.AttributeType == AttributeType.Enum ? "Int" : type #>(Attributes.<#= attribute.Name #>, <# if(attribute.AttributeType == AttributeType.Enum) { #> (int)<# } #> value); }
+			set { _instance.Set<#= attribute.AttributeType == AttributeType.Enum ? "Int" : type #>(Attributes.<#= attribute.Name #>, <# if(attribute.AttributeType == AttributeType.Enum) { #> (int) <# } #>value); }
 <#
 		}
 #>		}
