@@ -8,6 +8,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Collections" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Text" #>
 
 //This code is generated and it is not recommended to edit it directly, please see the corresponding .tt file to update this code.
 <#
@@ -117,7 +118,7 @@ var attributes = new List<AttributeInfo>
 	new AttributeInfo { Name = "HudElementClickX", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "HudElementClickY", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "HudElementClickZ", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "HudElementColor", AttributeType =  AttributeType.Enum, EnumType="Color", ReadOnly =  false },
+	new AttributeInfo { Name = "HudElementColor", AttributeType =  AttributeType.ColorInt, ReadOnly =  false },
 	new AttributeInfo { Name = "HudElementFlags", AttributeType =  AttributeType.Enum, EnumType="HudElementFlag", ReadOnly =  false },
 	new AttributeInfo { Name = "HudElementId", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "HudElementOpacity", AttributeType =  AttributeType.Float, ReadOnly =  false },
@@ -355,7 +356,7 @@ var attributes = new List<AttributeInfo>
 	new AttributeInfo { Name = "WorldLightGreen", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightMask", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightRed", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldLightSourceColor", AttributeType = AttributeType.Enum, EnumType="Color", ReadOnly =  false },
+	new AttributeInfo { Name = "WorldLightSourceColor", AttributeType = AttributeType.ColorInt, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightSourceUseColor", AttributeType =  AttributeType.Bool, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightTexture", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightX", AttributeType =  AttributeType.Float, ReadOnly =  false },
@@ -447,7 +448,7 @@ var attributes = new List<AttributeInfo>
 	new AttributeInfo { Name = "LaserBeamTargetY", AttributeType = AttributeType.Int, ReadOnly = false},
 	new AttributeInfo { Name = "LaserBeamTargetZ", AttributeType = AttributeType.Int, ReadOnly = false},
 	new AttributeInfo { Name = "LaserBeamStyle", AttributeType = AttributeType.Enum, EnumType="LaserBeamStyle", ReadOnly = false},
-	new AttributeInfo { Name = "LaserBeamColor", AttributeType = AttributeType.Enum, EnumType="Color", ReadOnly = false},
+	new AttributeInfo { Name = "LaserBeamColor", AttributeType = AttributeType.ColorInt, ReadOnly = false},
 	new AttributeInfo { Name = "WorldVoipcastHost", AttributeType = AttributeType.String, ReadOnly = false},
 	new AttributeInfo { Name = "WorldVoipcastPort", AttributeType = AttributeType.Int, ReadOnly = false},
 	new AttributeInfo { Name = "MyZone", AttributeType = AttributeType.Int, ReadOnly = true},
@@ -482,20 +483,12 @@ namespace AW
 <#
 	foreach(var attribute in attributes)
 	{
-		var type = attribute.AttributeType.ToString();
 #>
 
 		public <#= ConvertToType(attribute) #> <#= attribute.Name #>
 		{
-			get { return <# if(attribute.AttributeType == AttributeType.Enum) { #>(<#= attribute.EnumType #>)<# } #> _instance.Get<#= attribute.AttributeType == AttributeType.Enum ? "Int" : type #>(Attributes.<#= attribute.Name #>); }
-<#
-		if(!attribute.ReadOnly)
-		{
-#>
-			set { _instance.Set<#= attribute.AttributeType == AttributeType.Enum ? "Int" : type #>(Attributes.<#= attribute.Name #>, <# if(attribute.AttributeType == AttributeType.Enum) { #> (int) <# } #>value); }
-<#
+			<#= GeneratePropertyBlock(attribute) #>
 		}
-#>		}
 <#
 	}
 #>	
@@ -521,7 +514,9 @@ enum AttributeType
 	Float,
 	Bool,
 	Data,
-	Enum
+	Enum,
+	ColorInt,
+	ColorAttribute
 }
 
 class AttributeInfo
@@ -547,6 +542,61 @@ class AttributeInfo
 	}
 }
 
+static string GeneratePropertyBlock(AttributeInfo attribute)
+{
+	StringBuilder propertyBlock = new StringBuilder();
+		
+	propertyBlock.AppendFormat("get {{ return {2}_instance.Get{0}(Attributes.{1}); }}", GetSetGetMethodType(attribute), attribute.Name, GetGetterCast(attribute));
+	
+	if(!attribute.ReadOnly)
+	{
+		propertyBlock.AppendLine();
+		propertyBlock.AppendFormat("\t\t\tset {{ _instance.Set{0}(Attributes.{1}, {2}value); }}", GetSetGetMethodType(attribute), attribute.Name, GetSetterCast(attribute));	
+	}
+	
+	return propertyBlock.ToString();
+}
+
+static string GetSetterCast(AttributeInfo attribute)
+{
+	if(attribute.AttributeType == AttributeType.Enum || attribute.AttributeType == AttributeType.ColorInt)
+	{
+		return "(int) ";	
+	}
+	
+	return string.Empty;
+}
+
+static string GetGetterCast(AttributeInfo attribute)
+{
+	if(attribute.AttributeType == AttributeType.Enum)
+	{
+		return string.Format("({0}) ", attribute.EnumType);
+	}
+	else if(attribute.AttributeType == AttributeType.ColorInt)
+	{
+		return "(Color) ";	
+	}
+	
+	return string.Empty;
+}
+
+static string GetSetGetMethodType(AttributeInfo attribute)
+{
+	switch(attribute.AttributeType)
+	{
+		case AttributeType.Enum:
+		case AttributeType.ColorInt:
+			return "Int";
+		
+		case AttributeType.ColorAttribute:
+			return "Color";
+			
+		default:
+			return attribute.AttributeType.ToString();
+	}
+}
+
 static string ConvertToType(AttributeInfo attribute)
 {
 	switch(attribute.AttributeType)
@@ -556,6 +606,10 @@ static string ConvertToType(AttributeInfo attribute)
 
 		case AttributeType.Enum:
 			return attribute.EnumType;
+			
+		case AttributeType.ColorInt:
+		case AttributeType.ColorAttribute:
+			return "Color";
 			
 		default:
 			return attribute.AttributeType.ToString().ToLower();
@@ -1060,10 +1114,10 @@ enum Attributes : int
 	ShopTransMore,
 	ShopItemChanged,
 	LicenseShop,
-	CitizenPasswdordExpire,
+	CitizenPasswordExpire,
 	UniverseExpirationDate,
 	UniverseImmigration,
-	CitizenSecurePassword,
+	CitizenSecondaryPassword,
 	ChatChannel,
 	ChatCitizen,
 	WorldChatChannel1Name,

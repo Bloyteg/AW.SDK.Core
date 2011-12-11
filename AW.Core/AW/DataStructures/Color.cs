@@ -9,12 +9,12 @@ namespace AW
     /// </summary>
     [Serializable]
     [StructLayout(LayoutKind.Sequential, Pack=0)]
-    public sealed class Color
+    public struct Color
     {
-        private byte a;
-        private byte _blue;
-        private byte _green;
-        private byte _red;
+        private readonly byte _alpha;
+        private readonly byte _blue;
+        private readonly byte _green;
+        private readonly byte _red;
 
         /// <summary>
         /// The blue component of the color.  Value range is 0 to 255.
@@ -22,7 +22,6 @@ namespace AW
         public byte Blue
         {
             get { return _blue; }
-            set { _blue = value; }
         }
 
         /// <summary>
@@ -31,7 +30,6 @@ namespace AW
         public byte Green
         {
             get { return _green; }
-            set { _green = value; }
         }
 
         /// <summary>
@@ -40,15 +38,6 @@ namespace AW
         public byte Red
         {
             get { return _red; }
-            set { _red = value; }
-        }
-
-        /// <summary>
-        /// Constructs the default color.  This color will be black.
-        /// </summary>
-        public Color()
-        {
-            a = 255;
         }
 
         /// <summary>
@@ -59,10 +48,10 @@ namespace AW
         /// <param name="blue">Blue component.  Value range is 0 to 255.</param>
         public Color(byte red, byte green, byte blue)
         {
-            a = 255;
             _red = red;
             _green = green;
             _blue = blue;
+            _alpha = 255;
         }
 
         /// <summary>
@@ -72,7 +61,7 @@ namespace AW
         /// <returns>The converted color.</returns>
         public static explicit operator Color(System.Drawing.Color color)
         {
-            return new Color { Red = color.R, Green = color.G, Blue = color.B };
+            return new Color(color.R, color.G, color.B);
         }
 
         /// <summary>
@@ -92,12 +81,9 @@ namespace AW
         /// <returns>The converted color.</returns>
         public static implicit operator Color(int color)
         {
-            return new Color
-            {
-                Red = (byte)(color  & 0x0000FF),
-                Green = (byte)((color >> 8) & 0x0000FF),
-                Blue = (byte)((color >> 16) & 0x0000FF)
-            };
+            return new Color((byte) color,
+                             (byte) (color >> 8),
+                             (byte) (color >> 16));
         }
 
         /// <summary>
