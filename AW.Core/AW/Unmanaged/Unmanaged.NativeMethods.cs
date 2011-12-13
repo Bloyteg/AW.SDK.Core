@@ -440,8 +440,8 @@ namespace AW
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern int aw_listen(int channels);
 
-        [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true, EntryPoint = "aw_say_channel_W")]
-        public static extern int aw_say_channel(IntPtr message, int channel);
+        [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true, EntryPoint = "aw_say_channelW")]
+        public static extern int aw_say_channel(string message, int channel);
 
         [DllImport("aw.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern int aw_object_add_session(int session);

@@ -87,12 +87,10 @@ var attributes = new List<AttributeInfo>
 	new AttributeInfo { Name = "CitizenUrl", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "ClickedName", AttributeType =  AttributeType.String, ReadOnly =  true },
 	new AttributeInfo { Name = "ClickedSession", AttributeType =  AttributeType.Int, ReadOnly =  true },
-	new AttributeInfo { Name = "ConsoleBlue", AttributeType =  AttributeType.Int, ReadOnly =  false },
+	new AttributeInfo { Name = "ConsoleColor", AttributeType =  AttributeType.ColorAttribute, Attributes = new[] { "ConsoleRed", "ConsoleGreen", "ConsoleBlue" }, ReadOnly =  false },
 	new AttributeInfo { Name = "ConsoleBold", AttributeType =  AttributeType.Bool, ReadOnly =  false },
-	new AttributeInfo { Name = "ConsoleGreen", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "ConsoleItalics", AttributeType =  AttributeType.Bool, ReadOnly =  false },
 	new AttributeInfo { Name = "ConsoleMessage", AttributeType =  AttributeType.String, ReadOnly =  false },
-	new AttributeInfo { Name = "ConsoleRed", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "DisconnectReason", AttributeType =  AttributeType.Int, ReadOnly =  true },
 	new AttributeInfo { Name = "EjectDuration", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "EjectSession", AttributeType =  AttributeType.Int, ReadOnly =  false },
@@ -281,9 +279,7 @@ var attributes = new List<AttributeInfo>
 	new AttributeInfo { Name = "WorldAllowTouristBuild", AttributeType =  AttributeType.Bool, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldAllowTouristWhisper", AttributeType =  AttributeType.Bool, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldAlwaysShowNames", AttributeType =  AttributeType.Bool, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldAmbientLightBlue", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldAmbientLightGreen", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldAmbientLightRed", AttributeType =  AttributeType.Int, ReadOnly =  false },
+	new AttributeInfo { Name = "WorldAmbientLightColor", AttributeType =  AttributeType.ColorAttribute, Attributes = new[] { "WorldAmbientLightRed", "WorldAmbientLightGreen", "WorldAmbientLightBlue" }, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldAvatarRefreshRate", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldBackdrop", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldBotmenuUrl", AttributeType =  AttributeType.String, ReadOnly =  false },
@@ -337,25 +333,21 @@ var attributes = new List<AttributeInfo>
 	new AttributeInfo { Name = "WorldEnterRight", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldEntryPoint", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldExpiration", AttributeType =  AttributeType.Int, ReadOnly =  true },
-	new AttributeInfo { Name = "WorldFogBlue", AttributeType =  AttributeType.Int, ReadOnly =  false },
+	new AttributeInfo { Name = "WorldFogColor", AttributeType =  AttributeType.ColorAttribute, Attributes = new[] { "WorldFogRed", "WorldFogGreen", "WorldFogBlue" }, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldFogEnable", AttributeType =  AttributeType.Bool, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldFogGreen", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldFogMaximum", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldFogMinimum", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldFogRed", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldFogTinted", AttributeType =  AttributeType.Bool, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldFriction", AttributeType =  AttributeType.Float, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldGravity", AttributeType =  AttributeType.Float, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldGround", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldHomePage", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldKeywords", AttributeType =  AttributeType.String, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldLightBlue", AttributeType =  AttributeType.Int, ReadOnly =  false },
+	new AttributeInfo { Name = "WorldLightColor", AttributeType =  AttributeType.ColorAttribute, Attributes = new[] { "WorldLightRed", "WorldLightGreen", "WorldLightBlue" }, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightDrawBright", AttributeType =  AttributeType.Bool, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightDrawFront", AttributeType =  AttributeType.Bool, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightDrawSize", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldLightGreen", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightMask", AttributeType =  AttributeType.String, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldLightRed", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightSourceColor", AttributeType = AttributeType.ColorInt, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightSourceUseColor", AttributeType =  AttributeType.Bool, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldLightTexture", AttributeType =  AttributeType.String, ReadOnly =  false },
@@ -378,24 +370,12 @@ var attributes = new List<AttributeInfo>
 	new AttributeInfo { Name = "WorldRepeatingGround", AttributeType =  AttributeType.Bool, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldRestrictedRadius", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldSize", AttributeType =  AttributeType.Int, ReadOnly =  true },
-	new AttributeInfo { Name = "WorldSkyBottomBlue", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkyBottomGreen", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkyBottomRed", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkyEastBlue", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkyEastGreen", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkyEastRed", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkyNorthBlue", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkyNorthGreen", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkyNorthRed", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkySouthBlue", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkySouthGreen", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkySouthRed", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkyTopBlue", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkyTopGreen", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkyTopRed", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkyWestBlue", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkyWestGreen", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldSkyWestRed", AttributeType =  AttributeType.Int, ReadOnly =  false },
+	new AttributeInfo { Name = "WorldSkyBottomColor", AttributeType =  AttributeType.ColorAttribute, Attributes = new[] { "WorldSkyBottomRed", "WorldSkyBottomGreen", "WorldSkyBottomBlue" }, ReadOnly =  false },
+	new AttributeInfo { Name = "WorldSkyEastColor", AttributeType =  AttributeType.ColorAttribute, Attributes = new[] { "WorldSkyEastRed", "WorldSkyEastGreen", "WorldSkyEastBlue" }, ReadOnly =  false },
+	new AttributeInfo { Name = "WorldSkyNorthColor", AttributeType =  AttributeType.ColorAttribute, Attributes = new[] { "WorldSkyNorthRed", "WorldSkyNorthGreen", "WorldSkyNorthBlue" }, ReadOnly =  false },
+	new AttributeInfo { Name = "WorldSkySouthColor", AttributeType =  AttributeType.ColorAttribute, Attributes = new[] { "WorldSkySouthRed", "WorldSkySouthGreen", "WorldSkySouthBlue" }, ReadOnly =  false },
+	new AttributeInfo { Name = "WorldSkyTopColor", AttributeType =  AttributeType.ColorAttribute, Attributes = new[] { "WorldSkyTopRed", "WorldSkyTopGreen", "WorldSkyTopBlue" }, ReadOnly =  false },
+	new AttributeInfo { Name = "WorldSkyWestColor", AttributeType =  AttributeType.ColorAttribute, Attributes = new[] { "WorldSkyWestRed", "WorldSkyWestGreen", "WorldSkyWestBlue" }, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldSkybox", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldSlopeslideEnabled", AttributeType =  AttributeType.Bool, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldSlopeslideMaxAngle", AttributeType =  AttributeType.Float, ReadOnly =  false },
@@ -417,16 +397,14 @@ var attributes = new List<AttributeInfo>
 	new AttributeInfo { Name = "WorldTitle", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldV4ObjectsRight", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldWaitLimit", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldWaterBlue", AttributeType =  AttributeType.Int, ReadOnly =  false },
+	new AttributeInfo { Name = "WorldWaterColor", AttributeType =  AttributeType.ColorAttribute, Attributes = new[] { "WorldWaterRed", "WorldWaterGreen", "WorldWaterBlue" }, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldWaterBottomMask", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldWaterBottomTexture", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldWaterEnabled", AttributeType =  AttributeType.Bool, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldWaterFriction", AttributeType =  AttributeType.Float, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldWaterGreen", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldWaterLevel", AttributeType =  AttributeType.Float, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldWaterMask", AttributeType =  AttributeType.String, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldWaterOpacity", AttributeType =  AttributeType.Int, ReadOnly =  false },
-	new AttributeInfo { Name = "WorldWaterRed", AttributeType =  AttributeType.Int, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldWaterSpeed", AttributeType =  AttributeType.Float, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldWaterSurfaceMove", AttributeType =  AttributeType.Float, ReadOnly =  false },
 	new AttributeInfo { Name = "WorldWaterTexture", AttributeType =  AttributeType.String, ReadOnly =  false },
@@ -454,7 +432,20 @@ var attributes = new List<AttributeInfo>
 	new AttributeInfo { Name = "MyZone", AttributeType = AttributeType.Int, ReadOnly = true},
 	new AttributeInfo { Name = "AvatarZone", AttributeType = AttributeType.Int, ReadOnly = true},
 	new AttributeInfo { Name = "UniversePerCitizenCav", AttributeType = AttributeType.Bool, ReadOnly = false},
-	new AttributeInfo { Name = "WorldEnableWireframe", AttributeType = AttributeType.Bool, ReadOnly = false}
+	new AttributeInfo { Name = "WorldEnableWireframe", AttributeType = AttributeType.Bool, ReadOnly = false},
+	new AttributeInfo { Name = "ChatChannel", AttributeType = AttributeType.Enum, EnumType="ChatChannels", ReadOnly = true },
+	new AttributeInfo { Name = "ChatCitizen", AttributeType = AttributeType.Int, ReadOnly = true },
+	new AttributeInfo { Name = "WorldChatChannel1Name", AttributeType = AttributeType.String, ReadOnly = false },
+	new AttributeInfo { Name = "WorldChatChannel2Name", AttributeType = AttributeType.String, ReadOnly = false },
+	new AttributeInfo { Name = "WorldChatChannel3Name", AttributeType = AttributeType.String, ReadOnly = false },
+	new AttributeInfo { Name = "WorldChatChannel4Name", AttributeType = AttributeType.String, ReadOnly = false },
+	new AttributeInfo { Name = "WorldChatChannel5Name", AttributeType = AttributeType.String, ReadOnly = false },
+	new AttributeInfo { Name = "WorldChatChannel1Color", AttributeType = AttributeType.ColorInt, ReadOnly = false },
+	new AttributeInfo { Name = "WorldChatChannel2Color", AttributeType = AttributeType.ColorInt, ReadOnly = false },
+	new AttributeInfo { Name = "WorldChatChannel3Color", AttributeType = AttributeType.ColorInt, ReadOnly = false },
+	new AttributeInfo { Name = "WorldChatChannel4Color", AttributeType = AttributeType.ColorInt, ReadOnly = false },
+	new AttributeInfo { Name = "WorldChatChannel5Color", AttributeType = AttributeType.ColorInt, ReadOnly = false },
+	new AttributeInfo { Name = "WorldListBots", AttributeType = AttributeType.Int, ReadOnly = true },
 };
 #>
 
@@ -540,18 +531,40 @@ class AttributeInfo
 	{
 		get; set;	
 	}
+	
+	public string[] Attributes
+	{
+		get; set;
+	}
 }
 
 static string GeneratePropertyBlock(AttributeInfo attribute)
 {
 	StringBuilder propertyBlock = new StringBuilder();
-		
-	propertyBlock.AppendFormat("get {{ return {2}_instance.Get{0}(Attributes.{1}); }}", GetSetGetMethodType(attribute), attribute.Name, GetGetterCast(attribute));
 	
-	if(!attribute.ReadOnly)
+	if(attribute.AttributeType == AttributeType.ColorAttribute)
 	{
-		propertyBlock.AppendLine();
-		propertyBlock.AppendFormat("\t\t\tset {{ _instance.Set{0}(Attributes.{1}, {2}value); }}", GetSetGetMethodType(attribute), attribute.Name, GetSetterCast(attribute));	
+		var red =  attribute.Attributes[0];
+		var green = attribute.Attributes[1];
+		var blue = attribute.Attributes[2];
+		
+		propertyBlock.AppendFormat("get {{ return ((Instance)_instance).GetColor(Attributes.{0}, Attributes.{1}, Attributes.{2}); }}", red, green, blue);
+		
+		if(!attribute.ReadOnly)
+		{
+			propertyBlock.AppendLine();
+			propertyBlock.AppendFormat("\t\t\tset {{ ((Instance)_instance).SetColor(value, Attributes.{0}, Attributes.{1}, Attributes.{2}); }}", red, green, blue);
+		}
+	}
+	else
+	{
+		propertyBlock.AppendFormat("get {{ return {2}_instance.Get{0}(Attributes.{1}); }}", GetSetGetMethodType(attribute), attribute.Name, GetGetterCast(attribute));
+		
+		if(!attribute.ReadOnly)
+		{
+			propertyBlock.AppendLine();
+			propertyBlock.AppendFormat("\t\t\tset {{ _instance.Set{0}(Attributes.{1}, {2}value); }}", GetSetGetMethodType(attribute), attribute.Name, GetSetterCast(attribute));	
+		}
 	}
 	
 	return propertyBlock.ToString();

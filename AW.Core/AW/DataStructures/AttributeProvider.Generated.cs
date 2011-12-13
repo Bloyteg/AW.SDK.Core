@@ -152,17 +152,13 @@ namespace AW
 		
 		int ClickedSession { get;  }
 		
-		int ConsoleBlue { get;  set;  }
+		Color ConsoleColor { get;  set;  }
 		
 		bool ConsoleBold { get;  set;  }
-		
-		int ConsoleGreen { get;  set;  }
 		
 		bool ConsoleItalics { get;  set;  }
 		
 		string ConsoleMessage { get;  set;  }
-		
-		int ConsoleRed { get;  set;  }
 		
 		int DisconnectReason { get;  }
 		
@@ -540,11 +536,7 @@ namespace AW
 		
 		bool WorldAlwaysShowNames { get;  set;  }
 		
-		int WorldAmbientLightBlue { get;  set;  }
-		
-		int WorldAmbientLightGreen { get;  set;  }
-		
-		int WorldAmbientLightRed { get;  set;  }
+		Color WorldAmbientLightColor { get;  set;  }
 		
 		int WorldAvatarRefreshRate { get;  set;  }
 		
@@ -652,17 +644,13 @@ namespace AW
 		
 		int WorldExpiration { get;  }
 		
-		int WorldFogBlue { get;  set;  }
+		Color WorldFogColor { get;  set;  }
 		
 		bool WorldFogEnable { get;  set;  }
-		
-		int WorldFogGreen { get;  set;  }
 		
 		int WorldFogMaximum { get;  set;  }
 		
 		int WorldFogMinimum { get;  set;  }
-		
-		int WorldFogRed { get;  set;  }
 		
 		bool WorldFogTinted { get;  set;  }
 		
@@ -676,7 +664,7 @@ namespace AW
 		
 		string WorldKeywords { get;  set;  }
 		
-		int WorldLightBlue { get;  set;  }
+		Color WorldLightColor { get;  set;  }
 		
 		bool WorldLightDrawBright { get;  set;  }
 		
@@ -684,11 +672,7 @@ namespace AW
 		
 		int WorldLightDrawSize { get;  set;  }
 		
-		int WorldLightGreen { get;  set;  }
-		
 		string WorldLightMask { get;  set;  }
-		
-		int WorldLightRed { get;  set;  }
 		
 		Color WorldLightSourceColor { get;  set;  }
 		
@@ -734,41 +718,17 @@ namespace AW
 		
 		int WorldSize { get;  }
 		
-		int WorldSkyBottomBlue { get;  set;  }
+		Color WorldSkyBottomColor { get;  set;  }
 		
-		int WorldSkyBottomGreen { get;  set;  }
+		Color WorldSkyEastColor { get;  set;  }
 		
-		int WorldSkyBottomRed { get;  set;  }
+		Color WorldSkyNorthColor { get;  set;  }
 		
-		int WorldSkyEastBlue { get;  set;  }
+		Color WorldSkySouthColor { get;  set;  }
 		
-		int WorldSkyEastGreen { get;  set;  }
+		Color WorldSkyTopColor { get;  set;  }
 		
-		int WorldSkyEastRed { get;  set;  }
-		
-		int WorldSkyNorthBlue { get;  set;  }
-		
-		int WorldSkyNorthGreen { get;  set;  }
-		
-		int WorldSkyNorthRed { get;  set;  }
-		
-		int WorldSkySouthBlue { get;  set;  }
-		
-		int WorldSkySouthGreen { get;  set;  }
-		
-		int WorldSkySouthRed { get;  set;  }
-		
-		int WorldSkyTopBlue { get;  set;  }
-		
-		int WorldSkyTopGreen { get;  set;  }
-		
-		int WorldSkyTopRed { get;  set;  }
-		
-		int WorldSkyWestBlue { get;  set;  }
-		
-		int WorldSkyWestGreen { get;  set;  }
-		
-		int WorldSkyWestRed { get;  set;  }
+		Color WorldSkyWestColor { get;  set;  }
 		
 		string WorldSkybox { get;  set;  }
 		
@@ -812,7 +772,7 @@ namespace AW
 		
 		int WorldWaitLimit { get;  set;  }
 		
-		int WorldWaterBlue { get;  set;  }
+		Color WorldWaterColor { get;  set;  }
 		
 		string WorldWaterBottomMask { get;  set;  }
 		
@@ -822,15 +782,11 @@ namespace AW
 		
 		float WorldWaterFriction { get;  set;  }
 		
-		int WorldWaterGreen { get;  set;  }
-		
 		float WorldWaterLevel { get;  set;  }
 		
 		string WorldWaterMask { get;  set;  }
 		
 		int WorldWaterOpacity { get;  set;  }
-		
-		int WorldWaterRed { get;  set;  }
 		
 		float WorldWaterSpeed { get;  set;  }
 		
@@ -887,6 +843,32 @@ namespace AW
 		bool UniversePerCitizenCav { get;  set;  }
 		
 		bool WorldEnableWireframe { get;  set;  }
+		
+		ChatChannels ChatChannel { get;  }
+		
+		int ChatCitizen { get;  }
+		
+		string WorldChatChannel1Name { get;  set;  }
+		
+		string WorldChatChannel2Name { get;  set;  }
+		
+		string WorldChatChannel3Name { get;  set;  }
+		
+		string WorldChatChannel4Name { get;  set;  }
+		
+		string WorldChatChannel5Name { get;  set;  }
+		
+		Color WorldChatChannel1Color { get;  set;  }
+		
+		Color WorldChatChannel2Color { get;  set;  }
+		
+		Color WorldChatChannel3Color { get;  set;  }
+		
+		Color WorldChatChannel4Color { get;  set;  }
+		
+		Color WorldChatChannel5Color { get;  set;  }
+		
+		int WorldListBots { get;  }
 			
 	}
 
@@ -1318,22 +1300,16 @@ namespace AW
 			get { return _instance.GetInt(Attributes.ClickedSession); }
 		}
 
-		public int ConsoleBlue
+		public Color ConsoleColor
 		{
-			get { return _instance.GetInt(Attributes.ConsoleBlue); }
-			set { _instance.SetInt(Attributes.ConsoleBlue, value); }
+			get { return ((Instance)_instance).GetColor(Attributes.ConsoleRed, Attributes.ConsoleGreen, Attributes.ConsoleBlue); }
+			set { ((Instance)_instance).SetColor(value, Attributes.ConsoleRed, Attributes.ConsoleGreen, Attributes.ConsoleBlue); }
 		}
 
 		public bool ConsoleBold
 		{
 			get { return _instance.GetBool(Attributes.ConsoleBold); }
 			set { _instance.SetBool(Attributes.ConsoleBold, value); }
-		}
-
-		public int ConsoleGreen
-		{
-			get { return _instance.GetInt(Attributes.ConsoleGreen); }
-			set { _instance.SetInt(Attributes.ConsoleGreen, value); }
 		}
 
 		public bool ConsoleItalics
@@ -1346,12 +1322,6 @@ namespace AW
 		{
 			get { return _instance.GetString(Attributes.ConsoleMessage); }
 			set { _instance.SetString(Attributes.ConsoleMessage, value); }
-		}
-
-		public int ConsoleRed
-		{
-			get { return _instance.GetInt(Attributes.ConsoleRed); }
-			set { _instance.SetInt(Attributes.ConsoleRed, value); }
 		}
 
 		public int DisconnectReason
@@ -2435,22 +2405,10 @@ namespace AW
 			set { _instance.SetBool(Attributes.WorldAlwaysShowNames, value); }
 		}
 
-		public int WorldAmbientLightBlue
+		public Color WorldAmbientLightColor
 		{
-			get { return _instance.GetInt(Attributes.WorldAmbientLightBlue); }
-			set { _instance.SetInt(Attributes.WorldAmbientLightBlue, value); }
-		}
-
-		public int WorldAmbientLightGreen
-		{
-			get { return _instance.GetInt(Attributes.WorldAmbientLightGreen); }
-			set { _instance.SetInt(Attributes.WorldAmbientLightGreen, value); }
-		}
-
-		public int WorldAmbientLightRed
-		{
-			get { return _instance.GetInt(Attributes.WorldAmbientLightRed); }
-			set { _instance.SetInt(Attributes.WorldAmbientLightRed, value); }
+			get { return ((Instance)_instance).GetColor(Attributes.WorldAmbientLightRed, Attributes.WorldAmbientLightGreen, Attributes.WorldAmbientLightBlue); }
+			set { ((Instance)_instance).SetColor(value, Attributes.WorldAmbientLightRed, Attributes.WorldAmbientLightGreen, Attributes.WorldAmbientLightBlue); }
 		}
 
 		public int WorldAvatarRefreshRate
@@ -2764,22 +2722,16 @@ namespace AW
 			get { return _instance.GetInt(Attributes.WorldExpiration); }
 		}
 
-		public int WorldFogBlue
+		public Color WorldFogColor
 		{
-			get { return _instance.GetInt(Attributes.WorldFogBlue); }
-			set { _instance.SetInt(Attributes.WorldFogBlue, value); }
+			get { return ((Instance)_instance).GetColor(Attributes.WorldFogRed, Attributes.WorldFogGreen, Attributes.WorldFogBlue); }
+			set { ((Instance)_instance).SetColor(value, Attributes.WorldFogRed, Attributes.WorldFogGreen, Attributes.WorldFogBlue); }
 		}
 
 		public bool WorldFogEnable
 		{
 			get { return _instance.GetBool(Attributes.WorldFogEnable); }
 			set { _instance.SetBool(Attributes.WorldFogEnable, value); }
-		}
-
-		public int WorldFogGreen
-		{
-			get { return _instance.GetInt(Attributes.WorldFogGreen); }
-			set { _instance.SetInt(Attributes.WorldFogGreen, value); }
 		}
 
 		public int WorldFogMaximum
@@ -2792,12 +2744,6 @@ namespace AW
 		{
 			get { return _instance.GetInt(Attributes.WorldFogMinimum); }
 			set { _instance.SetInt(Attributes.WorldFogMinimum, value); }
-		}
-
-		public int WorldFogRed
-		{
-			get { return _instance.GetInt(Attributes.WorldFogRed); }
-			set { _instance.SetInt(Attributes.WorldFogRed, value); }
 		}
 
 		public bool WorldFogTinted
@@ -2836,10 +2782,10 @@ namespace AW
 			set { _instance.SetString(Attributes.WorldKeywords, value); }
 		}
 
-		public int WorldLightBlue
+		public Color WorldLightColor
 		{
-			get { return _instance.GetInt(Attributes.WorldLightBlue); }
-			set { _instance.SetInt(Attributes.WorldLightBlue, value); }
+			get { return ((Instance)_instance).GetColor(Attributes.WorldLightRed, Attributes.WorldLightGreen, Attributes.WorldLightBlue); }
+			set { ((Instance)_instance).SetColor(value, Attributes.WorldLightRed, Attributes.WorldLightGreen, Attributes.WorldLightBlue); }
 		}
 
 		public bool WorldLightDrawBright
@@ -2860,22 +2806,10 @@ namespace AW
 			set { _instance.SetInt(Attributes.WorldLightDrawSize, value); }
 		}
 
-		public int WorldLightGreen
-		{
-			get { return _instance.GetInt(Attributes.WorldLightGreen); }
-			set { _instance.SetInt(Attributes.WorldLightGreen, value); }
-		}
-
 		public string WorldLightMask
 		{
 			get { return _instance.GetString(Attributes.WorldLightMask); }
 			set { _instance.SetString(Attributes.WorldLightMask, value); }
-		}
-
-		public int WorldLightRed
-		{
-			get { return _instance.GetInt(Attributes.WorldLightRed); }
-			set { _instance.SetInt(Attributes.WorldLightRed, value); }
 		}
 
 		public Color WorldLightSourceColor
@@ -3006,112 +2940,40 @@ namespace AW
 			get { return _instance.GetInt(Attributes.WorldSize); }
 		}
 
-		public int WorldSkyBottomBlue
+		public Color WorldSkyBottomColor
 		{
-			get { return _instance.GetInt(Attributes.WorldSkyBottomBlue); }
-			set { _instance.SetInt(Attributes.WorldSkyBottomBlue, value); }
+			get { return ((Instance)_instance).GetColor(Attributes.WorldSkyBottomRed, Attributes.WorldSkyBottomGreen, Attributes.WorldSkyBottomBlue); }
+			set { ((Instance)_instance).SetColor(value, Attributes.WorldSkyBottomRed, Attributes.WorldSkyBottomGreen, Attributes.WorldSkyBottomBlue); }
 		}
 
-		public int WorldSkyBottomGreen
+		public Color WorldSkyEastColor
 		{
-			get { return _instance.GetInt(Attributes.WorldSkyBottomGreen); }
-			set { _instance.SetInt(Attributes.WorldSkyBottomGreen, value); }
+			get { return ((Instance)_instance).GetColor(Attributes.WorldSkyEastRed, Attributes.WorldSkyEastGreen, Attributes.WorldSkyEastBlue); }
+			set { ((Instance)_instance).SetColor(value, Attributes.WorldSkyEastRed, Attributes.WorldSkyEastGreen, Attributes.WorldSkyEastBlue); }
 		}
 
-		public int WorldSkyBottomRed
+		public Color WorldSkyNorthColor
 		{
-			get { return _instance.GetInt(Attributes.WorldSkyBottomRed); }
-			set { _instance.SetInt(Attributes.WorldSkyBottomRed, value); }
+			get { return ((Instance)_instance).GetColor(Attributes.WorldSkyNorthRed, Attributes.WorldSkyNorthGreen, Attributes.WorldSkyNorthBlue); }
+			set { ((Instance)_instance).SetColor(value, Attributes.WorldSkyNorthRed, Attributes.WorldSkyNorthGreen, Attributes.WorldSkyNorthBlue); }
 		}
 
-		public int WorldSkyEastBlue
+		public Color WorldSkySouthColor
 		{
-			get { return _instance.GetInt(Attributes.WorldSkyEastBlue); }
-			set { _instance.SetInt(Attributes.WorldSkyEastBlue, value); }
+			get { return ((Instance)_instance).GetColor(Attributes.WorldSkySouthRed, Attributes.WorldSkySouthGreen, Attributes.WorldSkySouthBlue); }
+			set { ((Instance)_instance).SetColor(value, Attributes.WorldSkySouthRed, Attributes.WorldSkySouthGreen, Attributes.WorldSkySouthBlue); }
 		}
 
-		public int WorldSkyEastGreen
+		public Color WorldSkyTopColor
 		{
-			get { return _instance.GetInt(Attributes.WorldSkyEastGreen); }
-			set { _instance.SetInt(Attributes.WorldSkyEastGreen, value); }
+			get { return ((Instance)_instance).GetColor(Attributes.WorldSkyTopRed, Attributes.WorldSkyTopGreen, Attributes.WorldSkyTopBlue); }
+			set { ((Instance)_instance).SetColor(value, Attributes.WorldSkyTopRed, Attributes.WorldSkyTopGreen, Attributes.WorldSkyTopBlue); }
 		}
 
-		public int WorldSkyEastRed
+		public Color WorldSkyWestColor
 		{
-			get { return _instance.GetInt(Attributes.WorldSkyEastRed); }
-			set { _instance.SetInt(Attributes.WorldSkyEastRed, value); }
-		}
-
-		public int WorldSkyNorthBlue
-		{
-			get { return _instance.GetInt(Attributes.WorldSkyNorthBlue); }
-			set { _instance.SetInt(Attributes.WorldSkyNorthBlue, value); }
-		}
-
-		public int WorldSkyNorthGreen
-		{
-			get { return _instance.GetInt(Attributes.WorldSkyNorthGreen); }
-			set { _instance.SetInt(Attributes.WorldSkyNorthGreen, value); }
-		}
-
-		public int WorldSkyNorthRed
-		{
-			get { return _instance.GetInt(Attributes.WorldSkyNorthRed); }
-			set { _instance.SetInt(Attributes.WorldSkyNorthRed, value); }
-		}
-
-		public int WorldSkySouthBlue
-		{
-			get { return _instance.GetInt(Attributes.WorldSkySouthBlue); }
-			set { _instance.SetInt(Attributes.WorldSkySouthBlue, value); }
-		}
-
-		public int WorldSkySouthGreen
-		{
-			get { return _instance.GetInt(Attributes.WorldSkySouthGreen); }
-			set { _instance.SetInt(Attributes.WorldSkySouthGreen, value); }
-		}
-
-		public int WorldSkySouthRed
-		{
-			get { return _instance.GetInt(Attributes.WorldSkySouthRed); }
-			set { _instance.SetInt(Attributes.WorldSkySouthRed, value); }
-		}
-
-		public int WorldSkyTopBlue
-		{
-			get { return _instance.GetInt(Attributes.WorldSkyTopBlue); }
-			set { _instance.SetInt(Attributes.WorldSkyTopBlue, value); }
-		}
-
-		public int WorldSkyTopGreen
-		{
-			get { return _instance.GetInt(Attributes.WorldSkyTopGreen); }
-			set { _instance.SetInt(Attributes.WorldSkyTopGreen, value); }
-		}
-
-		public int WorldSkyTopRed
-		{
-			get { return _instance.GetInt(Attributes.WorldSkyTopRed); }
-			set { _instance.SetInt(Attributes.WorldSkyTopRed, value); }
-		}
-
-		public int WorldSkyWestBlue
-		{
-			get { return _instance.GetInt(Attributes.WorldSkyWestBlue); }
-			set { _instance.SetInt(Attributes.WorldSkyWestBlue, value); }
-		}
-
-		public int WorldSkyWestGreen
-		{
-			get { return _instance.GetInt(Attributes.WorldSkyWestGreen); }
-			set { _instance.SetInt(Attributes.WorldSkyWestGreen, value); }
-		}
-
-		public int WorldSkyWestRed
-		{
-			get { return _instance.GetInt(Attributes.WorldSkyWestRed); }
-			set { _instance.SetInt(Attributes.WorldSkyWestRed, value); }
+			get { return ((Instance)_instance).GetColor(Attributes.WorldSkyWestRed, Attributes.WorldSkyWestGreen, Attributes.WorldSkyWestBlue); }
+			set { ((Instance)_instance).SetColor(value, Attributes.WorldSkyWestRed, Attributes.WorldSkyWestGreen, Attributes.WorldSkyWestBlue); }
 		}
 
 		public string WorldSkybox
@@ -3238,10 +3100,10 @@ namespace AW
 			set { _instance.SetInt(Attributes.WorldWaitLimit, value); }
 		}
 
-		public int WorldWaterBlue
+		public Color WorldWaterColor
 		{
-			get { return _instance.GetInt(Attributes.WorldWaterBlue); }
-			set { _instance.SetInt(Attributes.WorldWaterBlue, value); }
+			get { return ((Instance)_instance).GetColor(Attributes.WorldWaterRed, Attributes.WorldWaterGreen, Attributes.WorldWaterBlue); }
+			set { ((Instance)_instance).SetColor(value, Attributes.WorldWaterRed, Attributes.WorldWaterGreen, Attributes.WorldWaterBlue); }
 		}
 
 		public string WorldWaterBottomMask
@@ -3268,12 +3130,6 @@ namespace AW
 			set { _instance.SetFloat(Attributes.WorldWaterFriction, value); }
 		}
 
-		public int WorldWaterGreen
-		{
-			get { return _instance.GetInt(Attributes.WorldWaterGreen); }
-			set { _instance.SetInt(Attributes.WorldWaterGreen, value); }
-		}
-
 		public float WorldWaterLevel
 		{
 			get { return _instance.GetFloat(Attributes.WorldWaterLevel); }
@@ -3290,12 +3146,6 @@ namespace AW
 		{
 			get { return _instance.GetInt(Attributes.WorldWaterOpacity); }
 			set { _instance.SetInt(Attributes.WorldWaterOpacity, value); }
-		}
-
-		public int WorldWaterRed
-		{
-			get { return _instance.GetInt(Attributes.WorldWaterRed); }
-			set { _instance.SetInt(Attributes.WorldWaterRed, value); }
 		}
 
 		public float WorldWaterSpeed
@@ -3463,18 +3313,126 @@ namespace AW
 			get { return _instance.GetBool(Attributes.WorldEnableWireframe); }
 			set { _instance.SetBool(Attributes.WorldEnableWireframe, value); }
 		}
+
+		public ChatChannels ChatChannel
+		{
+			get { return (ChatChannels) _instance.GetInt(Attributes.ChatChannel); }
+		}
+
+		public int ChatCitizen
+		{
+			get { return _instance.GetInt(Attributes.ChatCitizen); }
+		}
+
+		public string WorldChatChannel1Name
+		{
+			get { return _instance.GetString(Attributes.WorldChatChannel1Name); }
+			set { _instance.SetString(Attributes.WorldChatChannel1Name, value); }
+		}
+
+		public string WorldChatChannel2Name
+		{
+			get { return _instance.GetString(Attributes.WorldChatChannel2Name); }
+			set { _instance.SetString(Attributes.WorldChatChannel2Name, value); }
+		}
+
+		public string WorldChatChannel3Name
+		{
+			get { return _instance.GetString(Attributes.WorldChatChannel3Name); }
+			set { _instance.SetString(Attributes.WorldChatChannel3Name, value); }
+		}
+
+		public string WorldChatChannel4Name
+		{
+			get { return _instance.GetString(Attributes.WorldChatChannel4Name); }
+			set { _instance.SetString(Attributes.WorldChatChannel4Name, value); }
+		}
+
+		public string WorldChatChannel5Name
+		{
+			get { return _instance.GetString(Attributes.WorldChatChannel5Name); }
+			set { _instance.SetString(Attributes.WorldChatChannel5Name, value); }
+		}
+
+		public Color WorldChatChannel1Color
+		{
+			get { return (Color) _instance.GetInt(Attributes.WorldChatChannel1Color); }
+			set { _instance.SetInt(Attributes.WorldChatChannel1Color, (int) value); }
+		}
+
+		public Color WorldChatChannel2Color
+		{
+			get { return (Color) _instance.GetInt(Attributes.WorldChatChannel2Color); }
+			set { _instance.SetInt(Attributes.WorldChatChannel2Color, (int) value); }
+		}
+
+		public Color WorldChatChannel3Color
+		{
+			get { return (Color) _instance.GetInt(Attributes.WorldChatChannel3Color); }
+			set { _instance.SetInt(Attributes.WorldChatChannel3Color, (int) value); }
+		}
+
+		public Color WorldChatChannel4Color
+		{
+			get { return (Color) _instance.GetInt(Attributes.WorldChatChannel4Color); }
+			set { _instance.SetInt(Attributes.WorldChatChannel4Color, (int) value); }
+		}
+
+		public Color WorldChatChannel5Color
+		{
+			get { return (Color) _instance.GetInt(Attributes.WorldChatChannel5Color); }
+			set { _instance.SetInt(Attributes.WorldChatChannel5Color, (int) value); }
+		}
+
+		public int WorldListBots
+		{
+			get { return _instance.GetInt(Attributes.WorldListBots); }
+		}
 	
 	}
 }
 
 //The following attribute was not found: LoginPrivilegeNumber
 //The following attribute was not found: LoginEmail
+//The following attribute was not found: WorldFogRed
+//The following attribute was not found: WorldFogGreen
+//The following attribute was not found: WorldFogBlue
+//The following attribute was not found: WorldLightRed
+//The following attribute was not found: WorldLightGreen
+//The following attribute was not found: WorldLightBlue
+//The following attribute was not found: WorldAmbientLightRed
+//The following attribute was not found: WorldAmbientLightGreen
+//The following attribute was not found: WorldAmbientLightBlue
+//The following attribute was not found: WorldSkyNorthRed
+//The following attribute was not found: WorldSkyNorthGreen
+//The following attribute was not found: WorldSkyNorthBlue
+//The following attribute was not found: WorldSkySouthRed
+//The following attribute was not found: WorldSkySouthGreen
+//The following attribute was not found: WorldSkySouthBlue
+//The following attribute was not found: WorldSkyEastRed
+//The following attribute was not found: WorldSkyEastGreen
+//The following attribute was not found: WorldSkyEastBlue
+//The following attribute was not found: WorldSkyWestRed
+//The following attribute was not found: WorldSkyWestGreen
+//The following attribute was not found: WorldSkyWestBlue
+//The following attribute was not found: WorldSkyTopRed
+//The following attribute was not found: WorldSkyTopGreen
+//The following attribute was not found: WorldSkyTopBlue
+//The following attribute was not found: WorldSkyBottomRed
+//The following attribute was not found: WorldSkyBottomGreen
+//The following attribute was not found: WorldSkyBottomBlue
+//The following attribute was not found: WorldWaterRed
+//The following attribute was not found: WorldWaterGreen
+//The following attribute was not found: WorldWaterBlue
 //The following attribute was not found: FileRecipient
 //The following attribute was not found: FileSender
 //The following attribute was not found: FileSenderName
 //The following attribute was not found: FileSession
 //The following attribute was not found: FileAddress
 //The following attribute was not found: FilePort
+//The following attribute was not found: ConsoleRed
+//The following attribute was not found: ConsoleGreen
+//The following attribute was not found: ConsoleBlue
 //The following attribute was not found: XferDisconnectReason
 //The following attribute was not found: XferType
 //The following attribute was not found: XferFromSession
@@ -3526,17 +3484,4 @@ namespace AW
 //The following attribute was not found: UniverseExpirationDate
 //The following attribute was not found: UniverseImmigration
 //The following attribute was not found: CitizenSecondaryPassword
-//The following attribute was not found: ChatChannel
-//The following attribute was not found: ChatCitizen
-//The following attribute was not found: WorldChatChannel1Name
-//The following attribute was not found: WorldChatChannel2Name
-//The following attribute was not found: WorldChatChannel3Name
-//The following attribute was not found: WorldChatChannel4Name
-//The following attribute was not found: WorldChatChannel5Name
-//The following attribute was not found: WorldChatChannel1Color
-//The following attribute was not found: WorldChatChannel2Color
-//The following attribute was not found: WorldChatChannel3Color
-//The following attribute was not found: WorldChatChannel4Color
-//The following attribute was not found: WorldChatChannel5Color
-//The following attribute was not found: WorldListBots
 

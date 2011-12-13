@@ -734,47 +734,56 @@ namespace AW
 
         public Result Listen(ChatChannels channels)
         {
-            throw new NotImplementedException();
+            SetInstance();
+            return (Result)NativeMethods.aw_listen((int) channels);
         }
 
         public Result SayChannel(ChatChannels channel, string message)
         {
-            throw new NotImplementedException();
+            SetInstance();
+            return (Result)NativeMethods.aw_say_channel(string.Format(message), (int)channel);
         }
 
         public Result SayChannel(ChatChannels channel, string message, object arg0)
         {
-            throw new NotImplementedException();
+            SetInstance();
+            return (Result)NativeMethods.aw_say_channel(string.Format(message, arg0), (int)channel);
         }
 
         public Result SayChannel(ChatChannels channel, string message, object arg0, object arg1)
         {
-            throw new NotImplementedException();
+            SetInstance();
+            return (Result)NativeMethods.aw_say_channel(string.Format(message, arg0, arg1), (int)channel);
         }
 
         public Result SayChannel(ChatChannels channel, string message, object arg0, object arg1, object arg2)
         {
-            throw new NotImplementedException();
+            SetInstance();
+            return (Result)NativeMethods.aw_say_channel(string.Format(message, arg0, arg1, arg2), (int)channel);
         }
 
         public Result SayChannel(ChatChannels channel, string message, params object[] args)
         {
-            throw new NotImplementedException();
+            SetInstance();
+            return (Result)NativeMethods.aw_say_channel(string.Format(message, args), (int)channel);
         }
 
         public Result ObjectAddSession(int session)
         {
-            throw new NotImplementedException();
+            SetInstance();
+            return (Result) NativeMethods.aw_object_add_session(session);
         }
 
         public Result ObjectDeleteSession(int session)
         {
-            throw new NotImplementedException();
+            SetInstance();
+            return (Result) NativeMethods.aw_object_delete_session(session);
         }
 
         public Result ServerWorldGet()
         {
-            throw new NotImplementedException();
+            SetInstance();
+            return (Result) NativeMethods.aw_server_world_get();
         }
 
         #endregion
