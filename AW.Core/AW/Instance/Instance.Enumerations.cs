@@ -32,14 +32,14 @@ namespace AW
     [Flags]
     public enum ChatChannels
     {
-        None        = 0x0000,
-        Local       = 0x0001,
-        Global      = 0x0002,
-        World1      = 0x0010,
-        World2      = 0x0020,
-        World3      = 0x0040,
-        World4      = 0x0080,
-        World5      = 0x0100,
+        None        = 0x00000000,
+        Local       = 0x00000001,
+        Global      = 0x00000002,
+        World1      = 0x00000010,
+        World2      = 0x00000020,
+        World3      = 0x00000040,
+        World4      = 0x00000080,
+        World5      = 0x00000100,
         Univerise   = 0x01000000
     }
 
