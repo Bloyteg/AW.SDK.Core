@@ -2,6 +2,17 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AW.Core", "AW.Core\AW.Core.csproj", "{EB5BD7CA-5BCC-4ABF-89C7-8ADC00013C66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AW.Async", "AW.Async\AW.Async.csproj", "{39E5CD00-9760-4FC7-BB31-D000331CDE5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AW.Async.Tests", "AW.Async.Tests\AW.Async.Tests.csproj", "{E59FD121-B365-49EC-89B3-911FE315643A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DFE7CE43-EF0C-49E7-AAD4-6DA61709BC74}"
+	ProjectSection(SolutionItems) = preProject
+		AWNET.vsmdi = AWNET.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = AWNET.vsmdi
@@ -24,6 +35,28 @@ Global
 		{EB5BD7CA-5BCC-4ABF-89C7-8ADC00013C66}.Release|Mixed Platforms.Build.0 = Release|x86
 		{EB5BD7CA-5BCC-4ABF-89C7-8ADC00013C66}.Release|Win32.ActiveCfg = Release|x86
 		{EB5BD7CA-5BCC-4ABF-89C7-8ADC00013C66}.Release|Win32.Build.0 = Release|x86
+		{39E5CD00-9760-4FC7-BB31-D000331CDE5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39E5CD00-9760-4FC7-BB31-D000331CDE5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39E5CD00-9760-4FC7-BB31-D000331CDE5B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{39E5CD00-9760-4FC7-BB31-D000331CDE5B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{39E5CD00-9760-4FC7-BB31-D000331CDE5B}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{39E5CD00-9760-4FC7-BB31-D000331CDE5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39E5CD00-9760-4FC7-BB31-D000331CDE5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39E5CD00-9760-4FC7-BB31-D000331CDE5B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{39E5CD00-9760-4FC7-BB31-D000331CDE5B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{39E5CD00-9760-4FC7-BB31-D000331CDE5B}.Release|Win32.ActiveCfg = Release|Any CPU
+		{39E5CD00-9760-4FC7-BB31-D000331CDE5B}.Release|Win32.Build.0 = Release|Any CPU
+		{E59FD121-B365-49EC-89B3-911FE315643A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E59FD121-B365-49EC-89B3-911FE315643A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E59FD121-B365-49EC-89B3-911FE315643A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E59FD121-B365-49EC-89B3-911FE315643A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E59FD121-B365-49EC-89B3-911FE315643A}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{E59FD121-B365-49EC-89B3-911FE315643A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E59FD121-B365-49EC-89B3-911FE315643A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E59FD121-B365-49EC-89B3-911FE315643A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E59FD121-B365-49EC-89B3-911FE315643A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E59FD121-B365-49EC-89B3-911FE315643A}.Release|Win32.ActiveCfg = Release|Any CPU
+		{E59FD121-B365-49EC-89B3-911FE315643A}.Release|Win32.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

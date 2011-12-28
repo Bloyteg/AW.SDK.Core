@@ -9,7 +9,7 @@ namespace AW
     /// </summary>
     [Serializable]
     [StructLayout(LayoutKind.Sequential, Pack=0)]
-    public struct Color
+    public struct Color : IEquatable<Color>
     {
         private readonly byte _alpha;
         private readonly byte _blue;
@@ -113,6 +113,40 @@ namespace AW
         {
             var hexConvert = new Utilities.HexConverter(color);
             return new Color(hexConvert.ByteData[0], hexConvert.ByteData[1], hexConvert.ByteData[2]);
+        }
+
+        public bool Equals(Color other)
+        {
+            return other._alpha == _alpha && other._blue == _blue && other._green == _green && other._red == _red;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (obj.GetType() != typeof (Color)) return false;
+            return Equals((Color) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int result = _alpha.GetHashCode();
+                result = (result*397) ^ _blue.GetHashCode();
+                result = (result*397) ^ _green.GetHashCode();
+                result = (result*397) ^ _red.GetHashCode();
+                return result;
+            }
+        }
+
+        public static bool operator ==(Color left, Color right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Color left, Color right)
+        {
+            return !left.Equals(right);
         }
     }
 }

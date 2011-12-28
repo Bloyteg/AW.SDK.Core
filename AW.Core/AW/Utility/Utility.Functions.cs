@@ -15,9 +15,9 @@ namespace AW
         /// <para>Any other value of 0 or greater will cause the SDK to wait the specified number of milliseconds represented by the value.</para>
         /// </param>
         /// <returns>Returns <c>0</c> if the wait successfully completed.</returns>
-        public static int Wait(int duration)
+        public static Result Wait(int duration)
         {
-            return NativeMethods.aw_wait(duration);
+            return (Result)NativeMethods.aw_wait(duration);
         }
 
         /// <summary>
@@ -137,35 +137,13 @@ namespace AW
         }
 
         /// <summary>
-        /// Returns the number of milliseconds that have elapsed since the first <see cref="AW.Instance" /> was initialized.
+        /// Returns the amount of time that has elapsed since the first <see cref="AW.Instance" /> was initialized.
         /// </summary>
-        /// <remarks>
-        /// The precision of this method varies based on the operating system.  The following table lists these precisions:
-        /// <list type="table">
-        /// <listheader>
-        ///     <term>Timing Precision</term>
-        ///     <description>Operating System</description>
-        /// </listheader>
-        /// <item>
-        ///     <term>1 ms</term>
-        ///     <description>Windows Vista</description>
-        /// </item>
-        /// <item>
-        ///     <term>~10 ms</term>
-        ///     <description>Windows 2000, Windows XP and Windows 2003</description>
-        /// </item>
-        /// <item>
-        ///     <term>~50 ms</term>
-        ///     <description>Windows 95, Windows 98 and Windows ME</description>
-        /// </item>
-        /// </list>
-        /// The return value is always equal to or larger than one from a previous call, with one exception. As it is only a 32-bit number it will wrap around to zero after 49.7 days. This has the potential to cause problems in bots that run for extended periods. 
-        /// </remarks>
-        public static int Tick
+        public static TimeSpan Tick
         {
             get
             {
-                return NativeMethods.aw_tick();
+                return TimeSpan.FromMilliseconds(NativeMethods.aw_tick());
             }
         }
         #endregion
