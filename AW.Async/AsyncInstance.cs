@@ -14,17 +14,34 @@ namespace AW.Async
             public Action WorkUnit { get; set; }
         }
 
-        private static readonly ConcurrentQueue<CallbackWorkItem> WorldCallbackWorkItemQueue = new ConcurrentQueue<CallbackWorkItem>();
+        private static readonly Queue<CallbackWorkItem> WorldCallbackWorkItemQueue = new Queue<CallbackWorkItem>();
         private static readonly Queue<CallbackWorkItem> UniverseCallbackWorkItemQueue = new Queue<CallbackWorkItem>();
-        private static readonly ConcurrentDictionary<IInstance, HashSet<string>> InstanceCallbacks = new ConcurrentDictionary<IInstance, HashSet<string>>();
+        private static readonly Dictionary<IInstance, HashSet<string>> InstanceCallbacks = new Dictionary<IInstance, HashSet<string>>();
 
         public static Task<Result> LoginAsync(this IInstance instance)
         {
-            AddCallbackHandlerIfNeeded(instance, "login");
-            return HandleUniverseCallbackWorkItem(() => instance.Login());
+            AddUniverseCallbackHandlerIfNeeded(instance, handler => instance.CallbackLogin += handler, "login");
+            return CreateUniverseCallbackTask(() => instance.Login());
         }
 
-        private static Task<Result> HandleUniverseCallbackWorkItem(Action workUnit)
+        public static Task<Result> EnterAsync(this IInstance instance, string worldName)
+        {
+            AddWorldCallbackHandlerIfNeeded(instance, handler => instance.CallbackEnter += handler, "enter");
+            return CreateWorldCallbackTask(() => instance.Enter(worldName));
+        }
+
+        #region Helper methods
+        private static Task<Result> CreateUniverseCallbackTask(Action workUnit)
+        {
+            return CreateCallbackTask(workUnit, UniverseCallbackWorkItemQueue);
+        }
+
+        private static Task<Result> CreateWorldCallbackTask(Action workUnit)
+        {
+            return CreateCallbackTask(workUnit, WorldCallbackWorkItemQueue);
+        }
+
+        private static Task<Result> CreateCallbackTask(Action workUnit, Queue<CallbackWorkItem> callbackWorkItemQueue)
         {
             var taskCompletionSource = new TaskCompletionSource<Result>();
 
@@ -34,9 +51,9 @@ namespace AW.Async
                                            WorkUnit = workUnit
                                        };
 
-            UniverseCallbackWorkItemQueue.Enqueue(callbackWorkItem);
+            callbackWorkItemQueue.Enqueue(callbackWorkItem);
 
-            if (UniverseCallbackWorkItemQueue.Count <= 1)
+            if (callbackWorkItemQueue.Count <= 1)
             {
                 try
                 {
@@ -52,7 +69,17 @@ namespace AW.Async
             return taskCompletionSource.Task;
         }
 
-        private static void AddCallbackHandlerIfNeeded(IInstance instance, string callback)
+        private static void AddUniverseCallbackHandlerIfNeeded(IInstance instance, Action<InstanceCallbackHandler> addHandlerAction, string callback)
+        {
+            AddCallbackHandlerIfNeeded(instance, callback, addHandlerAction, HandleUniverseCallback);
+        }
+
+        private static void AddWorldCallbackHandlerIfNeeded(IInstance instance, Action<InstanceCallbackHandler> addHandlerAction, string callback)
+        {
+            AddCallbackHandlerIfNeeded(instance, callback, addHandlerAction, HandleWorldCallback);
+        }
+
+        private static void AddCallbackHandlerIfNeeded(IInstance instance, string callback, Action<InstanceCallbackHandler> addHandlerAction, InstanceCallbackHandler handler)
         {
             if(!InstanceCallbacks.ContainsKey(instance))
             {
@@ -65,18 +92,32 @@ namespace AW.Async
             }
 
             InstanceCallbacks[instance].Add(callback);
-            instance.CallbackLogin += HandleUniverseCallback;
+            addHandlerAction(handler);
         }
+
+        #endregion
+
+        #region Callback handlers
 
         private static void HandleUniverseCallback(IInstance sender, Result result)
         {
-            CallbackWorkItem callbackWorkItem = UniverseCallbackWorkItemQueue.Dequeue();
+            HandleCallbackWorkItem(UniverseCallbackWorkItemQueue, result);
+        }
+
+        private static void HandleWorldCallback(IInstance sender, Result result)
+        {
+            HandleCallbackWorkItem(WorldCallbackWorkItemQueue, result);
+        }
+
+        private static void HandleCallbackWorkItem(Queue<CallbackWorkItem> callbackWorkItemQueue, Result result)
+        {
+            CallbackWorkItem callbackWorkItem = callbackWorkItemQueue.Dequeue();
 
             callbackWorkItem.TaskCompletionSource.SetResult(result);
 
-            if (UniverseCallbackWorkItemQueue.Count != 0)
+            if (callbackWorkItemQueue.Count != 0)
             {
-                var next = UniverseCallbackWorkItemQueue.Peek();
+                var next = callbackWorkItemQueue.Peek();
 
                 try
                 {
@@ -84,15 +125,12 @@ namespace AW.Async
                 }
                 catch (Exception exception)
                 {
-                    UniverseCallbackWorkItemQueue.Dequeue();
+                    callbackWorkItemQueue.Dequeue();
                     next.TaskCompletionSource.SetException(exception);
                 }
             }
         }
 
-        private static void HandleWorldCallback(IInstance sender, Result result)
-        {
-            
-        }
+        #endregion
     }
 }
