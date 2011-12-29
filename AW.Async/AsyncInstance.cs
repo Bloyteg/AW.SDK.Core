@@ -12,24 +12,24 @@ namespace AW.Async
 
         public static Task<Result> LoginAsync(this IInstance instance)
         {
-            AddUniverseCallbackHandlerIfNeeded(instance, handler => instance.CallbackLogin += handler, Callbacks.Login);
-            return CreateUniverseCallbackTask(instance, () => instance.Login());
+            instance.AddUniverseCallbackHandlerIfNeeded(Callbacks.Login, handler => instance.CallbackLogin += handler);
+            return instance.CreateUniverseCallbackTask(() => instance.Login());
         }
 
         public static Task<Result> EnterAsync(this IInstance instance, string worldName)
         {
-            AddWorldCallbackHandlerIfNeeded(instance, handler => instance.CallbackEnter += handler, Callbacks.Enter);
-            return CreateWorldCallbackTask(instance, () => instance.Enter(worldName));
+            instance.AddWorldCallbackHandlerIfNeeded(handler => instance.CallbackEnter += handler, Callbacks.Enter);
+            return instance.CreateWorldCallbackTask(() => instance.Enter(worldName));
         }
 
         #region Helper methods
 
-        private static Task<Result> CreateUniverseCallbackTask(IInstance instance, Action workUnit)
+        private static Task<Result> CreateUniverseCallbackTask(this IInstance instance, Action workUnit)
         {
             return CreateCallbackTask(workUnit, UniverseCallbackWorkItemQueue[instance]);
         }
 
-        private static Task<Result> CreateWorldCallbackTask(IInstance instance, Action workUnit)
+        private static Task<Result> CreateWorldCallbackTask(this IInstance instance, Action workUnit)
         {
             return CreateCallbackTask(workUnit, WorldCallbackWorkItemQueue[instance]);
         }
@@ -62,7 +62,7 @@ namespace AW.Async
             return taskCompletionSource.Task;
         }
 
-        private static void AddUniverseCallbackHandlerIfNeeded(IInstance instance, Action<InstanceCallbackHandler> addHandlerAction, Callbacks callback)
+        private static void AddUniverseCallbackHandlerIfNeeded(this IInstance instance, Callbacks callback, Action<InstanceCallbackHandler> addHandlerAction)
         {
             if(!UniverseCallbackWorkItemQueue.ContainsKey(instance))
             {
@@ -72,7 +72,7 @@ namespace AW.Async
             AddCallbackHandlerIfNeeded(instance, callback, addHandlerAction, HandleUniverseCallback);
         }
 
-        private static void AddWorldCallbackHandlerIfNeeded(IInstance instance, Action<InstanceCallbackHandler> addHandlerAction, Callbacks callback)
+        private static void AddWorldCallbackHandlerIfNeeded(this IInstance instance, Action<InstanceCallbackHandler> addHandlerAction, Callbacks callback)
         {
             if (!WorldCallbackWorkItemQueue.ContainsKey(instance))
             {
