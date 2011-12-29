@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncInstance.cs" />
+    <Compile Include="Callbacks.cs" />
+    <Compile Include="CallbackWorkItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
