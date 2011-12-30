@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright ©2007 - 2011 Joshua R. Rodgers")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("0.3.11.100")]
+[assembly: AssemblyVersion("0.3.12.100")]
 
 //CLS compliance
 [assembly: CLSCompliant(true)]
