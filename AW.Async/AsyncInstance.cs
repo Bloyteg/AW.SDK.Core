@@ -6,36 +6,29 @@ namespace AW.Async
 {
     public static class AsyncInstance
     {
-        private static readonly Dictionary<IInstance, Queue<CallbackWorkItem>> WorldCallbackWorkItemQueue = new Dictionary<IInstance, Queue<CallbackWorkItem>>();
-        private static readonly Dictionary<IInstance, Queue<CallbackWorkItem>> UniverseCallbackWorkItemQueue = new Dictionary<IInstance, Queue<CallbackWorkItem>>();
-        private static readonly Dictionary<IInstance, HashSet<Callbacks>> InstanceCallbacks = new Dictionary<IInstance, HashSet<Callbacks>>();
+        private static readonly Dictionary<IInstance, Dictionary<Callbacks, Queue<CallbackWorkItem>>> CallbackWorkItemQueue = new Dictionary<IInstance, Dictionary<Callbacks, Queue<CallbackWorkItem>>>();
 
         public static Task<Result> LoginAsync(this IInstance instance)
         {
-            instance.AddUniverseCallbackHandlerIfNeeded(Callbacks.Login, handler => instance.CallbackLogin += handler);
-            return instance.CreateUniverseCallbackTask(() => instance.Login());
+            return instance.CreateCallbackTask(Callbacks.Login,
+                              () => instance.Login(),
+                              handler => instance.CallbackLogin += handler);
         }
 
         public static Task<Result> EnterAsync(this IInstance instance, string worldName)
         {
-            instance.AddWorldCallbackHandlerIfNeeded(handler => instance.CallbackEnter += handler, Callbacks.Enter);
-            return instance.CreateWorldCallbackTask(() => instance.Enter(worldName));
+            return instance.CreateCallbackTask(Callbacks.Enter,
+                              () => instance.Enter(worldName),
+                              handler => instance.CallbackEnter += handler);
         }
 
         #region Helper methods
 
-        private static Task<Result> CreateUniverseCallbackTask(this IInstance instance, Action workUnit)
+        private static Task<Result> CreateCallbackTask(this IInstance instance, Callbacks callback, Action workUnit, Action<InstanceCallbackHandler> handler)
         {
-            return CreateCallbackTask(workUnit, UniverseCallbackWorkItemQueue[instance]);
-        }
+            instance.AddCallbackHandlerIfNeeded(callback, handler);
 
-        private static Task<Result> CreateWorldCallbackTask(this IInstance instance, Action workUnit)
-        {
-            return CreateCallbackTask(workUnit, WorldCallbackWorkItemQueue[instance]);
-        }
-
-        private static Task<Result> CreateCallbackTask(Action workUnit, Queue<CallbackWorkItem> callbackWorkItemQueue)
-        {
+            var callbackWorkItemQueue = CallbackWorkItemQueue[instance][callback];
             var taskCompletionSource = new TaskCompletionSource<Result>();
 
             var callbackWorkItem = new CallbackWorkItem
@@ -62,87 +55,50 @@ namespace AW.Async
             return taskCompletionSource.Task;
         }
 
-        private static void AddUniverseCallbackHandlerIfNeeded(this IInstance instance, Callbacks callback, Action<InstanceCallbackHandler> addHandlerAction)
+        private static void AddCallbackHandlerIfNeeded(this IInstance instance, Callbacks callback, Action<InstanceCallbackHandler> addHandlerAction)
         {
-            if(!UniverseCallbackWorkItemQueue.ContainsKey(instance))
+            if(!CallbackWorkItemQueue.ContainsKey(instance))
             {
-                UniverseCallbackWorkItemQueue[instance] = new Queue<CallbackWorkItem>();
-            }
-
-            AddCallbackHandlerIfNeeded(instance, callback, addHandlerAction, HandleUniverseCallback);
-        }
-
-        private static void AddWorldCallbackHandlerIfNeeded(this IInstance instance, Action<InstanceCallbackHandler> addHandlerAction, Callbacks callback)
-        {
-            if (!WorldCallbackWorkItemQueue.ContainsKey(instance))
-            {
-                WorldCallbackWorkItemQueue[instance] = new Queue<CallbackWorkItem>();
-            }
-
-            AddCallbackHandlerIfNeeded(instance, callback, addHandlerAction, HandleWorldCallback);
-        }
-
-        private static void AddCallbackHandlerIfNeeded(IInstance instance, Callbacks callback, Action<InstanceCallbackHandler> addHandlerAction, InstanceCallbackHandler handler)
-        {
-            if(!InstanceCallbacks.ContainsKey(instance))
-            {
-                InstanceCallbacks[instance] = new HashSet<Callbacks>();
+                CallbackWorkItemQueue[instance] = new Dictionary<Callbacks, Queue<CallbackWorkItem>>();
                 
                 instance.Disposing += HandleInstanceDisposing;
             }
 
-            if (InstanceCallbacks[instance].Contains(callback))
+            if (CallbackWorkItemQueue[instance].ContainsKey(callback))
             {
                 return;
             }
 
-            InstanceCallbacks[instance].Add(callback);
-            addHandlerAction(handler);
+            CallbackWorkItemQueue[instance].Add(callback, new Queue<CallbackWorkItem>());
+
+            addHandlerAction((sender, result) =>
+                                 {
+                                     var callbackWorkItemQueue = CallbackWorkItemQueue[sender][callback];
+                                     CallbackWorkItem callbackWorkItem = callbackWorkItemQueue.Dequeue();
+
+                                     callbackWorkItem.TaskCompletionSource.SetResult(result);
+
+                                     if (callbackWorkItemQueue.Count != 0)
+                                     {
+                                         var next = callbackWorkItemQueue.Peek();
+
+                                         try
+                                         {
+                                             next.WorkUnit();
+                                         }
+                                         catch (Exception exception)
+                                         {
+                                             callbackWorkItemQueue.Dequeue();
+                                             next.TaskCompletionSource.SetException(exception);
+                                         }
+                                     }
+                                 });
         }
 
         private static void HandleInstanceDisposing(IInstance sender)
         {
-            UniverseCallbackWorkItemQueue.Remove(sender);
-            WorldCallbackWorkItemQueue.Remove(sender);
-            InstanceCallbacks.Remove(sender);
-
+            CallbackWorkItemQueue.Remove(sender);
             sender.Disposing -= HandleInstanceDisposing;
-        }
-
-        #endregion
-
-        #region Callback handlers
-
-        private static void HandleUniverseCallback(IInstance sender, Result result)
-        {
-            HandleCallbackWorkItem(UniverseCallbackWorkItemQueue[sender], result);
-        }
-
-        private static void HandleWorldCallback(IInstance sender, Result result)
-        {
-            HandleCallbackWorkItem(WorldCallbackWorkItemQueue[sender], result);
-        }
-
-        private static void HandleCallbackWorkItem(Queue<CallbackWorkItem> callbackWorkItemQueue, Result result)
-        {
-            CallbackWorkItem callbackWorkItem = callbackWorkItemQueue.Dequeue();
-
-            callbackWorkItem.TaskCompletionSource.SetResult(result);
-
-            if (callbackWorkItemQueue.Count != 0)
-            {
-                var next = callbackWorkItemQueue.Peek();
-
-                try
-                {
-                    next.WorkUnit();
-                }
-                catch (Exception exception)
-                {
-                    callbackWorkItemQueue.Dequeue();
-                    next.TaskCompletionSource.SetException(exception);
-                }
-            }
         }
 
         #endregion
