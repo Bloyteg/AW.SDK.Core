@@ -49,6 +49,26 @@ namespace AW.Async.Tests
         }
 
         [TestMethod]
+        public void TestLoginWithImmediateFailure()
+        {
+            var instanceMock = new Mock<IInstance>();
+            SetupDisposable(instanceMock);
+
+            instanceMock.Setup(instance => instance.Login())
+                .Returns(Result.NotInitialized)
+                .Verifiable();
+
+            using (var testInstance = instanceMock.Object)
+            {
+                var task = testInstance.LoginAsync();
+
+                task.Wait();
+                instanceMock.Verify();
+                Assert.AreEqual(Result.NotInitialized, task.Result);
+            }
+        }
+
+        [TestMethod]
         public void TestEnterWithSuccess()
         {
             var instanceMock = new Mock<IInstance>();
@@ -87,6 +107,70 @@ namespace AW.Async.Tests
 
                 instanceMock.Verify();
                 Assert.AreEqual(Result.NoSuchWorld, task.Result);
+            }
+        }
+
+        [TestMethod]
+        public void TestAddressWithSuccess()
+        {
+            var instanceMock = new Mock<IInstance>();
+            SetupDisposable(instanceMock);
+
+            instanceMock.Setup(instance => instance.Address(It.IsAny<int>()))
+                .Returns(Result.Success)
+                .Raises(instance => instance.CallbackAddress += null, instanceMock.Object, Result.Success)
+                .Verifiable();
+
+            using (var testInstance = instanceMock.Object)
+            {
+                var task = testInstance.AddressAsync(5555);
+
+                task.Wait();
+                instanceMock.Verify();
+                Assert.AreEqual(Result.Success, task.Result);
+            }
+        }
+
+        [TestMethod]
+        public void TestAddressWithFailure()
+        {
+            var instanceMock = new Mock<IInstance>();
+            SetupDisposable(instanceMock);
+
+            instanceMock.Setup(instance => instance.Address(It.IsAny<int>()))
+                .Returns(Result.Success)
+                .Raises(instance => instance.CallbackAddress += null, instanceMock.Object, Result.NoSuchSession)
+                .Verifiable();
+
+            using (var testInstance = instanceMock.Object)
+            {
+                var task = testInstance.AddressAsync(5555);
+
+                task.Wait();
+                instanceMock.Verify();
+                Assert.AreEqual(Result.NoSuchSession, task.Result);
+            }
+        }
+
+
+        [TestMethod]
+        public void TestAvatarLocationWithSuccess()
+        {
+            var instanceMock = new Mock<IInstance>();
+            SetupDisposable(instanceMock);
+
+            instanceMock.Setup(instance => instance.AvatarLocation(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>()))
+                .Returns(Result.Success)
+                .Raises(instance => instance.CallbackAvatarLocation += null, instanceMock.Object, Result.Success)
+                .Verifiable();
+
+            using (var testInstance = instanceMock.Object)
+            {
+                var task = testInstance.AvatarLocationAsync(session: 5555);
+
+                task.Wait();
+                instanceMock.Verify();
+                Assert.AreEqual(Result.Success, task.Result);
             }
         }
 

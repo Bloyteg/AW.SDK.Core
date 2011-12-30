@@ -7,6 +7,6 @@ namespace AW.Async
     {
         public TaskCompletionSource<Result> TaskCompletionSource { get; set; }
 
-        public Action WorkUnit { get; set; }
+        public Func<Result> WorkUnit { get; set; }
     }
 }

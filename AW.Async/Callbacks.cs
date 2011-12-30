@@ -2,7 +2,9 @@
 {
     enum Callbacks
     {
+        Address,
+        Enter,
         Login,
-        Enter
+        AvatarLocation
     }
 }

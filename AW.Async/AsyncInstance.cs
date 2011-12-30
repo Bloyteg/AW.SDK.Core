@@ -8,11 +8,18 @@ namespace AW.Async
     {
         private static readonly Dictionary<IInstance, Dictionary<Callbacks, Queue<CallbackWorkItem>>> CallbackWorkItemQueue = new Dictionary<IInstance, Dictionary<Callbacks, Queue<CallbackWorkItem>>>();
 
-        public static Task<Result> LoginAsync(this IInstance instance)
+        public static Task<Result> AddressAsync(this IInstance instance, int session)
         {
-            return instance.CreateCallbackTask(Callbacks.Login,
-                                               () => instance.Login(),
-                                               handler => instance.CallbackLogin += handler);
+            return instance.CreateCallbackTask(Callbacks.Address,
+                                               () => instance.Address(session),
+                                               handler => instance.CallbackAddress += handler);
+        }
+
+        public static Task<Result> AvatarLocationAsync(this IInstance instance, int citizenNumber = 0, int session = 0, string name = "")
+        {
+            return instance.CreateCallbackTask(Callbacks.AvatarLocation,
+                                               () => instance.AvatarLocation(citizenNumber, session, name),
+                                               handler => instance.CallbackAvatarLocation += handler);
         }
 
         public static Task<Result> EnterAsync(this IInstance instance, string worldName)
@@ -22,9 +29,16 @@ namespace AW.Async
                                                handler => instance.CallbackEnter += handler);
         }
 
+        public static Task<Result> LoginAsync(this IInstance instance)
+        {
+            return instance.CreateCallbackTask(Callbacks.Login,
+                                               instance.Login,
+                                               handler => instance.CallbackLogin += handler);
+        }
+
         #region Helper methods
 
-        private static Task<Result> CreateCallbackTask(this IInstance instance, Callbacks callback, Action workUnit, Action<InstanceCallbackHandler> handler)
+        private static Task<Result> CreateCallbackTask(this IInstance instance, Callbacks callback, Func<Result> workUnit, Action<InstanceCallbackHandler> handler)
         {
             instance.AddCallbackHandlerIfNeeded(callback, handler);
 
@@ -43,7 +57,12 @@ namespace AW.Async
             {
                 try
                 {
-                    callbackWorkItem.WorkUnit();
+                    var result = callbackWorkItem.WorkUnit();
+
+                    if(result != Result.Success)
+                    {
+                        taskCompletionSource.SetResult(result);
+                    }
                 }
                 catch(Exception exception)
                 {
@@ -89,7 +108,12 @@ namespace AW.Async
 
                                try
                                {
-                                   next.WorkUnit();
+                                   var nextResult = next.WorkUnit();
+
+                                   if (nextResult != Result.Success)
+                                   {
+                                       next.TaskCompletionSource.SetResult(nextResult);
+                                   }
                                }
                                catch (Exception exception)
                                {
