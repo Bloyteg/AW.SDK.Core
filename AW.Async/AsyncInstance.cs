@@ -11,15 +11,15 @@ namespace AW.Async
         public static Task<Result> LoginAsync(this IInstance instance)
         {
             return instance.CreateCallbackTask(Callbacks.Login,
-                              () => instance.Login(),
-                              handler => instance.CallbackLogin += handler);
+                                               () => instance.Login(),
+                                               handler => instance.CallbackLogin += handler);
         }
 
         public static Task<Result> EnterAsync(this IInstance instance, string worldName)
         {
             return instance.CreateCallbackTask(Callbacks.Enter,
-                              () => instance.Enter(worldName),
-                              handler => instance.CallbackEnter += handler);
+                                               () => instance.Enter(worldName),
+                                               handler => instance.CallbackEnter += handler);
         }
 
         #region Helper methods
@@ -71,28 +71,33 @@ namespace AW.Async
 
             CallbackWorkItemQueue[instance].Add(callback, new Queue<CallbackWorkItem>());
 
-            addHandlerAction((sender, result) =>
-                                 {
-                                     var callbackWorkItemQueue = CallbackWorkItemQueue[sender][callback];
-                                     CallbackWorkItem callbackWorkItem = callbackWorkItemQueue.Dequeue();
+            addHandlerAction(InstanceCallbackHandler(callback));
+        }
 
-                                     callbackWorkItem.TaskCompletionSource.SetResult(result);
+        private static InstanceCallbackHandler InstanceCallbackHandler(Callbacks callback)
+        {
+            return (sender, result) =>
+                       {
+                           var callbackWorkItemQueue = CallbackWorkItemQueue[sender][callback];
+                           CallbackWorkItem callbackWorkItem = callbackWorkItemQueue.Dequeue();
 
-                                     if (callbackWorkItemQueue.Count != 0)
-                                     {
-                                         var next = callbackWorkItemQueue.Peek();
+                           callbackWorkItem.TaskCompletionSource.SetResult(result);
 
-                                         try
-                                         {
-                                             next.WorkUnit();
-                                         }
-                                         catch (Exception exception)
-                                         {
-                                             callbackWorkItemQueue.Dequeue();
-                                             next.TaskCompletionSource.SetException(exception);
-                                         }
-                                     }
-                                 });
+                           if (callbackWorkItemQueue.Count != 0)
+                           {
+                               var next = callbackWorkItemQueue.Peek();
+
+                               try
+                               {
+                                   next.WorkUnit();
+                               }
+                               catch (Exception exception)
+                               {
+                                   callbackWorkItemQueue.Dequeue();
+                                   next.TaskCompletionSource.SetException(exception);
+                               }
+                           }
+                       };
         }
 
         private static void HandleInstanceDisposing(IInstance sender)
