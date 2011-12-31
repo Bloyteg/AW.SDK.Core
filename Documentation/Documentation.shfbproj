@@ -31,6 +31,10 @@
       <DocumentationSource sourceFile="..\AW.Async\bin\Release\AW.Async.XML" />
       <DocumentationSource sourceFile="..\AW.Async\bin\Release\AW.Async.dll" />
     </DocumentationSources>
+    <NamespaceSummaries>
+      <NamespaceSummaryItem name="AW" isDocumented="True" xmlns="">Includes all of the core functionality to create SDK applications for ActiveWorlds.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="AW.Async" isDocumented="True" xmlns="">Includes all of the functionality to create SDK applications that use the Task Parallel Library to manage asynchronous operations.</NamespaceSummaryItem></NamespaceSummaries>
+    <MissingTags>AutoDocumentCtors, AutoDocumentDispose</MissingTags>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in
        order for Visual Studio to perform the build.  The others are optional

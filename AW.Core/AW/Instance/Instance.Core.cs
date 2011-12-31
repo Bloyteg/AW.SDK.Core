@@ -11,7 +11,7 @@ namespace AW
     /// Each instance manages its own events, callbacks, and state.
     /// </summary>
     /// <remarks>
-    /// This class <b>DOES NOT</b> does not represent the SDK as a whole, but rather a small unit of the SDK.
+    /// This class <b>DOES NOT</b> represent the SDK as a whole, but rather a small unit of the SDK.
     /// This class should not be mistaken as the entire SDK by novice programmers and programmers moving over from Visual Basic 6.
     /// For more information on how multiple instances work, please refer to the "Multiple Instances" topic under the Concepts section.
     /// </remarks>

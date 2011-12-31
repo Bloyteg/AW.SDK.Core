@@ -5,6 +5,15 @@
         Address,
         Enter,
         Login,
-        AvatarLocation
+        AvatarLocation,
+        AttributesResetResult,
+        BotgramResult,
+        BotmenuResult,
+        CellResult,
+        Cav,
+        DeleteAllObjectsResult,
+        HudResult,
+        ObjectQuery,
+        Query
     }
 }

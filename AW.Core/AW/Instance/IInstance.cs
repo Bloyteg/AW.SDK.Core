@@ -3,10 +3,22 @@ using System;
 
 namespace AW
 {
+    /// <summary>
+    /// Delegate used for handling SDK events.
+    /// </summary>
+    /// <param name="sender"></param>
     public delegate void InstanceEventHandler(IInstance sender);
 
+    /// <summary>
+    /// Delegate used for handling SDK callbacks. 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="result"></param>
     public delegate void InstanceCallbackHandler(IInstance sender, Result result);
 
+    /// <summary>
+    /// Exposes SDK instance operations for performing bot and world server administration.
+    /// </summary>
     public partial interface IInstance : IDisposable
     {
         /// <summary>
@@ -28,6 +40,9 @@ namespace AW
         /// </remarks>
         bool IsDisposed { get; }
 
+        /// <summary>
+        /// Container of attribute properties available to this instance.  Used to set and get the various attributes related to the different SDK operations.
+        /// </summary>
         IAttributeProvider Attributes { get; }
 
         /// <summary>
@@ -198,8 +213,8 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be set.</param>
         /// <param name="value">The value of the attribute being set.</param>
-        /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceAttributeException">Thrown when the instance failed to set the attribute.</exception>
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         [Obsolete("This method is now obsolete, use the IInstance.Attributes property instead.")]
         void SetString(Attributes attribute, string value);
@@ -209,7 +224,7 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be accessed.</param>
         /// <returns>The value of the attribute being accessed.</returns>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         [Obsolete("This method is now obsolete, use the AW.IInstance.Attributes property instead.")]
         string GetString(Attributes attribute);
@@ -219,8 +234,8 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be set.</param>
         /// <param name="value">The value of the attribute being set.</param>
-        /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceAttributeException">Thrown when the instance failed to set the attribute.</exception>
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         [Obsolete("This method is now obsolete, use the AW.IInstance.Attributes property instead.")]
         void SetInt(Attributes attribute, int value);
@@ -230,7 +245,7 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be accessed.</param>
         /// <returns>The value of the attribute being accessed.</returns>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         [Obsolete("This method is now obsolete, use the AW.IInstance.Attributes property instead.")]
         int GetInt(Attributes attribute);
@@ -240,8 +255,8 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be set.</param>
         /// <param name="value">The value of the attribute being set.</param>
-        /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceAttributeException">Thrown when the instance failed to set the attribute.</exception>
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         [Obsolete("This method is now obsolete, use the AW.IInstance.Attributes property instead.")]
         void SetBool(Attributes attribute, bool value);
@@ -251,7 +266,7 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be accessed.</param>
         /// <returns>The value of the attribute being accessed.</returns>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         [Obsolete("This method is now obsolete, use the AW.IInstance.Attributes property instead.")]
         bool GetBool(Attributes attribute);
@@ -261,8 +276,8 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be set.</param>
         /// <param name="value">The value of the attribute being set.</param>
-        /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceAttributeException">Thrown when the instance failed to set the attribute.</exception>
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         [Obsolete("This method is now obsolete, use the IInstance.Attributes property instead.")]
         void SetFloat(Attributes attribute, float value);
@@ -272,7 +287,7 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be accessed.</param>
         /// <returns>The value of the attribute being accessed.</returns>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         [Obsolete("This method is now obsolete, use the IInstance.Attributes property instead.")]
         float GetFloat(Attributes attribute);
@@ -282,8 +297,8 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be set.</param>
         /// <param name="value">The value of the attribute being set.</param>
-        /// <exception cref="AW.InstanceException">Thrown when the instance failed to set the attribute.</exception>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceAttributeException">Thrown when the instance failed to set the attribute.</exception>
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         [Obsolete("This method is now obsolete, use the IInstance.Attributes property instead.")]
         void SetData(Attributes attribute, byte[] value);
@@ -293,7 +308,7 @@ namespace AW
         /// </summary>
         /// <param name="attribute">The attribute to be accessed.</param>
         /// <returns>The value of the attribute being accessed.</returns>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         [Obsolete("This method is now obsolete, use the IInstance.Attributes property instead.")]
         byte[] GetData(Attributes attribute);
@@ -302,7 +317,7 @@ namespace AW
         /// Takes a string value representing an XML Custom Avatar defition and sets the <see cref="AW.Attributes.CavDefinition" /> attribute accordingly.
         /// </summary>
         /// <param name="cavContents">String representation of the Custom Avatar definition's XML.</param>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         void SetCavData(string cavContents);
 
@@ -310,7 +325,7 @@ namespace AW
         /// Reads the <see cref="AW.Attributes.CavDefinition" /> attribute and returns the XML contained as a string.
         /// </summary>
         /// <returns>String representation of the Custom Avatar definition's XML.</returns>
-        /// <exception cref="AW.InstanceException">Thrown when the instance cannot be set properly. 
+        /// <exception cref="AW.InstanceSetFailedException">Thrown when the instance cannot be set properly. 
         /// (i.e. the instance has been destroyed or is not valid).</exception>
         string GetCavData();
     }
