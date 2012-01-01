@@ -94,6 +94,7 @@ namespace AW.Async
         private static void HandleInstanceDisposing(IInstance sender)
         {
             CallbackWorkItemQueue.Remove(sender);
+            CallbackObjectCallbackReferenceCount.Remove(sender);
             sender.Disposing -= HandleInstanceDisposing;
         }
     }

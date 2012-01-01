@@ -14,6 +14,13 @@
         DeleteAllObjectsResult,
         HudResult,
         ObjectQuery,
-        Query
+        Query,
+        ReloadRegistry,
+        TerrainDeleteAllResult,
+        TerrainNextResult,
+        TerrainSetResult,
+        TerrainLoadNodeResult,
+        UserList,
+        WorldList
     }
 }

@@ -21,6 +21,7 @@ namespace AW
 			event InstanceCallbackHandler CallbackCitizenAttributes;
 			event InstanceCallbackHandler CallbackCitizenResult;
 			event InstanceCallbackHandler CallbackQuery;
+			event InstanceCallbackHandler CallbackWorldList;
 			event InstanceCallbackHandler CallbackUniverseEjection;
 			event InstanceCallbackHandler CallbackUniverseEjectionResult;
 			event InstanceCallbackHandler CallbackAddress;
@@ -448,6 +449,56 @@ namespace AW
 						SetInstance();
 						NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_QUERY, null);
 						_callbackHandlers.Remove(AW_CALLBACK_QUERY);
+					}
+				}
+			}
+		}
+		#endregion
+		
+		#region CallbackWorldList
+	
+		const string AW_CALLBACK_WORLD_LIST = "AW_CALLBACK_WORLD_LIST";
+	
+		//Native callback handler.
+		private void OnCallbackWorldList(int error)
+		{
+			if(_callbackHandlers.ContainsKey(AW_CALLBACK_WORLD_LIST) && _callbackHandlers[AW_CALLBACK_WORLD_LIST].Managed != null)
+			{
+				_callbackHandlers[AW_CALLBACK_WORLD_LIST].Managed(this, (Result)error);
+			}
+		}
+
+		//Managed callback handler.
+		/// <summary>
+		/// Handles AW_CALLBACK_WORLD_LIST from the C SDK.
+		/// </summary>
+		public event InstanceCallbackHandler CallbackWorldList
+		{
+			//Handles hooking a new delegate to the callback.
+			add
+			{
+				if(!_callbackHandlers.ContainsKey(AW_CALLBACK_WORLD_LIST))
+				{
+					SetInstance();
+					_callbackHandlers.Add(AW_CALLBACK_WORLD_LIST, new CallbackDelegates { Native = OnCallbackWorldList });
+					NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_LIST, _callbackHandlers[AW_CALLBACK_WORLD_LIST].Native);			
+				}
+					
+				_callbackHandlers[AW_CALLBACK_WORLD_LIST].Managed += value;
+			}
+
+			//Handles removing a delegate from the callback.
+			remove
+			{
+				if(_callbackHandlers.ContainsKey(AW_CALLBACK_WORLD_LIST))
+				{
+					_callbackHandlers[AW_CALLBACK_WORLD_LIST].Managed -= value;
+				
+					if(_callbackHandlers[AW_CALLBACK_WORLD_LIST].Managed == null)
+					{
+						SetInstance();
+						NativeMethods.aw_instance_callback_set(AW_CALLBACK.AW_CALLBACK_WORLD_LIST, null);
+						_callbackHandlers.Remove(AW_CALLBACK_WORLD_LIST);
 					}
 				}
 			}

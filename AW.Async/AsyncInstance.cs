@@ -10,13 +10,16 @@ namespace AW.Async
     public static partial class AsyncInstance
     {
         private static readonly Dictionary<IInstance, Dictionary<Callbacks, Queue<CallbackWorkItem>>> CallbackWorkItemQueue = new Dictionary<IInstance, Dictionary<Callbacks, Queue<CallbackWorkItem>>>();
+        
+        private static readonly Dictionary<IInstance, long> CallbackObjectCallbackReferenceCount = new Dictionary<IInstance, long>();
 
         /// <summary>
         /// Asynchronously retrieves the IP address for the given session.
         /// </summary>
         /// <param name="instance"></param>
         /// <param name="session">The session to retrieve the IP address of.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// </returns>
         public static Task<Result> AddressAsync(this IInstance instance, int session)
         {
             return instance.CreateCallbackTask(Callbacks.Address,
@@ -113,6 +116,55 @@ namespace AW.Async
             return instance.CreateCallbackTask(Callbacks.Query,
                                                () => instance.Query5x5(xSector, zSector, sequence),
                                                handler => instance.CallbackQuery += handler);
+        }
+
+        public static Task<Result> WorldReloadRegistryAsync(this IInstance instance)
+        {
+            return instance.CreateCallbackTask(Callbacks.ReloadRegistry,
+                                               instance.WorldReloadRegistry,
+                                               handler => instance.CallbackReloadRegistry += handler);
+        }
+
+        public static Task<Result> TerrainDeleteAllAsync(this IInstance instance)
+        {
+            return instance.CreateCallbackTask(Callbacks.TerrainDeleteAllResult,
+                                               instance.TerrainDeleteAll,
+                                               handler => instance.CallbackTerrainDeleteAllResult += handler);
+        }
+
+        public static Task<Result> TerrainNextAsync(this IInstance instance)
+        {
+            return instance.CreateCallbackTask(Callbacks.TerrainNextResult,
+                                               instance.TerrainNext,
+                                               handler => instance.CallbackTerrainNextResult += handler);
+        }
+
+        public static Task<Result> TerrainSetAsync(this IInstance instance, int x, int z, int texture, int[] heights)
+        {
+            return instance.CreateCallbackTask(Callbacks.TerrainSetResult,
+                                               () => instance.TerrainSet(x, z, texture, heights),
+                                               handler => instance.CallbackTerrainSetResult += handler);
+        }
+
+        public static Task<Result> TerrainLoadNodeAsync(this IInstance instance)
+        {
+            return instance.CreateCallbackTask(Callbacks.TerrainLoadNodeResult,
+                                               instance.TerrainLoadNode,
+                                               handler => instance.CallbackTerrainLoadNodeResult += handler);
+        }
+
+        public static Task<Result> UserListAsync(this IInstance instance)
+        {
+            return instance.CreateCallbackTask(Callbacks.UserList,
+                                               instance.UserList,
+                                               handler => instance.CallbackUserList += handler);
+        }
+
+        public static Task<Result> WorldListAsync(this IInstance instance)
+        {
+            return instance.CreateCallbackTask(Callbacks.WorldList,
+                                               instance.WorldList,
+                                               handler => instance.CallbackWorldList += handler);
         }
     }
 }
