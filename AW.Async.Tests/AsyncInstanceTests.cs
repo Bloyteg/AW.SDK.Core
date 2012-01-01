@@ -7,7 +7,7 @@ namespace AW.Async.Tests
     public class AsyncInstanceTests
     {
         [TestMethod]
-        public void TestLoginWithSuccess()
+        public void TestWorkItemQueueCallbackWithSuccess()
         {
             var instanceMock = new Mock<IInstance>();
             SetupDisposable(instanceMock);
@@ -28,7 +28,7 @@ namespace AW.Async.Tests
         }
 
         [TestMethod]
-        public void TestLoginWithFailure()
+        public void TestWorkItemQueueCallbackWithFailure()
         {
             var instanceMock = new Mock<IInstance>();
             SetupDisposable(instanceMock);
@@ -49,7 +49,7 @@ namespace AW.Async.Tests
         }
 
         [TestMethod]
-        public void TestLoginWithImmediateFailure()
+        public void TestWorkItemQueueCallbackWithImmediateFailure()
         {
             var instanceMock = new Mock<IInstance>();
             SetupDisposable(instanceMock);
@@ -69,19 +69,20 @@ namespace AW.Async.Tests
         }
 
         [TestMethod]
-        public void TestEnterWithSuccess()
+        public void TestObjectReferenceCounterCallbackWithSuccess()
         {
             var instanceMock = new Mock<IInstance>();
             SetupDisposable(instanceMock);
+            SetupAttributes(instanceMock);
 
-            instanceMock.Setup(instance => instance.Enter("aworld"))
+            instanceMock.Setup(instance => instance.ObjectAdd())
                 .Returns(Result.Success)
-                .Raises(instance => instance.CallbackEnter += null, instanceMock.Object, Result.Success)
+                .Raises(instance => instance.CallbackObjectResult += null, instanceMock.Object, Result.Success)
                 .Verifiable();
 
             using (var testInstance = instanceMock.Object)
             {
-                var task = testInstance.EnterAsync("aworld");
+                var task = testInstance.ObjectAddAsync();
 
                 task.Wait();
                 instanceMock.Verify();
@@ -90,87 +91,45 @@ namespace AW.Async.Tests
         }
 
         [TestMethod]
-        public void TestEnterWithFailure()
+        public void TestObjectReferenceCounterCallbackWithFailure()
         {
             var instanceMock = new Mock<IInstance>();
             SetupDisposable(instanceMock);
+            SetupAttributes(instanceMock);
 
-            instanceMock.Setup(instance => instance.Enter("aworld"))
+            instanceMock.Setup(instance => instance.ObjectAdd())
                 .Returns(Result.Success)
-                .Raises(instance => instance.CallbackEnter += null, instanceMock.Object, Result.NoSuchWorld)
+                .Raises(instance => instance.CallbackObjectResult += null, instanceMock.Object, Result.NoSuchObject)
                 .Verifiable();
 
             using (var testInstance = instanceMock.Object)
             {
-                var task = testInstance.EnterAsync("aworld");
-                task.Wait();
+                var task = testInstance.ObjectAddAsync();
 
+                task.Wait();
                 instanceMock.Verify();
-                Assert.AreEqual(Result.NoSuchWorld, task.Result);
+                Assert.AreEqual(Result.NoSuchObject, task.Result);
             }
         }
 
         [TestMethod]
-        public void TestAddressWithSuccess()
+        public void TestObjectReferenceCounterCallbackWithImmediateFailure()
         {
             var instanceMock = new Mock<IInstance>();
             SetupDisposable(instanceMock);
+            SetupAttributes(instanceMock);
 
-            instanceMock.Setup(instance => instance.Address(It.IsAny<int>()))
-                .Returns(Result.Success)
-                .Raises(instance => instance.CallbackAddress += null, instanceMock.Object, Result.Success)
+            instanceMock.Setup(instance => instance.ObjectAdd())
+                .Returns(Result.NoConnection)
                 .Verifiable();
 
             using (var testInstance = instanceMock.Object)
             {
-                var task = testInstance.AddressAsync(5555);
+                var task = testInstance.ObjectAddAsync();
 
                 task.Wait();
                 instanceMock.Verify();
-                Assert.AreEqual(Result.Success, task.Result);
-            }
-        }
-
-        [TestMethod]
-        public void TestAddressWithFailure()
-        {
-            var instanceMock = new Mock<IInstance>();
-            SetupDisposable(instanceMock);
-
-            instanceMock.Setup(instance => instance.Address(It.IsAny<int>()))
-                .Returns(Result.Success)
-                .Raises(instance => instance.CallbackAddress += null, instanceMock.Object, Result.NoSuchSession)
-                .Verifiable();
-
-            using (var testInstance = instanceMock.Object)
-            {
-                var task = testInstance.AddressAsync(5555);
-
-                task.Wait();
-                instanceMock.Verify();
-                Assert.AreEqual(Result.NoSuchSession, task.Result);
-            }
-        }
-
-
-        [TestMethod]
-        public void TestAvatarLocationWithSuccess()
-        {
-            var instanceMock = new Mock<IInstance>();
-            SetupDisposable(instanceMock);
-
-            instanceMock.Setup(instance => instance.AvatarLocation(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>()))
-                .Returns(Result.Success)
-                .Raises(instance => instance.CallbackAvatarLocation += null, instanceMock.Object, Result.Success)
-                .Verifiable();
-
-            using (var testInstance = instanceMock.Object)
-            {
-                var task = testInstance.AvatarLocationAsync(session: 5555);
-
-                task.Wait();
-                instanceMock.Verify();
-                Assert.AreEqual(Result.Success, task.Result);
+                Assert.AreEqual(Result.NoConnection, task.Result);
             }
         }
 
@@ -180,6 +139,15 @@ namespace AW.Async.Tests
         {
             instanceMock.Setup(instance => instance.Dispose())
                 .Raises(instance => instance.Disposing += null, instanceMock.Object);
+        }
+
+        private static void SetupAttributes(Mock<IInstance> instanceMock)
+        {
+            var attributeProviderMock = new Mock<IAttributeProvider>();
+            attributeProviderMock.SetupAllProperties();
+
+            instanceMock.SetupGet(instance => instance.Attributes)
+                        .Returns(attributeProviderMock.Object);
         }
 
         #endregion

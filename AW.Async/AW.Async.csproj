@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AsyncInstance.cs" />
     <Compile Include="AsyncInstanceHelpers.cs" />
+    <Compile Include="CallbackObjectReferenceCounter.cs" />
     <Compile Include="Callbacks.cs" />
     <Compile Include="CallbackWorkItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

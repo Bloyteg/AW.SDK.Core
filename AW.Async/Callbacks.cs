@@ -21,6 +21,7 @@
         TerrainSetResult,
         TerrainLoadNodeResult,
         UserList,
-        WorldList
+        WorldList,
+        ObjectResult
     }
 }

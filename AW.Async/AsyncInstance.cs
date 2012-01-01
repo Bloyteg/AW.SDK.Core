@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AW.Async
@@ -9,9 +11,9 @@ namespace AW.Async
     /// </summary>
     public static partial class AsyncInstance
     {
-        private static readonly Dictionary<IInstance, Dictionary<Callbacks, Queue<CallbackWorkItem>>> CallbackWorkItemQueue = new Dictionary<IInstance, Dictionary<Callbacks, Queue<CallbackWorkItem>>>();
-        
-        private static readonly Dictionary<IInstance, long> CallbackObjectCallbackReferenceCount = new Dictionary<IInstance, long>();
+        private static readonly Dictionary<IInstance, Dictionary<Callbacks, Queue<CallbackWorkItem>>> CallbackWorkItemQueues = new Dictionary<IInstance, Dictionary<Callbacks, Queue<CallbackWorkItem>>>();
+
+        private static readonly Dictionary<IInstance, CallbackObjectReferenceCounter> CallbackObjectReferenceCounters = new Dictionary<IInstance, CallbackObjectReferenceCounter>();
 
         /// <summary>
         /// Asynchronously retrieves the IP address for the given session.
@@ -166,5 +168,51 @@ namespace AW.Async
                                                instance.WorldList,
                                                handler => instance.CallbackWorldList += handler);
         }
+
+        #region Object Result based async tasks
+
+        public static Task<Result> ObjectAddAsync(this IInstance instance)
+        {
+            return instance.CreateCallbackTask(Callbacks.ObjectResult,
+                                               instance.ObjectAdd,
+                                               handler => instance.CallbackObjectResult += handler);
+        }
+
+        public static Task<Result> ObjectDeleteAsync(this IInstance instance)
+        {
+            return instance.CreateCallbackTask(Callbacks.ObjectResult,
+                                               instance.ObjectDelete,
+                                               handler => instance.CallbackObjectResult += handler);
+        }
+
+        public static Task<Result> ObjectChangeAsync(this IInstance instance)
+        {
+            return instance.CreateCallbackTask(Callbacks.ObjectResult,
+                                               instance.ObjectChange,
+                                               handler => instance.CallbackObjectResult += handler);
+        }
+
+        public static Task<Result> ObjectLoadAsync(this IInstance instance)
+        {
+            return instance.CreateCallbackTask(Callbacks.ObjectResult,
+                                               instance.ObjectLoad,
+                                               handler => instance.CallbackObjectResult += handler);
+        }
+
+        public static Task<Result> ObjectAddSessionAsync(this IInstance instance, int session)
+        {
+            return instance.CreateCallbackTask(Callbacks.ObjectResult,
+                                               () => instance.ObjectAddSession(session),
+                                               handler => instance.CallbackObjectResult += handler);
+        }
+
+        public static Task<Result> ObjectDeleteSessionAsync(this IInstance instance, int session)
+        {
+            return instance.CreateCallbackTask(Callbacks.ObjectResult,
+                                               () => instance.ObjectDeleteSession(session),
+                                               handler => instance.CallbackObjectResult += handler);
+        }
+
+        #endregion
     }
 }
