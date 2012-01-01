@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
 namespace AW.Async.Tests
@@ -69,6 +70,26 @@ namespace AW.Async.Tests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(AggregateException))]
+        public void TestWorkItemQueueCallbackWithExceptionFailure()
+        {
+            var instanceMock = new Mock<IInstance>();
+            SetupDisposable(instanceMock);
+
+            instanceMock.Setup(instance => instance.Login())
+                .Throws(new InstanceSetFailedException())
+                .Verifiable();
+
+            using (var testInstance = instanceMock.Object)
+            {
+                var task = testInstance.LoginAsync();
+
+                task.Wait();
+                instanceMock.Verify();
+            }
+        }
+
+        [TestMethod]
         public void TestObjectReferenceCounterCallbackWithSuccess()
         {
             var instanceMock = new Mock<IInstance>();
@@ -130,6 +151,27 @@ namespace AW.Async.Tests
                 task.Wait();
                 instanceMock.Verify();
                 Assert.AreEqual(Result.NoConnection, task.Result);
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(AggregateException))]
+        public void TestObjectReferenceCounterCallbackWithExceptionFailure()
+        {
+            var instanceMock = new Mock<IInstance>();
+            SetupDisposable(instanceMock);
+            SetupAttributes(instanceMock);
+
+            instanceMock.Setup(instance => instance.ObjectAdd())
+                .Throws(new InstanceSetFailedException())
+                .Verifiable();
+
+            using (var testInstance = instanceMock.Object)
+            {
+                var task = testInstance.ObjectAddAsync();
+
+                task.Wait();
+                instanceMock.Verify();
             }
         }
 
