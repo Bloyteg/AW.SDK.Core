@@ -43,9 +43,12 @@
   <ItemGroup>
     <Compile Include="AsyncInstance.cs" />
     <Compile Include="AsyncInstanceHelpers.cs" />
+    <Compile Include="AsyncUtility.cs" />
     <Compile Include="CallbackObjectReferenceCounter.cs" />
     <Compile Include="Callbacks.cs" />
     <Compile Include="CallbackWorkItem.cs" />
+    <Compile Include="ConsoleSynchronizationContext.cs" />
+    <Compile Include="ConsoleTaskScheduler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
