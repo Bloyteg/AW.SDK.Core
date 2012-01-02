@@ -50,12 +50,9 @@ namespace AW.Async
 
             callbackWorkItemQueue.Enqueue(callbackWorkItem);
 
-            if (callbackWorkItemQueue.Count <= 1)
+            if (callbackWorkItemQueue.Count <= 1 && !TryExecuteWorkUnit(taskCompletionSource, workUnit))
             {
-                if(!TryExecuteWorkUnit(taskCompletionSource, workUnit))
-                {
-                    callbackWorkItemQueue.Dequeue();
-                }
+                callbackWorkItemQueue.Dequeue();
             }
 
             return taskCompletionSource.Task;
@@ -145,9 +142,7 @@ namespace AW.Async
                            var callbackWorkItemQueue = CallbackWorkItemQueues[sender][callback];
                            CallbackWorkItem callbackWorkItem = callbackWorkItemQueue.Dequeue();
 
-                           callbackWorkItem.TaskCompletionSource.SetResult(result);
-
-                           if (callbackWorkItemQueue.Count != 0)
+                           if (callbackWorkItemQueue.Count > 0)
                            {
                                var next = callbackWorkItemQueue.Peek();
 
@@ -156,6 +151,8 @@ namespace AW.Async
                                    callbackWorkItemQueue.Dequeue();
                                }
                            }
+
+                           callbackWorkItem.TaskCompletionSource.SetResult(result);
                        };
         }
 
