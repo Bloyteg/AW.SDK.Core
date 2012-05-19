@@ -40,7 +40,7 @@ namespace AW
         World3      = 0x00000040,
         World4      = 0x00000080,
         World5      = 0x00000100,
-        Univerise   = 0x01000000
+        Universe    = 0x01000000
     }
 
     /// <summary>

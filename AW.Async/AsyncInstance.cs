@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AW.Async
@@ -11,9 +9,9 @@ namespace AW.Async
     /// </summary>
     public static partial class AsyncInstance
     {
-        private static readonly Dictionary<IInstance, Dictionary<Callbacks, Queue<CallbackWorkItem>>> CallbackWorkItemQueues = new Dictionary<IInstance, Dictionary<Callbacks, Queue<CallbackWorkItem>>>();
+        private static readonly Dictionary<IInstance, Dictionary<Callbacks, Queue<CallbackWorkItem>>> _CallbackWorkItemQueues = new Dictionary<IInstance, Dictionary<Callbacks, Queue<CallbackWorkItem>>>();
 
-        private static readonly Dictionary<IInstance, CallbackObjectReferenceCounter> CallbackObjectReferenceCounters = new Dictionary<IInstance, CallbackObjectReferenceCounter>();
+        private static readonly Dictionary<IInstance, CallbackObjectReferenceCounter> _CallbackObjectReferenceCounters = new Dictionary<IInstance, CallbackObjectReferenceCounter>();
 
         /// <summary>
         /// Asynchronously retrieves the IP address for the given session.

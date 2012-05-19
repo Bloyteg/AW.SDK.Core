@@ -22,7 +22,7 @@ namespace AW.Async
 
         private static Task<Result> CreateCallbackObjectReferenceCounterTask(IInstance instance, Func<Result> workUnit)
         {
-            var objectReferenceCounter = CallbackObjectReferenceCounters[instance];
+            var objectReferenceCounter = _CallbackObjectReferenceCounters[instance];
             var taskCompletionSource = new TaskCompletionSource<Result>();
             var counter = unchecked(objectReferenceCounter.Counter++);
             objectReferenceCounter.TaskCompletionSources[counter] = taskCompletionSource;
@@ -39,7 +39,7 @@ namespace AW.Async
 
         private static Task<Result> CreateCallbackWorkItemQueueTask(IInstance instance, Callbacks callback, Func<Result> workUnit)
         {
-            var callbackWorkItemQueue = CallbackWorkItemQueues[instance][callback];
+            var callbackWorkItemQueue = _CallbackWorkItemQueues[instance][callback];
             var taskCompletionSource = new TaskCompletionSource<Result>();
 
             var callbackWorkItem = new CallbackWorkItem
@@ -81,7 +81,7 @@ namespace AW.Async
 
         private static void AddCallbackHandlerIfNeeded(this IInstance instance, Callbacks callback, Action<InstanceCallbackHandler> addHandlerAction)
         {
-            if(!CallbackWorkItemQueues.ContainsKey(instance) && !CallbackObjectReferenceCounters.ContainsKey(instance))
+            if(!_CallbackWorkItemQueues.ContainsKey(instance) && !_CallbackObjectReferenceCounters.ContainsKey(instance))
             {
                 instance.Disposing += HandleInstanceDisposing;
             }
@@ -99,9 +99,9 @@ namespace AW.Async
 
         private static void AddCallbackObjectReferenceCounterHandler(IInstance instance, Action<InstanceCallbackHandler> addHandlerAction)
         {
-            if(!CallbackObjectReferenceCounters.ContainsKey(instance))
+            if(!_CallbackObjectReferenceCounters.ContainsKey(instance))
             {
-                CallbackObjectReferenceCounters[instance] = new CallbackObjectReferenceCounter();
+                _CallbackObjectReferenceCounters[instance] = new CallbackObjectReferenceCounter();
                 addHandlerAction(CreateObjectReferenceCounterCallbackHandler());
             }
         }
@@ -111,7 +111,7 @@ namespace AW.Async
             return (sender, result) =>
                        {
                            var objectReference = sender.Attributes.ObjectCallbackReference;
-                           var objectReferenceCounter = CallbackObjectReferenceCounters[sender];
+                           var objectReferenceCounter = _CallbackObjectReferenceCounters[sender];
                            var taskCompletionSource = objectReferenceCounter.TaskCompletionSources[objectReference];
 
                            taskCompletionSource.SetResult(result);
@@ -121,17 +121,17 @@ namespace AW.Async
 
         private static void AddCallbackWorkItemQueueHandler(IInstance instance, Callbacks callback, Action<InstanceCallbackHandler> addHandlerAction)
         {
-            if(!CallbackWorkItemQueues.ContainsKey(instance))
+            if(!_CallbackWorkItemQueues.ContainsKey(instance))
             {
-                CallbackWorkItemQueues[instance] = new Dictionary<Callbacks, Queue<CallbackWorkItem>>();
+                _CallbackWorkItemQueues[instance] = new Dictionary<Callbacks, Queue<CallbackWorkItem>>();
             }
 
-            if (CallbackWorkItemQueues[instance].ContainsKey(callback))
+            if (_CallbackWorkItemQueues[instance].ContainsKey(callback))
             {
                 return;
             }
 
-            CallbackWorkItemQueues[instance].Add(callback, new Queue<CallbackWorkItem>());
+            _CallbackWorkItemQueues[instance].Add(callback, new Queue<CallbackWorkItem>());
             addHandlerAction(CreateWorkItemQueueCallbackHandler(callback));
         }
 
@@ -139,7 +139,7 @@ namespace AW.Async
         {
             return (sender, result) =>
                        {
-                           var callbackWorkItemQueue = CallbackWorkItemQueues[sender][callback];
+                           var callbackWorkItemQueue = _CallbackWorkItemQueues[sender][callback];
                            CallbackWorkItem callbackWorkItem = callbackWorkItemQueue.Dequeue();
 
                            if (callbackWorkItemQueue.Count > 0)
@@ -158,8 +158,8 @@ namespace AW.Async
 
         private static void HandleInstanceDisposing(IInstance sender)
         {
-            CallbackWorkItemQueues.Remove(sender);
-            CallbackObjectReferenceCounters.Remove(sender);
+            _CallbackWorkItemQueues.Remove(sender);
+            _CallbackObjectReferenceCounters.Remove(sender);
             sender.Disposing -= HandleInstanceDisposing;
         }
     }

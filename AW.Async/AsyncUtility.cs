@@ -8,15 +8,15 @@ namespace AW.Async
     /// </summary>
     public static class AsyncUtility
     {
-        private static readonly ConsoleSynchronizationContext _synchronizationContext = new ConsoleSynchronizationContext();
-        private static readonly ConsoleTaskScheduler _taskScheduler = new ConsoleTaskScheduler(_synchronizationContext);
+        private static readonly ConsoleSynchronizationContext _SynchronizationContext = new ConsoleSynchronizationContext();
+        private static readonly ConsoleTaskScheduler _TaskScheduler = new ConsoleTaskScheduler(_SynchronizationContext);
 
         /// <summary>
         /// Gets a <see cref="System.Threading.SynchronizationContext" /> that is compatible with console SDK applications.
         /// </summary>
         public static SynchronizationContext SynchronizationContext
         {
-            get { return _synchronizationContext; }
+            get { return _SynchronizationContext; }
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace AW.Async
         /// </summary>
         public static TaskScheduler TaskScheduler
         {
-            get { return _taskScheduler; }
+            get { return _TaskScheduler; }
         }
 
         /// <summary>
@@ -33,14 +33,14 @@ namespace AW.Async
         /// Only use this for console applications.  This is not compatible with WPF or Windows Forms applciations.
         /// You must use this in conjunction with <see cref="AW.Async.AsyncUtility.SynchronizationContext" />.
         /// <code>
-        /// SynchronizationContext.SetCurrentSynchronizationContext(AsyncUtility.SynchronizationContext);
+        /// SynchronizationContext.SetSynchronizationContext(AsyncUtility.SynchronizationContext);
         /// </code>
         /// <param name="milliseconds">The milliseconds.</param>
         /// <returns></returns>
         public static Result Wait(int milliseconds)
         {
             var result = Utility.Wait(milliseconds);
-            _synchronizationContext.Dispatch();
+            _SynchronizationContext.Dispatch();
             return result;
         }
     }
