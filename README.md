@@ -12,16 +12,18 @@ Portions of this project depend on external libraries including the following:
 * ActiveWorlds SDK - http://www.activeworlds.com/sdk/ - Required by AW.Core.dll at run-time.
 
 
-## Related Sites
+### Related Sites
 
 * ActiveWorlds Managed .NET SDK - http://awmanaged.codeplex.com/ - Abstraction layer built over the top of the ActiveWorlds .NET SDK Wrapper
 * ActiveWorlds C SDK Documentation - http://wiki.activeworlds.com/index.php?title=SDK - Documentation on the C library that the wrapper is based on, very useful information on general SDK concepts.
-Distribution Note
 
+
+### Distribution Note
 
 This wrapper is not distributed with the ActiveWorlds SDK. You will need to download and provide your own copy of aw.dll to go along with the version of the AW SDK that the wrapper is built against (current build is 85).
-Special Usage Note
 
+
+### Special Usage Note
 
 Since the ActiveWorlds SDK is compiled as a 32-bit DLL, the platform target for this assembly is also 32-bit (to ensure it works correctly with the 32-bit DLL on 64-bit platforms). This also means that you MUST target 32-bit platforms with any application you develop using this wrapper, if you wish for it to work correctly on a 64-bit platform. Targeting a 32-bit platform will causes .NET to use WOW64 to properly execute your application and use the 32-bit ActiveWorlds SDK.
 
