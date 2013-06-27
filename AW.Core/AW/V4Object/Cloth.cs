@@ -67,6 +67,15 @@ namespace AW
         [NonSerialized]
         private readonly ClothData _clothData = new ClothData();
 
+        [FieldValueOrdinal(1)]
+        private string _name;
+        [FieldValueOrdinal(2)]
+        private string _anchor;
+        [FieldValueOrdinal(3)]
+        private string _texture;
+        [FieldValueOrdinal(4)]
+        private string _model;
+
         public Cloth()
         {
             Name = string.Empty;
@@ -266,12 +275,28 @@ namespace AW
             set { _clothData.impulse_threshold = value; }
         }
 
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
 
-        public string Anchor { get; set; }
+        public string Anchor
+        {
+            get { return _anchor; }
+            set { _anchor = value; }
+        }
 
-        public string Texture { get; set; }
+        public string Texture
+        {
+            get { return _texture; }
+            set { _texture = value; }
+        }
 
-        public string Model { get; set; }
+        public string Model
+        {
+            get { return _model; }
+            set { _model = value; }
+        }
     }
 }

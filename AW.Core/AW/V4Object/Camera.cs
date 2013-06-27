@@ -15,7 +15,7 @@ namespace AW
             public byte version = 1;
             public CameraFlags flags = new CameraFlags();
             public float zoom = 1.0f;
-            [FieldValueOrdinal(1)]
+            [FieldSizeOrdinal(1)]
             public byte name_len;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)]
             public byte[] reserved = new byte[12];
