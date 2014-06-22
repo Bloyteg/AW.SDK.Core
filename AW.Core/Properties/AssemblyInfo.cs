@@ -16,10 +16,10 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("AW.NET")]
-[assembly: AssemblyCopyright("Copyright ©2007 - 2013 Joshua R. Rodgers")]
+[assembly: AssemblyCopyright("Copyright ©2007 - 2014 Joshua R. Rodgers")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("0.3.13.100")]
+[assembly: AssemblyVersion("0.3.14.100")]
 
 //CLS compliance
 [assembly: CLSCompliant(true)]
