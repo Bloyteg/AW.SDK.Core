@@ -124,7 +124,14 @@ namespace AW
         {
             if (!IsDisposed)
             {
-                Dispose();
+                try
+                {
+                    Dispose();
+                }
+                catch (InstanceDisposeFailedException)
+                {
+                    //Silently eat exceptions from Dispose so as to make the program behavior predictable.
+                }
             }
         }
 
