@@ -20,7 +20,7 @@ Portions of this project depend on external libraries including the following:
 
 ### Distribution Note
 
-This wrapper is not distributed with the ActiveWorlds SDK. You will need to download and provide your own copy of aw.dll to go along with the version of the AW SDK that the wrapper is built against (current build is 100, but 101 should work).
+This wrapper is not distributed with the ActiveWorlds SDK. You will need to download and provide your own copy of aw.dll to go along with the version of the AW SDK that the wrapper is built against (current build is 100).
 
 
 ### Special Usage Note
